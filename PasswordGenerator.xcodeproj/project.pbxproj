@@ -67,7 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		37020F00248DABB900C105D1 /* PasswordGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37020F00248DABB900C105D1 /* Pwd Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pwd Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37020F03248DABB900C105D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37020F05248DABB900C105D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		37020F09248DABBA00C105D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		37020F01248DABB900C105D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37020F00248DABB900C105D1 /* PasswordGenerator.app */,
+				37020F00248DABB900C105D1 /* Pwd Generator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 				37A5651124A6E4B3008D48FD /* PasswordGeneratorKit */,
 			);
 			productName = PasswordGenerator;
-			productReference = 37020F00248DABB900C105D1 /* PasswordGenerator.app */;
+			productReference = 37020F00248DABB900C105D1 /* Pwd Generator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -630,12 +630,13 @@
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PasswordGenerator/Assets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pwd Generator";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -650,12 +651,13 @@
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PasswordGenerator/Assets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pwd Generator";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
