@@ -1,0 +1,14 @@
+// MARK: - MasterPasswordKeychain.Error description
+
+"PasswordGenerator.MasterPasswordKeychain.Error.keychainError" = "Something went wrong while accessing the keychain (OSStatus: %@)";
+"PasswordGenerator.MasterPasswordKeychain.Error.canceled" = "You must grant access to the keychain.";
+"PasswordGenerator.MasterPasswordKeychain.Error.noPassword" = "Master Password couldn't be find.";
+"PasswordGenerator.MasterPasswordKeychain.Error.invalidPassword" = "The password provided is invalid.";
+"PasswordGenerator.MasterPasswordKeychain.Error.deviceLacksAuthentication" = "Your device must have at least a passcode set so we can protect your Master Password.";
+
+// MARK: - PasswordGenerator.Error description
+
+"PasswordGeneratorKit.PasswordGenerator.Error.entropyGenerationError" = "%@";
+"PasswordGeneratorKit.PasswordGenerator.Error.mustSpecifyLength" = "You must specify a length for the password to be generated.";
+"PasswordGeneratorKit.PasswordGenerator.Error.mustSpecifyAtLeastOneCharacterSet" = "You must specify at least one character set to be for the password to be generated.";
+"PasswordGeneratorKit.PasswordGenerator.Error.failedToFetchMasterPassword" = "%@";
