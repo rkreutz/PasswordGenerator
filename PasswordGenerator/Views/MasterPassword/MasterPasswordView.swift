@@ -74,6 +74,7 @@ struct MasterPasswordView_Previews: PreviewProvider {
             }
         }
         .use(masterPasswordStorage: MockMasterPasswordStorage())
+        .environmentObject(AppState(state: .mustProvideMasterPassword))
     }
 }
 

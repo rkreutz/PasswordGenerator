@@ -21,7 +21,7 @@ extension MasterPasswordView {
             do {
 
                 try masterPasswordStorage.save(masterPassword: masterPassword)
-                appState.updateRoot = ()
+                appState.state = .masterPasswordSet
             } catch {
 
                 self.error = error

@@ -10,19 +10,19 @@ import SwiftUI
 
 struct RootView: View {
 
-    @Environment(\.masterPasswordValidator) private var masterPasswordValidator
     @EnvironmentObject private var appState: AppState
 
     var body: some View {
 
-        if masterPasswordValidator.hasMasterPassword {
+        switch appState.state {
 
+        case .masterPasswordSet:
             return NavigationView {
 
                 PasswordGeneratorView()
             }.asAny()
-        } else {
 
+        case .mustProvideMasterPassword:
             return MasterPasswordView().asAny()
         }
     }

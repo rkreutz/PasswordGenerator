@@ -16,6 +16,7 @@
 		37020F222496A64000C105D1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F212496A64000C105D1 /* CardView.swift */; };
 		37020F262496F7E200C105D1 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
 		37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
+		3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735ECA224BC8808000896B0 /* AppState.swift */; };
 		3737690924984FC0003C6CE4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737690824984FC0003C6CE4 /* Strings.swift */; };
 		3737690B24985052003C6CE4 /* PasswordGeneratorView+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737690A24985052003C6CE4 /* PasswordGeneratorView+Preview.swift */; };
 		3737690F249930B3003C6CE4 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737690E249930B3003C6CE4 /* SeparatorView.swift */; };
@@ -62,7 +63,6 @@
 		37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */; };
 		37C76EEB24BAA44F003BCAC1 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C76EEA24BAA44F003BCAC1 /* Errors.strings */; };
 		37C76EEE24BB79D4003BCAC1 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EED24BB79D4003BCAC1 /* RootView.swift */; };
-		37C76EF024BB846A003BCAC1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EEF24BB846A003BCAC1 /* AppState.swift */; };
 		37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +78,7 @@
 		37020F212496A64000C105D1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		37020F252496F7E200C105D1 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		37020F27249831E000C105D1 /* CounterToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToggleView.swift; sourceTree = "<group>"; };
+		3735ECA224BC8808000896B0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		3737690824984FC0003C6CE4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		3737690A24985052003C6CE4 /* PasswordGeneratorView+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+Preview.swift"; sourceTree = "<group>"; };
 		3737690E249930B3003C6CE4 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
@@ -122,7 +123,6 @@
 		37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorError+LocalizedError.swift"; sourceTree = "<group>"; };
 		37C76EEA24BAA44F003BCAC1 /* Errors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
 		37C76EED24BB79D4003BCAC1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		37C76EEF24BB846A003BCAC1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AsHostingController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,7 +238,7 @@
 		3741796824A43331003C5592 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				37C76EEF24BB846A003BCAC1 /* AppState.swift */,
+				3735ECA224BC8808000896B0 /* AppState.swift */,
 				375D5A9724BA8E3D0017AC2B /* CategorizedError.swift */,
 				37A5653224B94446008D48FD /* DispatchWorkItemReference.swift */,
 				375D5AA124BA92D40017AC2B /* Dependency Injection */,
@@ -444,7 +444,6 @@
 				37A5653E24B9601B008D48FD /* MasterPasswordValidator.swift in Sources */,
 				37A5654124B960EC008D48FD /* MasterPasswordKeychain+PasswordStorage.swift in Sources */,
 				3737690B24985052003C6CE4 /* PasswordGeneratorView+Preview.swift in Sources */,
-				37C76EF024BB846A003BCAC1 /* AppState.swift in Sources */,
 				375D5A9A24BA8E690017AC2B /* LocalizedError+ErrorDescription.swift in Sources */,
 				375D5A9E24BA8EEA0017AC2B /* DefaultErrorHandler.swift in Sources */,
 				3737691724996760003C6CE4 /* PasswordGeneratorView+ViewModel.swift in Sources */,
@@ -462,6 +461,7 @@
 				37A5653524B95166008D48FD /* Binding+StaticValue.swift in Sources */,
 				37020F1F2496961B00C105D1 /* Colors.swift in Sources */,
 				37376919249969CB003C6CE4 /* Collection+IsNotEmpty.swift in Sources */,
+				3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */,
 				37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
 				3737691324994AC0003C6CE4 /* ContentSizeCategory+Modifier.swift in Sources */,
 				37020F04248DABB900C105D1 /* AppDelegate.swift in Sources */,

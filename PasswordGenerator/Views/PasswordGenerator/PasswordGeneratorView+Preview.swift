@@ -25,6 +25,7 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
             }
         }
         .use(passwordGenerator: PasswordGenerator(masterPasswordProvider: "masterPassword"))
+        .environmentObject(AppState(state: .masterPasswordSet))
     }
 }
 

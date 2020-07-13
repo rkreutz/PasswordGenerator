@@ -58,7 +58,7 @@ extension PasswordGeneratorView {
             do {
 
                 try masterPasswordStorage.deleteMasterPassword()
-                appState.updateRoot = ()
+                appState.state = .mustProvideMasterPassword
             } catch {
 
                 self.error = error
