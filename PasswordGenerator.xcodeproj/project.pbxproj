@@ -429,7 +429,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftlint\n";
+			shellScript = "if [ $IS_CI == true ]; then\n    exit\nfi\n    \nswiftlint --config ${PROJECT_DIR}/.swiftlint.yml\\\n    --path PasswordGenerator\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -7,7 +7,7 @@ struct PasswordGeneratorView: View {
 
     @Environment(\.sizeCategory) private var sizeCategory
 
-    @ObservedObject var viewModel: ViewModel = ViewModel()
+    @ObservedObject var viewModel = ViewModel()
     @EnvironmentObject private var appState: AppState
 
     var body: some View {

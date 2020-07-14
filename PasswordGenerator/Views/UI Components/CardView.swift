@@ -1,3 +1,4 @@
+//swiftlint:disable closure_body_length
 import SwiftUI
 
 struct CardView<Content: View>: View {
@@ -22,7 +23,6 @@ struct CardView<Content: View>: View {
 
             content
                 .padding(16 * sizeCategory.modifier)
-
         }
         .fixedSize(horizontal: false, vertical: true)
         .foregroundColor(.background02)

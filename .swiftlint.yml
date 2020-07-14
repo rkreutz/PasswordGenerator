@@ -114,8 +114,6 @@ type_name:
 private_outlet:
   allow_private_set: true
 
-reporter: "emoji" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
-
 custom_rules:
     more_than_one_variable_declaration:
         regex: '^\s*(let|var|case)\s+\w+,[ ]*\w+'
