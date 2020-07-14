@@ -14,9 +14,14 @@ jobs:
       XC_VERSION: ${{ '11.4' }}
       XC_PROJECT: ${{ 'PasswordGenerator.xcodeproj' }}
       XC_SCHEME: ${{ 'PasswordGenerator' }}
+      IS_CI: 'true'
     steps:
     - name: Select Xcode
       run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
     - uses: actions/checkout@v2
+    - name: Prepare Build
+      run: brew bundle
+    - name: SwiftLint
+      run: swiftlint --strict
     - name: Build the project
       run: /usr/bin/xcodebuild build -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'
