@@ -6,7 +6,7 @@ enum PasswordGeneratorEnvironmentKey: EnvironmentKey {
     static var defaultValue: PasswordGenerator = PasswordGenerator(
         masterPasswordProvider: MasterPasswordKeychain(),
         iterations: 1_000,
-        bytes: 8
+        bytes: 40
     )
 }
 

@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/rkreutz/PasswordGeneratorKit",
         "state": {
           "branch": null,
-          "revision": "a817cc405a9b4dd0694191ad5e8c8af5a16d965e",
-          "version": "3.0.0"
+          "revision": "1f44421d73f616da594ea6c77b703ca82ff154e1",
+          "version": "4.0.0"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/rkreutz/UIntX",
         "state": {
           "branch": null,
-          "revision": "bd6f2f563a7c23b42cf16449e31d3cbc983edb09",
-          "version": "1.0.1"
+          "revision": "96954c1534f00fd4776f86e4731299d77c2dfe59",
+          "version": "2.0.0"
         }
       }
     ]

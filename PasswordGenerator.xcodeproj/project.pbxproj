@@ -692,7 +692,7 @@
 			repositoryURL = "https://github.com/rkreutz/PasswordGeneratorKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				minimumVersion = 4.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
