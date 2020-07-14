@@ -22,6 +22,6 @@ jobs:
     - name: Prepare Build
       run: brew bundle
     - name: SwiftLint
-      run: swiftlint --strict
+      run: swiftlint lint --reporter emoji --strict
     - name: Build the project
       run: /usr/bin/xcodebuild build -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 11'

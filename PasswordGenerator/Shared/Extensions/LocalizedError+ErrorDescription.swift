@@ -1,8 +1,8 @@
 import Foundation
 
-extension LocalizedError {
+public extension LocalizedError {
 
-    public var errorDescription: String? {
+    var errorDescription: String? {
 
         let mirror = Mirror(reflecting: self)
 

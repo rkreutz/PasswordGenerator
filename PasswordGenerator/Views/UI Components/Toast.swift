@@ -55,7 +55,6 @@ private struct Toast<Presenter: View, Content: View>: View {
                 }
             }
         }
-
     }
 }
 

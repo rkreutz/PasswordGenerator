@@ -3,7 +3,7 @@ import PasswordGeneratorKit
 
 enum PasswordGeneratorEnvironmentKey: EnvironmentKey {
 
-    static var defaultValue: PasswordGenerator = PasswordGenerator(
+    static var defaultValue = PasswordGenerator(
         masterPasswordProvider: MasterPasswordKeychain(),
         iterations: 1_000,
         bytes: 40

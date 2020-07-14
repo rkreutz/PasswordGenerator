@@ -1,3 +1,4 @@
+//swiftlint:disable closure_body_length
 import SwiftUI
 
 struct MainButton: View {
@@ -71,7 +72,6 @@ struct MainButton_Previews: PreviewProvider {
                 .previewDisplayName("Dark (disabled)")
                 .background(Rectangle().foregroundColor(.background01))
                 .environment(\.colorScheme, .dark)
-
         }
     }
 }

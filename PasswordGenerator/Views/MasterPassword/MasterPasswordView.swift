@@ -13,7 +13,7 @@ struct MasterPasswordView: View {
     @Environment(\.sizeCategory) private var sizeCategory
     @EnvironmentObject private var appState: AppState
 
-    @ObservedObject var viewModel: ViewModel = ViewModel()
+    @ObservedObject var viewModel = ViewModel()
 
     var body: some View {
 
