@@ -13,6 +13,9 @@ jobs:
       XC_VERSION: ${{ '11.4' }}
       XC_PROJECT: ${{ 'PasswordGenerator.xcodeproj' }}
       XC_SCHEME: ${{ 'PasswordGenerator' }}
+      XC_SDK: ${{ 'iphoneos' }}
+      XC_CONFIGURATION: ${{ 'Release' }}
+      XC_BUILD_DIR: ${{ '.build' }}
       IS_CI: 'true'
     steps:
       - name: Clone Repository (Latest)
@@ -42,10 +45,54 @@ jobs:
         uses: einaregilsson/build-number@v2
         with:
           token: ${{ secrets.github_token }}
+      - name: "Archive App"
+        run: |
+          #!/usr/bin/env bash
+
+          set -xeu
+          set -o pipefail
+
+          function finish() {
+            ditto -c -k --sequesterRsrc --keepParent "${RESULT_BUNDLE_PATH}" "${RESULT_BUNDLE_PATH}.zip"
+            rm -rf "${RESULT_BUNDLE_PATH}"
+          }
+
+          trap finish EXIT
+
+          ARTIFACT_PATH="${XC_BUILD_DIR}/Artifacts"
+          RESULT_BUNDLE_PATH="${ARTIFACT_PATH}/${XC_SCHEME}.xcresult"
+          ARCHIVE_PATH="${XC_BUILD_DIR}/Archives/${XC_SCHEME}.xcarchive"
+          DERIVED_DATA_PATH="${XC_BUILD_DIR}/DerivedData"
+          EXPORT_OPTIONS_FILE="Support/ExportOptions.plist"
+
+          rm -rf "${RESULT_BUNDLE_PATH}"
+
+          xcrun xcodebuild \
+              -project "${XC_PROJECT}" \
+              -scheme "${XC_SCHEME}" \
+              -configuration "${XC_CONFIGURATION}" \
+              -sdk "${XC_SDK}" \
+              -parallelizeTargets \
+              -showBuildTimingSummary \
+              -disableAutomaticPackageResolution \
+              -derivedDataPath "${DERIVED_DATA_PATH}" \
+              -archivePath "${ARCHIVE_PATH}" \
+              -resultBundlePath "${RESULT_BUNDLE_PATH}" \
+              CURRENT_PROJECT_VERSION="${BUILD_NUMBER}" \
+              archive
+
+          xcrun xcodebuild \
+              -exportArchive \
+              -exportOptionsPlist "${EXPORT_OPTIONS_FILE}" \
+              -archivePath "${ARCHIVE_PATH}" \
+              -exportPath "${ARTIFACT_PATH}/${SCHEME}.ipa"
+
+          # Zip up the Xcode Archive into Artifacts folder.
+          ditto -c -k --sequesterRsrc --keepParent "${ARCHIVE_PATH}" "${ARTIFACT_PATH}/${SCHEME}.xcarchive.zip"
       - name: Upload to TestFlight
         uses: Apple-Actions/upload-testflight-build@master
         with:
-          app-path: .build/Artifacts/Example-iOS.ipa/Example-iOS.ipa
+          app-path: ".build/Artifacts/PasswordGenerator.ipa"
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
