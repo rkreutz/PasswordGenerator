@@ -9,6 +9,11 @@ jobs:
   deploy:
     name: Deploy To Production
     runs-on: macos-latest
+    env:
+      XC_VERSION: ${{ '11.4' }}
+      XC_PROJECT: ${{ 'PasswordGenerator.xcodeproj' }}
+      XC_SCHEME: ${{ 'PasswordGenerator' }}
+      IS_CI: 'true'
     steps:
       - name: Clone Repository (Latest)
         uses: actions/checkout@v2
@@ -23,3 +28,24 @@ jobs:
         with: 
           p12-file-base64: ${{ secrets.CERTIFICATE_P12 }}
           p12-password: ${{ secrets.CERTIFICATE_PWD }}
+      - name: 'Download Provisioning Profiles'
+        id: provisioning
+        uses: apple-actions/download-provisioning-profiles@v1
+        with: 
+          bundle-id: 'com.rkreutz.PasswordGenerator'
+          profile-type: 'IOS_APP_STORE'
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: "#️⃣ Generate Build Number"
+        id: buildnumber
+        uses: einaregilsson/build-number@v2
+        with:
+          token: ${{ secrets.github_token }}
+      - name: 'Upload to TestFlight'
+        uses: apple-actions/upload-testflight-build@v1
+        with: 
+          app-path: 'path/to/application.ipa'
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
