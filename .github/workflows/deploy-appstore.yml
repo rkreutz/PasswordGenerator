@@ -31,12 +31,21 @@ jobs:
         with: 
           p12-file-base64: ${{ secrets.CERTIFICATE_P12 }}
           p12-password: ${{ secrets.CERTIFICATE_PWD }}
-      - name: 'Download Provisioning Profiles'
+      - name: 'Download AppStore Profile'
         id: provisioning
         uses: apple-actions/download-provisioning-profiles@v1
         with: 
           bundle-id: 'com.rkreutz.PasswordGenerator'
           profile-type: 'IOS_APP_STORE'
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: 'Download Development Profile'
+        id: provisioning-dev
+        uses: apple-actions/download-provisioning-profiles@v1
+        with: 
+          bundle-id: 'com.rkreutz.PasswordGenerator'
+          profile-type: 'IOS_APP_DEVELOPMENT'
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
