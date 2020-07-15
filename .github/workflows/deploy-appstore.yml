@@ -84,6 +84,7 @@ jobs:
               -parallelizeTargets \
               -showBuildTimingSummary \
               -disableAutomaticPackageResolution \
+              -allowProvisioningUpdates \
               -derivedDataPath "${DERIVED_DATA_PATH}" \
               -archivePath "${ARCHIVE_PATH}" \
               -resultBundlePath "${RESULT_BUNDLE_PATH}" \
