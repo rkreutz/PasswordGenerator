@@ -17,7 +17,9 @@ jobs:
       XC_CONFIGURATION: ${{ 'Release' }}
       XC_BUILD_DIR: ${{ '.build' }}
       IS_CI: 'true'
-    steps:
+    steps:    
+      - name: Select Xcode
+        run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
       - name: Clone Repository (Latest)
         uses: actions/checkout@v2
         if: github.event.inputs.git-ref == ''
