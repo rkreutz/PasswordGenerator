@@ -81,6 +81,7 @@ jobs:
               -archivePath "${ARCHIVE_PATH}" \
               -resultBundlePath "${RESULT_BUNDLE_PATH}" \
               CURRENT_PROJECT_VERSION="${BUILD_NUMBER}" \
+              PROVISIONING_PROFILE=${{ secrets.XC_PROFILE }} \
               archive
 
           xcrun xcodebuild \
