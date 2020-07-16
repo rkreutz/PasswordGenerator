@@ -11,4 +11,4 @@ To run the app locally you must have at least **Xcode 11.4** installed.
 
 ## AppStore
 
-[This is the link to the appstore]()
+[This is the link to the appstore](https://apps.apple.com/app/id1523587676)
