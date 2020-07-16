@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.rkreutz.PasswordGenerator</key>
+		<string>42ab76da-ad5c-4b78-9dcd-6c682fa02e5e</string>
+	</dict>
 	<key>destination</key>
 	<string>export</string>
 	<key>method</key>
