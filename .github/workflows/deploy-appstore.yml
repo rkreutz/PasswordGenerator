@@ -16,6 +16,7 @@ jobs:
       XC_SDK: ${{ 'iphoneos' }}
       XC_CONFIGURATION: ${{ 'Release' }}
       XC_BUILD_DIR: ${{ '.build' }}
+      XC_EXPORT_OPTIONS_FILE: "Support/ExportOptions.plist"
       IS_CI: 'true'
     steps:    
       - name: Select Xcode
@@ -65,7 +66,6 @@ jobs:
           RESULT_BUNDLE_PATH="${ARTIFACT_PATH}/${XC_SCHEME}.xcresult"
           ARCHIVE_PATH="${XC_BUILD_DIR}/Archives/${XC_SCHEME}.xcarchive"
           DERIVED_DATA_PATH="${XC_BUILD_DIR}/DerivedData"
-          EXPORT_OPTIONS_FILE="${XC_BUILD_DIR}/ExportOptions.plist"
 
           rm -rf "${RESULT_BUNDLE_PATH}"
 
@@ -85,11 +85,9 @@ jobs:
               IPHONEOS_DEPLOYMENT_TARGET='13.0' \
               archive
 
-          touch "${EXPORT_OPTIONS_FILE}"
-
           xcrun xcodebuild \
               -exportArchive \
-              -exportOptionsPlist "${EXPORT_OPTIONS_FILE}" \
+              -exportOptionsPlist "${XC_EXPORT_OPTIONS_FILE}" \
               -archivePath "${ARCHIVE_PATH}" \
               -exportPath "${ARTIFACT_PATH}/${XC_SCHEME}.ipa"
 
