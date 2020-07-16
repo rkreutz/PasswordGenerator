@@ -105,6 +105,7 @@ jobs:
       - name: Set Git Tag
         env:
           TAG: "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           #!/bin/sh
           set -eu
