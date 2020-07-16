@@ -104,7 +104,6 @@ jobs:
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
       - name: Set Git Tag
         env:
-          TAG: "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           #!/bin/sh
@@ -130,6 +129,6 @@ jobs:
           
           git fetch origin --tags
           
-          git tag ${TAG}
+          git tag "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
           
           git push --tags
