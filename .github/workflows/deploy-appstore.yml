@@ -44,7 +44,7 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-      - name: Increment Build Number
+      - name: Set Build Number
         run: |
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${GITHUB_RUN_NUMBER}" "${XC_INFO_PLIST_PATH}"
       - name: Get Version Number
@@ -82,7 +82,7 @@ jobs:
               -derivedDataPath "${DERIVED_DATA_PATH}" \
               -archivePath "${ARCHIVE_PATH}" \
               -resultBundlePath "${RESULT_BUNDLE_PATH}" \
-              CURRENT_PROJECT_VERSION="${BUILD_NUMBER}" \
+              CURRENT_PROJECT_VERSION="${GITHUB_RUN_NUMBER}" \
               PROVISIONING_PROFILE=${{ secrets.XC_PROFILE }} \
               IPHONEOS_DEPLOYMENT_TARGET='13.0' \
               archive
