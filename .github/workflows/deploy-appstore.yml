@@ -102,8 +102,8 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.17.2
+      - name: Set Git Tag
+        uses: hole19/git-tag-action@master
         env:
+          TAG: "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_TAG: "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
