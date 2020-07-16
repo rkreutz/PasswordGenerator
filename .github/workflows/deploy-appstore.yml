@@ -17,7 +17,7 @@ jobs:
       XC_CONFIGURATION: ${{ 'Release' }}
       XC_BUILD_DIR: ${{ '.build' }}
       XC_EXPORT_OPTIONS_FILE: "Support/ExportOptions.plist"
-      XC_INFO_PLIST_PATH: 'PasswordGenerator/Assets/Info.plist'
+      XC_INFO_PLIST_PATH: "PasswordGenerator/Assets/Info.plist"
       IS_CI: 'true'
     steps:    
       - name: Select Xcode
