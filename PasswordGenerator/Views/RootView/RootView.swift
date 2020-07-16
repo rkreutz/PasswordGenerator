@@ -20,7 +20,9 @@ struct RootView: View {
             return NavigationView {
 
                 PasswordGeneratorView()
-            }.asAny()
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .asAny()
 
         case .mustProvideMasterPassword:
             return MasterPasswordView().asAny()
