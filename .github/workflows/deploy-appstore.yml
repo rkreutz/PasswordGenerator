@@ -89,14 +89,14 @@ jobs:
               -exportArchive \
               -exportOptionsPlist "${XC_EXPORT_OPTIONS_FILE}" \
               -archivePath "${ARCHIVE_PATH}" \
-              -exportPath "${ARTIFACT_PATH}/${XC_SCHEME}.ipa"
+              -exportPath "${ARTIFACT_PATH}/${XC_SCHEME}"
 
           # Zip up the Xcode Archive into Artifacts folder.
           ditto -c -k --sequesterRsrc --keepParent "${ARCHIVE_PATH}" "${ARTIFACT_PATH}/${XC_SCHEME}.xcarchive.zip"
       - name: Upload to TestFlight
         uses: Apple-Actions/upload-testflight-build@master
         with:
-          app-path: ".build/Artifacts/PasswordGenerator.ipa"
+          app-path: ".build/Artifacts/PasswordGenerator/PasswordGenerator.ipa"
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
