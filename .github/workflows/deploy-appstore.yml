@@ -89,10 +89,10 @@ jobs:
               -exportArchive \
               -exportOptionsPlist "${EXPORT_OPTIONS_FILE}" \
               -archivePath "${ARCHIVE_PATH}" \
-              -exportPath "${ARTIFACT_PATH}/${SCHEME}.ipa"
+              -exportPath "${ARTIFACT_PATH}/${XC_SCHEME}.ipa"
 
           # Zip up the Xcode Archive into Artifacts folder.
-          ditto -c -k --sequesterRsrc --keepParent "${ARCHIVE_PATH}" "${ARTIFACT_PATH}/${SCHEME}.xcarchive.zip"
+          ditto -c -k --sequesterRsrc --keepParent "${ARCHIVE_PATH}" "${ARTIFACT_PATH}/${XC_SCHEME}.xcarchive.zip"
       - name: Upload to TestFlight
         uses: Apple-Actions/upload-testflight-build@master
         with:
