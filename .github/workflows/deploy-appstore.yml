@@ -17,6 +17,7 @@ jobs:
       XC_CONFIGURATION: ${{ 'Release' }}
       XC_BUILD_DIR: ${{ '.build' }}
       XC_EXPORT_OPTIONS_FILE: "Support/ExportOptions.plist"
+      XC_INFO_PLIST_PATH: ''
       IS_CI: 'true'
     steps:    
       - name: Select Xcode
@@ -43,11 +44,12 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-      - name: "#️⃣ Generate Build Number"
-        id: buildnumber
-        uses: einaregilsson/build-number@v2
-        with:
-          token: ${{ secrets.github_token }}
+      - name: Increment Build Number
+        run: |
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${GITHUB_RUN_NUMBER}" "${XC_INFO_PLIST_PATH}"
+      - name: Get Version Number
+        run: |
+          export VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${XC_INFO_PLIST_PATH}")
       - name: "Archive App"
         run: |
           #!/usr/bin/env bash
@@ -100,3 +102,8 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.17.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CUSTOM_TAG: "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
