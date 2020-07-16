@@ -47,9 +47,6 @@ jobs:
       - name: Set Build Number
         run: |
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${GITHUB_RUN_NUMBER}" "${XC_INFO_PLIST_PATH}"
-      - name: Get Version Number
-        run: |
-          export VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${XC_INFO_PLIST_PATH}")
       - name: "Archive App"
         run: |
           #!/usr/bin/env bash
@@ -128,6 +125,8 @@ jobs:
           git_setup
           
           git fetch origin --tags
+          
+          VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${XC_INFO_PLIST_PATH}")
           
           git tag "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
           
