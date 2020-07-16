@@ -82,6 +82,7 @@ jobs:
               -resultBundlePath "${RESULT_BUNDLE_PATH}" \
               CURRENT_PROJECT_VERSION="${BUILD_NUMBER}" \
               PROVISIONING_PROFILE=${{ secrets.XC_PROFILE }} \
+              IPHONEOS_DEPLOYMENT_TARGET='13.0' \
               archive
 
           xcrun xcodebuild \
