@@ -85,6 +85,8 @@ jobs:
               IPHONEOS_DEPLOYMENT_TARGET='13.0' \
               archive
 
+          touch "${EXPORT_OPTIONS_FILE}"
+
           xcrun xcodebuild \
               -exportArchive \
               -exportOptionsPlist "${EXPORT_OPTIONS_FILE}" \
