@@ -17,6 +17,7 @@ jobs:
       XC_CONFIGURATION: ${{ 'Release' }}
       XC_BUILD_DIR: ${{ '.build' }}
       XC_EXPORT_OPTIONS_FILE: "Support/ExportOptions.plist"
+      XC_INFO_PLIST_PATH: "PasswordGenerator/Assets/Info.plist"
       IS_CI: 'true'
     steps:    
       - name: Select Xcode
@@ -43,11 +44,9 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
-      - name: "#️⃣ Generate Build Number"
-        id: buildnumber
-        uses: einaregilsson/build-number@v2
-        with:
-          token: ${{ secrets.github_token }}
+      - name: Set Build Number
+        run: |
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${GITHUB_RUN_NUMBER}" "${XC_INFO_PLIST_PATH}"
       - name: "Archive App"
         run: |
           #!/usr/bin/env bash
@@ -80,7 +79,7 @@ jobs:
               -derivedDataPath "${DERIVED_DATA_PATH}" \
               -archivePath "${ARCHIVE_PATH}" \
               -resultBundlePath "${RESULT_BUNDLE_PATH}" \
-              CURRENT_PROJECT_VERSION="${BUILD_NUMBER}" \
+              CURRENT_PROJECT_VERSION="${GITHUB_RUN_NUMBER}" \
               PROVISIONING_PROFILE=${{ secrets.XC_PROFILE }} \
               IPHONEOS_DEPLOYMENT_TARGET='13.0' \
               archive
@@ -100,3 +99,35 @@ jobs:
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+      - name: Set Git Tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          #!/bin/sh
+          set -eu
+
+          # Set up .netrc file with GitHub credentials
+          git_setup ( ) {
+            cat <<- EOF > $HOME/.netrc
+              machine github.com
+              login $GITHUB_ACTOR
+              password $GITHUB_TOKEN
+              machine api.github.com
+              login $GITHUB_ACTOR
+              password $GITHUB_TOKEN
+          EOF
+            chmod 600 $HOME/.netrc
+
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Action"
+          }
+
+          git_setup
+          
+          git fetch origin --tags
+          
+          VERSION_NUMBER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${XC_INFO_PLIST_PATH}")
+          
+          git tag "${VERSION_NUMBER}/${GITHUB_RUN_NUMBER}"
+          
+          git push --tags
