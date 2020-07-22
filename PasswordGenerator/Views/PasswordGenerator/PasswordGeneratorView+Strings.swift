@@ -6,9 +6,14 @@ extension Strings {
 
         static let resetMasterPassword = LocalizedStringKey("Logout")
 
+        static let domainBased = LocalizedStringKey("Domain")
+        static let serviceBased = LocalizedStringKey("Service")
+
         static let username = LocalizedStringKey("Username/Email")
         static let domain = LocalizedStringKey("Website URL")
         static let seed = LocalizedStringKey("Seed")
+
+        static let service = LocalizedStringKey("Service")
 
         static let passwordLength = LocalizedStringKey("Password length")
 

@@ -1,3 +1,4 @@
+//swiftlint:disable closure_body_length
 import SwiftUI
 
 extension PasswordGeneratorView {
@@ -14,29 +15,51 @@ extension PasswordGeneratorView {
 
                 VStack(alignment: .center, spacing: 16 * sizeCategory.modifier) {
 
-                    TextField(Strings.PasswordGeneratorView.username, text: $viewModel.username)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        .keyboardType(.emailAddress)
-                        .foregroundColor(.foreground)
-                        .font(.body)
+                    Picker(selection: $viewModel.passwordType, label: Text("")) {
 
-                    SeparatorView()
+                        ForEach(PasswordType.allCases, id: \.hashValue) { passwordType in
 
-                    TextField(Strings.PasswordGeneratorView.domain, text: $viewModel.domain)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        .keyboardType(.URL)
-                        .foregroundColor(.foreground)
-                        .font(.body)
+                            Text(passwordType.title)
+                                .tag(passwordType)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .fixedSize()
 
-                    SeparatorView()
+                    if viewModel.passwordType == .domainBased {
 
-                    CounterView(
-                        count: $viewModel.seed,
-                        title: Strings.PasswordGeneratorView.seed,
-                        bounds: 1 ... 999
-                    )
+                        TextField(Strings.PasswordGeneratorView.username, text: $viewModel.username)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                            .keyboardType(.emailAddress)
+                            .foregroundColor(.foreground)
+                            .font(.body)
+
+                        SeparatorView()
+
+                        TextField(Strings.PasswordGeneratorView.domain, text: $viewModel.domain)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                            .keyboardType(.URL)
+                            .foregroundColor(.foreground)
+                            .font(.body)
+
+                        SeparatorView()
+
+                        CounterView(
+                            count: $viewModel.seed,
+                            title: Strings.PasswordGeneratorView.seed,
+                            bounds: 1 ... 999
+                        )
+                    } else {
+
+                        TextField(Strings.PasswordGeneratorView.service, text: $viewModel.service)
+                            .autocapitalization(.sentences)
+                            .disableAutocorrection(false)
+                            .keyboardType(.default)
+                            .foregroundColor(.foreground)
+                            .font(.body)
+                    }
                 }
             }
         }
