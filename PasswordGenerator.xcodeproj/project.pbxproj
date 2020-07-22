@@ -25,6 +25,7 @@
 		3737691724996760003C6CE4 /* PasswordGeneratorView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737691624996760003C6CE4 /* PasswordGeneratorView+ViewModel.swift */; };
 		37376919249969CB003C6CE4 /* Collection+IsNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37376918249969CA003C6CE4 /* Collection+IsNotEmpty.swift */; };
 		3737691B24996A07003C6CE4 /* String+HasMatchingTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737691A24996A07003C6CE4 /* String+HasMatchingTypes.swift */; };
+		37499C3624C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37499C3524C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift */; };
 		375D5A9424BA8C150017AC2B /* View+AsAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9324BA8C150017AC2B /* View+AsAny.swift */; };
 		375D5A9824BA8E3D0017AC2B /* CategorizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9724BA8E3D0017AC2B /* CategorizedError.swift */; };
 		375D5A9A24BA8E690017AC2B /* LocalizedError+ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */; };
@@ -88,6 +89,7 @@
 		37376918249969CA003C6CE4 /* Collection+IsNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+IsNotEmpty.swift"; sourceTree = "<group>"; };
 		3737691A24996A07003C6CE4 /* String+HasMatchingTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HasMatchingTypes.swift"; sourceTree = "<group>"; };
 		3741796924A4335F003C5592 /* MasterPasswordKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordKeychain.swift; sourceTree = "<group>"; };
+		37499C3524C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+PasswordType.swift"; sourceTree = "<group>"; };
 		375D5A9324BA8C150017AC2B /* View+AsAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AsAny.swift"; sourceTree = "<group>"; };
 		375D5A9724BA8E3D0017AC2B /* CategorizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedError.swift; sourceTree = "<group>"; };
 		375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedError+ErrorDescription.swift"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				37020F1B248DB84400C105D1 /* PasswordGeneratorView.swift */,
 				375D5AAA24BA96200017AC2B /* PasswordGeneratorView+PasswordState.swift */,
+				37499C3524C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift */,
 				3737690A24985052003C6CE4 /* PasswordGeneratorView+Preview.swift */,
 				373769142499517E003C6CE4 /* PasswordGeneratorView+Strings.swift */,
 				3737691624996760003C6CE4 /* PasswordGeneratorView+ViewModel.swift */,
@@ -470,6 +473,7 @@
 				375D5AA524BA93D30017AC2B /* MasterPasswordStorage+DI.swift in Sources */,
 				37A5652924B8D843008D48FD /* PasswordGeneratorView+LengthView.swift in Sources */,
 				375D5A9424BA8C150017AC2B /* View+AsAny.swift in Sources */,
+				37499C3624C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift in Sources */,
 				37A5652024B800A0008D48FD /* MasterPasswordKeychain.swift in Sources */,
 				37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */,
 				375D5AA324BA92EC0017AC2B /* ErrorHandler+DI.swift in Sources */,

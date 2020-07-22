@@ -10,9 +10,11 @@ extension PasswordGeneratorView {
         @Environment(\.passwordGenerator) private var generator
         @Environment(\.masterPasswordStorage) private var masterPasswordStorage
 
+        @Published var passwordType: PasswordType = .domainBased
         @Published var username: String = ""
         @Published var domain: String = ""
         @Published var seed: Int = 1
+        @Published var service: String = ""
         @Published var length: Int = 8
         @Published var shouldIncludeDigits: Bool = true
         @Published var numberOfDigits: Int = 1
@@ -37,7 +39,16 @@ extension PasswordGeneratorView {
 
         func generatePassword() {
 
-            generator.publishers.generatePassword(username: username, domain: domain, seed: seed, rules: rules)
+            let publisher: AnyPublisher<String, PasswordGenerator.Error>
+            switch passwordType {
+
+            case .domainBased:
+                publisher = generator.publishers.generatePassword(username: username, domain: domain, seed: seed, rules: rules)
+            case .serviceBased:
+                publisher = generator.publishers.generatePassword(service: service, rules: rules)
+            }
+
+            publisher
                 .prefix(untilOutputFrom: isValid.dropFirst())
                 .receive(on: DispatchQueue.main)
                 .handleEvents(receiveRequest: { [weak self] _ in self?.passwordState = .loading })
@@ -83,10 +94,31 @@ private extension PasswordGeneratorView.ViewModel {
 
     private var isValid: AnyPublisher<Bool, Never> {
 
-        Publishers
+        let domainBasedInput = Publishers
             .CombineLatest4(
-                $username.map(\.isNotEmpty),
-                $domain.map { $0.hasMatchingTypes(NSTextCheckingResult.CheckingType.link.rawValue) },
+                $username,
+                $domain,
+                $seed,
+                $passwordType.filter { $0 == .domainBased }
+            )
+            .map { username, domain, _, _ in
+
+                username.isNotEmpty && domain.hasMatchingTypes(NSTextCheckingResult.CheckingType.link.rawValue)
+            }
+
+        let serviceBasedInput = Publishers
+            .CombineLatest(
+                $service,
+                $passwordType.filter { $0 == .serviceBased }
+            )
+            .map { service, _ in
+
+                service.isNotEmpty
+            }
+
+        return Publishers
+            .CombineLatest3(
+                Publishers.Merge(domainBasedInput, serviceBasedInput),
                 $length.map { $0 > 4 },
                 Publishers
                     .CombineLatest4(
@@ -94,12 +126,11 @@ private extension PasswordGeneratorView.ViewModel {
                         $numberOfSymbols,
                         $numberOfLowercase,
                         $numberOfUppercase
-                )
+                    )
                     .map { $0 + $1 + $2 + $3 > 0 }
                     .eraseToAnyPublisher()
             )
-            .map { $0 && $1 && $2 && $3 }
-            .combineLatest($seed, { isValid, _ in isValid })
+            .map { $0 && $1 && $2 }
             .eraseToAnyPublisher()
     }
 
