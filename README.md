@@ -16,8 +16,8 @@ With a single Master Password you can generate all your other website passwords.
 |Domain Based passwords|Service Based passwords|
 |-----|-----|
 |||
-|||
-|||
+|![Simulator Screen Shot - iPhone 11 - 2020-07-22 at 22 33 46](https://user-images.githubusercontent.com/8869678/88231296-e4c67600-cc6b-11ea-99e1-89fd50d5d43b.png)||
+|![Simulator Screen Shot - iPhone 11 - 2020-07-22 at 22 34 04](https://user-images.githubusercontent.com/8869678/88231302-e728d000-cc6b-11ea-8b8e-bb9a4820d93c.png)||
 
 ## Installation
 
