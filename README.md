@@ -1,9 +1,10 @@
 # PasswordGenerator
 ![Swift 5.2](https://img.shields.io/badge/Swift-5.2-orange.svg)
-[![xcode-version](https://img.shields.io/badge/xcode-11.4-blue)](https://developer.apple.com/download/more/)
+[![xcode-version](https://img.shields.io/badge/xcode-11.4-orange)](https://developer.apple.com/download/more/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub tag](https://img.shields.io/github/tag/rkreutz/PasswordGeneratorKit.svg)](https://GitHub.com/rkreutz/PasswordGeneratorKit/tags/)
+[![GitHub Release](https://img.shields.io/github/v/release/rkreutz/PasswordGenerator)](https://github.com/rkreutz/PasswordGenerator/releases)
 ![MacOS](https://github.com/rkreutz/PasswordGenerator/workflows/MacOS/badge.svg)
+
 A password generator app written in Swift 🔐
 
 The definitive Password Manager, use one Master Password to rule them all.
