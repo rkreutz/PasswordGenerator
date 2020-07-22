@@ -11,6 +11,14 @@ The definitive Password Manager, use one Master Password to rule them all.
 
 With a single Master Password you can generate all your other website passwords. The best part is that everything is generated from inputs you know, so in case you loose your device or do not have it, you can use another one to generate your passwords easily.
 
+## Preview
+
+|Domain Based passwords|Service Based passwords|
+|:-----:|:-----:|
+|![Jul-22-2020 22-46-51](https://user-images.githubusercontent.com/8869678/88232334-9619db80-cc6d-11ea-95f3-8cb55ec3dcd8.gif)|![Jul-22-2020 22-48-13](https://user-images.githubusercontent.com/8869678/88232362-a29e3400-cc6d-11ea-97b4-99b093125259.gif)|
+|![Simulator Screen Shot - iPhone 11 - 2020-07-22 at 22 33 46](https://user-images.githubusercontent.com/8869678/88231296-e4c67600-cc6b-11ea-99e1-89fd50d5d43b.png)|![Simulator Screen Shot - iPhone 11 - 2020-07-22 at 22 39 18](https://user-images.githubusercontent.com/8869678/88231476-3a9b1e00-cc6c-11ea-9cdb-79b5a0cdbd33.png)|
+|![Simulator Screen Shot - iPhone 11 - 2020-07-22 at 22 34 04](https://user-images.githubusercontent.com/8869678/88231302-e728d000-cc6b-11ea-8b8e-bb9a4820d93c.png)|![Simulator Screen Shot - iPhone 11 - 2020-07-22 at 22 39 27](https://user-images.githubusercontent.com/8869678/88231477-3b33b480-cc6c-11ea-8018-1c371564dcee.png)|
+
 ## Installation
 
 To run the app locally you must have at least **Xcode 11.4** installed.
