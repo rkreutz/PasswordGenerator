@@ -16,6 +16,11 @@
 		37020F222496A64000C105D1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F212496A64000C105D1 /* CardView.swift */; };
 		37020F262496F7E200C105D1 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
 		37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
+		37287F5B24CCB41900E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
+		37287F7624CCB5AD00E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
+		37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37287F7824CCB5AD00E9407F /* CredentialProviderViewController.swift */; };
+		37287F7C24CCB5AD00E9407F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37287F7A24CCB5AD00E9407F /* MainInterface.storyboard */; };
+		37287F8124CCB5AD00E9407F /* CredentialProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 37287F7524CCB5AD00E9407F /* CredentialProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735ECA224BC8808000896B0 /* AppState.swift */; };
 		3737690924984FC0003C6CE4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737690824984FC0003C6CE4 /* Strings.swift */; };
 		3737690B24985052003C6CE4 /* PasswordGeneratorView+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737690A24985052003C6CE4 /* PasswordGeneratorView+Preview.swift */; };
@@ -67,6 +72,30 @@
 		37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		37287F7F24CCB5AD00E9407F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37020EF8248DABB900C105D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37287F7424CCB5AD00E9407F;
+			remoteInfo = CredentialProvider;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37287F7024CCB57D00E9407F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				37287F8124CCB5AD00E9407F /* CredentialProvider.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		37020F00248DABB900C105D1 /* Pwd Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pwd Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37020F03248DABB900C105D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +108,13 @@
 		37020F212496A64000C105D1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		37020F252496F7E200C105D1 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		37020F27249831E000C105D1 /* CounterToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToggleView.swift; sourceTree = "<group>"; };
+		37287F5924CCB41900E9407F /* Pwd Generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pwd Generator.entitlements"; sourceTree = "<group>"; };
+		37287F5A24CCB41900E9407F /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		37287F7524CCB5AD00E9407F /* CredentialProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CredentialProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		37287F7824CCB5AD00E9407F /* CredentialProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialProviderViewController.swift; sourceTree = "<group>"; };
+		37287F7B24CCB5AD00E9407F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		37287F7D24CCB5AD00E9407F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37287F7E24CCB5AD00E9407F /* CredentialProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CredentialProvider.entitlements; sourceTree = "<group>"; };
 		3735ECA224BC8808000896B0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		3737690824984FC0003C6CE4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		3737690A24985052003C6CE4 /* PasswordGeneratorView+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+Preview.swift"; sourceTree = "<group>"; };
@@ -133,8 +169,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37287F5B24CCB41900E9407F /* AuthenticationServices.framework in Frameworks */,
 				37A5651224A6E4B3008D48FD /* PasswordGeneratorKit in Frameworks */,
 				37A5651024A6E4B3008D48FD /* PasswordGeneratorKitPublishers in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37287F7224CCB5AD00E9407F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37287F7624CCB5AD00E9407F /* AuthenticationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				37020F02248DABB900C105D1 /* PasswordGenerator */,
+				37287F7724CCB5AD00E9407F /* CredentialProvider */,
 				37020F01248DABB900C105D1 /* Products */,
 				37CC25B6249C377B00DB2C4F /* Frameworks */,
 			);
@@ -154,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				37020F00248DABB900C105D1 /* Pwd Generator.app */,
+				37287F7524CCB5AD00E9407F /* CredentialProvider.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +225,7 @@
 				37C76EEA24BAA44F003BCAC1 /* Errors.strings */,
 				37020F11248DABBA00C105D1 /* Info.plist */,
 				37020F0E248DABBA00C105D1 /* LaunchScreen.storyboard */,
+				37287F5924CCB41900E9407F /* Pwd Generator.entitlements */,
 				3737690824984FC0003C6CE4 /* Strings.swift */,
 			);
 			path = Assets;
@@ -221,6 +269,17 @@
 				37A5652624B8D70E008D48FD /* Subviews */,
 			);
 			path = PasswordGenerator;
+			sourceTree = "<group>";
+		};
+		37287F7724CCB5AD00E9407F /* CredentialProvider */ = {
+			isa = PBXGroup;
+			children = (
+				37287F7824CCB5AD00E9407F /* CredentialProviderViewController.swift */,
+				37287F7A24CCB5AD00E9407F /* MainInterface.storyboard */,
+				37287F7D24CCB5AD00E9407F /* Info.plist */,
+				37287F7E24CCB5AD00E9407F /* CredentialProvider.entitlements */,
+			);
+			path = CredentialProvider;
 			sourceTree = "<group>";
 		};
 		3737691024994633003C6CE4 /* Extensions */ = {
@@ -337,6 +396,7 @@
 		37CC25B6249C377B00DB2C4F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37287F5A24CCB41900E9407F /* AuthenticationServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -352,10 +412,12 @@
 				37020EFC248DABB900C105D1 /* Sources */,
 				37020EFD248DABB900C105D1 /* Frameworks */,
 				37020EFE248DABB900C105D1 /* Resources */,
+				37287F7024CCB57D00E9407F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				37287F8024CCB5AD00E9407F /* PBXTargetDependency */,
 			);
 			name = PasswordGenerator;
 			packageProductDependencies = (
@@ -365,6 +427,23 @@
 			productName = PasswordGenerator;
 			productReference = 37020F00248DABB900C105D1 /* Pwd Generator.app */;
 			productType = "com.apple.product-type.application";
+		};
+		37287F7424CCB5AD00E9407F /* CredentialProvider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37287F8224CCB5AD00E9407F /* Build configuration list for PBXNativeTarget "CredentialProvider" */;
+			buildPhases = (
+				37287F7124CCB5AD00E9407F /* Sources */,
+				37287F7224CCB5AD00E9407F /* Frameworks */,
+				37287F7324CCB5AD00E9407F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CredentialProvider;
+			productName = CredentialProvider;
+			productReference = 37287F7524CCB5AD00E9407F /* CredentialProvider.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -377,6 +456,9 @@
 				ORGANIZATIONNAME = "Rodrigo Kreutz";
 				TargetAttributes = {
 					37020EFF248DABB900C105D1 = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					37287F7424CCB5AD00E9407F = {
 						CreatedOnToolsVersion = 11.4;
 					};
 				};
@@ -398,6 +480,7 @@
 			projectRoot = "";
 			targets = (
 				37020EFF248DABB900C105D1 /* PasswordGenerator */,
+				37287F7424CCB5AD00E9407F /* CredentialProvider */,
 			);
 		};
 /* End PBXProject section */
@@ -410,6 +493,14 @@
 				37020F10248DABBA00C105D1 /* LaunchScreen.storyboard in Resources */,
 				37020F0A248DABBA00C105D1 /* Assets.xcassets in Resources */,
 				37C76EEB24BAA44F003BCAC1 /* Errors.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37287F7324CCB5AD00E9407F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37287F7C24CCB5AD00E9407F /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +588,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37287F7124CCB5AD00E9407F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37287F8024CCB5AD00E9407F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37287F7424CCB5AD00E9407F /* CredentialProvider */;
+			targetProxy = 37287F7F24CCB5AD00E9407F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		37020F0E248DABBA00C105D1 /* LaunchScreen.storyboard */ = {
@@ -506,6 +613,14 @@
 				37020F0F248DABBA00C105D1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		37287F7A24CCB5AD00E9407F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37287F7B24CCB5AD00E9407F /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -628,7 +743,9 @@
 		37020F15248DABBA00C105D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "PasswordGenerator/Assets/Pwd Generator.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -640,6 +757,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
+				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -650,7 +768,9 @@
 		37020F16248DABBA00C105D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "PasswordGenerator/Assets/Pwd Generator.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
@@ -662,8 +782,49 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
+				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		37287F8324CCB5AD00E9407F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CredentialProvider/CredentialProvider.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = CredentialProvider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator.CredentialProvider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		37287F8424CCB5AD00E9407F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CredentialProvider/CredentialProvider.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = CredentialProvider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator.CredentialProvider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -686,6 +847,15 @@
 			buildConfigurations = (
 				37020F15248DABBA00C105D1 /* Debug */,
 				37020F16248DABBA00C105D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37287F8224CCB5AD00E9407F /* Build configuration list for PBXNativeTarget "CredentialProvider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37287F8324CCB5AD00E9407F /* Debug */,
+				37287F8424CCB5AD00E9407F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
