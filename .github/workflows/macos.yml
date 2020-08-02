@@ -20,7 +20,7 @@ jobs:
       run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
     - uses: actions/checkout@v2
     - name: Prepare Build
-      run: brew bundle
+      run: brew bundle --verbose
     - name: SwiftLint
       run: swiftlint lint --reporter emoji --strict
     - name: Build the project
