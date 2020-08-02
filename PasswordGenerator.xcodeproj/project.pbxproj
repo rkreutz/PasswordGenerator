@@ -915,7 +915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CredentialProvider/CredentialProvider.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				INFOPLIST_FILE = CredentialProvider/Info.plist;
@@ -926,7 +926,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator.CredentialProvider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Credential Provider Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Credential Provider AppStore";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
