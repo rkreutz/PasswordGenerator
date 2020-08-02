@@ -866,6 +866,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "PasswordGenerator/Assets/Pwd Generator.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 49K39S52K6;
@@ -879,7 +880,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
-				PROVISIONING_PROFILE_SPECIFIER = $APP_DEVELOPMENT_PROFILE;
+				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Development Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -904,7 +905,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
-				PROVISIONING_PROFILE_SPECIFIER = $APP_RELEASE_PROFILE;
+				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Development Profile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -914,6 +915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CredentialProvider/CredentialProvider.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				INFOPLIST_FILE = CredentialProvider/Info.plist;
@@ -924,7 +926,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator.CredentialProvider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = $AUTOFILL_DEVELOPMENT_PROFILE;
+				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Credential Provider Development";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -935,6 +937,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CredentialProvider/CredentialProvider.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				INFOPLIST_FILE = CredentialProvider/Info.plist;
@@ -945,7 +948,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator.CredentialProvider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = $AUTOFILL_RELEASE_PROFILE;
+				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Credential Provider AppStore";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
