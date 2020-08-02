@@ -5,7 +5,9 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.rkreutz.PasswordGenerator</key>
-		<string>42ab76da-ad5c-4b78-9dcd-6c682fa02e5e</string>
+		<string>2dffff76-075a-4bb3-a241-62c16266f07d</string>
+		<key>com.rkreutz.PasswordGenerator.CredentialProvider</key>
+		<string>540db583-6ac6-49e2-b928-dc41bbce82f5</string>
 	</dict>
 	<key>destination</key>
 	<string>export</string>
