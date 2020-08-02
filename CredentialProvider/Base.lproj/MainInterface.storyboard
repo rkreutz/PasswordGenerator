@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xki-Si-B7m">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Credential Provider View Controller-->
+        <scene sceneID="Uma-9u-xWV">
+            <objects>
+                <viewController id="Xki-Si-B7m" customClass="CredentialProviderViewController" customModule="CredentialProvider" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BuU-Ak-iZz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etl-c5-VOA">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <connections>
+                                    <segue destination="9Ze-Uu-coX" kind="embed" destinationCreationSelector="addSwiftUI:" id="GhX-dg-aOH"/>
+                                </connections>
+                            </containerView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvq-7p-fdu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="Ysi-6o-cSM">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="l2i-gK-4Zd">
+                                            <connections>
+                                                <action selector="cancel:" destination="Xki-Si-B7m" id="MOw-Eh-jno"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gvq-7p-fdu" firstAttribute="leading" secondItem="BuU-Ak-iZz" secondAttribute="leading" id="0sQ-y1-lkt"/>
+                            <constraint firstItem="Etl-c5-VOA" firstAttribute="top" secondItem="gvq-7p-fdu" secondAttribute="bottom" id="2aa-dN-9mc"/>
+                            <constraint firstItem="Etl-c5-VOA" firstAttribute="leading" secondItem="Ky8-vK-JVj" secondAttribute="leading" id="6Cz-I8-V4A"/>
+                            <constraint firstItem="Ky8-vK-JVj" firstAttribute="trailing" secondItem="gvq-7p-fdu" secondAttribute="trailing" id="Iiu-ZN-W6W"/>
+                            <constraint firstItem="gvq-7p-fdu" firstAttribute="top" secondItem="Ky8-vK-JVj" secondAttribute="top" id="Lvt-S3-Rv3"/>
+                            <constraint firstItem="Ky8-vK-JVj" firstAttribute="trailing" secondItem="Etl-c5-VOA" secondAttribute="trailing" id="SIc-HU-4VT"/>
+                            <constraint firstItem="Ky8-vK-JVj" firstAttribute="bottom" secondItem="Etl-c5-VOA" secondAttribute="bottom" id="zx9-wE-aUe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ky8-vK-JVj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2PL-ft-xYa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RwB-HB-TSk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="133.5832083958021"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="Y2f-li-flu">
+            <objects>
+                <hostingController id="9Ze-Uu-coX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ee-4s-Q5e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1983" y="134"/>
+        </scene>
+    </scenes>
+</document>

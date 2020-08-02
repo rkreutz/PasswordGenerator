@@ -139,25 +139,25 @@ private extension PasswordGeneratorView.ViewModel {
         $shouldIncludeLowercase
             .removeDuplicates()
             .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfLowercase, on: self)
+            .assign(to: \.numberOfLowercase, onWeak: self)
             .store(in: &cancellableStore)
 
         $shouldIncludeUppercase
             .removeDuplicates()
             .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfUppercase, on: self)
+            .assign(to: \.numberOfUppercase, onWeak: self)
             .store(in: &cancellableStore)
 
         $shouldIncludeDigits
             .removeDuplicates()
             .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfDigits, on: self)
+            .assign(to: \.numberOfDigits, onWeak: self)
             .store(in: &cancellableStore)
 
         $shouldIncludeSymbols
             .removeDuplicates()
             .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfSymbols, on: self)
+            .assign(to: \.numberOfSymbols, onWeak: self)
             .store(in: &cancellableStore)
     }
 
@@ -171,7 +171,7 @@ private extension PasswordGeneratorView.ViewModel {
                 $numberOfSymbols
             )
             .map { max($0 + $1 + $2 + $3, 4) }
-            .assign(to: \.minimalLength, on: self)
+            .assign(to: \.minimalLength, onWeak: self)
             .store(in: &cancellableStore)
 
         Publishers
@@ -181,7 +181,7 @@ private extension PasswordGeneratorView.ViewModel {
             )
             .filter { $0 > $1 }
             .map(\.0)
-            .assign(to: \.length, on: self)
+            .assign(to: \.length, onWeak: self)
             .store(in: &cancellableStore)
     }
 
@@ -192,7 +192,7 @@ private extension PasswordGeneratorView.ViewModel {
 
                 isValid ? .readyToGenerate : .invalid
             }
-            .assign(to: \.passwordState, on: self)
+            .assign(to: \.passwordState, onWeak: self)
             .store(in: &cancellableStore)
     }
 }
