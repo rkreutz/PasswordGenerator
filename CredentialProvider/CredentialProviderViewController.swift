@@ -1,59 +1,74 @@
-//
-//  CredentialProviderViewController.swift
-//  CredentialProvider
-//
-//  Created by Rodrigo Kreutz on 25/07/20.
-//  Copyright © 2020 Rodrigo Kreutz. All rights reserved.
-//
-
 import AuthenticationServices
+import SwiftUI
+import Combine
+import os.log
 
 class CredentialProviderViewController: ASCredentialProviderViewController {
 
-    /*
-     Prepare your UI to list available credentials for the user to choose from. The items in
-     'serviceIdentifiers' describe the service the user is logging in to, so your extension can
-     prioritize the most relevant credentials in the list.
-    */
+    private let viewModel = PasswordGeneratorView.ViewModel()
+    private var cancellableStore: Set<AnyCancellable> = []
+
+    @IBSegueAction
+    private func addSwiftUI(_ coder: NSCoder) -> UIViewController? {
+
+        UIHostingController(
+            coder: coder,
+            rootView: PasswordGeneratorView(viewModel: viewModel)
+        )
+    }
+
+    override func viewDidLoad() {
+
+        super.viewDidLoad()
+
+        viewModel.$error
+            .compactMap { $0 }
+            .sink { [extensionContext] _ in
+
+                extensionContext.cancelRequest(
+                    withError: NSError(
+                        domain: ASExtensionErrorDomain,
+                        code: ASExtensionError.failed.rawValue
+                    )
+                )
+            }
+            .store(in: &cancellableStore)
+
+        viewModel.$passwordState
+            .compactMap { state -> String? in
+
+                guard case let .generated(password) = state else { return nil }
+                return password
+            }
+            .sink { [extensionContext, viewModel] password in
+
+                extensionContext.completeRequest(
+                    withSelectedCredential: ASPasswordCredential(
+                        user: viewModel.username,
+                        password: password
+                    ),
+                    completionHandler: nil
+                )
+            }
+            .store(in: &cancellableStore)
+    }
+
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
+
+        let host = serviceIdentifiers
+            .first { $0.type == .URL }
+            .flatMap { URL(string: $0.identifier)?.host }
+
+        viewModel.domain = host ?? ""
     }
 
-    /*
-     Implement this method if your extension supports showing credentials in the QuickType bar.
-     When the user selects a credential from your app, this method will be called with the
-     ASPasswordCredentialIdentity your app has previously saved to the ASCredentialIdentityStore.
-     Provide the password by completing the extension request with the associated ASPasswordCredential.
-     If using the credential would require showing custom UI for authenticating the user, cancel
-     the request with error code ASExtensionError.userInteractionRequired.
+    @IBAction private func cancel(_ sender: AnyObject?) {
 
-    override func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity) {
-        let databaseIsUnlocked = true
-        if (databaseIsUnlocked) {
-            let passwordCredential = ASPasswordCredential(user: "j_appleseed", password: "apple1234")
-            self.extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
-        } else {
-            self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code:ASExtensionError.userInteractionRequired.rawValue))
-        }
+        extensionContext.cancelRequest(
+            withError: NSError(
+                domain: ASExtensionErrorDomain,
+                code: ASExtensionError.userCanceled.rawValue
+            )
+        )
     }
-    */
-
-    /*
-     Implement this method if provideCredentialWithoutUserInteraction(for:) can fail with
-     ASExtensionError.userInteractionRequired. In this case, the system may present your extension's
-     UI and call this method. Show appropriate UI for authenticating the user then provide the password
-     by completing the extension request with the associated ASPasswordCredential.
-
-    override func prepareInterfaceToProvideCredential(for credentialIdentity: ASPasswordCredentialIdentity) {
-    }
-    */
-
-    @IBAction func cancel(_ sender: AnyObject?) {
-        self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.userCanceled.rawValue))
-    }
-
-    @IBAction func passwordSelected(_ sender: AnyObject?) {
-        let passwordCredential = ASPasswordCredential(user: "j_appleseed", password: "apple1234")
-        self.extensionContext.completeRequest(withSelectedCredential: passwordCredential, completionHandler: nil)
-    }
-
 }

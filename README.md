@@ -1,6 +1,6 @@
 # PasswordGenerator
 ![Swift 5.2](https://img.shields.io/badge/Swift-5.2-orange.svg)
-[![xcode-version](https://img.shields.io/badge/xcode-11.4-orange)](https://developer.apple.com/download/more/)
+[![xcode-version](https://img.shields.io/badge/xcode-11.5-orange)](https://developer.apple.com/download/more/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Release](https://img.shields.io/github/v/release/rkreutz/PasswordGenerator)](https://github.com/rkreutz/PasswordGenerator/releases)
 ![MacOS](https://github.com/rkreutz/PasswordGenerator/workflows/MacOS/badge.svg)
@@ -21,7 +21,7 @@ With a single Master Password you can generate all your other website passwords.
 
 ## Installation
 
-To run the app locally you must have at least **Xcode 11.4** installed.
+To run the app locally you must have at least **Xcode 11.5** installed.
 
 ## AppStore
 
