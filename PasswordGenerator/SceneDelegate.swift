@@ -5,7 +5,6 @@ import PasswordGeneratorKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var appState = AppState(from: MasterPasswordValidatorEnvironmentKey.defaultValue)
 
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
@@ -16,8 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         defer { window?.makeKeyAndVisible() }
 
-        window?.rootViewController = RootView()
-            .environmentObject(appState)
+        window?.rootViewController = RootView(appState: AppStateEnvironmentKey.defaultValue)
             .asHostingController()
     }
 }

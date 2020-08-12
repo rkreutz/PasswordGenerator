@@ -2,7 +2,7 @@ import SwiftUI
 
 enum MasterPasswordStoragerEnvironmentKey: EnvironmentKey {
 
-    static var defaultValue: MasterPasswordStorage = MasterPasswordKeychain()
+    static let defaultValue: MasterPasswordStorage = MasterPasswordKeychain()
 }
 
 extension EnvironmentValues {

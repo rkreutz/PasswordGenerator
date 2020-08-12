@@ -2,7 +2,7 @@ import SwiftUI
 
 enum MasterPasswordValidatorEnvironmentKey: EnvironmentKey {
 
-    static var defaultValue: MasterPasswordValidator = MasterPasswordKeychain()
+    static let defaultValue: MasterPasswordValidator = MasterPasswordKeychain()
 }
 
 extension EnvironmentValues {

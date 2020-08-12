@@ -1,17 +1,8 @@
-//
-//  MasterPasswordView.swift
-//  PasswordGenerator
-//
-//  Created by Rodrigo Kreutz on 27/06/20.
-//  Copyright © 2020 Rodrigo Kreutz. All rights reserved.
-//
-
 import SwiftUI
 
 struct MasterPasswordView: View {
 
     @Environment(\.sizeCategory) private var sizeCategory
-    @EnvironmentObject private var appState: AppState
 
     @ObservedObject var viewModel = ViewModel()
 
@@ -28,7 +19,7 @@ struct MasterPasswordView: View {
                     .disableAutocorrection(true)
 
                 MainButton(
-                    action: { self.viewModel.saveMasterPassword(self.appState) },
+                    action: { self.viewModel.saveMasterPassword() },
                     text: Strings.MasterPasswordView.save,
                     isEnabled: viewModel.isValid
                 )
@@ -47,6 +38,7 @@ struct MasterPasswordView: View {
                 .edgesIgnoringSafeArea(.all)
         )
         .emittingError($viewModel.error)
+        .injectEnvironment(into: viewModel)
     }
 }
 

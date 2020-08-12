@@ -3,9 +3,9 @@ import Combine
 
 extension MasterPasswordView {
 
-    final class ViewModel: ObservableObject {
+    final class ViewModel: ObservableObject, DependencyInjectable {
 
-        @Environment(\.masterPasswordStorage) private var masterPasswordStorage
+        var environment: EnvironmentValues = .init()
 
         @Published var masterPassword: String = ""
         @Published var error: Error?
@@ -16,12 +16,12 @@ extension MasterPasswordView {
             set {  } //swiftlint:disable:this unused_setter_value
         }
 
-        func saveMasterPassword(_ appState: AppState) {
+        func saveMasterPassword() {
 
             do {
 
-                try masterPasswordStorage.save(masterPassword: masterPassword)
-                appState.state = .masterPasswordSet
+                try environment.masterPasswordStorage.save(masterPassword: masterPassword)
+                environment.appState.state = .masterPasswordSet
             } catch {
 
                 self.error = error

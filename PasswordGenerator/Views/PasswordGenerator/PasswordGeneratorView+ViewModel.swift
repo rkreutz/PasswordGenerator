@@ -5,10 +5,9 @@ import PasswordGeneratorKitPublishers
 
 extension PasswordGeneratorView {
 
-    final class ViewModel: ObservableObject {
+    final class ViewModel: ObservableObject, DependencyInjectable {
 
-        @Environment(\.passwordGenerator) private var generator
-        @Environment(\.masterPasswordStorage) private var masterPasswordStorage
+        var environment: EnvironmentValues = .init()
 
         @Published var passwordType: PasswordType = .domainBased
         @Published var username: String = ""
@@ -43,9 +42,17 @@ extension PasswordGeneratorView {
             switch passwordType {
 
             case .domainBased:
-                publisher = generator.publishers.generatePassword(username: username, domain: domain, seed: seed, rules: rules)
+                publisher = environment.passwordGenerator.publishers.generatePassword(
+                    username: username,
+                    domain: domain,
+                    seed: seed,
+                    rules: rules
+                )
             case .serviceBased:
-                publisher = generator.publishers.generatePassword(service: service, rules: rules)
+                publisher = environment.passwordGenerator.publishers.generatePassword(
+                    service: service,
+                    rules: rules
+                )
             }
 
             publisher
@@ -64,12 +71,12 @@ extension PasswordGeneratorView {
                 .store(in: &cancellableStore)
         }
 
-        func logout(_ appState: AppState) {
+        func logout() {
 
             do {
 
-                try masterPasswordStorage.deleteMasterPassword()
-                appState.state = .mustProvideMasterPassword
+                try environment.masterPasswordStorage.deleteMasterPassword()
+                environment.appState.state = .mustProvideMasterPassword
             } catch {
 
                 self.error = error
