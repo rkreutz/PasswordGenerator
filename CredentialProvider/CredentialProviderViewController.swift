@@ -21,19 +21,6 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
 
         super.viewDidLoad()
 
-        viewModel.$error
-            .compactMap { $0 }
-            .sink { [extensionContext] _ in
-
-                extensionContext.cancelRequest(
-                    withError: NSError(
-                        domain: ASExtensionErrorDomain,
-                        code: ASExtensionError.failed.rawValue
-                    )
-                )
-            }
-            .store(in: &cancellableStore)
-
         viewModel.$passwordState
             .compactMap { state -> String? in
 

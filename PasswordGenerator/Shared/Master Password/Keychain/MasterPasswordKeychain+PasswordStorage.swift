@@ -128,11 +128,9 @@ extension MasterPasswordKeychain: MasterPasswordStorage {
                 throw Error.canceled
 
             case errSecItemNotFound:
-                try? deleteMasterPassword()
                 throw Error.noPassword
 
             default:
-                try? deleteMasterPassword()
                 throw Error.keychainError(status)
             }
         }
@@ -141,11 +139,7 @@ extension MasterPasswordKeychain: MasterPasswordStorage {
             let existingItem = item as? [CFString: Any?],
             let passwordData = existingItem[kSecValueData] as? Data,
             let password = String(data: passwordData, encoding: .utf8)
-            else {
-
-                try? deleteMasterPassword()
-                throw Error.noPassword
-        }
+            else { throw Error.noPassword }
 
         return password
     }

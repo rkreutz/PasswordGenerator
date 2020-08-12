@@ -16,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         defer { window?.makeKeyAndVisible() }
 
         window?.rootViewController = RootView(appState: AppStateEnvironmentKey.defaultValue)
+            .handlingErrors(using: AlertErrorHandler())
             .asHostingController()
     }
 }

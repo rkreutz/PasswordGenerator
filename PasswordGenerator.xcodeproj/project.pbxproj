@@ -32,10 +32,9 @@
 		3737691B24996A07003C6CE4 /* String+HasMatchingTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737691A24996A07003C6CE4 /* String+HasMatchingTypes.swift */; };
 		37499C3624C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37499C3524C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift */; };
 		375D5A9424BA8C150017AC2B /* View+AsAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9324BA8C150017AC2B /* View+AsAny.swift */; };
-		375D5A9824BA8E3D0017AC2B /* CategorizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9724BA8E3D0017AC2B /* CategorizedError.swift */; };
 		375D5A9A24BA8E690017AC2B /* LocalizedError+ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */; };
 		375D5A9C24BA8ECB0017AC2B /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9B24BA8ECB0017AC2B /* ErrorHandler.swift */; };
-		375D5A9E24BA8EEA0017AC2B /* DefaultErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9D24BA8EEA0017AC2B /* DefaultErrorHandler.swift */; };
+		375D5A9E24BA8EEA0017AC2B /* ToastErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9D24BA8EEA0017AC2B /* ToastErrorHandler.swift */; };
 		375D5AAB24BA96200017AC2B /* PasswordGeneratorView+PasswordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5AAA24BA96200017AC2B /* PasswordGeneratorView+PasswordState.swift */; };
 		37936E1A24BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37936E1924BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift */; };
 		37936E1D24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37936E1C24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift */; };
@@ -76,6 +75,7 @@
 		37C20B8324E473C000C654A3 /* DependencyInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B8224E473C000C654A3 /* DependencyInjectable.swift */; };
 		37C20B8424E474F700C654A3 /* DependencyInjectorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B7624E472B300C654A3 /* DependencyInjectorViewModifier.swift */; };
 		37C20B8524E474FA00C654A3 /* DependencyInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B8224E473C000C654A3 /* DependencyInjectable.swift */; };
+		37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */; };
 		37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */; };
 		37C76EEB24BAA44F003BCAC1 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C76EEA24BAA44F003BCAC1 /* Errors.strings */; };
 		37C76EEE24BB79D4003BCAC1 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EED24BB79D4003BCAC1 /* RootView.swift */; };
@@ -85,10 +85,9 @@
 		37CB52C324CDF72F0081DA1E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F1D248DBB2300C105D1 /* Colors.swift */; };
 		37CB52C424CDF7380081DA1E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737690824984FC0003C6CE4 /* Strings.swift */; };
 		37CB52C524CDF7430081DA1E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735ECA224BC8808000896B0 /* AppState.swift */; };
-		37CB52C624CDF7460081DA1E /* CategorizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9724BA8E3D0017AC2B /* CategorizedError.swift */; };
 		37CB52C724CDF7490081DA1E /* DispatchWorkItemReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5653224B94446008D48FD /* DispatchWorkItemReference.swift */; };
 		37CB52CC24CDF7520081DA1E /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9B24BA8ECB0017AC2B /* ErrorHandler.swift */; };
-		37CB52CD24CDF7520081DA1E /* DefaultErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9D24BA8EEA0017AC2B /* DefaultErrorHandler.swift */; };
+		37CB52CD24CDF7520081DA1E /* ToastErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9D24BA8EEA0017AC2B /* ToastErrorHandler.swift */; };
 		37CB52CE24CDF7520081DA1E /* ErrorEmittingViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37936E1C24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift */; };
 		37CB52CF24CDF7570081DA1E /* Binding+StaticValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5653424B95166008D48FD /* Binding+StaticValue.swift */; };
 		37CB52D024CDF7570081DA1E /* CGSize+MinLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652C24B8EA34008D48FD /* CGSize+MinLength.swift */; };
@@ -191,10 +190,9 @@
 		3741796924A4335F003C5592 /* MasterPasswordKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordKeychain.swift; sourceTree = "<group>"; };
 		37499C3524C7BE3100DAECF0 /* PasswordGeneratorView+PasswordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+PasswordType.swift"; sourceTree = "<group>"; };
 		375D5A9324BA8C150017AC2B /* View+AsAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AsAny.swift"; sourceTree = "<group>"; };
-		375D5A9724BA8E3D0017AC2B /* CategorizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedError.swift; sourceTree = "<group>"; };
 		375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizedError+ErrorDescription.swift"; sourceTree = "<group>"; };
 		375D5A9B24BA8ECB0017AC2B /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
-		375D5A9D24BA8EEA0017AC2B /* DefaultErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultErrorHandler.swift; sourceTree = "<group>"; };
+		375D5A9D24BA8EEA0017AC2B /* ToastErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastErrorHandler.swift; sourceTree = "<group>"; };
 		375D5AA224BA92EC0017AC2B /* ErrorHandler+DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorHandler+DI.swift"; sourceTree = "<group>"; };
 		375D5AA424BA93D30017AC2B /* MasterPasswordStorage+DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordStorage+DI.swift"; sourceTree = "<group>"; };
 		375D5AA624BA93F00017AC2B /* MasterPasswordValidator+DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordValidator+DI.swift"; sourceTree = "<group>"; };
@@ -224,6 +222,7 @@
 		37A9415A249C3CC9002E89B4 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		37C20B7624E472B300C654A3 /* DependencyInjectorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectorViewModifier.swift; sourceTree = "<group>"; };
 		37C20B8224E473C000C654A3 /* DependencyInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectable.swift; sourceTree = "<group>"; };
+		37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertErrorHandler.swift; sourceTree = "<group>"; };
 		37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorError+LocalizedError.swift"; sourceTree = "<group>"; };
 		37C76EEA24BAA44F003BCAC1 /* Errors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
 		37C76EED24BB79D4003BCAC1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -371,7 +370,6 @@
 			isa = PBXGroup;
 			children = (
 				3735ECA224BC8808000896B0 /* AppState.swift */,
-				375D5A9724BA8E3D0017AC2B /* CategorizedError.swift */,
 				37A5653224B94446008D48FD /* DispatchWorkItemReference.swift */,
 				375D5AA124BA92D40017AC2B /* Dependency Injection */,
 				37936E1B24BA69A30007E9BB /* Error Handling */,
@@ -394,9 +392,10 @@
 		37936E1B24BA69A30007E9BB /* Error Handling */ = {
 			isa = PBXGroup;
 			children = (
-				375D5A9B24BA8ECB0017AC2B /* ErrorHandler.swift */,
-				375D5A9D24BA8EEA0017AC2B /* DefaultErrorHandler.swift */,
 				37936E1C24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift */,
+				375D5A9B24BA8ECB0017AC2B /* ErrorHandler.swift */,
+				37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */,
+				375D5A9D24BA8EEA0017AC2B /* ToastErrorHandler.swift */,
 			);
 			path = "Error Handling";
 			sourceTree = "<group>";
@@ -627,8 +626,9 @@
 				37A5654124B960EC008D48FD /* MasterPasswordKeychain+PasswordStorage.swift in Sources */,
 				3737690B24985052003C6CE4 /* PasswordGeneratorView+Preview.swift in Sources */,
 				37C20B7D24E472E700C654A3 /* AppState+DI.swift in Sources */,
+				37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */,
 				375D5A9A24BA8E690017AC2B /* LocalizedError+ErrorDescription.swift in Sources */,
-				375D5A9E24BA8EEA0017AC2B /* DefaultErrorHandler.swift in Sources */,
+				375D5A9E24BA8EEA0017AC2B /* ToastErrorHandler.swift in Sources */,
 				37C20B7F24E472E700C654A3 /* MasterPasswordStorage+DI.swift in Sources */,
 				37C20B7724E472B300C654A3 /* DependencyInjectorViewModifier.swift in Sources */,
 				3737691724996760003C6CE4 /* PasswordGeneratorView+ViewModel.swift in Sources */,
@@ -662,7 +662,6 @@
 				375D5AAB24BA96200017AC2B /* PasswordGeneratorView+PasswordState.swift in Sources */,
 				37A5653C24B95E5D008D48FD /* MasterPasswordStorage.swift in Sources */,
 				37A5652D24B8EA34008D48FD /* CGSize+MinLength.swift in Sources */,
-				375D5A9824BA8E3D0017AC2B /* CategorizedError.swift in Sources */,
 				37020F222496A64000C105D1 /* CardView.swift in Sources */,
 				37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */,
 				37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */,
@@ -693,11 +692,10 @@
 				37CB52E024CDF7650081DA1E /* MasterPasswordKeychain+Strings.swift in Sources */,
 				37CB52D324CDF7570081DA1E /* LocalizedError+ErrorDescription.swift in Sources */,
 				37CB52F024CDF7810081DA1E /* CounterToggleView.swift in Sources */,
-				37CB52CD24CDF7520081DA1E /* DefaultErrorHandler.swift in Sources */,
+				37CB52CD24CDF7520081DA1E /* ToastErrorHandler.swift in Sources */,
 				37CB52D024CDF7570081DA1E /* CGSize+MinLength.swift in Sources */,
 				37CB52E624CDF7730081DA1E /* PasswordGeneratorView+PasswordType.swift in Sources */,
 				37CB52F524CDF7810081DA1E /* Toast.swift in Sources */,
-				37CB52C624CDF7460081DA1E /* CategorizedError.swift in Sources */,
 				37CB52E824CDF7730081DA1E /* PasswordGeneratorView+Strings.swift in Sources */,
 				37CB52E724CDF7730081DA1E /* PasswordGeneratorView+Preview.swift in Sources */,
 				37CB52E924CDF7730081DA1E /* PasswordGeneratorView+ViewModel.swift in Sources */,
