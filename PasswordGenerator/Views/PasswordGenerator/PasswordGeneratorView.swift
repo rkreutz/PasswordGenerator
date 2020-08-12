@@ -8,7 +8,6 @@ struct PasswordGeneratorView: View {
     @Environment(\.sizeCategory) private var sizeCategory
 
     @ObservedObject var viewModel = ViewModel()
-    @EnvironmentObject private var appState: AppState
 
     var body: some View {
 
@@ -33,10 +32,11 @@ struct PasswordGeneratorView: View {
                 .edgesIgnoringSafeArea(.all)
         )
         .emittingError($viewModel.error)
+        .injectEnvironment(into: viewModel)
         .onAppear(perform: viewModel.bind)
         .navigationBarItems(
             trailing: Button(
-                action: { self.viewModel.logout(self.appState) },
+                action: { self.viewModel.logout() },
                 label: {
 
                     Text(Strings.PasswordGeneratorView.resetMasterPassword)
