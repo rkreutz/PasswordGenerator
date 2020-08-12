@@ -2,7 +2,7 @@ import SwiftUI
 
 enum ErrorHandlerEnvironmentKey: EnvironmentKey {
 
-    static let defaultValue: ErrorHandler = DefaultErrorHandler()
+    static let defaultValue: ErrorHandler = ToastErrorHandler()
 }
 
 extension EnvironmentValues {

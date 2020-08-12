@@ -1,20 +1,11 @@
 import SwiftUI
 
-struct DefaultErrorHandler: ErrorHandler {
+struct AlertErrorHandler: ErrorHandler {
 
     func handle<Content: View>(_ error: Binding<Error?>, in view: Content) -> AnyView {
 
-        let toastBinding = Binding(
-            get: { error.wrappedValue?.localizedDescription },
-            set: {
-
-                guard $0 == nil else { return }
-                error.wrappedValue = nil
-            }
-        )
-
-        let alertBinding = Binding(
-            get: { error.wrappedValue?.resolveCategory() == .alert },
+        let binding = Binding(
+            get: { error.wrappedValue != nil },
             set: {
 
                 guard !$0 else { return }
@@ -23,7 +14,7 @@ struct DefaultErrorHandler: ErrorHandler {
         )
 
         return view
-            .alert(isPresented: alertBinding) { () -> Alert in
+            .alert(isPresented: binding) { () -> Alert in
 
                 Alert(
                     title: Text(Strings.Error.title),
@@ -31,7 +22,6 @@ struct DefaultErrorHandler: ErrorHandler {
                     dismissButton: .default(Text(Strings.Generic.okay))
                 )
             }
-            .toast(text: toastBinding)
             .asAny()
     }
 }
