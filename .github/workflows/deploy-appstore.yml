@@ -10,7 +10,7 @@ jobs:
     name: Deploy To Production
     runs-on: macos-latest
     env:
-      XC_VERSION: ${{ '11.5' }}
+      XC_VERSION: ${{ '12' }}
       XC_PROJECT: ${{ 'PasswordGenerator.xcodeproj' }}
       XC_SCHEME: ${{ 'PasswordGenerator' }}
       XC_SDK: ${{ 'iphoneos' }}
