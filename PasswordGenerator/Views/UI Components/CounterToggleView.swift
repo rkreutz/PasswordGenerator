@@ -3,39 +3,24 @@ import SwiftUI
 
 public struct CounterToggleView: View {
 
-    @Environment(\.sizeCategory) private var sizeCategory
+    @Binding var toggle: Bool
+    var toggleTitle: LocalizedStringKey
+    @Binding var count: Int
+    var counterTitle: LocalizedStringKey
+    var bounds: ClosedRange<Int>
 
-    @Binding private var toggle: Bool
-    private var toggleTitle: LocalizedStringKey
-    @Binding private var count: Int
-    private var counterTitle: LocalizedStringKey
-    private var bounds: ClosedRange<Int>
-
-    public init(
-        toggle: Binding<Bool>,
-        toggleTitle: LocalizedStringKey,
-        count: Binding<Int>,
-        counterTitle: LocalizedStringKey,
-        bounds: ClosedRange<Int>
-    ) {
-
-        self._toggle = toggle
-        self.toggleTitle = toggleTitle
-        self._count = count
-        self.counterTitle = counterTitle
-        self.bounds = bounds
-    }
+    @ScaledMetric private var spacing: CGFloat = 16
 
     public var body: some View {
 
-        VStack(spacing: 16 * sizeCategory.modifier) {
+        VStack(spacing: spacing) {
 
             Toggle(toggleTitle, isOn: $toggle)
                 .font(.subheadline)
                 .foregroundColor(.foreground)
                 .allowsTightening(true)
 
-            if self.toggle {
+            if toggle {
 
                 withAnimation(.easeInOut(duration: 0.15)) {
 

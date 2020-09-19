@@ -5,13 +5,12 @@ extension PasswordGeneratorView {
 
     struct CharactersView: View {
 
-        @Environment(\.sizeCategory) private var sizeCategory
-
-        @EnvironmentObject var viewModel: ViewModel
+        @ScaledMetric private var spacing: CGFloat = 16
+        @EnvironmentObject private var viewModel: ViewModel
 
         var body: some View {
 
-            VStack(spacing: 16 * sizeCategory.modifier) {
+            VStack(spacing: spacing) {
 
                 CounterToggleView(
                     toggle: $viewModel.shouldIncludeLowercase,

@@ -2,15 +2,15 @@ import SwiftUI
 
 struct CardViewModifier: ViewModifier {
 
-    @Environment(\.sizeCategory) private var sizeCategory
+    @ScaledMetric private var margin: CGFloat = 16
 
     func body(content: Content) -> some View {
 
         content
-            .padding(16 * sizeCategory.modifier)
+            .padding(margin)
             .background(
                 RoundedRectangle(
-                    cornerRadius: 16 * sizeCategory.modifier,
+                    cornerRadius: margin,
                     style: .continuous
                 )
                 .foregroundColor(.background02)

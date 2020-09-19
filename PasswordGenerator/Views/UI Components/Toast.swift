@@ -8,17 +8,16 @@ private struct Toast<Presenter: View, Content: View>: View {
     let content: () -> Content
     let duration: TimeInterval
 
-    @Environment(\.sizeCategory) private var sizeCategory
+    @ScaledMetric private var verticalPadding: CGFloat = 8
+    @ScaledMetric private var horizontalPadding: CGFloat = 24
+    @ScaledMetric private var cornerRadius: CGFloat = 12
     private let workItemReference = DispatchWorkItemReference()
 
     var body: some View {
 
         if isShowing {
 
-            let workItem = DispatchWorkItem {
-
-                self.isShowing = false
-            }
+            let workItem = DispatchWorkItem { isShowing = false }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: workItem)
             workItemReference.workItem = workItem
@@ -28,31 +27,31 @@ private struct Toast<Presenter: View, Content: View>: View {
 
             ZStack(alignment: .center) {
 
-                self.presenting()
+                presenting()
 
-                VStack {
+                HStack(alignment: .top) {
 
                     Spacer()
-                        .frame(height: 12 / self.sizeCategory.modifier)
 
-                    self.content()
-                        .padding(.vertical, 8 / self.sizeCategory.modifier)
-                        .padding(.horizontal, 24 / self.sizeCategory.modifier)
+                    content()
+                        .padding(.vertical, verticalPadding)
+                        .padding(.horizontal, horizontalPadding)
                         .background(
                             RoundedRectangle(
-                                cornerRadius: 12 * self.sizeCategory.modifier,
+                                cornerRadius: cornerRadius,
                                 style: .continuous
                             )
                             .foregroundColor(.foreground)
                             .opacity(0.85)
                             .blur(radius: 1)
                         )
-                        .offset(x: 0, y: self.isShowing ? 0 : -UIScreen.main.bounds.height)
+                        .offset(x: 0, y: isShowing ? 0 : -UIScreen.main.bounds.height)
                         .animation(.default)
                         .frame(maxWidth: geometry.size.width * 0.8)
 
                     Spacer()
                 }
+                .padding(.top, verticalPadding)
             }
         }
     }

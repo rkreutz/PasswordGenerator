@@ -22,7 +22,7 @@ struct Loader: View {
                         .offset(y: geometry.size.minLength * 0.125 - geometry.size.height / 2)
                 }
                 .frame(width: geometry.size.minLength, height: geometry.size.minLength)
-                .rotationEffect(!self.isAnimating ? .degrees(0) : .degrees(360))
+                .rotationEffect(!isAnimating ? .degrees(0) : .degrees(360))
                 .animation(
                     Animation
                         .timingCurve(
@@ -37,10 +37,7 @@ struct Loader: View {
             }
         }
         .aspectRatio(1, contentMode: .fit)
-        .onAppear {
-
-            self.isAnimating = true
-        }
+        .onAppear { isAnimating = true }
     }
 }
 

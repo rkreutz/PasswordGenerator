@@ -6,13 +6,15 @@ struct CopyableContentView: View {
     let content: String
     @State var hasCopied = false
 
+    @ScaledMetric private var spacing: CGFloat = 8
+    @ScaledMetric private var buttonWidth: CGFloat = 44
+
     private let workItemReference = DispatchWorkItemReference()
-    @Environment(\.sizeCategory) private var sizeCategory
     private let generator = UINotificationFeedbackGenerator()
 
     var body: some View {
 
-        HStack(spacing: 8 * sizeCategory.modifier) {
+        HStack(spacing: spacing) {
 
             Text(content)
                 .foregroundColor(.foreground)
@@ -23,17 +25,17 @@ struct CopyableContentView: View {
             Button(
                 action: {
 
-                    UIPasteboard.general.string = self.content
-                    self.hasCopied = true
-                    self.generator.notificationOccurred(.success)
+                    UIPasteboard.general.string = content
+                    hasCopied = true
+                    generator.notificationOccurred(.success)
 
                     let workItem = DispatchWorkItem {
 
-                        self.hasCopied = false
+                        hasCopied = false
                     }
 
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: workItem)
-                    self.workItemReference.workItem = workItem
+                    workItemReference.workItem = workItem
                 },
                 label: {
 
@@ -42,7 +44,7 @@ struct CopyableContentView: View {
                         .font(.system(.headline, design: .monospaced))
                 }
             )
-            .frame(width: 44 * sizeCategory.modifier)
+            .frame(width: buttonWidth)
         }
     }
 }

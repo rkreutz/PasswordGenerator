@@ -5,15 +5,16 @@ import PasswordGeneratorKit
 
 struct PasswordGeneratorView: View {
 
-    @Environment(\.sizeCategory) private var sizeCategory
-
     @ObservedObject var viewModel = ViewModel()
+    
+    @ScaledMetric private var spacing: CGFloat = 16
+    @ScaledMetric private var loaderSize: CGFloat = 44
 
     var body: some View {
 
         ScrollView {
 
-            VStack(alignment: .center, spacing: 16 * sizeCategory.modifier) {
+            VStack(alignment: .center, spacing: spacing) {
 
                 PasswordGeneratorView.ConfigurationView()
 
@@ -21,9 +22,23 @@ struct PasswordGeneratorView: View {
 
                 CharactersView()
 
-                generatePasswordStateView(viewModel.passwordState)
+                if  viewModel.passwordState == .invalid ||
+                    viewModel.passwordState == .readyToGenerate {
+
+                    MainButton(action: viewModel.generatePassword, text: Strings.PasswordGeneratorView.generatePassword)
+                        .disabled(viewModel.passwordState == .invalid)
+                } else if viewModel.passwordState == .loading {
+
+                    Loader()
+                        .frame(height: loaderSize)
+                } else if case let .generated(password) = viewModel.passwordState {
+
+                    CopyableContentView(content: password)
+                        .expandedInParent()
+                        .asCard()
+                }
             }
-            .padding(16 / sizeCategory.modifier)
+            .padding(spacing)
         }
         .accentColor(.accent)
         .background(
@@ -36,7 +51,7 @@ struct PasswordGeneratorView: View {
         .onAppear(perform: viewModel.bind)
         .navigationBarItems(
             trailing: Button(
-                action: { self.viewModel.logout() },
+                action: viewModel.logout,
                 label: {
 
                     Text(Strings.PasswordGeneratorView.resetMasterPassword)
@@ -46,35 +61,5 @@ struct PasswordGeneratorView: View {
         )
         .environmentObject(viewModel)
         .navigationBarTitle("", displayMode: .inline)
-    }
-
-    private func generatePasswordStateView(_ passwordState: PasswordState) -> AnyView {
-
-        switch passwordState {
-
-        case .invalid:
-            return MainButton(
-                action: {},
-                text: Strings.PasswordGeneratorView.generatePassword,
-                isEnabled: false
-            ).asAny()
-
-        case .readyToGenerate:
-            return MainButton(
-                action: { self.viewModel.generatePassword() },
-                text: Strings.PasswordGeneratorView.generatePassword,
-                isEnabled: true
-            ).asAny()
-
-        case .loading:
-            return Loader()
-                .frame(height: 44 * sizeCategory.modifier)
-                .asAny()
-
-        case let .generated(password):
-            return CopyableContentView(content: password)
-                .asCard()
-                .asAny()
-        }
     }
 }

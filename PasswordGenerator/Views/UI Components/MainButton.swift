@@ -3,11 +3,11 @@ import SwiftUI
 
 struct MainButton: View {
 
-    @Environment(\.sizeCategory) private var sizeCategory
+    @Environment(\.isEnabled) private var isEnabled
+    @ScaledMetric var spacing: CGFloat = 16
 
     let action: () -> Void
     let text: LocalizedStringKey
-    let isEnabled: Bool
 
     var body: some View {
 
@@ -15,23 +15,17 @@ struct MainButton: View {
             action: action,
             label: {
 
-                HStack {
-
-                    Spacer()
-
-                    Text(text)
-                        .font(.headline)
-                        .foregroundColor(isEnabled ? .accentContrast : .neutral02)
-
-                    Spacer()
-                }
-                .padding(16 * sizeCategory.modifier)
+                Text(text)
+                    .font(.headline)
+                    .foregroundColor(isEnabled ? .accentContrast : .neutral02)
+                    .expandedInParent()
+                    .padding(spacing)
             }
         )
         .disabled(!isEnabled)
         .background(
             RoundedRectangle(
-                cornerRadius: 16 * sizeCategory.modifier,
+                cornerRadius: spacing,
                 style: .continuous
             )
             .foregroundColor(isEnabled ? .accent : .neutral01)
@@ -47,26 +41,28 @@ struct MainButton_Previews: PreviewProvider {
 
         Group {
 
-            MainButton(action: {}, text: "Button", isEnabled: true)
+            MainButton(action: {}, text: "Button")
                 .environment(\.colorScheme, .light)
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Light (enabled)")
 
-            MainButton(action: {}, text: "Button", isEnabled: false)
+            MainButton(action: {}, text: "Button")
+                .disabled(true)
                 .environment(\.colorScheme, .light)
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Light (disabled)")
 
-            MainButton(action: {}, text: "Button", isEnabled: true)
+            MainButton(action: {}, text: "Button")
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Dark (enabled)")
                 .background(Rectangle().foregroundColor(.background01))
                 .environment(\.colorScheme, .dark)
 
-            MainButton(action: {}, text: "Button", isEnabled: false)
+            MainButton(action: {}, text: "Button")
+                .disabled(true)
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Dark (disabled)")

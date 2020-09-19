@@ -5,13 +5,12 @@ extension PasswordGeneratorView {
 
     struct ConfigurationView: View {
 
-        @Environment(\.sizeCategory) private var sizeCategory
-
-        @EnvironmentObject var viewModel: ViewModel
+        @ScaledMetric private var spacing: CGFloat = 16
+        @EnvironmentObject private var viewModel: ViewModel
 
         var body: some View {
 
-            VStack(alignment: .center, spacing: 16 * sizeCategory.modifier) {
+            VStack(alignment: .center, spacing: spacing) {
 
                 Picker(selection: $viewModel.passwordType, label: Text("")) {
 

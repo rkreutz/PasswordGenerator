@@ -13,9 +13,11 @@
 		37020F1F2496961B00C105D1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F1D248DBB2300C105D1 /* Colors.swift */; };
 		37020F262496F7E200C105D1 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
 		37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
+		370F7EBC2515AEDD00F87C9A /* PasswordGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */; };
+		370F7ED8251676EA00F87C9A /* ExpandInParentViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */; };
+		370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */; };
 		37197A9824FB372100873DC6 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37197A9724FB372100873DC6 /* CardViewModifier.swift */; };
 		37197A9924FB374200873DC6 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37197A9724FB372100873DC6 /* CardViewModifier.swift */; };
-		370F7EBC2515AEDD00F87C9A /* PasswordGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */; };
 		37287F5B24CCB41900E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
 		37287F7624CCB5AD00E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
 		37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37287F7824CCB5AD00E9407F /* CredentialProviderViewController.swift */; };
@@ -164,8 +166,9 @@
 		37020F1D248DBB2300C105D1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		37020F252496F7E200C105D1 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		37020F27249831E000C105D1 /* CounterToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToggleView.swift; sourceTree = "<group>"; };
-		37197A9724FB372100873DC6 /* CardViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModifier.swift; sourceTree = "<group>"; };
 		370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorApp.swift; sourceTree = "<group>"; };
+		370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandInParentViewModifier.swift; sourceTree = "<group>"; };
+		37197A9724FB372100873DC6 /* CardViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModifier.swift; sourceTree = "<group>"; };
 		37287F5924CCB41900E9407F /* Pwd Generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pwd Generator.entitlements"; sourceTree = "<group>"; };
 		37287F5A24CCB41900E9407F /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		37287F7524CCB5AD00E9407F /* CredentialProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CredentialProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				37197A9724FB372100873DC6 /* CardViewModifier.swift */,
+				370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -639,6 +643,7 @@
 				37A5653524B95166008D48FD /* Binding+StaticValue.swift in Sources */,
 				37020F1F2496961B00C105D1 /* Colors.swift in Sources */,
 				37C20B8124E472E700C654A3 /* PasswordGenerator+DI.swift in Sources */,
+				370F7ED8251676EA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
 				37376919249969CB003C6CE4 /* Collection+IsNotEmpty.swift in Sources */,
 				3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */,
 				37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
@@ -675,6 +680,7 @@
 			files = (
 				37CB52D824CDF75F0081DA1E /* MasterPasswordStorage.swift in Sources */,
 				37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */,
+				370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
 				37CB52D724CDF75B0081DA1E /* View+AsHostingController.swift in Sources */,
 				37CB52EF24CDF7810081DA1E /* CopyableContentView.swift in Sources */,
 				37CB52F324CDF7810081DA1E /* MainButton.swift in Sources */,
