@@ -11,7 +11,7 @@ jobs:
   test:
     runs-on: macos-latest
     env:
-      XC_VERSION: ${{ '11.5' }}
+      XC_VERSION: ${{ '12' }}
       XC_PROJECT: ${{ 'PasswordGenerator.xcodeproj' }}
       XC_SCHEME: ${{ 'PasswordGenerator' }}
       IS_CI: 'true'

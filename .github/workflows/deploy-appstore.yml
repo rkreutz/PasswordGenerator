@@ -10,12 +10,13 @@ jobs:
     name: Deploy To Production
     runs-on: macos-latest
     env:
-      XC_VERSION: ${{ '11.5' }}
+      XC_VERSION: ${{ '12' }}
       XC_PROJECT: ${{ 'PasswordGenerator.xcodeproj' }}
       XC_SCHEME: ${{ 'PasswordGenerator' }}
       XC_SDK: ${{ 'iphoneos' }}
       XC_CONFIGURATION: ${{ 'Release' }}
       XC_BUILD_DIR: ${{ '.build' }}
+      XC_IPHONEOS_DEPLOYMENT_TARGET: ${{ '14.0' }}
       XC_EXPORT_OPTIONS_FILE: "Support/ExportOptions.plist"
       XC_INFO_PLIST_PATH: "PasswordGenerator/Assets/Info.plist"
       IS_CI: 'true'
@@ -86,7 +87,7 @@ jobs:
               -archivePath "${ARCHIVE_PATH}" \
               -resultBundlePath "${RESULT_BUNDLE_PATH}" \
               CURRENT_PROJECT_VERSION="${GITHUB_RUN_NUMBER}" \
-              IPHONEOS_DEPLOYMENT_TARGET='13.0' \
+              IPHONEOS_DEPLOYMENT_TARGET="${XC_IPHONEOS_DEPLOYMENT_TARGET}" \
               archive
 
           xcrun xcodebuild \
@@ -100,7 +101,7 @@ jobs:
       - name: Upload to TestFlight
         uses: Apple-Actions/upload-testflight-build@master
         with:
-          app-path: ".build/Artifacts/PasswordGenerator/PasswordGenerator.ipa"
+          app-path: ".build/Artifacts/PasswordGenerator/Pwd Generator.ipa"
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}

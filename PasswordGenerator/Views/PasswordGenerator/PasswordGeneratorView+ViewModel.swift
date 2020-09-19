@@ -123,19 +123,20 @@ private extension PasswordGeneratorView.ViewModel {
                 service.isNotEmpty
             }
 
+        let charactersInput = Publishers
+            .CombineLatest4(
+                $numberOfDigits,
+                $numberOfSymbols,
+                $numberOfLowercase,
+                $numberOfUppercase
+            )
+            .map { $0 + $1 + $2 + $3 > 0 }
+
         return Publishers
             .CombineLatest3(
                 Publishers.Merge(domainBasedInput, serviceBasedInput),
                 $length.map { $0 > 4 },
-                Publishers
-                    .CombineLatest4(
-                        $numberOfDigits,
-                        $numberOfSymbols,
-                        $numberOfLowercase,
-                        $numberOfUppercase
-                    )
-                    .map { $0 + $1 + $2 + $3 > 0 }
-                    .eraseToAnyPublisher()
+                charactersInput
             )
             .map { $0 && $1 && $2 }
             .eraseToAnyPublisher()
