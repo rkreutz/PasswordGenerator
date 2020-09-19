@@ -16,6 +16,7 @@ jobs:
       XC_SDK: ${{ 'iphoneos' }}
       XC_CONFIGURATION: ${{ 'Release' }}
       XC_BUILD_DIR: ${{ '.build' }}
+      XC_IPHONEOS_DEPLOYMENT_TARGET: ${{ '14.0' }}
       XC_EXPORT_OPTIONS_FILE: "Support/ExportOptions.plist"
       XC_INFO_PLIST_PATH: "PasswordGenerator/Assets/Info.plist"
       IS_CI: 'true'
@@ -86,7 +87,7 @@ jobs:
               -archivePath "${ARCHIVE_PATH}" \
               -resultBundlePath "${RESULT_BUNDLE_PATH}" \
               CURRENT_PROJECT_VERSION="${GITHUB_RUN_NUMBER}" \
-              IPHONEOS_DEPLOYMENT_TARGET='13.0' \
+              IPHONEOS_DEPLOYMENT_TARGET="${XC_IPHONEOS_DEPLOYMENT_TARGET}" \
               archive
 
           xcrun xcodebuild \
