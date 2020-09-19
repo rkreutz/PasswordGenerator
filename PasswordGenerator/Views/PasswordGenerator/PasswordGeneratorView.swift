@@ -72,7 +72,9 @@ struct PasswordGeneratorView: View {
                 .asAny()
 
         case let .generated(password):
-            return CardView { CopyableContentView(content: password) }.asAny()
+            return CopyableContentView(content: password)
+                .asCard()
+                .asAny()
         }
     }
 }

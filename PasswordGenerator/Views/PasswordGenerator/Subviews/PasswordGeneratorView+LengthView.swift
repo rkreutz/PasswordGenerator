@@ -10,14 +10,12 @@ extension PasswordGeneratorView {
 
         var body: some View {
 
-            CardView {
-
-                CounterView(
-                    count: $viewModel.length,
-                    title: Strings.PasswordGeneratorView.passwordLength,
-                    bounds: viewModel.minimalLength ... 32
-                )
-            }
+            CounterView(
+                count: $viewModel.length,
+                title: Strings.PasswordGeneratorView.passwordLength,
+                bounds: viewModel.minimalLength ... 32
+            )
+            .asCard()
         }
     }
 }
