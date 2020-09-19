@@ -22,17 +22,17 @@ struct PasswordGeneratorView: View {
 
                 CharactersView()
 
-                if  viewModel.passwordState == .invalid ||
-                    viewModel.passwordState == .readyToGenerate {
+                switch viewModel.passwordState {
 
+                case .invalid, .readyToGenerate:
                     MainButton(action: viewModel.generatePassword, text: Strings.PasswordGeneratorView.generatePassword)
                         .disabled(viewModel.passwordState == .invalid)
-                } else if viewModel.passwordState == .loading {
 
+                case .loading:
                     Loader()
                         .frame(height: loaderSize)
-                } else if case let .generated(password) = viewModel.passwordState {
 
+                case let .generated(password):
                     CopyableContentView(content: password)
                         .expandedInParent()
                         .asCard()

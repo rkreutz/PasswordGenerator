@@ -23,8 +23,9 @@ extension PasswordGeneratorView {
                 .pickerStyle(SegmentedPickerStyle())
                 .fixedSize()
 
-                if viewModel.passwordType == .domainBased {
+                switch viewModel.passwordType {
 
+                case .domainBased:
                     TextField(Strings.PasswordGeneratorView.username, text: $viewModel.username)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
@@ -48,8 +49,8 @@ extension PasswordGeneratorView {
                         title: Strings.PasswordGeneratorView.seed,
                         bounds: 1 ... 999
                     )
-                } else {
 
+                case .serviceBased:
                     TextField(Strings.PasswordGeneratorView.service, text: $viewModel.service)
                         .autocapitalization(.sentences)
                         .disableAutocorrection(false)
