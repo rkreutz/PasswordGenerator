@@ -21,7 +21,7 @@ With a single Master Password you can generate all your other website passwords.
 
 ## Installation
 
-To run the app locally you must have at least **Xcode 11.5** installed.
+To run the app locally you must have at least **Xcode 12** installed.
 
 ## AppStore
 
