@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37020F04248DABB900C105D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F03248DABB900C105D1 /* AppDelegate.swift */; };
-		37020F06248DABB900C105D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F05248DABB900C105D1 /* SceneDelegate.swift */; };
 		37020F0A248DABBA00C105D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37020F09248DABBA00C105D1 /* Assets.xcassets */; };
 		37020F10248DABBA00C105D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37020F0E248DABBA00C105D1 /* LaunchScreen.storyboard */; };
 		37020F1C248DB84400C105D1 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F1B248DB84400C105D1 /* PasswordGeneratorView.swift */; };
@@ -16,6 +14,7 @@
 		37020F222496A64000C105D1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F212496A64000C105D1 /* CardView.swift */; };
 		37020F262496F7E200C105D1 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
 		37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
+		370F7EBC2515AEDD00F87C9A /* PasswordGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */; };
 		37287F5B24CCB41900E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
 		37287F7624CCB5AD00E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
 		37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37287F7824CCB5AD00E9407F /* CredentialProviderViewController.swift */; };
@@ -78,7 +77,6 @@
 		37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */; };
 		37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */; };
 		37C76EEB24BAA44F003BCAC1 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C76EEA24BAA44F003BCAC1 /* Errors.strings */; };
-		37C76EEE24BB79D4003BCAC1 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EED24BB79D4003BCAC1 /* RootView.swift */; };
 		37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */; };
 		37CB52C024CDF57D0081DA1E /* PasswordGeneratorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37CB52BF24CDF57D0081DA1E /* PasswordGeneratorKit */; };
 		37CB52C224CDF57D0081DA1E /* PasswordGeneratorKitPublishers in Frameworks */ = {isa = PBXBuildFile; productRef = 37CB52C124CDF57D0081DA1E /* PasswordGeneratorKitPublishers */; };
@@ -119,7 +117,6 @@
 		37CB52EA24CDF7770081DA1E /* PasswordGeneratorView+CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652A24B8D8A5008D48FD /* PasswordGeneratorView+CharactersView.swift */; };
 		37CB52EB24CDF7770081DA1E /* PasswordGeneratorView+ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652424B8D6EB008D48FD /* PasswordGeneratorView+ConfigurationView.swift */; };
 		37CB52EC24CDF7770081DA1E /* PasswordGeneratorView+LengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652824B8D843008D48FD /* PasswordGeneratorView+LengthView.swift */; };
-		37CB52ED24CDF77C0081DA1E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EED24BB79D4003BCAC1 /* RootView.swift */; };
 		37CB52EE24CDF7810081DA1E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F212496A64000C105D1 /* CardView.swift */; };
 		37CB52EF24CDF7810081DA1E /* CopyableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652E24B8FF28008D48FD /* CopyableContentView.swift */; };
 		37CB52F024CDF7810081DA1E /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
@@ -160,8 +157,6 @@
 
 /* Begin PBXFileReference section */
 		37020F00248DABB900C105D1 /* Pwd Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pwd Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		37020F03248DABB900C105D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		37020F05248DABB900C105D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		37020F09248DABBA00C105D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37020F0F248DABBA00C105D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37020F11248DABBA00C105D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,6 +165,7 @@
 		37020F212496A64000C105D1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		37020F252496F7E200C105D1 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		37020F27249831E000C105D1 /* CounterToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToggleView.swift; sourceTree = "<group>"; };
+		370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorApp.swift; sourceTree = "<group>"; };
 		37287F5924CCB41900E9407F /* Pwd Generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pwd Generator.entitlements"; sourceTree = "<group>"; };
 		37287F5A24CCB41900E9407F /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		37287F7524CCB5AD00E9407F /* CredentialProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CredentialProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,7 +221,6 @@
 		37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertErrorHandler.swift; sourceTree = "<group>"; };
 		37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorError+LocalizedError.swift"; sourceTree = "<group>"; };
 		37C76EEA24BAA44F003BCAC1 /* Errors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
-		37C76EED24BB79D4003BCAC1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AsHostingController.swift"; sourceTree = "<group>"; };
 		37CB52F824D632100081DA1E /* Publisher+AssignWeakly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+AssignWeakly.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -276,8 +271,7 @@
 		37020F02248DABB900C105D1 /* PasswordGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				37020F03248DABB900C105D1 /* AppDelegate.swift */,
-				37020F05248DABB900C105D1 /* SceneDelegate.swift */,
+				370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */,
 				37020F1A248DB22200C105D1 /* Assets */,
 				3741796824A43331003C5592 /* Shared */,
 				37020F2924983C9700C105D1 /* Views */,
@@ -288,13 +282,13 @@
 		37020F1A248DB22200C105D1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				37020F09248DABBA00C105D1 /* Assets.xcassets */,
-				37020F1D248DBB2300C105D1 /* Colors.swift */,
-				37C76EEA24BAA44F003BCAC1 /* Errors.strings */,
-				37020F11248DABBA00C105D1 /* Info.plist */,
-				37020F0E248DABBA00C105D1 /* LaunchScreen.storyboard */,
 				37287F5924CCB41900E9407F /* Pwd Generator.entitlements */,
+				37020F11248DABBA00C105D1 /* Info.plist */,
+				37C76EEA24BAA44F003BCAC1 /* Errors.strings */,
+				37020F1D248DBB2300C105D1 /* Colors.swift */,
 				3737690824984FC0003C6CE4 /* Strings.swift */,
+				37020F09248DABBA00C105D1 /* Assets.xcassets */,
+				37020F0E248DABBA00C105D1 /* LaunchScreen.storyboard */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -319,7 +313,6 @@
 			children = (
 				37A5651424A78C9C008D48FD /* MasterPassword */,
 				37020F2A24983CA200C105D1 /* PasswordGenerator */,
-				37C76EEC24BB7993003BCAC1 /* RootView */,
 				37020F202496A61E00C105D1 /* UI Components */,
 			);
 			path = Views;
@@ -456,14 +449,6 @@
 			path = Dependencies;
 			sourceTree = "<group>";
 		};
-		37C76EEC24BB7993003BCAC1 /* RootView */ = {
-			isa = PBXGroup;
-			children = (
-				37C76EED24BB79D4003BCAC1 /* RootView.swift */,
-			);
-			path = RootView;
-			sourceTree = "<group>";
-		};
 		37C76EF324BB8568003BCAC1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,7 +521,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Rodrigo Kreutz";
 				TargetAttributes = {
 					37020EFF248DABB900C105D1 = {
@@ -626,6 +611,7 @@
 				37A5654124B960EC008D48FD /* MasterPasswordKeychain+PasswordStorage.swift in Sources */,
 				3737690B24985052003C6CE4 /* PasswordGeneratorView+Preview.swift in Sources */,
 				37C20B7D24E472E700C654A3 /* AppState+DI.swift in Sources */,
+				370F7EBC2515AEDD00F87C9A /* PasswordGeneratorApp.swift in Sources */,
 				37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */,
 				375D5A9A24BA8E690017AC2B /* LocalizedError+ErrorDescription.swift in Sources */,
 				375D5A9E24BA8EEA0017AC2B /* ToastErrorHandler.swift in Sources */,
@@ -648,7 +634,6 @@
 				3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */,
 				37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
 				3737691324994AC0003C6CE4 /* ContentSizeCategory+Modifier.swift in Sources */,
-				37020F04248DABB900C105D1 /* AppDelegate.swift in Sources */,
 				37A5652124B800A4008D48FD /* MasterPasswordKeychain+Strings.swift in Sources */,
 				37936E1D24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift in Sources */,
 				37A5652924B8D843008D48FD /* PasswordGeneratorView+LengthView.swift in Sources */,
@@ -658,7 +643,6 @@
 				37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */,
 				37020F262496F7E200C105D1 /* CounterView.swift in Sources */,
 				37A5652724B8D808008D48FD /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
-				37020F06248DABB900C105D1 /* SceneDelegate.swift in Sources */,
 				375D5AAB24BA96200017AC2B /* PasswordGeneratorView+PasswordState.swift in Sources */,
 				37A5653C24B95E5D008D48FD /* MasterPasswordStorage.swift in Sources */,
 				37A5652D24B8EA34008D48FD /* CGSize+MinLength.swift in Sources */,
@@ -670,7 +654,6 @@
 				37A9415B249C3CC9002E89B4 /* Loader.swift in Sources */,
 				37CB52F924D632100081DA1E /* Publisher+AssignWeakly.swift in Sources */,
 				37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */,
-				37C76EEE24BB79D4003BCAC1 /* RootView.swift in Sources */,
 				375D5A9C24BA8ECB0017AC2B /* ErrorHandler.swift in Sources */,
 				37C20B8024E472E700C654A3 /* MasterPasswordValidator+DI.swift in Sources */,
 				37A5651C24A80F53008D48FD /* MasterPasswordView+ViewModel.swift in Sources */,
@@ -724,7 +707,6 @@
 				37CB52E224CDF76D0081DA1E /* MasterPasswordView+Strings.swift in Sources */,
 				37CB52E524CDF7730081DA1E /* PasswordGeneratorView+PasswordState.swift in Sources */,
 				37CB52CF24CDF7570081DA1E /* Binding+StaticValue.swift in Sources */,
-				37CB52ED24CDF77C0081DA1E /* RootView.swift in Sources */,
 				37C20B8424E474F700C654A3 /* DependencyInjectorViewModifier.swift in Sources */,
 				37CB52D124CDF7570081DA1E /* Collection+IsNotEmpty.swift in Sources */,
 				37CB52F224CDF7810081DA1E /* Loader.swift in Sources */,
@@ -796,6 +778,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -820,7 +803,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -856,6 +839,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -874,7 +858,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -896,7 +880,7 @@
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PasswordGenerator/Assets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -921,7 +905,7 @@
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PasswordGenerator/Assets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
