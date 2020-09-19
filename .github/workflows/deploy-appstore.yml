@@ -101,7 +101,7 @@ jobs:
       - name: Upload to TestFlight
         uses: Apple-Actions/upload-testflight-build@master
         with:
-          app-path: ".build/Artifacts/PasswordGenerator/PasswordGenerator.ipa"
+          app-path: ".build/Artifacts/PasswordGenerator/Pwd Generator.ipa"
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
