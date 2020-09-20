@@ -13,7 +13,7 @@ extension PasswordGeneratorView {
             VStack(spacing: spacing) {
 
                 CounterToggleView(
-                    toggle: $viewModel.shouldIncludeLowercase,
+                    toggle: true,
                     toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters,
                     count: $viewModel.numberOfLowercase,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
@@ -23,7 +23,7 @@ extension PasswordGeneratorView {
                 SeparatorView()
 
                 CounterToggleView(
-                    toggle: $viewModel.shouldIncludeUppercase,
+                    toggle: true,
                     toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters,
                     count: $viewModel.numberOfUppercase,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
@@ -33,7 +33,7 @@ extension PasswordGeneratorView {
                 SeparatorView()
 
                 CounterToggleView(
-                    toggle: $viewModel.shouldIncludeDigits,
+                    toggle: true,
                     toggleTitle: Strings.PasswordGeneratorView.decimalCharacters,
                     count: $viewModel.numberOfDigits,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
@@ -43,7 +43,7 @@ extension PasswordGeneratorView {
                 SeparatorView()
 
                 CounterToggleView(
-                    toggle: $viewModel.shouldIncludeSymbols,
+                    toggle: false,
                     toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters,
                     count: $viewModel.numberOfSymbols,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,

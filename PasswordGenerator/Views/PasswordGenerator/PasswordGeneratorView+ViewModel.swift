@@ -15,13 +15,9 @@ extension PasswordGeneratorView {
         @Published var seed: Int = 1
         @Published var service: String = ""
         @Published var length: Int = 8
-        @Published var shouldIncludeDigits: Bool = true
         @Published var numberOfDigits: Int = 1
-        @Published var shouldIncludeSymbols: Bool = false
-        @Published var numberOfSymbols: Int = 1
-        @Published var shouldIncludeLowercase: Bool = true
+        @Published var numberOfSymbols: Int = 0
         @Published var numberOfLowercase: Int = 1
-        @Published var shouldIncludeUppercase: Bool = true
         @Published var numberOfUppercase: Int = 1
         @Published var minimalLength: Int = 4
         @Published var passwordState: PasswordState = .invalid
@@ -31,7 +27,6 @@ extension PasswordGeneratorView {
 
         func bind() {
 
-            subscribeToCharacterUpdates()
             subscribeToLengthUpdates()
             subscribeToValidationUpdates()
         }
@@ -92,10 +87,10 @@ private extension PasswordGeneratorView.ViewModel {
     private var rules: Set<PasswordRule> {
 
         var rules = [PasswordRule.length(length)]
-        if shouldIncludeDigits { rules.append(.mustContainDecimalCharacters(atLeast: numberOfDigits)) }
-        if shouldIncludeSymbols { rules.append(.mustContainSymbolCharacters(atLeast: numberOfSymbols)) }
-        if shouldIncludeLowercase { rules.append(.mustContainLowercaseCharacters(atLeast: numberOfLowercase)) }
-        if shouldIncludeUppercase { rules.append(.mustContainUppercaseCharacters(atLeast: numberOfUppercase)) }
+        if numberOfDigits > 0 { rules.append(.mustContainDecimalCharacters(atLeast: numberOfDigits)) }
+        if numberOfSymbols > 0 { rules.append(.mustContainSymbolCharacters(atLeast: numberOfSymbols)) }
+        if numberOfLowercase > 0 { rules.append(.mustContainLowercaseCharacters(atLeast: numberOfLowercase)) }
+        if numberOfUppercase > 0 { rules.append(.mustContainUppercaseCharacters(atLeast: numberOfUppercase)) }
         return Set(rules)
     }
 
@@ -135,38 +130,11 @@ private extension PasswordGeneratorView.ViewModel {
         return Publishers
             .CombineLatest3(
                 Publishers.Merge(domainBasedInput, serviceBasedInput),
-                $length.map { $0 > 4 },
+                $length.map { $0 >= 4 },
                 charactersInput
             )
             .map { $0 && $1 && $2 }
             .eraseToAnyPublisher()
-    }
-
-    private func subscribeToCharacterUpdates() {
-
-        $shouldIncludeLowercase
-            .removeDuplicates()
-            .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfLowercase, onWeak: self)
-            .store(in: &cancellableStore)
-
-        $shouldIncludeUppercase
-            .removeDuplicates()
-            .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfUppercase, onWeak: self)
-            .store(in: &cancellableStore)
-
-        $shouldIncludeDigits
-            .removeDuplicates()
-            .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfDigits, onWeak: self)
-            .store(in: &cancellableStore)
-
-        $shouldIncludeSymbols
-            .removeDuplicates()
-            .map { $0 ? 1 : 0 }
-            .assign(to: \.numberOfSymbols, onWeak: self)
-            .store(in: &cancellableStore)
     }
 
     private func subscribeToLengthUpdates() {

@@ -3,7 +3,7 @@ import SwiftUI
 
 public struct CounterToggleView: View {
 
-    @Binding var toggle: Bool
+    @State var toggle: Bool
     var toggleTitle: LocalizedStringKey
     @Binding var count: Int
     var counterTitle: LocalizedStringKey
@@ -31,6 +31,7 @@ public struct CounterToggleView: View {
             }
         }
         .animation(.easeInOut(duration: 0.15))
+        .onChange(of: toggle) { count = $0 ? 1 : 0 }
     }
 }
 
@@ -38,14 +39,13 @@ public struct CounterToggleView: View {
 
 struct CounterToggleView_Previews: PreviewProvider {
 
-    @State static var toggle: Bool = true
     @State static var count: Int = 1
 
     static var previews: some View {
 
         Group {
 
-            CounterToggleView(toggle: $toggle,
+            CounterToggleView(toggle: true,
                               toggleTitle: "Toggle title",
                               count: $count,
                               counterTitle: "Counter title",
@@ -56,7 +56,7 @@ struct CounterToggleView_Previews: PreviewProvider {
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
 
-            CounterToggleView(toggle: $toggle,
+            CounterToggleView(toggle: true,
                               toggleTitle: "Toggle title",
                               count: $count,
                               counterTitle: "Counter title",
@@ -69,7 +69,7 @@ struct CounterToggleView_Previews: PreviewProvider {
 
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
-                CounterToggleView(toggle: $toggle,
+                CounterToggleView(toggle: true,
                                   toggleTitle: "Toggle title",
                                   count: $count,
                                   counterTitle: "Counter title",
