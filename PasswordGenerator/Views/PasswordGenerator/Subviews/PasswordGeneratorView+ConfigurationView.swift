@@ -5,63 +5,61 @@ extension PasswordGeneratorView {
 
     struct ConfigurationView: View {
 
-        @Environment(\.sizeCategory) private var sizeCategory
-
-        @EnvironmentObject var viewModel: ViewModel
+        @ScaledMetric private var spacing: CGFloat = 16
+        @EnvironmentObject private var viewModel: ViewModel
 
         var body: some View {
 
-            CardView {
+            VStack(alignment: .center, spacing: spacing) {
 
-                VStack(alignment: .center, spacing: 16 * sizeCategory.modifier) {
+                Picker(selection: $viewModel.passwordType, label: Text("")) {
 
-                    Picker(selection: $viewModel.passwordType, label: Text("")) {
+                    ForEach(PasswordType.allCases, id: \.hashValue) { passwordType in
 
-                        ForEach(PasswordType.allCases, id: \.hashValue) { passwordType in
-
-                            Text(passwordType.title)
-                                .tag(passwordType)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .fixedSize()
-
-                    if viewModel.passwordType == .domainBased {
-
-                        TextField(Strings.PasswordGeneratorView.username, text: $viewModel.username)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                            .keyboardType(.emailAddress)
-                            .foregroundColor(.foreground)
-                            .font(.body)
-
-                        SeparatorView()
-
-                        TextField(Strings.PasswordGeneratorView.domain, text: $viewModel.domain)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                            .keyboardType(.URL)
-                            .foregroundColor(.foreground)
-                            .font(.body)
-
-                        SeparatorView()
-
-                        CounterView(
-                            count: $viewModel.seed,
-                            title: Strings.PasswordGeneratorView.seed,
-                            bounds: 1 ... 999
-                        )
-                    } else {
-
-                        TextField(Strings.PasswordGeneratorView.service, text: $viewModel.service)
-                            .autocapitalization(.sentences)
-                            .disableAutocorrection(false)
-                            .keyboardType(.default)
-                            .foregroundColor(.foreground)
-                            .font(.body)
+                        Text(passwordType.title)
+                            .tag(passwordType)
                     }
                 }
+                .pickerStyle(SegmentedPickerStyle())
+                .fixedSize()
+
+                switch viewModel.passwordType {
+
+                case .domainBased:
+                    TextField(Strings.PasswordGeneratorView.username, text: $viewModel.username)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .keyboardType(.emailAddress)
+                        .foregroundColor(.foreground)
+                        .font(.body)
+
+                    SeparatorView()
+
+                    TextField(Strings.PasswordGeneratorView.domain, text: $viewModel.domain)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .keyboardType(.URL)
+                        .foregroundColor(.foreground)
+                        .font(.body)
+
+                    SeparatorView()
+
+                    CounterView(
+                        count: $viewModel.seed,
+                        title: Strings.PasswordGeneratorView.seed,
+                        bounds: 1 ... 999
+                    )
+
+                case .serviceBased:
+                    TextField(Strings.PasswordGeneratorView.service, text: $viewModel.service)
+                        .autocapitalization(.sentences)
+                        .disableAutocorrection(false)
+                        .keyboardType(.default)
+                        .foregroundColor(.foreground)
+                        .font(.body)
+                }
             }
+            .asCard()
         }
     }
 }

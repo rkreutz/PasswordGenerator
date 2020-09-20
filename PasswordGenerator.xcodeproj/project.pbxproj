@@ -11,10 +11,13 @@
 		37020F10248DABBA00C105D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37020F0E248DABBA00C105D1 /* LaunchScreen.storyboard */; };
 		37020F1C248DB84400C105D1 /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F1B248DB84400C105D1 /* PasswordGeneratorView.swift */; };
 		37020F1F2496961B00C105D1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F1D248DBB2300C105D1 /* Colors.swift */; };
-		37020F222496A64000C105D1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F212496A64000C105D1 /* CardView.swift */; };
 		37020F262496F7E200C105D1 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
 		37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
 		370F7EBC2515AEDD00F87C9A /* PasswordGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */; };
+		370F7ED8251676EA00F87C9A /* ExpandInParentViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */; };
+		370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */; };
+		37197A9824FB372100873DC6 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37197A9724FB372100873DC6 /* CardViewModifier.swift */; };
+		37197A9924FB374200873DC6 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37197A9724FB372100873DC6 /* CardViewModifier.swift */; };
 		37287F5B24CCB41900E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
 		37287F7624CCB5AD00E9407F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37287F5A24CCB41900E9407F /* AuthenticationServices.framework */; };
 		37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37287F7824CCB5AD00E9407F /* CredentialProviderViewController.swift */; };
@@ -117,7 +120,6 @@
 		37CB52EA24CDF7770081DA1E /* PasswordGeneratorView+CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652A24B8D8A5008D48FD /* PasswordGeneratorView+CharactersView.swift */; };
 		37CB52EB24CDF7770081DA1E /* PasswordGeneratorView+ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652424B8D6EB008D48FD /* PasswordGeneratorView+ConfigurationView.swift */; };
 		37CB52EC24CDF7770081DA1E /* PasswordGeneratorView+LengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652824B8D843008D48FD /* PasswordGeneratorView+LengthView.swift */; };
-		37CB52EE24CDF7810081DA1E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F212496A64000C105D1 /* CardView.swift */; };
 		37CB52EF24CDF7810081DA1E /* CopyableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652E24B8FF28008D48FD /* CopyableContentView.swift */; };
 		37CB52F024CDF7810081DA1E /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
 		37CB52F124CDF7810081DA1E /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
@@ -162,10 +164,11 @@
 		37020F11248DABBA00C105D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37020F1B248DB84400C105D1 /* PasswordGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorView.swift; sourceTree = "<group>"; };
 		37020F1D248DBB2300C105D1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		37020F212496A64000C105D1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		37020F252496F7E200C105D1 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		37020F27249831E000C105D1 /* CounterToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToggleView.swift; sourceTree = "<group>"; };
 		370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorApp.swift; sourceTree = "<group>"; };
+		370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandInParentViewModifier.swift; sourceTree = "<group>"; };
+		37197A9724FB372100873DC6 /* CardViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModifier.swift; sourceTree = "<group>"; };
 		37287F5924CCB41900E9407F /* Pwd Generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pwd Generator.entitlements"; sourceTree = "<group>"; };
 		37287F5A24CCB41900E9407F /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		37287F7524CCB5AD00E9407F /* CredentialProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CredentialProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,7 +299,6 @@
 		37020F202496A61E00C105D1 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
-				37020F212496A64000C105D1 /* CardView.swift */,
 				37A5652E24B8FF28008D48FD /* CopyableContentView.swift */,
 				37020F27249831E000C105D1 /* CounterToggleView.swift */,
 				37020F252496F7E200C105D1 /* CounterView.swift */,
@@ -311,6 +313,7 @@
 		37020F2924983C9700C105D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				37197A9624FB371100873DC6 /* Modifiers */,
 				37A5651424A78C9C008D48FD /* MasterPassword */,
 				37020F2A24983CA200C105D1 /* PasswordGenerator */,
 				37020F202496A61E00C105D1 /* UI Components */,
@@ -330,6 +333,15 @@
 				37A5652624B8D70E008D48FD /* Subviews */,
 			);
 			path = PasswordGenerator;
+			sourceTree = "<group>";
+		};
+		37197A9624FB371100873DC6 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				37197A9724FB372100873DC6 /* CardViewModifier.swift */,
+				370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		37287F7724CCB5AD00E9407F /* CredentialProvider */ = {
@@ -623,6 +635,7 @@
 				37A5653324B94446008D48FD /* DispatchWorkItemReference.swift in Sources */,
 				3737690924984FC0003C6CE4 /* Strings.swift in Sources */,
 				37936E1A24BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift in Sources */,
+				37197A9824FB372100873DC6 /* CardViewModifier.swift in Sources */,
 				37A5653124B90EF1008D48FD /* Toast.swift in Sources */,
 				37A5651624A78D15008D48FD /* MasterPasswordView.swift in Sources */,
 				373769152499517E003C6CE4 /* PasswordGeneratorView+Strings.swift in Sources */,
@@ -630,6 +643,7 @@
 				37A5653524B95166008D48FD /* Binding+StaticValue.swift in Sources */,
 				37020F1F2496961B00C105D1 /* Colors.swift in Sources */,
 				37C20B8124E472E700C654A3 /* PasswordGenerator+DI.swift in Sources */,
+				370F7ED8251676EA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
 				37376919249969CB003C6CE4 /* Collection+IsNotEmpty.swift in Sources */,
 				3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */,
 				37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
@@ -646,7 +660,6 @@
 				375D5AAB24BA96200017AC2B /* PasswordGeneratorView+PasswordState.swift in Sources */,
 				37A5653C24B95E5D008D48FD /* MasterPasswordStorage.swift in Sources */,
 				37A5652D24B8EA34008D48FD /* CGSize+MinLength.swift in Sources */,
-				37020F222496A64000C105D1 /* CardView.swift in Sources */,
 				37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */,
 				37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */,
 				37C20B7E24E472E700C654A3 /* ErrorHandler+DI.swift in Sources */,
@@ -667,6 +680,7 @@
 			files = (
 				37CB52D824CDF75F0081DA1E /* MasterPasswordStorage.swift in Sources */,
 				37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */,
+				370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
 				37CB52D724CDF75B0081DA1E /* View+AsHostingController.swift in Sources */,
 				37CB52EF24CDF7810081DA1E /* CopyableContentView.swift in Sources */,
 				37CB52F324CDF7810081DA1E /* MainButton.swift in Sources */,
@@ -687,13 +701,13 @@
 				37C20B7824E472E600C654A3 /* AppState+DI.swift in Sources */,
 				37C20B8524E474FA00C654A3 /* DependencyInjectable.swift in Sources */,
 				37CB52EA24CDF7770081DA1E /* PasswordGeneratorView+CharactersView.swift in Sources */,
+				37197A9924FB374200873DC6 /* CardViewModifier.swift in Sources */,
 				37CB52C424CDF7380081DA1E /* Strings.swift in Sources */,
 				37CB52DF24CDF7650081DA1E /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
 				37CB52F424CDF7810081DA1E /* SeparatorView.swift in Sources */,
 				37C20B7C24E472E600C654A3 /* PasswordGenerator+DI.swift in Sources */,
 				37C20B7A24E472E600C654A3 /* MasterPasswordStorage+DI.swift in Sources */,
 				37CB52DA24CDF7650081DA1E /* MasterPasswordKeychain.swift in Sources */,
-				37CB52EE24CDF7810081DA1E /* CardView.swift in Sources */,
 				37CB52E124CDF76D0081DA1E /* MasterPasswordView.swift in Sources */,
 				37CB52F124CDF7810081DA1E /* CounterView.swift in Sources */,
 				37CB52E324CDF76D0081DA1E /* MasterPasswordView+ViewModel.swift in Sources */,

@@ -4,20 +4,16 @@ extension PasswordGeneratorView {
 
     struct LengthView: View {
 
-        @Environment(\.sizeCategory) private var sizeCategory
-
-        @EnvironmentObject var viewModel: ViewModel
+        @EnvironmentObject private var viewModel: ViewModel
 
         var body: some View {
 
-            CardView {
-
-                CounterView(
-                    count: $viewModel.length,
-                    title: Strings.PasswordGeneratorView.passwordLength,
-                    bounds: viewModel.minimalLength ... 32
-                )
-            }
+            CounterView(
+                count: $viewModel.length,
+                title: Strings.PasswordGeneratorView.passwordLength,
+                bounds: viewModel.minimalLength ... 32
+            )
+            .asCard()
         }
     }
 }

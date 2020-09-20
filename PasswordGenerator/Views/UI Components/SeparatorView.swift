@@ -2,13 +2,13 @@ import SwiftUI
 
 struct SeparatorView: View {
 
-    @Environment(\.sizeCategory) private var sizeCategory
+    @ScaledMetric private var height: CGFloat = 1
 
     var body: some View {
 
         Rectangle()
             .foregroundColor(Color.foreground.opacity(0.1))
-            .frame(height: 1 * sizeCategory.modifier)
+            .frame(height: height)
     }
 }
 

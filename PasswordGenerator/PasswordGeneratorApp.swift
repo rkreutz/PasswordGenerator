@@ -11,13 +11,14 @@ struct PasswordGeneratorApp: App {
 
             Group {
 
-                if case .masterPasswordSet = appState.state {
+                switch appState.state {
 
+                case .mustProvideMasterPassword:
+                    MasterPasswordView()
+
+                case .masterPasswordSet:
                     NavigationView { PasswordGeneratorView() }
                         .navigationViewStyle(StackNavigationViewStyle())
-                } else {
-
-                    MasterPasswordView()
                 }
             }
             .handlingErrors(using: AlertErrorHandler())

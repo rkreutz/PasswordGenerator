@@ -2,15 +2,17 @@ import SwiftUI
 
 struct MasterPasswordView: View {
 
-    @Environment(\.sizeCategory) private var sizeCategory
-
     @ObservedObject var viewModel = ViewModel()
+    
+    @ScaledMetric private var spacing: CGFloat = 48
+    @ScaledMetric private var margins: CGFloat = 16
+    @ScaledMetric private var topMargin: CGFloat = 32
 
     var body: some View {
 
         ScrollView {
 
-            VStack(spacing: 48 / sizeCategory.modifier) {
+            VStack(spacing: spacing) {
 
                 TextField(Strings.MasterPasswordView.placeholder, text: $viewModel.masterPassword)
                     .font(.system(.title, design: .monospaced))
@@ -18,18 +20,15 @@ struct MasterPasswordView: View {
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
 
-                MainButton(
-                    action: { self.viewModel.saveMasterPassword() },
-                    text: Strings.MasterPasswordView.save,
-                    isEnabled: viewModel.isValid
-                )
+                MainButton(action: viewModel.saveMasterPassword, text: Strings.MasterPasswordView.save)
+                    .disabled(!viewModel.isValid)
 
                 Text(Strings.MasterPasswordView.title)
                     .font(.body)
                     .multilineTextAlignment(.leading)
             }
-            .padding(16 / sizeCategory.modifier)
-            .padding(.top, 32 / sizeCategory.modifier)
+            .padding(margins)
+            .padding(.top, topMargin)
         }
         .accentColor(.accent)
         .background(

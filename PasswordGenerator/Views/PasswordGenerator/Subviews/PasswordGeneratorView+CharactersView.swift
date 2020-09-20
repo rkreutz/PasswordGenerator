@@ -5,55 +5,52 @@ extension PasswordGeneratorView {
 
     struct CharactersView: View {
 
-        @Environment(\.sizeCategory) private var sizeCategory
-
-        @EnvironmentObject var viewModel: ViewModel
+        @ScaledMetric private var spacing: CGFloat = 16
+        @EnvironmentObject private var viewModel: ViewModel
 
         var body: some View {
 
-            CardView {
+            VStack(spacing: spacing) {
 
-                VStack(spacing: 16 * sizeCategory.modifier) {
+                CounterToggleView(
+                    toggle: true,
+                    toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters,
+                    count: $viewModel.numberOfLowercase,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    bounds: 1 ... 8
+                )
 
-                    CounterToggleView(
-                        toggle: $viewModel.shouldIncludeLowercase,
-                        toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters,
-                        count: $viewModel.numberOfLowercase,
-                        counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                        bounds: 1 ... 8
-                    )
+                SeparatorView()
 
-                    SeparatorView()
+                CounterToggleView(
+                    toggle: true,
+                    toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters,
+                    count: $viewModel.numberOfUppercase,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    bounds: 1 ... 8
+                )
 
-                    CounterToggleView(
-                        toggle: $viewModel.shouldIncludeUppercase,
-                        toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters,
-                        count: $viewModel.numberOfUppercase,
-                        counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                        bounds: 1 ... 8
-                    )
+                SeparatorView()
 
-                    SeparatorView()
+                CounterToggleView(
+                    toggle: true,
+                    toggleTitle: Strings.PasswordGeneratorView.decimalCharacters,
+                    count: $viewModel.numberOfDigits,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    bounds: 1 ... 8
+                )
 
-                    CounterToggleView(
-                        toggle: $viewModel.shouldIncludeDigits,
-                        toggleTitle: Strings.PasswordGeneratorView.decimalCharacters,
-                        count: $viewModel.numberOfDigits,
-                        counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                        bounds: 1 ... 8
-                    )
+                SeparatorView()
 
-                    SeparatorView()
-
-                    CounterToggleView(
-                        toggle: $viewModel.shouldIncludeSymbols,
-                        toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters,
-                        count: $viewModel.numberOfSymbols,
-                        counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                        bounds: 1 ... 8
-                    )
-                }
+                CounterToggleView(
+                    toggle: false,
+                    toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters,
+                    count: $viewModel.numberOfSymbols,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    bounds: 1 ... 8
+                )
             }
+            .asCard()
         }
     }
 }

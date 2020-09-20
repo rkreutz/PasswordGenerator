@@ -2,18 +2,11 @@ import SwiftUI
 
 public struct CounterView: View {
 
-    @Environment(\.sizeCategory) private var sizeCategory
+    @Binding var count: Int
+    var title: LocalizedStringKey
+    var bounds: ClosedRange<Int>
 
-    @Binding private var count: Int
-    private var title: LocalizedStringKey
-    private var bounds: ClosedRange<Int>
-
-    public init(count: Binding<Int>, title: LocalizedStringKey, bounds: ClosedRange<Int>) {
-
-        self._count = count
-        self.title = title
-        self.bounds = bounds
-    }
+    @ScaledMetric private var spacing: CGFloat = 8
 
     public var body: some View {
 
@@ -26,14 +19,14 @@ public struct CounterView: View {
                     .foregroundColor(.foreground)
                     .allowsTightening(true)
 
-                Spacer(minLength: 8 * sizeCategory.modifier)
+                Spacer(minLength: spacing)
 
-                Text("\(self.count)")
+                Text("\(count)")
                     .font(.system(.subheadline, design: .monospaced))
                     .foregroundColor(.foreground)
                     .layoutPriority(1)
             }
-            .padding(.trailing, 8 * sizeCategory.modifier)
+            .padding(.trailing, spacing)
         }
     }
 }

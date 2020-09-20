@@ -3,39 +3,24 @@ import SwiftUI
 
 public struct CounterToggleView: View {
 
-    @Environment(\.sizeCategory) private var sizeCategory
+    @State var toggle: Bool
+    var toggleTitle: LocalizedStringKey
+    @Binding var count: Int
+    var counterTitle: LocalizedStringKey
+    var bounds: ClosedRange<Int>
 
-    @Binding private var toggle: Bool
-    private var toggleTitle: LocalizedStringKey
-    @Binding private var count: Int
-    private var counterTitle: LocalizedStringKey
-    private var bounds: ClosedRange<Int>
-
-    public init(
-        toggle: Binding<Bool>,
-        toggleTitle: LocalizedStringKey,
-        count: Binding<Int>,
-        counterTitle: LocalizedStringKey,
-        bounds: ClosedRange<Int>
-    ) {
-
-        self._toggle = toggle
-        self.toggleTitle = toggleTitle
-        self._count = count
-        self.counterTitle = counterTitle
-        self.bounds = bounds
-    }
+    @ScaledMetric private var spacing: CGFloat = 16
 
     public var body: some View {
 
-        VStack(spacing: 16 * sizeCategory.modifier) {
+        VStack(spacing: spacing) {
 
             Toggle(toggleTitle, isOn: $toggle)
                 .font(.subheadline)
                 .foregroundColor(.foreground)
                 .allowsTightening(true)
 
-            if self.toggle {
+            if toggle {
 
                 withAnimation(.easeInOut(duration: 0.15)) {
 
@@ -46,6 +31,7 @@ public struct CounterToggleView: View {
             }
         }
         .animation(.easeInOut(duration: 0.15))
+        .onChange(of: toggle) { count = $0 ? 1 : 0 }
     }
 }
 
@@ -53,14 +39,13 @@ public struct CounterToggleView: View {
 
 struct CounterToggleView_Previews: PreviewProvider {
 
-    @State static var toggle: Bool = true
     @State static var count: Int = 1
 
     static var previews: some View {
 
         Group {
 
-            CounterToggleView(toggle: $toggle,
+            CounterToggleView(toggle: true,
                               toggleTitle: "Toggle title",
                               count: $count,
                               counterTitle: "Counter title",
@@ -71,7 +56,7 @@ struct CounterToggleView_Previews: PreviewProvider {
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
 
-            CounterToggleView(toggle: $toggle,
+            CounterToggleView(toggle: true,
                               toggleTitle: "Toggle title",
                               count: $count,
                               counterTitle: "Counter title",
@@ -84,7 +69,7 @@ struct CounterToggleView_Previews: PreviewProvider {
 
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
-                CounterToggleView(toggle: $toggle,
+                CounterToggleView(toggle: true,
                                   toggleTitle: "Toggle title",
                                   count: $count,
                                   counterTitle: "Counter title",
