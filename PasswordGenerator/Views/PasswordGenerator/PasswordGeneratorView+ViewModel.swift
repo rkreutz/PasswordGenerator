@@ -19,9 +19,13 @@ extension PasswordGeneratorView {
         @Published var numberOfSymbols: Int = 0
         @Published var numberOfLowercase: Int = 1
         @Published var numberOfUppercase: Int = 1
-        @Published var minimalLength: Int = 4
         @Published var passwordState: PasswordState = .invalid
         @Published var error: Error?
+
+        var minimalLength: Int {
+
+            max(numberOfDigits + numberOfSymbols + numberOfLowercase + numberOfUppercase, 4)
+        }
 
         private var cancellableStore: Set<AnyCancellable> = []
 
@@ -139,7 +143,7 @@ private extension PasswordGeneratorView.ViewModel {
 
     private func subscribeToLengthUpdates() {
 
-        Publishers
+        let characterChanges = Publishers
             .CombineLatest4(
                 $numberOfDigits,
                 $numberOfLowercase,
@@ -147,12 +151,10 @@ private extension PasswordGeneratorView.ViewModel {
                 $numberOfSymbols
             )
             .map { max($0 + $1 + $2 + $3, 4) }
-            .assign(to: \.minimalLength, onWeak: self)
-            .store(in: &cancellableStore)
 
         Publishers
             .CombineLatest(
-                $minimalLength,
+                characterChanges,
                 $length
             )
             .filter { $0 > $1 }
