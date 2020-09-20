@@ -16,7 +16,7 @@ struct PasswordGeneratorView: View {
 
             VStack(alignment: .center, spacing: spacing) {
 
-                PasswordGeneratorView.ConfigurationView()
+                ConfigurationView()
 
                 LengthView()
 
