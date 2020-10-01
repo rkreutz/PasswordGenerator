@@ -30,7 +30,7 @@ extension PasswordGeneratorView {
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                         .keyboardType(.emailAddress)
-                        .foregroundColor(.foreground)
+                        .foregroundColor(.primary)
                         .font(.body)
 
                     SeparatorView()
@@ -39,7 +39,7 @@ extension PasswordGeneratorView {
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                         .keyboardType(.URL)
-                        .foregroundColor(.foreground)
+                        .foregroundColor(.primary)
                         .font(.body)
 
                     SeparatorView()
@@ -55,7 +55,7 @@ extension PasswordGeneratorView {
                         .autocapitalization(.sentences)
                         .disableAutocorrection(false)
                         .keyboardType(.default)
-                        .foregroundColor(.foreground)
+                        .foregroundColor(.primary)
                         .font(.body)
                 }
             }

@@ -13,7 +13,7 @@ struct CardViewModifier: ViewModifier {
                     cornerRadius: margin,
                     style: .continuous
                 )
-                .foregroundColor(.background02)
+                .foregroundColor(.secondarySystemBackground)
             )
             .fixedSize(horizontal: false, vertical: true)
     }
