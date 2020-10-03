@@ -8,9 +8,12 @@ struct MainButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
 
-        configuration.label
+        let opacity = configuration.isPressed ? 0.5 : 1
+        let color = isEnabled ? Color.accentContrast.opacity(opacity) : Color.neutral02.opacity(opacity)
+
+        return configuration.label
             .font(.headline)
-            .foregroundColor(isEnabled ? .accentContrast : .neutral02)
+            .foregroundColor(color)
             .expandedInParent()
             .padding(spacing)
             .background(
