@@ -20,7 +20,8 @@ struct MasterPasswordView: View {
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
 
-                MainButton(action: viewModel.saveMasterPassword, text: Strings.MasterPasswordView.save)
+                Button(Strings.MasterPasswordView.save, action: viewModel.saveMasterPassword)
+                    .styleAsMainButton()
                     .disabled(!viewModel.isValid)
 
                 Text(Strings.MasterPasswordView.title)
