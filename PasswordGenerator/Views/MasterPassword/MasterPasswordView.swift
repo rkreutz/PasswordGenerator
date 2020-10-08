@@ -21,7 +21,7 @@ struct MasterPasswordView: View {
                     .disableAutocorrection(true)
 
                 Button(Strings.MasterPasswordView.save, action: viewModel.saveMasterPassword)
-                    .styleAsMainButton()
+                    .buttonStyle(MainButtonStyle())
                     .disabled(!viewModel.isValid)
 
                 Text(Strings.MasterPasswordView.title)

@@ -26,7 +26,7 @@ struct PasswordGeneratorView: View {
 
                 case .invalid, .readyToGenerate:
                     Button(Strings.PasswordGeneratorView.generatePassword, action: viewModel.generatePassword)
-                        .styleAsMainButton()
+                        .buttonStyle(MainButtonStyle())
                         .disabled(viewModel.passwordState == .invalid)
 
                 case .loading:

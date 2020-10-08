@@ -3,43 +3,33 @@ import SwiftUI
 
 struct MainButtonStyle: ButtonStyle {
 
-    var isEnabled: Bool
-    var spacing: CGFloat
+    struct Button: View {
+
+        let configuration: Configuration
+
+        @Environment(\.isEnabled) private var isEnabled
+        @ScaledMetric private var padding: CGFloat = 16
+
+        var body: some View {
+
+            let opacity = configuration.isPressed ? 0.5 : 1
+            let color = isEnabled ? Color.accentContrast.opacity(opacity) : Color.neutral02.opacity(opacity)
+
+            return configuration.label
+                .font(.headline)
+                .foregroundColor(color)
+                .expandedInParent()
+                .padding(padding)
+                .background(
+                    RoundedRectangle(cornerRadius: padding, style: .continuous)
+                        .foregroundColor(isEnabled ? .accent : .neutral01)
+                )
+        }
+    }
 
     func makeBody(configuration: Configuration) -> some View {
 
-        let opacity = configuration.isPressed ? 0.5 : 1
-        let color = isEnabled ? Color.accentContrast.opacity(opacity) : Color.neutral02.opacity(opacity)
-
-        return configuration.label
-            .font(.headline)
-            .foregroundColor(color)
-            .expandedInParent()
-            .padding(spacing)
-            .background(
-                RoundedRectangle(cornerRadius: spacing, style: .continuous)
-                    .foregroundColor(isEnabled ? .accent : .neutral01)
-            )
-    }
-}
-
-private struct MainButtonModifier: ViewModifier {
-
-    @Environment(\.isEnabled) private var isEnabled
-    @ScaledMetric private var padding: CGFloat = 16
-
-    func body(content: Content) -> some View {
-
-        content
-            .buttonStyle(MainButtonStyle(isEnabled: isEnabled, spacing: padding))
-    }
-}
-
-extension View {
-
-    func styleAsMainButton() -> some View {
-
-        modifier(MainButtonModifier())
+        Button(configuration: configuration)
     }
 }
 
@@ -52,14 +42,14 @@ struct MainButton_Previews: PreviewProvider {
         Group {
 
             Button("Button", action: {})
-                .styleAsMainButton()
+                .buttonStyle(MainButtonStyle())
                 .environment(\.colorScheme, .light)
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Light (enabled)")
 
             Button("Button", action: {})
-                .styleAsMainButton()
+                .buttonStyle(MainButtonStyle())
                 .disabled(true)
                 .environment(\.colorScheme, .light)
                 .previewLayout(.sizeThatFits)
@@ -67,7 +57,7 @@ struct MainButton_Previews: PreviewProvider {
                 .previewDisplayName("Light (disabled)")
 
             Button("Button", action: {})
-                .styleAsMainButton()
+                .buttonStyle(MainButtonStyle())
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Dark (enabled)")
@@ -75,7 +65,7 @@ struct MainButton_Previews: PreviewProvider {
                 .environment(\.colorScheme, .dark)
 
             Button("Button", action: {})
-                .styleAsMainButton()
+                .buttonStyle(MainButtonStyle())
                 .disabled(true)
                 .previewLayout(.sizeThatFits)
                 .padding()
