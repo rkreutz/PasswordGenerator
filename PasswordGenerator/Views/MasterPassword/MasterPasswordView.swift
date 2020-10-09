@@ -15,6 +15,8 @@ struct MasterPasswordView: View {
             VStack(spacing: spacing) {
 
                 TextField(Strings.MasterPasswordView.placeholder, text: $viewModel.masterPassword)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
                     .textFieldStyle(PrimaryTextFiledStyle())
 
                 Button(Strings.MasterPasswordView.save, action: viewModel.saveMasterPassword)

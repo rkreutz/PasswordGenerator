@@ -137,6 +137,8 @@
 		FC66E367252FDEB5002F8DDF /* Label+TextInitialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E359252FD705002F8DDF /* Label+TextInitialiser.swift */; };
 		FC66E36D252FE680002F8DDF /* LoaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E36C252FE680002F8DDF /* LoaderStyle.swift */; };
 		FC66E370252FE697002F8DDF /* LoaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E36C252FE680002F8DDF /* LoaderStyle.swift */; };
+		FC66E378252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */; };
+		FC66E37B252FEB86002F8DDF /* SecondaryTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +237,7 @@
 		FC66E359252FD705002F8DDF /* Label+TextInitialiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+TextInitialiser.swift"; sourceTree = "<group>"; };
 		FC66E35F252FD981002F8DDF /* PrimaryTextFiledStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextFiledStyle.swift; sourceTree = "<group>"; };
 		FC66E36C252FE680002F8DDF /* LoaderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderStyle.swift; sourceTree = "<group>"; };
+		FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryTextFieldStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +390,7 @@
 				37A5651924A8013E008D48FD /* MainButtonStyle.swift */,
 				FC66E355252FD378002F8DDF /* ParagraphStyle.swift */,
 				FC66E35F252FD981002F8DDF /* PrimaryTextFiledStyle.swift */,
+				FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -669,6 +673,7 @@
 				3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */,
 				FC66E35A252FD705002F8DDF /* Label+TextInitialiser.swift in Sources */,
 				37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
+				FC66E378252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift in Sources */,
 				3737691324994AC0003C6CE4 /* ContentSizeCategory+Modifier.swift in Sources */,
 				37A5652124B800A4008D48FD /* MasterPasswordKeychain+Strings.swift in Sources */,
 				FC66E356252FD378002F8DDF /* ParagraphStyle.swift in Sources */,
@@ -704,6 +709,7 @@
 				37CB52D824CDF75F0081DA1E /* MasterPasswordStorage.swift in Sources */,
 				37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */,
 				370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
+				FC66E37B252FEB86002F8DDF /* SecondaryTextFieldStyle.swift in Sources */,
 				37CB52D724CDF75B0081DA1E /* View+AsHostingController.swift in Sources */,
 				FC66E363252FDEAF002F8DDF /* PrimaryTextFiledStyle.swift in Sources */,
 				37CB52EF24CDF7810081DA1E /* CopyableContentView.swift in Sources */,
