@@ -15,18 +15,14 @@ struct MasterPasswordView: View {
             VStack(spacing: spacing) {
 
                 TextField(Strings.MasterPasswordView.placeholder, text: $viewModel.masterPassword)
-                    .font(.system(.title, design: .monospaced))
-                    .foregroundColor(.foreground)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
+                    .textFieldStyle(PrimaryTextFiledStyle())
 
                 Button(Strings.MasterPasswordView.save, action: viewModel.saveMasterPassword)
                     .buttonStyle(MainButtonStyle())
                     .disabled(!viewModel.isValid)
 
-                Text(Strings.MasterPasswordView.title)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
+                Label(Strings.MasterPasswordView.title)
+                    .labelStyle(ParagraphStyle())
             }
             .padding(margins)
             .padding(.top, topMargin)
