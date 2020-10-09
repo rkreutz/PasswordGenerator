@@ -30,8 +30,9 @@ struct PasswordGeneratorView: View {
                         .disabled(viewModel.passwordState == .invalid)
 
                 case .loading:
-                    Loader()
+                    ProgressView()
                         .frame(height: loaderSize)
+                        .progressViewStyle(LoaderStyle())
 
                 case let .generated(password):
                     CopyableContentView(content: password)

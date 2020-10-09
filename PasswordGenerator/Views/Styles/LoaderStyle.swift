@@ -1,6 +1,19 @@
 import SwiftUI
 
-struct Loader: View {
+struct LoaderStyle: ProgressViewStyle {
+
+    func makeBody(configuration: Configuration) -> some View {
+
+        VStack {
+
+            Loader()
+
+            configuration.label
+        }
+    }
+}
+
+private struct Loader: View {
 
     @State private var isAnimating: Bool = false
 
@@ -44,6 +57,7 @@ struct Loader: View {
 #if DEBUG
 
 struct Loader_Previews: PreviewProvider {
+    
     static var previews: some View {
 
         Group {

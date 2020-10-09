@@ -62,7 +62,6 @@
 		37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654224B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift */; };
 		37A5654524B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654424B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift */; };
 		37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654624B962BC008D48FD /* MasterPasswordKeychain+Constants.swift */; };
-		37A9415B249C3CC9002E89B4 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A9415A249C3CC9002E89B4 /* Loader.swift */; };
 		37C20B7724E472B300C654A3 /* DependencyInjectorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B7624E472B300C654A3 /* DependencyInjectorViewModifier.swift */; };
 		37C20B7824E472E600C654A3 /* AppState+DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37316B4924DCC94800E94A31 /* AppState+DI.swift */; };
 		37C20B7924E472E600C654A3 /* ErrorHandler+DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5AA224BA92EC0017AC2B /* ErrorHandler+DI.swift */; };
@@ -123,7 +122,6 @@
 		37CB52EF24CDF7810081DA1E /* CopyableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652E24B8FF28008D48FD /* CopyableContentView.swift */; };
 		37CB52F024CDF7810081DA1E /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
 		37CB52F124CDF7810081DA1E /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
-		37CB52F224CDF7810081DA1E /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A9415A249C3CC9002E89B4 /* Loader.swift */; };
 		37CB52F324CDF7810081DA1E /* MainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5651924A8013E008D48FD /* MainButtonStyle.swift */; };
 		37CB52F424CDF7810081DA1E /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737690E249930B3003C6CE4 /* SeparatorView.swift */; };
 		37CB52F524CDF7810081DA1E /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5653024B90EF1008D48FD /* Toast.swift */; };
@@ -137,6 +135,8 @@
 		FC66E363252FDEAF002F8DDF /* PrimaryTextFiledStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E35F252FD981002F8DDF /* PrimaryTextFiledStyle.swift */; };
 		FC66E366252FDEB3002F8DDF /* ParagraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E355252FD378002F8DDF /* ParagraphStyle.swift */; };
 		FC66E367252FDEB5002F8DDF /* Label+TextInitialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E359252FD705002F8DDF /* Label+TextInitialiser.swift */; };
+		FC66E36D252FE680002F8DDF /* LoaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E36C252FE680002F8DDF /* LoaderStyle.swift */; };
+		FC66E370252FE697002F8DDF /* LoaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E36C252FE680002F8DDF /* LoaderStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,7 +224,6 @@
 		37A5654224B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordKeychain+PasswordValidator.swift"; sourceTree = "<group>"; };
 		37A5654424B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordKeychain+MasterPasswordProvider.swift"; sourceTree = "<group>"; };
 		37A5654624B962BC008D48FD /* MasterPasswordKeychain+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordKeychain+Constants.swift"; sourceTree = "<group>"; };
-		37A9415A249C3CC9002E89B4 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		37C20B7624E472B300C654A3 /* DependencyInjectorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectorViewModifier.swift; sourceTree = "<group>"; };
 		37C20B8224E473C000C654A3 /* DependencyInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjectable.swift; sourceTree = "<group>"; };
 		37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertErrorHandler.swift; sourceTree = "<group>"; };
@@ -235,6 +234,7 @@
 		FC66E355252FD378002F8DDF /* ParagraphStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphStyle.swift; sourceTree = "<group>"; };
 		FC66E359252FD705002F8DDF /* Label+TextInitialiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+TextInitialiser.swift"; sourceTree = "<group>"; };
 		FC66E35F252FD981002F8DDF /* PrimaryTextFiledStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextFiledStyle.swift; sourceTree = "<group>"; };
+		FC66E36C252FE680002F8DDF /* LoaderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,7 +311,6 @@
 				37A5652E24B8FF28008D48FD /* CopyableContentView.swift */,
 				37020F27249831E000C105D1 /* CounterToggleView.swift */,
 				37020F252496F7E200C105D1 /* CounterView.swift */,
-				37A9415A249C3CC9002E89B4 /* Loader.swift */,
 				3737690E249930B3003C6CE4 /* SeparatorView.swift */,
 				37A5653024B90EF1008D48FD /* Toast.swift */,
 			);
@@ -384,6 +383,7 @@
 		373ACBE72528C5F600B1A516 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				FC66E36C252FE680002F8DDF /* LoaderStyle.swift */,
 				37A5651924A8013E008D48FD /* MainButtonStyle.swift */,
 				FC66E355252FD378002F8DDF /* ParagraphStyle.swift */,
 				FC66E35F252FD981002F8DDF /* PrimaryTextFiledStyle.swift */,
@@ -647,6 +647,7 @@
 				37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */,
 				375D5A9A24BA8E690017AC2B /* LocalizedError+ErrorDescription.swift in Sources */,
 				375D5A9E24BA8EEA0017AC2B /* ToastErrorHandler.swift in Sources */,
+				FC66E36D252FE680002F8DDF /* LoaderStyle.swift in Sources */,
 				37C20B7F24E472E700C654A3 /* MasterPasswordStorage+DI.swift in Sources */,
 				37C20B7724E472B300C654A3 /* DependencyInjectorViewModifier.swift in Sources */,
 				3737691724996760003C6CE4 /* PasswordGeneratorView+ViewModel.swift in Sources */,
@@ -686,7 +687,6 @@
 				37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */,
 				37C20B7E24E472E700C654A3 /* ErrorHandler+DI.swift in Sources */,
 				37A5654524B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
-				37A9415B249C3CC9002E89B4 /* Loader.swift in Sources */,
 				37CB52F924D632100081DA1E /* Publisher+AssignWeakly.swift in Sources */,
 				37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */,
 				375D5A9C24BA8ECB0017AC2B /* ErrorHandler.swift in Sources */,
@@ -749,11 +749,11 @@
 				37CB52CF24CDF7570081DA1E /* Binding+StaticValue.swift in Sources */,
 				37C20B8424E474F700C654A3 /* DependencyInjectorViewModifier.swift in Sources */,
 				37CB52D124CDF7570081DA1E /* Collection+IsNotEmpty.swift in Sources */,
-				37CB52F224CDF7810081DA1E /* Loader.swift in Sources */,
 				37C20B7B24E472E600C654A3 /* MasterPasswordValidator+DI.swift in Sources */,
 				37CB52C324CDF72F0081DA1E /* Colors.swift in Sources */,
 				37CB52DC24CDF7650081DA1E /* MasterPasswordKeychain+Errors.swift in Sources */,
 				37CB52C524CDF7430081DA1E /* AppState.swift in Sources */,
+				FC66E370252FE697002F8DDF /* LoaderStyle.swift in Sources */,
 				37CB52CE24CDF7520081DA1E /* ErrorEmittingViewModifier.swift in Sources */,
 				37C20B7924E472E600C654A3 /* ErrorHandler+DI.swift in Sources */,
 				37CB52DD24CDF7650081DA1E /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
