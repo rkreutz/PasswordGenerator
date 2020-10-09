@@ -7,6 +7,7 @@ struct MasterPasswordView: View {
     @ScaledMetric private var spacing: CGFloat = 48
     @ScaledMetric private var margins: CGFloat = 16
     @ScaledMetric private var topMargin: CGFloat = 32
+    @ScaledMetric private var maxWidth: CGFloat = 450
 
     var body: some View {
 
@@ -30,6 +31,7 @@ struct MasterPasswordView: View {
             .padding(margins)
             .padding(.top, topMargin)
         }
+        .frame(maxWidth: maxWidth)
         .accentColor(.accent)
         .background(
             Rectangle()
