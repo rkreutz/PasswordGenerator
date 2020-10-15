@@ -7,7 +7,7 @@ struct SeparatorView: View {
     var body: some View {
 
         Rectangle()
-            .foregroundColor(Color.foreground.opacity(0.1))
+            .foregroundColor(.systemFill)
             .frame(height: height)
     }
 }
@@ -22,14 +22,14 @@ struct SeparatorView_Previews: PreviewProvider {
 
             SeparatorView()
                 .padding()
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
 
             SeparatorView()
                 .padding()
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")

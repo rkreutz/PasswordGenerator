@@ -41,7 +41,7 @@ private struct Toast<Presenter: View, Content: View>: View {
                                 cornerRadius: cornerRadius,
                                 style: .continuous
                             )
-                            .foregroundColor(.foreground)
+                            .foregroundColor(.primary)
                             .opacity(0.85)
                             .blur(radius: 1)
                         )
@@ -90,7 +90,7 @@ extension View {
                 Text(text.wrappedValue ?? "")
                     .font(.footnote)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.background01)
+                    .foregroundColor(.systemBackground)
             },
             duration: duration
         )
@@ -115,7 +115,7 @@ extension View {
                 Text(text.wrappedValue ?? "")
                     .font(.footnote)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(.background01)
+                    .foregroundColor(.systemBackground)
             },
             duration: duration
         )
@@ -135,7 +135,7 @@ struct ToastView_Previews: PreviewProvider {
                 .background(
                     Rectangle()
                         .edgesIgnoringSafeArea(.all)
-                        .foregroundColor(.background01)
+                        .foregroundColor(.systemBackground)
                 )
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
@@ -145,7 +145,7 @@ struct ToastView_Previews: PreviewProvider {
                 .background(
                     Rectangle()
                         .edgesIgnoringSafeArea(.all)
-                        .foregroundColor(.background01)
+                        .foregroundColor(.systemBackground)
                 )
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")

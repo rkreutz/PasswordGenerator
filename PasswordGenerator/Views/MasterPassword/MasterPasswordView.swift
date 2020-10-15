@@ -17,7 +17,7 @@ struct MasterPasswordView: View {
 
                 TextField(Strings.MasterPasswordView.placeholder, text: $viewModel.masterPassword)
                     .font(.system(.title, design: .monospaced))
-                    .foregroundColor(.foreground)
+                    .foregroundColor(.primary)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
 
@@ -32,10 +32,10 @@ struct MasterPasswordView: View {
             .padding(.top, topMargin)
         }
         .frame(maxWidth: maxWidth)
-        .accentColor(.accent)
+        .accentColor(.accentColor)
         .background(
             Rectangle()
-                .foregroundColor(.background01)
+                .foregroundColor(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
         )
         .emittingError($viewModel.error)

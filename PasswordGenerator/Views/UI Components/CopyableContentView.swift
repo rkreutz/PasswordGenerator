@@ -17,7 +17,7 @@ struct CopyableContentView: View {
         HStack(spacing: spacing) {
 
             Text(content)
-                .foregroundColor(.foreground)
+                .foregroundColor(.primary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
                 .font(.system(.headline, design: .monospaced))
@@ -40,7 +40,7 @@ struct CopyableContentView: View {
                 label: {
 
                     Image(systemName: hasCopied ? "checkmark" : "doc.on.clipboard")
-                        .foregroundColor(.accent)
+                        .foregroundColor(.accentColor)
                         .font(.system(.headline, design: .monospaced))
                 }
             )
@@ -59,14 +59,14 @@ struct CopyableContentView_Previews: PreviewProvider {
 
             CopyableContentView(content: "Content")
                 .padding()
-                .background(Rectangle().foregroundColor(.background01))
+                .background(Rectangle().foregroundColor(.systemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
 
             CopyableContentView(content: "Content")
                 .padding()
-                .background(Rectangle().foregroundColor(.background01))
+                .background(Rectangle().foregroundColor(.systemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")
@@ -80,7 +80,7 @@ struct CopyableContentView_Previews: PreviewProvider {
 
                 CopyableContentView(content: "Content")
                     .padding()
-                    .background(Rectangle().foregroundColor(.background01))
+                    .background(Rectangle().foregroundColor(.systemBackground))
                     .previewLayout(.sizeThatFits)
                     .environment(\.sizeCategory, category)
                     .previewDisplayName("\(category)")
