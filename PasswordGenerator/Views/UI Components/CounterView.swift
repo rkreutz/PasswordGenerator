@@ -16,14 +16,14 @@ public struct CounterView: View {
 
                 Text(title)
                     .font(.subheadline)
-                    .foregroundColor(.foreground)
+                    .foregroundColor(.label)
                     .allowsTightening(true)
 
                 Spacer(minLength: spacing)
 
                 Text("\(count)")
                     .font(.system(.subheadline, design: .monospaced))
-                    .foregroundColor(.foreground)
+                    .foregroundColor(.label)
                     .layoutPriority(1)
             }
             .padding(.trailing, spacing)
@@ -43,14 +43,14 @@ struct CounterView_Previews: PreviewProvider {
 
             CounterView(count: $count, title: "Title", bounds: 1 ... Int.max)
                 .padding()
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
 
             CounterView(count: $count, title: "Title", bounds: 1 ... Int.max)
                 .padding()
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")
@@ -59,7 +59,7 @@ struct CounterView_Previews: PreviewProvider {
 
                 CounterView(count: $count, title: "Counter Title", bounds: 1 ... Int.max)
                     .padding()
-                    .background(Rectangle().foregroundColor(.background02))
+                    .background(Rectangle().foregroundColor(.secondarySystemBackground))
                     .previewLayout(.sizeThatFits)
                     .environment(\.sizeCategory, category)
                     .previewDisplayName("\(category)")

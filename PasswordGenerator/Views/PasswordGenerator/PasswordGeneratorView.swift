@@ -40,10 +40,10 @@ struct PasswordGeneratorView: View {
             }
             .padding(spacing)
         }
-        .accentColor(.accent)
+        .accentColor(.accentColor)
         .background(
             Rectangle()
-                .foregroundColor(.background01)
+                .foregroundColor(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
         )
         .emittingError($viewModel.error)

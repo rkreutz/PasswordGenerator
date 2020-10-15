@@ -17,7 +17,7 @@ struct MainButton: View {
 
                 Text(text)
                     .font(.headline)
-                    .foregroundColor(isEnabled ? .accentContrast : .neutral02)
+                    .foregroundColor(isEnabled ? .white : .systemGray4)
                     .expandedInParent()
                     .padding(spacing)
             }
@@ -28,7 +28,7 @@ struct MainButton: View {
                 cornerRadius: spacing,
                 style: .continuous
             )
-            .foregroundColor(isEnabled ? .accent : .neutral01)
+            .foregroundColor(isEnabled ? .accentColor : .systemGray)
         )
     }
 }
@@ -58,7 +58,7 @@ struct MainButton_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Dark (enabled)")
-                .background(Rectangle().foregroundColor(.background01))
+                .background(Rectangle().foregroundColor(.systemBackground))
                 .environment(\.colorScheme, .dark)
 
             MainButton(action: {}, text: "Button")
@@ -66,7 +66,7 @@ struct MainButton_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Dark (disabled)")
-                .background(Rectangle().foregroundColor(.background01))
+                .background(Rectangle().foregroundColor(.systemBackground))
                 .environment(\.colorScheme, .dark)
         }
     }
