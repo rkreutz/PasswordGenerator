@@ -17,7 +17,7 @@ public struct CounterToggleView: View {
 
             Toggle(toggleTitle, isOn: $toggle)
                 .font(.subheadline)
-                .foregroundColor(.foreground)
+                .foregroundColor(.label)
                 .allowsTightening(true)
 
             if toggle {
@@ -51,7 +51,7 @@ struct CounterToggleView_Previews: PreviewProvider {
                               counterTitle: "Counter title",
                               bounds: 1 ... Int.max)
                 .padding()
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
@@ -62,7 +62,7 @@ struct CounterToggleView_Previews: PreviewProvider {
                               counterTitle: "Counter title",
                               bounds: 1 ... Int.max)
                 .padding()
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")
@@ -75,7 +75,7 @@ struct CounterToggleView_Previews: PreviewProvider {
                                   counterTitle: "Counter title",
                                   bounds: 1 ... Int.max)
                     .padding()
-                    .background(Rectangle().foregroundColor(.background02))
+                    .background(Rectangle().foregroundColor(.secondarySystemBackground))
                     .previewLayout(.sizeThatFits)
                     .environment(\.sizeCategory, category)
                     .previewDisplayName("\(category)")

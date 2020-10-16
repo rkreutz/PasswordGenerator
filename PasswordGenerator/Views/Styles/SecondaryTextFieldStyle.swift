@@ -6,7 +6,7 @@ struct SecondaryTextFiledStyle: TextFieldStyle {
     func _body(configuration: TextField<_Label>) -> some View {
 
         configuration
-            .foregroundColor(.foreground)
+            .foregroundColor(.primary)
             .font(.body)
     }
 }

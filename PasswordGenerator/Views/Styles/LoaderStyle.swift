@@ -26,7 +26,7 @@ private struct Loader: View {
                 Group {
 
                     Circle()
-                        .foregroundColor(.accent)
+                        .foregroundColor(.accentColor)
                         .frame(
                             width: geometry.size.minLength * 0.2,
                             height: geometry.size.minLength * 0.2
@@ -64,14 +64,14 @@ struct Loader_Previews: PreviewProvider {
 
             Loader()
                 .frame(width: 375, height: 80)
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
 
             Loader()
                 .frame(width: 375, height: 80)
-                .background(Rectangle().foregroundColor(.background02))
+                .background(Rectangle().foregroundColor(.secondarySystemBackground))
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")

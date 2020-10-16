@@ -6,7 +6,7 @@ struct PrimaryTextFiledStyle: TextFieldStyle {
     func _body(configuration: TextField<_Label>) -> some View {
 
         configuration
-            .foregroundColor(.foreground)
+            .foregroundColor(.primary)
             .font(.system(.title, design: .monospaced))
     }
 }

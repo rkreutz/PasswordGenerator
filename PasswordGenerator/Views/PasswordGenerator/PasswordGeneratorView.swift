@@ -9,6 +9,7 @@ struct PasswordGeneratorView: View {
     
     @ScaledMetric private var spacing: CGFloat = 16
     @ScaledMetric private var loaderSize: CGFloat = 44
+    @ScaledMetric private var maxWidth: CGFloat = 450
 
     var body: some View {
 
@@ -42,10 +43,11 @@ struct PasswordGeneratorView: View {
             }
             .padding(spacing)
         }
-        .accentColor(.accent)
+        .frame(maxWidth: maxWidth)
+        .accentColor(.accentColor)
         .background(
             Rectangle()
-                .foregroundColor(.background01)
+                .foregroundColor(.systemBackground)
                 .edgesIgnoringSafeArea(.all)
         )
         .emittingError($viewModel.error)
