@@ -4,6 +4,7 @@ import SwiftUI
 struct PasswordGeneratorApp: App {
 
     @StateObject var appState = AppState(from: MasterPasswordValidatorEnvironmentKey.defaultValue)
+    @ScaledMetric private var maxWidth: CGFloat = 450
 
     var body: some Scene {
 
@@ -21,6 +22,13 @@ struct PasswordGeneratorApp: App {
                         .navigationViewStyle(StackNavigationViewStyle())
                 }
             }
+            .frame(maxWidth: maxWidth)
+            .accentColor(.accentColor)
+            .background(
+                Rectangle()
+                    .foregroundColor(.systemBackground)
+                    .edgesIgnoringSafeArea(.all)
+            )
             .handlingErrors(using: AlertErrorHandler())
             .use(appState: appState)
         }

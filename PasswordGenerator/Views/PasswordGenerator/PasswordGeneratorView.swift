@@ -9,7 +9,6 @@ struct PasswordGeneratorView: View {
     
     @ScaledMetric private var spacing: CGFloat = 16
     @ScaledMetric private var loaderSize: CGFloat = 44
-    @ScaledMetric private var maxWidth: CGFloat = 450
 
     var body: some View {
 
@@ -26,12 +25,14 @@ struct PasswordGeneratorView: View {
                 switch viewModel.passwordState {
 
                 case .invalid, .readyToGenerate:
-                    MainButton(action: viewModel.generatePassword, text: Strings.PasswordGeneratorView.generatePassword)
+                    Button(Strings.PasswordGeneratorView.generatePassword, action: viewModel.generatePassword)
+                        .buttonStyle(MainButtonStyle())
                         .disabled(viewModel.passwordState == .invalid)
 
                 case .loading:
-                    Loader()
+                    ProgressView()
                         .frame(height: loaderSize)
+                        .progressViewStyle(LoaderStyle())
 
                 case let .generated(password):
                     CopyableContentView(content: password)
@@ -41,13 +42,6 @@ struct PasswordGeneratorView: View {
             }
             .padding(spacing)
         }
-        .frame(maxWidth: maxWidth)
-        .accentColor(.accentColor)
-        .background(
-            Rectangle()
-                .foregroundColor(.systemBackground)
-                .edgesIgnoringSafeArea(.all)
-        )
         .emittingError($viewModel.error)
         .injectEnvironment(into: viewModel)
         .onAppear(perform: viewModel.bind)

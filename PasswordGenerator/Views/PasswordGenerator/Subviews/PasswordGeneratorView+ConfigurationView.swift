@@ -28,19 +28,13 @@ extension PasswordGeneratorView {
                 case .domainBased:
                     TextField(Strings.PasswordGeneratorView.username, text: $viewModel.username)
                         .autocapitalization(.none)
-                        .disableAutocorrection(true)
                         .keyboardType(.emailAddress)
-                        .foregroundColor(.primary)
-                        .font(.body)
 
                     SeparatorView()
 
                     TextField(Strings.PasswordGeneratorView.domain, text: $viewModel.domain)
                         .autocapitalization(.none)
-                        .disableAutocorrection(true)
                         .keyboardType(.URL)
-                        .foregroundColor(.primary)
-                        .font(.body)
 
                     SeparatorView()
 
@@ -53,13 +47,12 @@ extension PasswordGeneratorView {
                 case .serviceBased:
                     TextField(Strings.PasswordGeneratorView.service, text: $viewModel.service)
                         .autocapitalization(.sentences)
-                        .disableAutocorrection(false)
                         .keyboardType(.default)
-                        .foregroundColor(.primary)
-                        .font(.body)
                 }
             }
             .asCard()
+            .textFieldStyle(SecondaryTextFiledStyle())
+            .disableAutocorrection(true)
         }
     }
 }

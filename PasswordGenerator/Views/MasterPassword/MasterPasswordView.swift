@@ -7,7 +7,6 @@ struct MasterPasswordView: View {
     @ScaledMetric private var spacing: CGFloat = 48
     @ScaledMetric private var margins: CGFloat = 16
     @ScaledMetric private var topMargin: CGFloat = 32
-    @ScaledMetric private var maxWidth: CGFloat = 450
 
     var body: some View {
 
@@ -16,28 +15,20 @@ struct MasterPasswordView: View {
             VStack(spacing: spacing) {
 
                 TextField(Strings.MasterPasswordView.placeholder, text: $viewModel.masterPassword)
-                    .font(.system(.title, design: .monospaced))
-                    .foregroundColor(.primary)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
+                    .textFieldStyle(PrimaryTextFiledStyle())
 
-                MainButton(action: viewModel.saveMasterPassword, text: Strings.MasterPasswordView.save)
+                Button(Strings.MasterPasswordView.save, action: viewModel.saveMasterPassword)
+                    .buttonStyle(MainButtonStyle())
                     .disabled(!viewModel.isValid)
 
-                Text(Strings.MasterPasswordView.title)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
+                Label(Strings.MasterPasswordView.title)
+                    .labelStyle(ParagraphStyle())
             }
             .padding(margins)
             .padding(.top, topMargin)
         }
-        .frame(maxWidth: maxWidth)
-        .accentColor(.accentColor)
-        .background(
-            Rectangle()
-                .foregroundColor(.systemBackground)
-                .edgesIgnoringSafeArea(.all)
-        )
         .emittingError($viewModel.error)
         .injectEnvironment(into: viewModel)
     }

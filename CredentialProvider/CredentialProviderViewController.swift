@@ -14,6 +14,13 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         UIHostingController(
             coder: coder,
             rootView: PasswordGeneratorView(viewModel: viewModel)
+                .frame(maxWidth: 450)
+                .accentColor(.accentColor)
+                .background(
+                    Rectangle()
+                        .foregroundColor(.systemBackground)
+                        .edgesIgnoringSafeArea(.all)
+                )
         )
     }
 
