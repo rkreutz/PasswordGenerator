@@ -12,17 +12,14 @@ struct MainButtonStyle: ButtonStyle {
 
         var body: some View {
 
-            let opacity = configuration.isPressed ? 0.5 : 1
-            let color = isEnabled ? Color.accentContrast.opacity(opacity) : Color.neutral02.opacity(opacity)
-
-            return configuration.label
+            configuration.label
                 .font(.headline)
-                .foregroundColor(color)
+                .foregroundColor(isEnabled ? Color.white.opacity(configuration.isPressed ? 0.5 : 1) : Color.systemGray4)
                 .expandedInParent()
                 .padding(padding)
                 .background(
                     RoundedRectangle(cornerRadius: padding, style: .continuous)
-                        .foregroundColor(isEnabled ? .accent : .neutral01)
+                        .foregroundColor(isEnabled ? .accentColor : .systemGray)
                 )
         }
     }
@@ -61,7 +58,7 @@ struct MainButton_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Dark (enabled)")
-                .background(Rectangle().foregroundColor(.background01))
+                .background(Rectangle().foregroundColor(.systemBackground))
                 .environment(\.colorScheme, .dark)
 
             Button("Button", action: {})
@@ -70,7 +67,7 @@ struct MainButton_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
                 .padding()
                 .previewDisplayName("Dark (disabled)")
-                .background(Rectangle().foregroundColor(.background01))
+                .background(Rectangle().foregroundColor(.systemBackground))
                 .environment(\.colorScheme, .dark)
         }
     }
