@@ -4,15 +4,20 @@ extension PasswordGeneratorView {
 
     struct LengthView: View {
 
-        @EnvironmentObject private var viewModel: ViewModel
+        @Binding var charactersState: CharactersState
 
         var body: some View {
 
             CounterView(
-                count: $viewModel.length,
+                count: $charactersState.length,
                 title: Strings.PasswordGeneratorView.passwordLength,
-                bounds: viewModel.minimalLength ... 32
+                bounds: charactersState.minimalLength ... 32
             )
+            .onChange(of: charactersState) { newValue in
+
+                guard newValue.minimalLength > charactersState.length else { return }
+                charactersState.length = newValue.minimalLength
+            }
             .asCard()
         }
     }
@@ -28,13 +33,13 @@ struct LengthView_Previews: PreviewProvider {
 
         Group {
 
-            PasswordGeneratorView.LengthView()
+            PasswordGeneratorView.LengthView(charactersState: .init(.init()))
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
                 .padding()
                 .previewLayout(.sizeThatFits)
 
-            PasswordGeneratorView.LengthView()
+            PasswordGeneratorView.LengthView(charactersState: .init(.init()))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")
                 .padding()
@@ -42,15 +47,13 @@ struct LengthView_Previews: PreviewProvider {
 
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
-                PasswordGeneratorView.LengthView()
+                PasswordGeneratorView.LengthView(charactersState: .init(.init()))
                     .environment(\.sizeCategory, category)
                     .previewDisplayName("\(category)")
                     .padding()
                     .previewLayout(.sizeThatFits)
             }
         }
-        .use(passwordGenerator: PasswordGenerator(masterPasswordProvider: "masterPassword"))
-        .environmentObject(PasswordGeneratorView.ViewModel())
     }
 }
 
