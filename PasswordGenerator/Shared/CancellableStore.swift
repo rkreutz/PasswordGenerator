@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class CancellableStore {
+final class CancellableStore {
 
     fileprivate var cancellableSet: Set<AnyCancellable> = []
 

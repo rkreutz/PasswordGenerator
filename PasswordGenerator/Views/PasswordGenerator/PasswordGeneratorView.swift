@@ -6,7 +6,7 @@ import PasswordGeneratorKitPublishers
 
 struct PasswordGeneratorView: View {
 
-    @State var viewState = ViewState()
+    @StateObject var viewState = StateReference(state: ViewState())
 
     @Environment(\.appState) private var appState
     @Environment(\.masterPasswordStorage) private var masterPasswordStorage
@@ -18,19 +18,19 @@ struct PasswordGeneratorView: View {
 
     private var generatePasswordPublisher: AnyPublisher<String, PasswordGenerator.Error> {
 
-        switch viewState.configurationState.passwordType {
+        switch viewState.state.configurationState.passwordType {
 
         case .domainBased:
             return passwordGenerator.publishers.generatePassword(
-                username: viewState.configurationState.username,
-                domain: viewState.configurationState.domain,
-                seed: viewState.configurationState.seed,
-                rules: viewState.rules
+                username: viewState.state.configurationState.username,
+                domain: viewState.state.configurationState.domain,
+                seed: viewState.state.configurationState.seed,
+                rules: viewState.state.rules
             )
         case .serviceBased:
             return passwordGenerator.publishers.generatePassword(
-                service: viewState.configurationState.service,
-                rules: viewState.rules
+                service: viewState.state.configurationState.service,
+                rules: viewState.state.rules
             )
         }
     }
@@ -41,17 +41,17 @@ struct PasswordGeneratorView: View {
 
             VStack(alignment: .center, spacing: spacing) {
 
-                ConfigurationView(configurationState: $viewState.configurationState)
+                ConfigurationView(configurationState: $viewState.state.configurationState)
 
-                LengthView(charactersState: $viewState.charactersState)
+                LengthView(charactersState: $viewState.state.charactersState)
 
-                CharactersView(charactersState: $viewState.charactersState)
+                CharactersView(charactersState: $viewState.state.charactersState)
 
-                PasswordView(passwordState: viewState.passwordState, action: generatePassword)
+                PasswordView(passwordState: viewState.state.passwordState, action: generatePassword)
             }
             .padding(spacing)
         }
-        .emittingError($viewState.error)
+        .emittingError($viewState.state.error)
         .navigationBarItems(
             trailing: Button(
                 action: logout,
@@ -62,14 +62,14 @@ struct PasswordGeneratorView: View {
                 }
             )
         )
-        .onChange(of: viewState) { [oldState = viewState] newState in
+        .onChange(of: viewState.state) { [oldState = viewState.state] newState in
 
             guard
                 oldState.charactersState != newState.charactersState || oldState.configurationState != newState.configurationState
                 else { return }
 
             cancellableStore.dispose()
-            viewState.passwordState = newState.isValid ? .readyToGenerate : .invalid
+            viewState.state.passwordState = newState.isValid ? .readyToGenerate : .invalid
         }
         .navigationBarTitle("", displayMode: .inline)
     }
@@ -78,15 +78,15 @@ struct PasswordGeneratorView: View {
 
         generatePasswordPublisher
             .receive(on: DispatchQueue.main)
-            .handleEvents(receiveRequest: { _ in viewState.passwordState = .loading })
+            .handleEvents(receiveRequest: { _ in viewState.state.passwordState = .loading })
             .sink(
                 receiveCompletion: { completion in
 
                     guard case let .failure(error) = completion else { return }
-                    viewState.error = error
-                    viewState.passwordState = .readyToGenerate
+                    viewState.state.error = error
+                    viewState.state.passwordState = .readyToGenerate
                 },
-                receiveValue: { viewState.passwordState = .generated($0) }
+                receiveValue: { viewState.state.passwordState = .generated($0) }
             )
             .store(in: cancellableStore)
     }
@@ -99,16 +99,16 @@ struct PasswordGeneratorView: View {
             appState.state = .mustProvideMasterPassword
         } catch {
 
-            viewState.error = error
+            viewState.state.error = error
         }
     }
 }
 
 extension PasswordGeneratorView {
 
-    init(viewState: PasswordGeneratorView.ViewState) {
+    init(viewStateReference: StateReference<ViewState>) {
 
-        self.viewState = viewState
+        self._viewState = StateObject(wrappedValue: viewStateReference)
     }
 }
 

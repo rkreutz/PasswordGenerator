@@ -6,18 +6,14 @@ import os.log
 class CredentialProviderViewController: ASCredentialProviderViewController {
 
     private var cancellableStore: Set<AnyCancellable> = []
-
-    private var hostingController: UIHostingController<PasswordGeneratorView>? {
-
-        children.first(where: { $0 is UIHostingController<PasswordGeneratorView> }) as? UIHostingController<PasswordGeneratorView>
-    }
+    private var viewState = StateReference(state: PasswordGeneratorView.ViewState())
 
     @IBSegueAction
     private func addSwiftUI(_ coder: NSCoder) -> UIViewController? {
 
         UIHostingController(
             coder: coder,
-            rootView: PasswordGeneratorView(viewState: .init())
+            rootView: PasswordGeneratorView(viewStateReference: viewState)
                 .frame(maxWidth: 450)
                 .accentColor(.accentColor)
                 .background(
@@ -32,23 +28,23 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
 
         super.viewDidLoad()
 
-//        viewModel.$passwordState
-//            .compactMap { state -> String? in
-//
-//                guard case let .generated(password) = state else { return nil }
-//                return password
-//            }
-//            .sink { [extensionContext, viewModel] password in
-//
-//                extensionContext.completeRequest(
-//                    withSelectedCredential: ASPasswordCredential(
-//                        user: viewModel.username,
-//                        password: password
-//                    ),
-//                    completionHandler: nil
-//                )
-//            }
-//            .store(in: &cancellableStore)
+        viewState.$state
+            .compactMap { state -> String? in
+
+                guard case let .generated(password) = state.passwordState else { return nil }
+                return password
+            }
+            .sink { [extensionContext, viewState] password in
+
+                extensionContext.completeRequest(
+                    withSelectedCredential: ASPasswordCredential(
+                        user: viewState.state.configurationState.username,
+                        password: password
+                    ),
+                    completionHandler: nil
+                )
+            }
+            .store(in: &cancellableStore)
     }
 
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
@@ -57,7 +53,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             .first { $0.type == .URL }
             .flatMap { URL(string: $0.identifier)?.host }
 
-        hostingController?.rootView = PasswordGeneratorView(viewState: PasswordGeneratorView.ViewState(configurationState: .init(passwordType: .domainBased, domain: host ?? "")))
+        viewState.state.configurationState.domain = host ?? ""
     }
 
     @IBAction private func cancel(_ sender: AnyObject?) {
