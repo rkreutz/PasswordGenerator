@@ -5,8 +5,9 @@ extension PasswordGeneratorView {
 
     struct CharactersView: View {
 
+        @Binding var charactersState: CharactersState
+
         @ScaledMetric private var spacing: CGFloat = 16
-        @EnvironmentObject private var viewModel: ViewModel
 
         var body: some View {
 
@@ -15,7 +16,7 @@ extension PasswordGeneratorView {
                 CounterToggleView(
                     toggle: true,
                     toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters,
-                    count: $viewModel.numberOfLowercase,
+                    count: $charactersState.numberOfLowercase,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
                     bounds: 1 ... 8
                 )
@@ -25,7 +26,7 @@ extension PasswordGeneratorView {
                 CounterToggleView(
                     toggle: true,
                     toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters,
-                    count: $viewModel.numberOfUppercase,
+                    count: $charactersState.numberOfUppercase,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
                     bounds: 1 ... 8
                 )
@@ -35,7 +36,7 @@ extension PasswordGeneratorView {
                 CounterToggleView(
                     toggle: true,
                     toggleTitle: Strings.PasswordGeneratorView.decimalCharacters,
-                    count: $viewModel.numberOfDigits,
+                    count: $charactersState.numberOfDigits,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
                     bounds: 1 ... 8
                 )
@@ -45,7 +46,7 @@ extension PasswordGeneratorView {
                 CounterToggleView(
                     toggle: false,
                     toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters,
-                    count: $viewModel.numberOfSymbols,
+                    count: $charactersState.numberOfSymbols,
                     counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
                     bounds: 1 ... 8
                 )
@@ -65,13 +66,13 @@ struct CharactersView_Previews: PreviewProvider {
 
         Group {
 
-            PasswordGeneratorView.CharactersView()
+            PasswordGeneratorView.CharactersView(charactersState: .init(.init()))
                 .previewDisplayName("Light")
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .environment(\.colorScheme, .light)
 
-            PasswordGeneratorView.CharactersView()
+            PasswordGeneratorView.CharactersView(charactersState: .init(.init()))
                 .previewDisplayName("Dark")
                 .padding()
                 .previewLayout(.sizeThatFits)
@@ -79,15 +80,13 @@ struct CharactersView_Previews: PreviewProvider {
 
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
-                PasswordGeneratorView.CharactersView()
+                PasswordGeneratorView.CharactersView(charactersState: .init(.init()))
                     .previewDisplayName("\(category)")
                     .padding()
                     .previewLayout(.sizeThatFits)
                     .environment(\.sizeCategory, category)
             }
         }
-        .use(passwordGenerator: PasswordGenerator(masterPasswordProvider: "masterPassword"))
-        .environmentObject(PasswordGeneratorView.ViewModel())
     }
 }
 

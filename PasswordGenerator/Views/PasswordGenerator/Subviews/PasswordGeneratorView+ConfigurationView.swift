@@ -5,14 +5,15 @@ extension PasswordGeneratorView {
 
     struct ConfigurationView: View {
 
+        @Binding var configurationState: ConfigurationState
+
         @ScaledMetric private var spacing: CGFloat = 16
-        @EnvironmentObject private var viewModel: ViewModel
 
         var body: some View {
 
             VStack(alignment: .center, spacing: spacing) {
 
-                Picker(selection: $viewModel.passwordType, label: Text("")) {
+                Picker(selection: $configurationState.passwordType, label: Text("")) {
 
                     ForEach(PasswordType.allCases, id: \.hashValue) { passwordType in
 
@@ -23,29 +24,29 @@ extension PasswordGeneratorView {
                 .pickerStyle(SegmentedPickerStyle())
                 .fixedSize()
 
-                switch viewModel.passwordType {
+                switch configurationState.passwordType {
 
                 case .domainBased:
-                    TextField(Strings.PasswordGeneratorView.username, text: $viewModel.username)
+                    TextField(Strings.PasswordGeneratorView.username, text: $configurationState.username)
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
 
                     SeparatorView()
 
-                    TextField(Strings.PasswordGeneratorView.domain, text: $viewModel.domain)
+                    TextField(Strings.PasswordGeneratorView.domain, text: $configurationState.domain)
                         .autocapitalization(.none)
                         .keyboardType(.URL)
 
                     SeparatorView()
 
                     CounterView(
-                        count: $viewModel.seed,
+                        count: $configurationState.seed,
                         title: Strings.PasswordGeneratorView.seed,
                         bounds: 1 ... 999
                     )
 
                 case .serviceBased:
-                    TextField(Strings.PasswordGeneratorView.service, text: $viewModel.service)
+                    TextField(Strings.PasswordGeneratorView.service, text: $configurationState.service)
                         .autocapitalization(.sentences)
                         .keyboardType(.default)
                 }
@@ -67,13 +68,13 @@ struct ConfigurationView_Previews: PreviewProvider {
 
         Group {
 
-            PasswordGeneratorView.ConfigurationView()
+            PasswordGeneratorView.ConfigurationView(configurationState: .init(.init()))
                 .environment(\.colorScheme, .light)
                 .previewDisplayName("Light")
                 .padding()
                 .previewLayout(.sizeThatFits)
 
-            PasswordGeneratorView.ConfigurationView()
+            PasswordGeneratorView.ConfigurationView(configurationState: .init(.init()))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName("Dark")
                 .padding()
@@ -81,15 +82,13 @@ struct ConfigurationView_Previews: PreviewProvider {
 
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
-                PasswordGeneratorView.ConfigurationView()
+                PasswordGeneratorView.ConfigurationView(configurationState: .init(.init()))
                     .environment(\.sizeCategory, category)
                     .previewDisplayName("\(category)")
                     .padding()
                     .previewLayout(.sizeThatFits)
             }
         }
-        .use(passwordGenerator: PasswordGenerator(masterPasswordProvider: "masterPassword"))
-        .environmentObject(PasswordGeneratorView.ViewModel())
     }
 }
 

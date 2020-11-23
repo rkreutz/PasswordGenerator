@@ -25,7 +25,7 @@ private struct Toast<Presenter: View, Content: View>: View {
 
         return GeometryReader { geometry in
 
-            ZStack(alignment: .center) {
+            ZStack(alignment: .top) {
 
                 presenting()
 
