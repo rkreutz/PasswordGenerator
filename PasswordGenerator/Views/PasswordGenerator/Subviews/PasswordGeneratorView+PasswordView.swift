@@ -1,4 +1,5 @@
 import SwiftUI
+import ComposableArchitecture
 
 extension PasswordGeneratorView {
 
@@ -26,9 +27,14 @@ extension PasswordGeneratorView {
                         .progressViewStyle(LoaderStyle())
 
                 case let .generated(password):
-                    CopyableContentView(content: password)
-                        .expandedInParent()
-                        .asCard()
+                    CopyableContentView(store: Store(
+                            initialState: CopyableContentView.State(content: password),
+                            reducer: CopyableContentView.sharedReducer,
+                            environment: CopyableContentView.Environment.live()
+                        )
+                    )
+                    .expandedInParent()
+                    .asCard()
                 }
             }
         }
