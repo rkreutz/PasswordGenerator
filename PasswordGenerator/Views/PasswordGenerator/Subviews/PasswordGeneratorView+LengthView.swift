@@ -1,4 +1,5 @@
 import SwiftUI
+import ComposableArchitecture
 
 extension PasswordGeneratorView {
 
@@ -9,9 +10,22 @@ extension PasswordGeneratorView {
         var body: some View {
 
             CounterView(
-                count: $charactersState.length,
-                title: Strings.PasswordGeneratorView.passwordLength,
-                bounds: charactersState.minimalLength ... 32
+                store: .init(
+                    initialState: CounterView.State(title: Strings.PasswordGeneratorView.passwordLength.formatted(), count: charactersState.length, bounds: charactersState.minimalLength ... 32),
+                    reducer: CounterView.Reducer.combine(
+                        CounterView.sharedReducer,
+                        CounterView.Reducer { state, action, _ -> Effect<CounterView.Action, Never> in
+
+                            switch action {
+
+                            case let .counterUpdated(count):
+                                charactersState.length = count
+                                return .none
+                            }
+                        }
+                    ),
+                    environment: CounterView.Environment()
+                )
             )
             .onChange(of: charactersState) { newValue in
 

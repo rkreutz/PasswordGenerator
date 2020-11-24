@@ -1,5 +1,6 @@
 //swiftlint:disable closure_body_length
 import SwiftUI
+import ComposableArchitecture
 
 extension PasswordGeneratorView {
 
@@ -40,9 +41,22 @@ extension PasswordGeneratorView {
                     SeparatorView()
 
                     CounterView(
-                        count: $configurationState.seed,
-                        title: Strings.PasswordGeneratorView.seed,
-                        bounds: 1 ... 999
+                        store: .init(
+                            initialState: CounterView.State(title: Strings.PasswordGeneratorView.seed.formatted(), count: configurationState.seed, bounds: 1 ... 999),
+                            reducer: CounterView.Reducer.combine(
+                                CounterView.sharedReducer,
+                                CounterView.Reducer { state, action, _ -> Effect<CounterView.Action, Never> in
+
+                                    switch action {
+
+                                    case let .counterUpdated(count):
+                                        configurationState.seed = count
+                                        return .none
+                                    }
+                                }
+                            ),
+                            environment: CounterView.Environment()
+                        )
                     )
 
                 case .serviceBased:

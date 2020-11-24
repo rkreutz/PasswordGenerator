@@ -14,41 +14,69 @@ extension PasswordGeneratorView {
             VStack(spacing: spacing) {
 
                 CounterToggleView(
-                    toggle: true,
-                    toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters,
-                    count: $charactersState.numberOfLowercase,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    bounds: 1 ... 8
+                    store: .init(
+                        initialState: CounterToggleView.State(
+                            toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters.formatted(),
+                            isToggled: true,
+                            counterState: CounterView.State(
+                                title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                count: charactersState.numberOfLowercase,
+                                bounds: 1 ... 8
+                            )
+                        ),
+                        reducer: CounterToggleView.sharedReducer,
+                        environment: CounterToggleView.Environment())
                 )
 
                 SeparatorView()
 
                 CounterToggleView(
-                    toggle: true,
-                    toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters,
-                    count: $charactersState.numberOfUppercase,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    bounds: 1 ... 8
+                    store: .init(
+                        initialState: CounterToggleView.State(
+                            toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters.formatted(),
+                            isToggled: true,
+                            counterState: CounterView.State(
+                                title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                count: charactersState.numberOfUppercase,
+                                bounds: 1 ... 8
+                            )
+                        ),
+                        reducer: CounterToggleView.sharedReducer,
+                        environment: CounterToggleView.Environment())
                 )
 
                 SeparatorView()
 
                 CounterToggleView(
-                    toggle: true,
-                    toggleTitle: Strings.PasswordGeneratorView.decimalCharacters,
-                    count: $charactersState.numberOfDigits,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    bounds: 1 ... 8
+                    store: .init(
+                        initialState: CounterToggleView.State(
+                            toggleTitle: Strings.PasswordGeneratorView.decimalCharacters.formatted(),
+                            isToggled: true,
+                            counterState: CounterView.State(
+                                title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                count: charactersState.numberOfDigits,
+                                bounds: 1 ... 8
+                            )
+                        ),
+                        reducer: CounterToggleView.sharedReducer,
+                        environment: CounterToggleView.Environment())
                 )
 
                 SeparatorView()
 
                 CounterToggleView(
-                    toggle: false,
-                    toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters,
-                    count: $charactersState.numberOfSymbols,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    bounds: 1 ... 8
+                    store: .init(
+                        initialState: CounterToggleView.State(
+                            toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters.formatted(),
+                            isToggled: false,
+                            counterState: CounterView.State(
+                                title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                count: charactersState.numberOfSymbols,
+                                bounds: 1 ... 8
+                            )
+                        ),
+                        reducer: CounterToggleView.sharedReducer,
+                        environment: CounterToggleView.Environment())
                 )
             }
             .asCard()
