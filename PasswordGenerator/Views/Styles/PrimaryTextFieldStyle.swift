@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PrimaryTextFiledStyle: TextFieldStyle {
+struct PrimaryTextFieldStyle: TextFieldStyle {
 
     //swiftlint:disable:next identifier_name
     func _body(configuration: TextField<_Label>) -> some View {

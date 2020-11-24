@@ -1,4 +1,3 @@
-//swiftlint:disable closure_body_length
 import SwiftUI
 import ComposableArchitecture
 

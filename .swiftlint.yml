@@ -7,6 +7,7 @@ disabled_rules: # rule identifiers to exclude from running
 - trailing_newline
 - discarded_notification_center_observer # Not needed since iOS 9. See https://developer.apple.com/documentation/foundation/notificationcenter/1413994-removeobserver
 - trailing_closure
+- closure_body_length
 
 opt_in_rules: # some rules are only opt-in
 - empty_count                                   # Prefer checking isEmpty over comparing count to zero
@@ -67,7 +68,6 @@ opt_in_rules: # some rules are only opt-in
 - identical_operands                            # Comparing two identical operands is likely a mistake.
 - convenience_type                              # Types used for hosting only static members should be implemented as a caseless enum to avoid instantiation.
 - collection_alignment                          # All elements in a collection literal should be vertically aligned
-- closure_body_length                           # Closure bodies should not span too many lines.
 - anyobject_protocol                            # Prefer using AnyObject over class for class-only protocols.
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.

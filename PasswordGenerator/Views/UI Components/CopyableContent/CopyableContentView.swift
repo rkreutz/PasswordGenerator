@@ -41,7 +41,6 @@ struct CopyableContentView_Previews: PreviewProvider {
 
     static var previews: some View {
 
-        //swiftlint:disable:next closure_body_length
         Group {
 
             CopyableContentView(

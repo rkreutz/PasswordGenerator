@@ -1,4 +1,5 @@
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct PasswordGeneratorApp: App {
@@ -15,7 +16,21 @@ struct PasswordGeneratorApp: App {
                 switch appState.state {
 
                 case .mustProvideMasterPassword:
-                    MasterPasswordView()
+                    MasterPasswordView(
+                        store: .init(
+                            initialState: MasterPasswordView.State(),
+                            reducer: Reducer.combine(
+                                MasterPasswordView.sharedReducer,
+                                Reducer { _, action, _ -> Effect<MasterPasswordView.Action, Never> in
+
+                                    guard case .masterPasswordSaved = action else { return .none }
+                                    appState.state = .masterPasswordSet
+                                    return .none
+                                }
+                            ),
+                            environment: MasterPasswordView.Environment(masterPasswordStorage: MasterPasswordKeychain())
+                        )
+                    )
 
                 case .masterPasswordSet:
                     NavigationView { PasswordGeneratorView() }
