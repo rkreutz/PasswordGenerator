@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import ComposableArchitecture
 
 extension CounterToggleView {
@@ -18,8 +19,7 @@ extension CounterToggleView {
 
             case let .toggleChanged(isToggled):
                 state.isToggled = isToggled
-                state.counterState.count = isToggled ? 1 : 0
-                return .none
+                return Just(Action.counterChanged(.counterUpdated(isToggled ? 1 : 0))).eraseToEffect()
 
             case .counterChanged:
                 return .none

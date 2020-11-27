@@ -176,6 +176,14 @@
 		FC66E370252FE697002F8DDF /* LoaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E36C252FE680002F8DDF /* LoaderStyle.swift */; };
 		FC66E378252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */; };
 		FC66E37B252FEB86002F8DDF /* SecondaryTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */; };
+		FC8547E4256DF88300E2A295 /* CharactersView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547E3256DF88300E2A295 /* CharactersView+State.swift */; };
+		FC8547E8256DF8F500E2A295 /* CharactersView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547E7256DF8F500E2A295 /* CharactersView+Action.swift */; };
+		FC8547EC256DF95800E2A295 /* CharactersView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547EB256DF95800E2A295 /* CharactersView+Environment.swift */; };
+		FC8547F0256DF9AB00E2A295 /* CharactersView+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547EF256DF9AB00E2A295 /* CharactersView+Reducer.swift */; };
+		FC8547F3256DF9E300E2A295 /* CharactersView+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547EF256DF9AB00E2A295 /* CharactersView+Reducer.swift */; };
+		FC8547F4256DF9E300E2A295 /* CharactersView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547E3256DF88300E2A295 /* CharactersView+State.swift */; };
+		FC8547F5256DF9E300E2A295 /* CharactersView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547EB256DF95800E2A295 /* CharactersView+Environment.swift */; };
+		FC8547F6256DF9E300E2A295 /* CharactersView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547E7256DF8F500E2A295 /* CharactersView+Action.swift */; };
 		FCBC9784256C2F5F00444A1B /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FCBC9783256C2F5F00444A1B /* ComposableArchitecture */; };
 		FCF24F91256B378F00DEF671 /* StateReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF24F90256B378F00DEF671 /* StateReference.swift */; };
 		FCF24F96256B393F00DEF671 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735ECA224BC8808000896B0 /* AppState.swift */; };
@@ -298,6 +306,10 @@
 		FC66E35F252FD981002F8DDF /* PrimaryTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryTextFieldStyle.swift; sourceTree = "<group>"; };
 		FC66E36C252FE680002F8DDF /* LoaderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderStyle.swift; sourceTree = "<group>"; };
 		FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryTextFieldStyle.swift; sourceTree = "<group>"; };
+		FC8547E3256DF88300E2A295 /* CharactersView+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharactersView+State.swift"; sourceTree = "<group>"; };
+		FC8547E7256DF8F500E2A295 /* CharactersView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharactersView+Action.swift"; sourceTree = "<group>"; };
+		FC8547EB256DF95800E2A295 /* CharactersView+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharactersView+Environment.swift"; sourceTree = "<group>"; };
+		FC8547EF256DF9AB00E2A295 /* CharactersView+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharactersView+Reducer.swift"; sourceTree = "<group>"; };
 		FCF24F90256B378F00DEF671 /* StateReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateReference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -516,7 +528,7 @@
 		37A5652624B8D70E008D48FD /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				37A5652A24B8D8A5008D48FD /* PasswordGeneratorView+CharactersView.swift */,
+				FC8547DD256DF85600E2A295 /* CharactersView */,
 				37A5652424B8D6EB008D48FD /* PasswordGeneratorView+ConfigurationView.swift */,
 				37A5652824B8D843008D48FD /* PasswordGeneratorView+LengthView.swift */,
 				FC0A2CC1254CAA9A00C5B579 /* PasswordGeneratorView+PasswordView.swift */,
@@ -655,6 +667,26 @@
 				FC6138B5256CA85A00023A8C /* Pasteboard+UIKit.swift */,
 			);
 			path = Pasteboard;
+			sourceTree = "<group>";
+		};
+		FC8547DD256DF85600E2A295 /* CharactersView */ = {
+			isa = PBXGroup;
+			children = (
+				37A5652A24B8D8A5008D48FD /* PasswordGeneratorView+CharactersView.swift */,
+				FC8547E0256DF86000E2A295 /* SCA */,
+			);
+			path = CharactersView;
+			sourceTree = "<group>";
+		};
+		FC8547E0256DF86000E2A295 /* SCA */ = {
+			isa = PBXGroup;
+			children = (
+				FC8547E3256DF88300E2A295 /* CharactersView+State.swift */,
+				FC8547E7256DF8F500E2A295 /* CharactersView+Action.swift */,
+				FC8547EB256DF95800E2A295 /* CharactersView+Environment.swift */,
+				FC8547EF256DF9AB00E2A295 /* CharactersView+Reducer.swift */,
+			);
+			path = SCA;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -835,9 +867,11 @@
 				FC61389B256CA3FC00023A8C /* HapticManager.swift in Sources */,
 				3737691B24996A07003C6CE4 /* String+HasMatchingTypes.swift in Sources */,
 				37A5653524B95166008D48FD /* Binding+StaticValue.swift in Sources */,
+				FC8547E4256DF88300E2A295 /* CharactersView+State.swift in Sources */,
 				37020F1F2496961B00C105D1 /* Colors.swift in Sources */,
 				370F7ED8251676EA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
 				FC3AAE65256CC24A004FFF3E /* MasterPasswordView+Environment.swift in Sources */,
+				FC8547F0256DF9AB00E2A295 /* CharactersView+Reducer.swift in Sources */,
 				FC3AAE42256CB081004FFF3E /* CounterView+Reducer.swift in Sources */,
 				FC0A2CF8254CB41000C5B579 /* MasterPasswordValidator+DI.swift in Sources */,
 				FC3AAE4F256CB74B004FFF3E /* CounterToggleView+State.swift in Sources */,
@@ -845,6 +879,7 @@
 				3735ECA424BC8DCC000896B0 /* AppState.swift in Sources */,
 				FC0A2CF9254CB41000C5B579 /* AppState+DI.swift in Sources */,
 				FC3AAE23256CAFB6004FFF3E /* CopyableContentView+Action.swift in Sources */,
+				FC8547EC256DF95800E2A295 /* CharactersView+Environment.swift in Sources */,
 				FC66E35A252FD705002F8DDF /* Label+TextInitialiser.swift in Sources */,
 				FC0A2CF5254CB41000C5B579 /* MasterPasswordStorage+DI.swift in Sources */,
 				37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
@@ -855,6 +890,7 @@
 				FC0A2CE1254CB19D00C5B579 /* PasswordGeneratorView+CharactersState.swift in Sources */,
 				37A5652924B8D843008D48FD /* PasswordGeneratorView+LengthView.swift in Sources */,
 				FC0A2CC2254CAA9A00C5B579 /* PasswordGeneratorView+PasswordView.swift in Sources */,
+				FC8547E8256DF8F500E2A295 /* CharactersView+Action.swift in Sources */,
 				375D5A9424BA8C150017AC2B /* View+AsAny.swift in Sources */,
 				37A5652024B800A0008D48FD /* MasterPasswordKeychain.swift in Sources */,
 				FC0A2D03254CBCEF00C5B579 /* CancellableStore.swift in Sources */,
@@ -903,6 +939,7 @@
 				FC0A2CF3254CB40F00C5B579 /* MasterPasswordValidator+DI.swift in Sources */,
 				FC0A2CF4254CB40F00C5B579 /* AppState+DI.swift in Sources */,
 				37CB52EB24CDF7770081DA1E /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
+				FC8547F5256DF9E300E2A295 /* CharactersView+Environment.swift in Sources */,
 				37CB52E024CDF7650081DA1E /* MasterPasswordKeychain+Strings.swift in Sources */,
 				37CB52D324CDF7570081DA1E /* LocalizedError+ErrorDescription.swift in Sources */,
 				37CB52F024CDF7810081DA1E /* CounterToggleView.swift in Sources */,
@@ -922,12 +959,15 @@
 				FC3AAE45256CB0FE004FFF3E /* CounterView+Environment.swift in Sources */,
 				37197A9924FB374200873DC6 /* CardViewModifier.swift in Sources */,
 				FCF24F96256B393F00DEF671 /* AppState.swift in Sources */,
+				FC8547F4256DF9E300E2A295 /* CharactersView+State.swift in Sources */,
+				FC8547F3256DF9E300E2A295 /* CharactersView+Reducer.swift in Sources */,
 				FC0A2CF1254CB40F00C5B579 /* ErrorHandler+DI.swift in Sources */,
 				FC3AAE6E256CC73B004FFF3E /* MasterPasswordView+Action.swift in Sources */,
 				37CB52C424CDF7380081DA1E /* Strings.swift in Sources */,
 				37CB52DF24CDF7650081DA1E /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
 				37CB52F424CDF7810081DA1E /* SeparatorView.swift in Sources */,
 				FC0A2CDB254CB19C00C5B579 /* PasswordGeneratorView+PasswordType.swift in Sources */,
+				FC8547F6256DF9E300E2A295 /* CharactersView+Action.swift in Sources */,
 				FC3AAE2A256CAFB6004FFF3E /* CopyableContentView+Reducer.swift in Sources */,
 				FC0A2CDD254CB19C00C5B579 /* PasswordGeneratorView+ConfigurationState.swift in Sources */,
 				37CB52DA24CDF7650081DA1E /* MasterPasswordKeychain.swift in Sources */,

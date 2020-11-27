@@ -3,6 +3,7 @@ import UIKit
 import Combine
 import PasswordGeneratorKit
 import PasswordGeneratorKitPublishers
+import ComposableArchitecture
 
 struct PasswordGeneratorView: View {
 
@@ -45,7 +46,51 @@ struct PasswordGeneratorView: View {
 
                 LengthView(charactersState: $viewState.state.charactersState)
 
-                CharactersView(charactersState: $viewState.state.charactersState)
+                CharactersView(
+                    store: .init(
+                        initialState: .init(
+                            digitsState: .init(
+                                toggleTitle: Strings.PasswordGeneratorView.decimalCharacters.formatted(),
+                                isToggled: true,
+                                counterState: .init(
+                                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                    count: 1,
+                                    bounds: 1 ... 8
+                                )
+                            ),
+                            symbolsState: .init(
+                                toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters.formatted(),
+                                isToggled: false,
+                                counterState: .init(
+                                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                    count: 0,
+                                    bounds: 1 ... 8
+                                )
+                            ),
+                            lowercaseState: .init(
+                                toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters.formatted(),
+                                isToggled: true,
+                                counterState: .init(
+                                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                    count: 1,
+                                    bounds: 1 ... 8
+                                )
+                            ),
+                            uppercaseState: .init(
+                                toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters.formatted(),
+                                isToggled: true,
+                                counterState: .init(
+                                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                                    count: 1,
+                                    bounds: 1 ... 8
+                                )
+                            ),
+                            isValid: true
+                        ),
+                        reducer: PasswordGeneratorView.CharactersView.sharedReducer,
+                        environment: PasswordGeneratorView.CharactersView.Environment()
+                    )
+                )
 
                 PasswordView(passwordState: viewState.state.passwordState, action: generatePassword)
             }
