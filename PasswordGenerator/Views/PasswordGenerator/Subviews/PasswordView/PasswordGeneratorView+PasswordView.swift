@@ -26,7 +26,7 @@ extension PasswordGeneratorView {
                         .progressViewStyle(LoaderStyle())
 
                 case .generated:
-                    CopyableContentView(store: store.scope(state: \.copyableState, action: Action.copyableContentUpdated))
+                    CopyableContentView(store: store.scope(state: \.copyableState, action: Action.updateCopyableContentView))
                         .expandedInParent()
                         .asCard()
                 }

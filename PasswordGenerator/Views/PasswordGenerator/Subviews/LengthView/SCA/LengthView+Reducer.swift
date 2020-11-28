@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import ComposableArchitecture
 
 extension PasswordGeneratorView.LengthView {
@@ -12,9 +13,16 @@ extension PasswordGeneratorView.LengthView {
                 action: /Action.updatedLengthCounter,
                 environment: { _ in CounterView.Environment() }
             ),
-        Reducer { state, action, environment -> Effect<Action, Never> in
+        Reducer { _, action, _ -> Effect<Action, Never> in
 
-            .none
+            switch action {
+
+            case .updatedLengthCounter(.didUpdate):
+                return Just(Action.didUpdate).eraseToEffect()
+
+            default:
+                return .none
+            }
         }
     )
 }

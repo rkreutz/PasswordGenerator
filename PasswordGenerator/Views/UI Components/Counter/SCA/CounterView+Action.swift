@@ -4,6 +4,7 @@ extension CounterView {
 
     enum Action {
 
-        case counterUpdated(Int)
+        case update(Int)
+        case didUpdate
     }
 }

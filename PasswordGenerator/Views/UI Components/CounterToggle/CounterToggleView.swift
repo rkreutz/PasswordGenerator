@@ -13,7 +13,7 @@ public struct CounterToggleView: View {
 
             VStack(spacing: spacing) {
 
-                Toggle(viewStore.toggleTitle, isOn: viewStore.binding(get: \.isToggled, send: Action.toggleChanged))
+                Toggle(viewStore.toggleTitle, isOn: viewStore.binding(get: \.isToggled, send: Action.updateToggle))
                     .font(.subheadline)
                     .foregroundColor(.label)
                     .allowsTightening(true)

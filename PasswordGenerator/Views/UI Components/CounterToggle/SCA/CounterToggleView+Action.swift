@@ -4,7 +4,8 @@ extension CounterToggleView {
 
     enum Action {
 
-        case toggleChanged(Bool)
+        case updateToggle(Bool)
+        case didUpdate
         case counterChanged(CounterView.Action)
     }
 }

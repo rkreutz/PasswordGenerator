@@ -15,7 +15,7 @@ extension PasswordGeneratorView {
 
                 VStack(alignment: .center, spacing: spacing) {
 
-                    Picker(selection: viewStore.binding(get: \.passwordType, send: Action.updatedPasswordType), label: Text("")) {
+                    Picker(selection: viewStore.binding(get: \.passwordType, send: Action.updatePasswordType), label: Text("")) {
 
                         ForEach(PasswordType.allCases, id: \.hashValue) { passwordType in
 
@@ -29,10 +29,10 @@ extension PasswordGeneratorView {
                     switch viewStore.passwordType {
 
                     case .domainBased:
-                        PasswordGeneratorView.DomainView(store: store.scope(state: \.domainState, action: Action.updatedDomain))
+                        PasswordGeneratorView.DomainView(store: store.scope(state: \.domainState, action: Action.updateDomain))
 
                     case .serviceBased:
-                        PasswordGeneratorView.ServiceView(store: store.scope(state: \.serviceState, action: Action.updatedService))
+                        PasswordGeneratorView.ServiceView(store: store.scope(state: \.serviceState, action: Action.updateService))
                     }
                 }
                 .asCard()

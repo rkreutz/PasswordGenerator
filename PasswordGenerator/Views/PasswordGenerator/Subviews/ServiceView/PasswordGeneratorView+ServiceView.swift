@@ -13,7 +13,7 @@ extension PasswordGeneratorView {
 
                 TextField(
                     Strings.PasswordGeneratorView.service,
-                    text: viewStore.binding(get: \.service, send: Action.updatedService)
+                    text: viewStore.binding(get: \.service, send: Action.updateService)
                 )
                 .autocapitalization(.sentences)
                 .keyboardType(.default)

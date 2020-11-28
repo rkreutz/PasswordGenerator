@@ -16,21 +16,17 @@ extension CopyableContentView {
             environment.hapticManager.generateHapticFeedback(.success)
 
             struct CopyContentHash: Hashable {}
-            return Just(Action.changeCopyState(true))
+            return Just(Action.updateCopyState(true))
                 .append(
-                    Just(Action.changeCopyState(false))
+                    Just(Action.updateCopyState(false))
                         .eraseToEffect()
                         .debounce(id: CopyContentHash(), for: 1.5, scheduler: environment.scheduler)
                         .eraseToAnyPublisher()
                 )
                 .eraseToEffect()
 
-        case let .changeCopyState(hasCopied):
+        case let .updateCopyState(hasCopied):
             state.hasCopied = hasCopied
-            return .none
-
-        case let .updateContent(content):
-            state.content = content
             return .none
         }
     }

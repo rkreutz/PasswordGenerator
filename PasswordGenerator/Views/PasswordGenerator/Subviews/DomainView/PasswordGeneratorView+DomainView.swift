@@ -13,7 +13,7 @@ extension PasswordGeneratorView {
 
                 TextField(
                     Strings.PasswordGeneratorView.username,
-                    text: viewStore.binding(get: \.username, send: Action.updatedUsername)
+                    text: viewStore.binding(get: \.username, send: Action.updateUsername)
                 )
                 .autocapitalization(.none)
                 .keyboardType(.emailAddress)
@@ -22,14 +22,14 @@ extension PasswordGeneratorView {
 
                 TextField(
                     Strings.PasswordGeneratorView.domain,
-                    text: viewStore.binding(get: \.domain, send: Action.updatedDomain)
+                    text: viewStore.binding(get: \.domain, send: Action.updateDomain)
                 )
                 .autocapitalization(.none)
                 .keyboardType(.URL)
 
                 SeparatorView()
 
-                CounterView(store: store.scope(state: \.seed, action: Action.updatedSeed))
+                CounterView(store: store.scope(state: \.seed, action: Action.updateSeed))
             }
         }
     }

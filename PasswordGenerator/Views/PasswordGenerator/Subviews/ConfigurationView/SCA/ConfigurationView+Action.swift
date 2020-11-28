@@ -4,9 +4,9 @@ extension PasswordGeneratorView.ConfigurationView {
 
     enum Action {
 
-        case updatedPasswordType(PasswordType)
-        case updatedDomain(PasswordGeneratorView.DomainView.Action)
-        case updatedService(PasswordGeneratorView.ServiceView.Action)
-        case updatedValidity(Bool)
+        case updatePasswordType(PasswordType)
+        case updateDomain(PasswordGeneratorView.DomainView.Action)
+        case updateService(PasswordGeneratorView.ServiceView.Action)
+        case didUpdate
     }
 }

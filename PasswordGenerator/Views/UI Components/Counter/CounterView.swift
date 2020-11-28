@@ -11,7 +11,7 @@ public struct CounterView: View {
 
         WithViewStore(store) { viewStore in
 
-            Stepper(value: viewStore.binding(get: \.count, send: Action.counterUpdated), in: viewStore.bounds) {
+            Stepper(value: viewStore.binding(get: \.count, send: Action.update), in: viewStore.bounds) {
 
                 HStack(alignment: .center) {
 

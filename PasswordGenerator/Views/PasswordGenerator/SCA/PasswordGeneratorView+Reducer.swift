@@ -97,24 +97,21 @@ extension PasswordGeneratorView {
                     )
                 }
 
-                return Just(Action.updatedPasswordState(.updatedFlow(.loading)))
+                return Just(Action.updatedPasswordState(.updateFlow(.loading)))
                     .append(
                         publisher
                             .receive(on: environment.scheduler)
-                            .map { Action.updatedPasswordState(.updatedFlow(.generated($0))) }
+                            .map { Action.updatedPasswordState(.updateFlow(.generated($0))) }
                             .catch { error in
 
                                 Just(Action.updatedError(error))
-                                    .append(Action.updatedPasswordState(.updatedFlow(.readyToGenerate)))
+                                    .append(Action.updatedPasswordState(.updateFlow(.readyToGenerate)))
                             }
                     )
                     .eraseToEffect()
                     .cancellable(id: AnyHashable(GeneratePasswordHash()))
 
-            case .updatedCharactersState(.updatedDigitsCounter(.counterChanged(.counterUpdated))),
-                 .updatedCharactersState(.updatedSymbolsCounter(.counterChanged(.counterUpdated))),
-                 .updatedCharactersState(.updatedLowercaseCounter(.counterChanged(.counterUpdated))),
-                 .updatedCharactersState(.updatedUppercaseCounter(.counterChanged(.counterUpdated))):
+            case .updatedCharactersState(.didUpdate):
                 let charactersCount = state.charactersState.digitsState.counterState.count
                     + state.charactersState.lowercaseState.counterState.count
                     + state.charactersState.symbolsState.counterState.count
@@ -123,23 +120,26 @@ extension PasswordGeneratorView {
                 state.lengthState.lengthState.bounds = minimalLength ... 32
                 if state.lengthState.lengthState.count < minimalLength {
 
-                    return Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
-                        .append(Just(Action.updatedLengthState(.updatedLengthCounter(.counterUpdated(minimalLength)))))
-                        .eraseToEffect()
-                } else {
-
-                    return Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
+                    state.lengthState.lengthState.count = minimalLength
                 }
+                return Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
+                    .append(
+                        Just(
+                            state.charactersState.isValid && state.configurationState.isValid ?
+                                Action.updatedPasswordState(.updateFlow(.readyToGenerate)) :
+                                Action.updatedPasswordState(.updateFlow(.invalid))
+                        )
+                    )
+                    .eraseToEffect()
 
-            case .updatedCharactersState,
-                 .updatedConfigurationState,
-                 .updatedLengthState:
+            case .updatedConfigurationState(.didUpdate),
+                 .updatedLengthState(.didUpdate):
                 return Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
                 .append(
                     Just(
                         state.charactersState.isValid && state.configurationState.isValid ?
-                            Action.updatedPasswordState(.updatedFlow(.readyToGenerate)) :
-                            Action.updatedPasswordState(.updatedFlow(.invalid))
+                            Action.updatedPasswordState(.updateFlow(.readyToGenerate)) :
+                            Action.updatedPasswordState(.updateFlow(.invalid))
                     )
                 )
                 .eraseToEffect()

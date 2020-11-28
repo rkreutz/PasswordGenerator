@@ -4,9 +4,9 @@ extension PasswordGeneratorView.DomainView {
 
     enum Action {
 
-        case updatedUsername(String)
-        case updatedDomain(String)
-        case updatedSeed(CounterView.Action)
-        case updatedValidity(Bool)
+        case updateUsername(String)
+        case updateDomain(String)
+        case updateSeed(CounterView.Action)
+        case didUpdate
     }
 }

@@ -10,18 +10,20 @@ extension PasswordGeneratorView.PasswordView {
         CopyableContentView.sharedReducer
             .pullback(
                 state: \.copyableState,
-                action: /Action.copyableContentUpdated,
+                action: /Action.updateCopyableContentView,
                 environment: CopyableContentView.Environment.init
             ),
         Reducer { state, action, _ -> Effect<Action, Never> in
 
             switch action {
 
-            case let .updatedFlow(.generated(password)):
+            case let .updateFlow(.generated(password)):
+                state.copyableState.content = password
                 state.flow = .generated(password)
-                return Just(Action.copyableContentUpdated(.updateContent(password))).eraseToEffect()
+                return .none
 
-            case let .updatedFlow(flow):
+            case let .updateFlow(flow):
+                state.copyableState.content = ""
                 state.flow = flow
                 return .none
 

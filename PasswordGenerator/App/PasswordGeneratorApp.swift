@@ -51,7 +51,7 @@ struct PasswordGeneratorApp: App {
                         isToggled: false,
                         counterState: .init(
                             title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
-                            count: 0,
+                            count: 1,
                             bounds: 1 ... 8
                         )
                     ),

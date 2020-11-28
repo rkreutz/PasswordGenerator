@@ -10,34 +10,36 @@ extension PasswordGeneratorView.ConfigurationView {
         PasswordGeneratorView.DomainView.sharedReducer
             .pullback(
                 state: \.domainState,
-                action: /Action.updatedDomain,
+                action: /Action.updateDomain,
                 environment: { _ in .init() }
             ),
         PasswordGeneratorView.ServiceView.sharedReducer
             .pullback(
                 state: \.serviceState,
-                action: /Action.updatedService,
+                action: /Action.updateService,
                 environment: { _ in .init() }
             ),
         Reducer { state, action, _ -> Effect<Action, Never> in
 
             switch action {
 
-            case let .updatedPasswordType(passwordType):
-                state.passwordType = passwordType
-                return .none
+            case .updatePasswordType(.domainBased):
+                state.passwordType = .domainBased
+                state.isValid = state.domainState.isValid
+                return Just(Action.didUpdate).eraseToEffect()
 
-            case .updatedDomain(.updatedValidity(true)) where !state.isValid && state.passwordType == .domainBased,
-                 .updatedService(.updatedValidity(true)) where !state.isValid && state.passwordType == .serviceBased:
-                return Just(Action.updatedValidity(true)).eraseToEffect()
+            case .updatePasswordType(.serviceBased):
+                state.passwordType = .serviceBased
+                state.isValid = state.serviceState.isValid
+                return Just(Action.didUpdate).eraseToEffect()
 
-            case .updatedDomain(.updatedValidity(false)) where state.isValid && state.passwordType == .domainBased,
-                 .updatedService(.updatedValidity(false)) where state.isValid && state.passwordType == .serviceBased:
-                return Just(Action.updatedValidity(false)).eraseToEffect()
+            case .updateDomain(.didUpdate) where state.passwordType == .domainBased:
+                state.isValid = state.domainState.isValid
+                return Just(Action.didUpdate).eraseToEffect()
 
-            case let .updatedValidity(isValid):
-                state.isValid = isValid
-                return .none
+            case .updateService(.didUpdate) where state.passwordType == .serviceBased:
+                state.isValid = state.serviceState.isValid
+                return Just(Action.didUpdate).eraseToEffect()
 
             default:
                 return .none

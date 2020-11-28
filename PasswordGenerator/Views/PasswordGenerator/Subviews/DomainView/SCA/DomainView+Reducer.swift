@@ -10,7 +10,7 @@ extension PasswordGeneratorView.DomainView {
         CounterView.sharedReducer
             .pullback(
                 state: \.seed,
-                action: /Action.updatedSeed,
+                action: /Action.updateSeed,
                 environment: { _ in CounterView.Environment() }
             ),
 
@@ -25,31 +25,18 @@ extension PasswordGeneratorView.DomainView {
 
             switch action {
 
-            case let .updatedDomain(domain):
+            case let .updateDomain(domain):
                 state.domain = domain
-                let isValid = isStateValid(state)
-                if state.isValid != isValid {
+                state.isValid = isStateValid(state)
+                return Just(Action.didUpdate).eraseToEffect()
 
-                    return Just(Action.updatedValidity(isValid)).eraseToEffect()
-                } else {
-
-                    return .none
-                }
-
-            case let .updatedUsername(username):
+            case let .updateUsername(username):
                 state.username = username
-                let isValid = isStateValid(state)
-                if state.isValid != isValid {
+                state.isValid = isStateValid(state)
+                return Just(Action.didUpdate).eraseToEffect()
 
-                    return Just(Action.updatedValidity(isValid)).eraseToEffect()
-                } else {
-
-                    return .none
-                }
-
-            case let .updatedValidity(isValid):
-                state.isValid = isValid
-                return .none
+            case .updateSeed(.didUpdate):
+                return Just(Action.didUpdate).eraseToEffect()
 
             default:
                 return .none

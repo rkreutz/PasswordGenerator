@@ -10,19 +10,12 @@ extension PasswordGeneratorView.ServiceView {
 
         switch action {
 
-        case let .updatedService(service):
+        case let .updateService(service):
             state.service = service
-            let isValid = service.isNotEmpty
-            if state.isValid != isValid {
+            state.isValid = service.isNotEmpty
+            return Just(Action.didUpdate).eraseToEffect()
 
-                return Just(Action.updatedValidity(isValid)).eraseToEffect()
-            } else {
-
-                return .none
-            }
-
-        case let .updatedValidity(isValid):
-            state.isValid = isValid
+        case .didUpdate:
             return .none
         }
     }

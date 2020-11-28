@@ -17,11 +17,15 @@ extension CounterToggleView {
 
             switch action {
 
-            case let .toggleChanged(isToggled):
+            case let .updateToggle(isToggled):
                 state.isToggled = isToggled
-                return Just(Action.counterChanged(.counterUpdated(isToggled ? 1 : 0))).eraseToEffect()
+                return Just(Action.didUpdate).eraseToEffect()
 
-            case .counterChanged:
+            case .counterChanged(.didUpdate):
+                return Just(Action.didUpdate).eraseToEffect()
+
+            case .counterChanged(.update),
+                 .didUpdate:
                 return .none
             }
         }

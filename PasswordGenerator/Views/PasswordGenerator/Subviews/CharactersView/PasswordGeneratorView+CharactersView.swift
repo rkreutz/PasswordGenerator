@@ -13,19 +13,19 @@ extension PasswordGeneratorView {
 
             VStack(spacing: spacing) {
 
-                CounterToggleView(store: store.scope(state: \.lowercaseState, action: Action.updatedLowercaseCounter))
+                CounterToggleView(store: store.scope(state: \.lowercaseState, action: Action.updateLowercaseCounter))
 
                 SeparatorView()
 
-                CounterToggleView(store: store.scope(state: \.uppercaseState, action: Action.updatedUppercaseCounter))
+                CounterToggleView(store: store.scope(state: \.uppercaseState, action: Action.updateUppercaseCounter))
 
                 SeparatorView()
 
-                CounterToggleView(store: store.scope(state: \.digitsState, action: Action.updatedDigitsCounter))
+                CounterToggleView(store: store.scope(state: \.digitsState, action: Action.updateDigitsCounter))
 
                 SeparatorView()
 
-                CounterToggleView(store: store.scope(state: \.symbolsState, action: Action.updatedSymbolsCounter))
+                CounterToggleView(store: store.scope(state: \.symbolsState, action: Action.updateSymbolsCounter))
             }
             .asCard()
         }

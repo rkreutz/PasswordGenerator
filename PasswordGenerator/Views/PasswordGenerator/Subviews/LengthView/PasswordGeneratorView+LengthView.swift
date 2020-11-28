@@ -11,11 +11,6 @@ extension PasswordGeneratorView {
 
             CounterView(store: store.scope(state: \.lengthState, action: Action.updatedLengthCounter))
                 .asCard()
-//            .onChange(of: charactersState) { newValue in
-//
-//                guard newValue.minimalLength > charactersState.length else { return }
-//                charactersState.length = newValue.minimalLength
-//            }
         }
     }
 }

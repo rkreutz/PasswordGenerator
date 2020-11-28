@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import struct ComposableArchitecture.Reducer
 import struct ComposableArchitecture.Effect
 
@@ -10,8 +11,11 @@ extension CounterView {
 
         switch action {
 
-        case let .counterUpdated(count):
+        case let .update(count):
             state.count = count
+            return Just(Action.didUpdate).eraseToEffect()
+
+        case .didUpdate:
             return .none
         }
     }

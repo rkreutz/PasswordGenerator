@@ -10,48 +10,40 @@ extension PasswordGeneratorView.CharactersView {
         CounterToggleView.sharedReducer
             .pullback(
                 state: \.digitsState,
-                action: /Action.updatedDigitsCounter,
+                action: /Action.updateDigitsCounter,
                 environment: { _ in CounterToggleView.Environment() }
             ),
         CounterToggleView.sharedReducer
             .pullback(
                 state: \.lowercaseState,
-                action: /Action.updatedLowercaseCounter,
+                action: /Action.updateLowercaseCounter,
                 environment: { _ in CounterToggleView.Environment() }
             ),
         CounterToggleView.sharedReducer
             .pullback(
                 state: \.uppercaseState,
-                action: /Action.updatedUppercaseCounter,
+                action: /Action.updateUppercaseCounter,
                 environment: { _ in CounterToggleView.Environment() }
             ),
         CounterToggleView.sharedReducer
             .pullback(
                 state: \.symbolsState,
-                action: /Action.updatedSymbolsCounter,
+                action: /Action.updateSymbolsCounter,
                 environment: { _ in CounterToggleView.Environment() }
             ),
         Reducer { state, action, _ -> Effect<Action, Never> in
 
             switch action {
 
-            case .updatedDigitsCounter(.toggleChanged(true)) where !state.isValid,
-                 .updatedSymbolsCounter(.toggleChanged(true)) where !state.isValid,
-                 .updatedUppercaseCounter(.toggleChanged(true)) where !state.isValid,
-                 .updatedLowercaseCounter(.toggleChanged(true)) where !state.isValid:
-                return Just(Action.updatedValidity(true)).eraseToEffect()
-
-            //swiftlint:disable line_length
-            case .updatedDigitsCounter(.toggleChanged(false)) where state.isValid && !state.uppercaseState.isToggled && !state.lowercaseState.isToggled && !state.symbolsState.isToggled,
-                 .updatedLowercaseCounter(.toggleChanged(false)) where state.isValid && !state.uppercaseState.isToggled && !state.symbolsState.isToggled && !state.digitsState.isToggled,
-                 .updatedUppercaseCounter(.toggleChanged(false)) where state.isValid && !state.symbolsState.isToggled && !state.lowercaseState.isToggled && !state.digitsState.isToggled,
-                 .updatedSymbolsCounter(.toggleChanged(false)) where state.isValid && !state.uppercaseState.isToggled && !state.lowercaseState.isToggled && !state.digitsState.isToggled:
-            //swiftlint:enable line_length
-                return Just(Action.updatedValidity(false)).eraseToEffect()
-
-            case let .updatedValidity(isValid):
-                state.isValid = isValid
-                return .none
+            case .updateDigitsCounter(.didUpdate),
+                 .updateLowercaseCounter(.didUpdate),
+                 .updateSymbolsCounter(.didUpdate),
+                 .updateUppercaseCounter(.didUpdate):
+                state.isValid = state.digitsState.isToggled
+                    || state.lowercaseState.isToggled
+                    || state.symbolsState.isToggled
+                    || state.uppercaseState.isToggled
+                return Just(Action.didUpdate).eraseToEffect()
 
             default:
                 return .none
