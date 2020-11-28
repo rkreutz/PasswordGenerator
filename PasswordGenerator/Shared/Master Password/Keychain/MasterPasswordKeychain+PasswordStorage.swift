@@ -7,6 +7,7 @@ extension MasterPasswordKeychain: MasterPasswordStorage {
 
         let context = LAContext()
         context.touchIDAuthenticationAllowableReuseDuration = 30
+        context.localizedReason = Strings.MasterPasswordKeychain.prompt
         return context
     }
 
@@ -113,7 +114,6 @@ extension MasterPasswordKeychain: MasterPasswordStorage {
             kSecAttrService: Constants.service,
             kSecAttrAccount: Constants.passwordKey,
             kSecReturnAttributes: kCFBooleanTrue,
-            kSecUseOperationPrompt: Strings.MasterPasswordKeychain.prompt,
             kSecReturnData: kCFBooleanTrue
         ]
 

@@ -28,6 +28,10 @@ extension CopyableContentView {
         case let .changeCopyState(hasCopied):
             state.hasCopied = hasCopied
             return .none
+
+        case let .updateContent(content):
+            state.content = content
+            return .none
         }
     }
 }

@@ -4,7 +4,7 @@ import struct ComposableArchitecture.AnyScheduler
 import struct ComposableArchitecture.AnySchedulerOf
 import class UIKit.UIPasteboard
 
-extension CopyableContentView {
+extension PasswordGeneratorView.PasswordView {
 
     struct Environment {
 
@@ -29,23 +29,14 @@ extension CopyableContentView {
 
 // MARK: Factories
 
-extension CopyableContentView.Environment {
+extension PasswordGeneratorView.PasswordView.Environment {
 
     static func live() -> Self {
 
-        CopyableContentView.Environment(
+        PasswordGeneratorView.PasswordView.Environment(
             scheduler: DispatchQueue.main,
             hapticManager: UIKitHapticManager(),
             pasteboard: UIPasteboard.general
-        )
-    }
-
-    init(from passwordViewEnvironment: PasswordGeneratorView.PasswordView.Environment) {
-
-        self.init(
-            scheduler: passwordViewEnvironment.scheduler,
-            hapticManager: passwordViewEnvironment.hapticManager,
-            pasteboard: passwordViewEnvironment.pasteboard
         )
     }
 }

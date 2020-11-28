@@ -42,9 +42,44 @@ struct PasswordGeneratorView: View {
 
             VStack(alignment: .center, spacing: spacing) {
 
-                ConfigurationView(configurationState: $viewState.state.configurationState)
+                ConfigurationView(
+                    store: .init(
+                        initialState: .init(
+                            passwordType: .domainBased,
+                            domainState: .init(
+                                username: "",
+                                domain: "",
+                                seed: .init(
+                                    title: Strings.PasswordGeneratorView.seed.formatted(),
+                                    count: 1,
+                                    bounds: 1 ... 999
+                                ),
+                                isValid: false
+                            ),
+                            serviceState: .init(
+                                service: "",
+                                isValid: false
+                            ),
+                            isValid: false
+                        ),
+                        reducer: ConfigurationView.sharedReducer,
+                        environment: .init()
+                    )
+                )
 
-                LengthView(charactersState: $viewState.state.charactersState)
+                LengthView(
+                    store: .init(
+                        initialState: .init(
+                            lengthState: .init(
+                                title: Strings.PasswordGeneratorView.passwordLength.formatted(),
+                                count: 8,
+                                bounds: 4 ... 32
+                            )
+                        ),
+                        reducer: LengthView.sharedReducer,
+                        environment: LengthView.Environment()
+                    )
+                )
 
                 CharactersView(
                     store: .init(
@@ -92,7 +127,16 @@ struct PasswordGeneratorView: View {
                     )
                 )
 
-                PasswordView(passwordState: viewState.state.passwordState, action: generatePassword)
+                PasswordView(
+                    store: .init(
+                        initialState: .init(
+                            flow: .invalid,
+                            copyableState: .init(content: "")
+                        ),
+                        reducer: PasswordView.sharedReducer,
+                        environment: .live()
+                    )
+                )
             }
             .padding(spacing)
         }
