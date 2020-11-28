@@ -7,3 +7,13 @@ extension MasterPasswordView {
         let masterPasswordStorage: MasterPasswordStorage
     }
 }
+
+// MARK: Factories
+
+extension MasterPasswordView.Environment {
+
+    static func live() -> Self {
+
+        MasterPasswordView.Environment(masterPasswordStorage: MasterPasswordKeychain())
+    }
+}

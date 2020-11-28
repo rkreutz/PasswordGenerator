@@ -7,7 +7,6 @@ import os.log
 class CredentialProviderViewController: ASCredentialProviderViewController {
 
     private var cancellableStore: Set<AnyCancellable> = []
-    private var viewState = StateReference(state: PasswordGeneratorView.ViewState())
 
     @IBSegueAction
     private func addSwiftUI(_ coder: NSCoder) -> UIViewController? {
@@ -104,23 +103,23 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
 
         super.viewDidLoad()
 
-        viewState.$state
-            .compactMap { state -> String? in
-
-                guard case let .generated(password) = state.passwordState else { return nil }
-                return password
-            }
-            .sink { [extensionContext, viewState] password in
-
-                extensionContext.completeRequest(
-                    withSelectedCredential: ASPasswordCredential(
-                        user: viewState.state.configurationState.username,
-                        password: password
-                    ),
-                    completionHandler: nil
-                )
-            }
-            .store(in: &cancellableStore)
+//        viewState.$state
+//            .compactMap { state -> String? in
+//
+//                guard case let .generated(password) = state.passwordState else { return nil }
+//                return password
+//            }
+//            .sink { [extensionContext, viewState] password in
+//
+//                extensionContext.completeRequest(
+//                    withSelectedCredential: ASPasswordCredential(
+//                        user: viewState.state.configurationState.username,
+//                        password: password
+//                    ),
+//                    completionHandler: nil
+//                )
+//            }
+//            .store(in: &cancellableStore)
     }
 
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
@@ -129,7 +128,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             .first { $0.type == .URL }
             .flatMap { URL(string: $0.identifier)?.host }
 
-        viewState.state.configurationState.domain = host ?? ""
+//        viewState.state.configurationState.domain = host ?? ""
     }
 
     @IBAction private func cancel(_ sender: AnyObject?) {

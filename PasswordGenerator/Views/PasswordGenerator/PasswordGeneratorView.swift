@@ -49,7 +49,7 @@ struct PasswordGeneratorView: View {
 
 struct PasswordGeneratorView_Previews: PreviewProvider {
 
-    static let store = Store<PasswordGeneratorView.State, PasswordGeneratorView.Action>.init(
+    static let store = Store<PasswordGeneratorView.State, PasswordGeneratorView.Action>(
         initialState: .init(
             configurationState: .init(
                 passwordType: .domainBased,
@@ -143,9 +143,6 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
                     .previewDisplayName("\(category)")
             }
         }
-        .use(masterPasswordStorage: MockMasterPasswordStorage())
-        .use(passwordGenerator: PasswordGenerator(masterPasswordProvider: "masterPassword"))
-        .environmentObject(AppState(state: .masterPasswordSet))
     }
 }
 
