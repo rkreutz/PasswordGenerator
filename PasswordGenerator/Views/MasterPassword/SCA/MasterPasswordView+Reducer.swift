@@ -24,7 +24,7 @@ extension MasterPasswordView {
                     return Just(Action.masterPasswordSaved).eraseToAnyPublisher()
                 } catch {
 
-                    return Just(Action.failed(error)).eraseToAnyPublisher()
+                    return Just(Action.updateError(error)).eraseToAnyPublisher()
                 }
             }
             .eraseToEffect()
@@ -32,12 +32,8 @@ extension MasterPasswordView {
         case .masterPasswordSaved:
             return .none
 
-        case let .failed(error):
+        case let .updateError(error):
             state.error = error
-            return .none
-
-        case .clearError:
-            state.error = nil
             return .none
         }
     }

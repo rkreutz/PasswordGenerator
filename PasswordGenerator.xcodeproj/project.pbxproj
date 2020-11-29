@@ -675,10 +675,10 @@
 		FC613881256C9EC900023A8C /* SCA */ = {
 			isa = PBXGroup;
 			children = (
+				FC613884256C9EDD00023A8C /* CopyableContentView+State.swift */,
 				FC61388B256C9F0600023A8C /* CopyableContentView+Action.swift */,
 				FC61388F256C9F3100023A8C /* CopyableContentView+Environment.swift */,
 				FC613874256C952100023A8C /* CopyableContentView+Reducer.swift */,
-				FC613884256C9EDD00023A8C /* CopyableContentView+State.swift */,
 			);
 			path = SCA;
 			sourceTree = "<group>";

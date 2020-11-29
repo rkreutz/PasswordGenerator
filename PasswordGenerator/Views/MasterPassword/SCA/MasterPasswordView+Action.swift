@@ -7,7 +7,6 @@ extension MasterPasswordView {
         case textFieldChanged(String)
         case saveMasterPassword
         case masterPasswordSaved
-        case failed(Error)
-        case clearError
+        case updateError(Error?)
     }
 }

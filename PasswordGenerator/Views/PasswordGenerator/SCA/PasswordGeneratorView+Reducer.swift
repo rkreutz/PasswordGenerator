@@ -69,10 +69,10 @@ extension PasswordGeneratorView {
                         .eraseToEffect()
                 } catch {
 
-                    return Just(Action.updatedError(error)).eraseToEffect()
+                    return Just(Action.updateError(error)).eraseToEffect()
                 }
 
-            case let .updatedError(error):
+            case let .updateError(error):
                 state.error = error
                 return .none
 
@@ -104,7 +104,7 @@ extension PasswordGeneratorView {
                             .map { Action.updatedPasswordState(.updateFlow(.generated($0))) }
                             .catch { error in
 
-                                Just(Action.updatedError(error))
+                                Just(Action.updateError(error))
                                     .append(Action.updatedPasswordState(.updateFlow(.readyToGenerate)))
                             }
                     )

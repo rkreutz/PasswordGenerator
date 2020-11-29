@@ -35,7 +35,7 @@ struct MasterPasswordView: View {
                 .padding(margins)
                 .padding(.top, topMargin)
             }
-            .emittingError(viewStore.binding(get: \.error, send: Action.clearError))
+            .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
         }
     }
 }

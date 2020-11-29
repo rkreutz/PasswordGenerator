@@ -10,6 +10,6 @@ extension PasswordGeneratorView {
         case updatedLengthState(PasswordGeneratorView.LengthView.Action)
         case updatedCharactersState(PasswordGeneratorView.CharactersView.Action)
         case updatedPasswordState(PasswordGeneratorView.PasswordView.Action)
-        case updatedError(Error?)
+        case updateError(Error?)
     }
 }

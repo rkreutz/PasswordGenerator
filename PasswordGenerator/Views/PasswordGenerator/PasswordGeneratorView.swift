@@ -29,7 +29,7 @@ struct PasswordGeneratorView: View {
                 }
                 .padding(spacing)
             }
-            .emittingError(viewStore.binding(get: \.error, send: Action.updatedError))
+            .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
             .navigationBarItems(
                 trailing: Button(
                     action: { viewStore.send(.logout) },
