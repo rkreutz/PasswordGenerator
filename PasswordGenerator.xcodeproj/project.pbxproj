@@ -220,6 +220,9 @@
 		FC8547F5256DF9E300E2A295 /* CharactersView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547EB256DF95800E2A295 /* CharactersView+Environment.swift */; };
 		FC8547F6256DF9E300E2A295 /* CharactersView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547E7256DF8F500E2A295 /* CharactersView+Action.swift */; };
 		FCBC9784256C2F5F00444A1B /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FCBC9783256C2F5F00444A1B /* ComposableArchitecture */; };
+		FCE2AD79257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD78257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift */; };
+		FCE2AD7F2573522E00812A51 /* CredentialProviderViewController+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */; };
+		FCE2AD8D2573535200812A51 /* CredentialProviderViewController+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD8C2573535200812A51 /* CredentialProviderViewController+Reducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -361,6 +364,9 @@
 		FC8547E7256DF8F500E2A295 /* CharactersView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharactersView+Action.swift"; sourceTree = "<group>"; };
 		FC8547EB256DF95800E2A295 /* CharactersView+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharactersView+Environment.swift"; sourceTree = "<group>"; };
 		FC8547EF256DF9AB00E2A295 /* CharactersView+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharactersView+Reducer.swift"; sourceTree = "<group>"; };
+		FCE2AD78257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorApp+InitialState.swift"; sourceTree = "<group>"; };
+		FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CredentialProviderViewController+InitialState.swift"; sourceTree = "<group>"; };
+		FCE2AD8C2573535200812A51 /* CredentialProviderViewController+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CredentialProviderViewController+Reducer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +487,8 @@
 			isa = PBXGroup;
 			children = (
 				37287F7824CCB5AD00E9407F /* CredentialProviderViewController.swift */,
+				FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */,
+				FCE2AD8C2573535200812A51 /* CredentialProviderViewController+Reducer.swift */,
 				37287F7A24CCB5AD00E9407F /* MainInterface.storyboard */,
 				37287F7D24CCB5AD00E9407F /* Info.plist */,
 				37287F7E24CCB5AD00E9407F /* CredentialProvider.entitlements */,
@@ -818,6 +826,7 @@
 			isa = PBXGroup;
 			children = (
 				FC74BCFA2572EC1900BC33D0 /* PasswordGeneratorApp+State.swift */,
+				FCE2AD78257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift */,
 				FC74BD002572EC2700BC33D0 /* PasswordGeneratorApp+Action.swift */,
 				FC74BD042572EC3400BC33D0 /* PasswordGeneratorApp+Environment.swift */,
 				FC74BD082572EC4200BC33D0 /* PasswordGeneratorApp+Reducer.swift */,
@@ -1078,6 +1087,7 @@
 				FC74BCD1257210FC00BC33D0 /* PasswordView+Reducer.swift in Sources */,
 				37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */,
 				37A5654524B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
+				FCE2AD79257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift in Sources */,
 				FC3AAE3E256CB068004FFF3E /* CounterView+Environment.swift in Sources */,
 				37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */,
 				FC74BCE52572864900BC33D0 /* PasswordGeneratorView+Environment.swift in Sources */,
@@ -1119,6 +1129,7 @@
 				FC74BCB1257208D000BC33D0 /* ServiceView+Environment.swift in Sources */,
 				FC74BCEC2572866100BC33D0 /* PasswordGeneratorView+Reducer.swift in Sources */,
 				37CB52EB24CDF7770081DA1E /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
+				FCE2AD8D2573535200812A51 /* CredentialProviderViewController+Reducer.swift in Sources */,
 				FC74BC4E2571FDBD00BC33D0 /* LengthView+Environment.swift in Sources */,
 				FC8547F5256DF9E300E2A295 /* CharactersView+Environment.swift in Sources */,
 				37CB52E024CDF7650081DA1E /* MasterPasswordKeychain+Strings.swift in Sources */,
@@ -1162,6 +1173,7 @@
 				FC66E367252FDEB5002F8DDF /* Label+TextInitialiser.swift in Sources */,
 				FC3AAE56256CB74B004FFF3E /* CounterToggleView+Environment.swift in Sources */,
 				37CB52E124CDF76D0081DA1E /* MasterPasswordView.swift in Sources */,
+				FCE2AD7F2573522E00812A51 /* CredentialProviderViewController+InitialState.swift in Sources */,
 				FC3AAE2B256CAFB6004FFF3E /* CopyableContentView+State.swift in Sources */,
 				FC74BC4F2571FDBD00BC33D0 /* LengthView+Reducer.swift in Sources */,
 				37CB52F124CDF7810081DA1E /* CounterView.swift in Sources */,
