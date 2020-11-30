@@ -66,51 +66,9 @@ extension PasswordGeneratorView {
         },
         Reducer(forAction: generatePassword) { state, environment in
 
-            func characterRules(for charactersState: PasswordGeneratorView.CharactersView.State) -> Set<PasswordRule> {
-
-                var rules = Set<PasswordRule>()
-                if charactersState.digitsState.isToggled {
-
-                    rules.insert(.mustContainDecimalCharacters(atLeast: charactersState.digitsState.counterState.count))
-                }
-                if charactersState.lowercaseState.isToggled {
-
-                    rules.insert(.mustContainLowercaseCharacters(atLeast: charactersState.lowercaseState.counterState.count))
-                }
-                if charactersState.symbolsState.isToggled {
-
-                    rules.insert(.mustContainSymbolCharacters(atLeast: charactersState.symbolsState.counterState.count))
-                }
-                if charactersState.uppercaseState.isToggled {
-
-                    rules.insert(.mustContainUppercaseCharacters(atLeast: charactersState.uppercaseState.counterState.count))
-                }
-                return rules
-            }
-
-            let publisher: AnyPublisher<String, PasswordGenerator.Error>
-            switch state.configurationState.passwordType {
-
-            case .domainBased:
-                publisher = environment.passwordGenerator.publishers.generatePassword(
-                    username: state.configurationState.domainState.username,
-                    domain: state.configurationState.domainState.domain,
-                    seed: state.configurationState.domainState.seed.count,
-                    rules: characterRules(for: state.charactersState)
-                        .union([PasswordRule.length(state.lengthState.lengthState.count)])
-                )
-
-            case .serviceBased:
-                publisher = environment.passwordGenerator.publishers.generatePassword(
-                    service: state.configurationState.serviceState.service,
-                    rules: characterRules(for: state.charactersState)
-                        .union([PasswordRule.length(state.lengthState.lengthState.count)])
-                )
-            }
-
-            return Effect(value: Action.updatedPasswordState(.updateFlow(.loading)))
+            Effect(value: Action.updatedPasswordState(.updateFlow(.loading)))
                 .append(
-                    publisher
+                    passwordPublisher(for: state, environment: environment)
                         .receive(on: environment.scheduler)
                         .map { Action.updatedPasswordState(.updateFlow(.generated($0))) }
                         .catch { error in
@@ -145,4 +103,51 @@ extension PasswordGeneratorView {
     private static let didUpdateConfigurationState = /Action.updatedConfigurationState .. /ConfigurationView.Action.didUpdate
     private static let didUpdateLengthState = /Action.updatedLengthState .. /LengthView.Action.didUpdate
     private static let didUpdateCharactersState = /Action.updatedCharactersState .. /CharactersView.Action.didUpdate
+
+    private static func passwordPublisher(for state: State, environment: Environment) -> AnyPublisher<String, PasswordGenerator.Error> {
+
+        let publisher: AnyPublisher<String, PasswordGenerator.Error>
+        switch state.configurationState.passwordType {
+
+        case .domainBased:
+            publisher = environment.passwordGenerator.publishers.generatePassword(
+                username: state.configurationState.domainState.username,
+                domain: state.configurationState.domainState.domain,
+                seed: state.configurationState.domainState.seed.count,
+                rules: rules(for: state.charactersState, length: state.lengthState.lengthState.count)
+            )
+
+        case .serviceBased:
+            publisher = environment.passwordGenerator.publishers.generatePassword(
+                service: state.configurationState.serviceState.service,
+                rules: rules(for: state.charactersState, length: state.lengthState.lengthState.count)
+            )
+        }
+
+        return publisher
+    }
+
+    private static func rules(for charactersState: PasswordGeneratorView.CharactersView.State, length: Int) -> Set<PasswordRule> {
+
+        var rules: Set<PasswordRule> = [.length(length)]
+
+        if charactersState.digitsState.isToggled {
+
+            rules.insert(.mustContainDecimalCharacters(atLeast: charactersState.digitsState.counterState.count))
+        }
+        if charactersState.lowercaseState.isToggled {
+
+            rules.insert(.mustContainLowercaseCharacters(atLeast: charactersState.lowercaseState.counterState.count))
+        }
+        if charactersState.symbolsState.isToggled {
+
+            rules.insert(.mustContainSymbolCharacters(atLeast: charactersState.symbolsState.counterState.count))
+        }
+        if charactersState.uppercaseState.isToggled {
+
+            rules.insert(.mustContainUppercaseCharacters(atLeast: charactersState.uppercaseState.counterState.count))
+        }
+
+        return rules
+    }
 }
