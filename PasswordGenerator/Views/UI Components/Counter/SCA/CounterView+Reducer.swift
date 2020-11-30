@@ -1,22 +1,13 @@
 import Foundation
-import Combine
-import struct ComposableArchitecture.Reducer
-import struct ComposableArchitecture.Effect
+import ComposableArchitecture
 
 extension CounterView {
 
     typealias Reducer = ComposableArchitecture.Reducer<State, Action, Environment>
 
-    static let sharedReducer = Reducer { state, action, _ -> Effect<Action, Never> in
-
-        switch action {
-
-        case let .update(count):
-            state.count = count
-            return Just(Action.didUpdate).eraseToEffect()
-
-        case .didUpdate:
-            return .none
-        }
-    }
+    static let sharedReducer = Reducer(
+        bindingAction: /Action.update,
+        to: \.count,
+        producing: { _ in Effect(value: Action.didUpdate) }
+    )
 }

@@ -1,5 +1,6 @@
 import Foundation
 import ComposableArchitecture
+import CasePaths
 
 extension PasswordGeneratorApp {
 
@@ -18,21 +19,19 @@ extension PasswordGeneratorApp {
                 action: /Action.updatedPasswordGenerator,
                 environment: PasswordGeneratorView.Environment.init
             ),
-        Reducer { state, action, _ -> Effect<Action, Never> in
-            switch action {
+        Reducer(forAction: didSaveMasterPassword) { state, _ in
 
-            case .updatedMasterPassword(.masterPasswordSaved):
-                state.isMasterPasswordSet = true
-                state.masterPasswordState.masterPassword = ""
+            state.isMasterPasswordSet = true
+            state.masterPasswordState.masterPassword = ""
+            return .none
+        },
+        Reducer(forAction: loggedOutAction) { state, _ in
 
-            case .updatedPasswordGenerator(.didLogout):
-                state.isMasterPasswordSet = false
-
-            default:
-                break
-            }
-
+            state.isMasterPasswordSet = false
             return .none
         }
     )
+
+    private static let didSaveMasterPassword = /Action.updatedMasterPassword .. /MasterPasswordView.Action.masterPasswordSaved
+    private static let loggedOutAction = /Action.updatedPasswordGenerator .. /PasswordGeneratorView.Action.didLogout
 }

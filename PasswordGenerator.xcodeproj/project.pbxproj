@@ -133,6 +133,8 @@
 		FC3AAE6F256CC73B004FFF3E /* MasterPasswordView+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AAE68256CC2F5004FFF3E /* MasterPasswordView+Reducer.swift */; };
 		FC3AAE70256CC73B004FFF3E /* MasterPasswordView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AAE64256CC24A004FFF3E /* MasterPasswordView+Environment.swift */; };
 		FC3AAE71256CC73B004FFF3E /* MasterPasswordView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AAE5A256CC123004FFF3E /* MasterPasswordView+State.swift */; };
+		FC44B31125758E84007D601D /* Reducer+Initialisers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44B31025758E84007D601D /* Reducer+Initialisers.swift */; };
+		FC44B31625758EA9007D601D /* Reducer+Initialisers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44B31025758E84007D601D /* Reducer+Initialisers.swift */; };
 		FC61387E256C9C4400023A8C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FC61387D256C9C4400023A8C /* ComposableArchitecture */; };
 		FC61389B256CA3FC00023A8C /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC61389A256CA3FC00023A8C /* HapticManager.swift */; };
 		FC61389F256CA42700023A8C /* HapticEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC61389E256CA42700023A8C /* HapticEvent.swift */; };
@@ -316,6 +318,7 @@
 		FC3AAE60256CC1BB004FFF3E /* MasterPasswordView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+Action.swift"; sourceTree = "<group>"; };
 		FC3AAE64256CC24A004FFF3E /* MasterPasswordView+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+Environment.swift"; sourceTree = "<group>"; };
 		FC3AAE68256CC2F5004FFF3E /* MasterPasswordView+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+Reducer.swift"; sourceTree = "<group>"; };
+		FC44B31025758E84007D601D /* Reducer+Initialisers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reducer+Initialisers.swift"; sourceTree = "<group>"; };
 		FC613874256C952100023A8C /* CopyableContentView+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CopyableContentView+Reducer.swift"; sourceTree = "<group>"; };
 		FC613884256C9EDD00023A8C /* CopyableContentView+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CopyableContentView+State.swift"; sourceTree = "<group>"; };
 		FC61388B256C9F0600023A8C /* CopyableContentView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CopyableContentView+Action.swift"; sourceTree = "<group>"; };
@@ -505,6 +508,7 @@
 				FC66E359252FD705002F8DDF /* Label+TextInitialiser.swift */,
 				375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */,
 				37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */,
+				FC44B31025758E84007D601D /* Reducer+Initialisers.swift */,
 				3737691A24996A07003C6CE4 /* String+HasMatchingTypes.swift */,
 				37C76EF324BB8568003BCAC1 /* View */,
 			);
@@ -1075,6 +1079,7 @@
 				FC74BC86257202FB00BC33D0 /* DomainView+Environment.swift in Sources */,
 				FC74BC3B2571F91900BC33D0 /* LengthView+State.swift in Sources */,
 				FC74BCDB2572861F00BC33D0 /* PasswordGeneratorView+State.swift in Sources */,
+				FC44B31125758E84007D601D /* Reducer+Initialisers.swift in Sources */,
 				FC0A2CF6254CB41000C5B579 /* ErrorHandler+DI.swift in Sources */,
 				37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */,
 				37020F262496F7E200C105D1 /* CounterView.swift in Sources */,
@@ -1197,6 +1202,7 @@
 				FC74BC7E257202E800BC33D0 /* PasswordGeneratorView+DomainView.swift in Sources */,
 				37CB52CE24CDF7520081DA1E /* ErrorEmittingViewModifier.swift in Sources */,
 				37CB52DD24CDF7650081DA1E /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
+				FC44B31625758EA9007D601D /* Reducer+Initialisers.swift in Sources */,
 				FC3AAE53256CB74B004FFF3E /* CounterToggleView+Action.swift in Sources */,
 				FC6138BB256CA8BA00023A8C /* Pasteboard.swift in Sources */,
 				FC74BCD42572113F00BC33D0 /* PasswordView+Action.swift in Sources */,

@@ -1,6 +1,6 @@
 import Foundation
 import ComposableArchitecture
-import Combine
+import CasePaths
 
 extension PasswordGeneratorView.DomainView {
 
@@ -13,34 +13,30 @@ extension PasswordGeneratorView.DomainView {
                 action: /Action.updateSeed,
                 environment: { _ in CounterView.Environment() }
             ),
+        Reducer(forAction: /Action.updateUsername) { state, username, _ -> Effect<Action, Never> in
 
-        Reducer { state, action, _ -> Effect<Action, Never> in
+            state.username = username
+            state.isValid = isStateValid(state)
+            return Effect(value: Action.didUpdate)
+        },
+        Reducer(forAction: /Action.updateDomain) { state, domain, _ -> Effect<Action, Never> in
 
-            func isStateValid(_ state: State) -> Bool {
-
-                let isValidDomain = state.domain.hasMatchingTypes(NSTextCheckingResult.CheckingType.link.rawValue)
-                let isValidUsername = state.username.isNotEmpty
-                return isValidDomain && isValidUsername
-            }
-
-            switch action {
-
-            case let .updateDomain(domain):
-                state.domain = domain
-                state.isValid = isStateValid(state)
-                return Just(Action.didUpdate).eraseToEffect()
-
-            case let .updateUsername(username):
-                state.username = username
-                state.isValid = isStateValid(state)
-                return Just(Action.didUpdate).eraseToEffect()
-
-            case .updateSeed(.didUpdate):
-                return Just(Action.didUpdate).eraseToEffect()
-
-            default:
-                return .none
-            }
-        }
+            state.domain = domain
+            state.isValid = isStateValid(state)
+            return Effect(value: Action.didUpdate)
+        },
+        Reducer(
+            forAction: didUpdateSeedCounter,
+            handler: { _, _ in Effect(value: Action.didUpdate) }
+        )
     )
+
+    private static let didUpdateSeedCounter = /Action.updateSeed .. /CounterView.Action.didUpdate
+
+    private static func isStateValid(_ state: State) -> Bool {
+
+        let isValidDomain = state.domain.hasMatchingTypes(NSTextCheckingResult.CheckingType.link.rawValue)
+        let isValidUsername = state.username.isNotEmpty
+        return isValidDomain && isValidUsername
+    }
 }

@@ -1,6 +1,6 @@
 import Foundation
-import Combine
 import ComposableArchitecture
+import CasePaths
 
 extension CounterToggleView {
 
@@ -13,21 +13,16 @@ extension CounterToggleView {
                 action: /Action.counterChanged,
                 environment: { _ in CounterView.Environment() }
             ),
-        Reducer { state, action, _ -> Effect<Action, Never> in
-
-            switch action {
-
-            case let .updateToggle(isToggled):
-                state.isToggled = isToggled
-                return Just(Action.didUpdate).eraseToEffect()
-
-            case .counterChanged(.didUpdate):
-                return Just(Action.didUpdate).eraseToEffect()
-
-            case .counterChanged(.update),
-                 .didUpdate:
-                return .none
-            }
-        }
+        Reducer(
+            bindingAction: /Action.updateToggle,
+            to: \.isToggled,
+            producing: { _ in Effect(value: Action.didUpdate) }
+        ),
+        Reducer(
+            forAction: didUpdateCounter,
+            handler: { _, _ in Effect(value: Action.didUpdate) }
+        )
     )
+
+    private static let didUpdateCounter = /Action.counterChanged .. /CounterView.Action.didUpdate
 }

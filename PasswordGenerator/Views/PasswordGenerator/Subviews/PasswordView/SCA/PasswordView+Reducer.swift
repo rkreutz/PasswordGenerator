@@ -1,6 +1,5 @@
 import Foundation
 import ComposableArchitecture
-import Combine
 
 extension PasswordGeneratorView.PasswordView {
 
@@ -13,23 +12,19 @@ extension PasswordGeneratorView.PasswordView {
                 action: /Action.updateCopyableContentView,
                 environment: CopyableContentView.Environment.init
             ),
-        Reducer { state, action, _ -> Effect<Action, Never> in
+        Reducer(forAction: /Action.updateFlow) { state, flow, _ -> Effect<Action, Never> in
 
-            switch action {
+            switch flow {
 
-            case let .updateFlow(.generated(password)):
+            case let .generated(password):
                 state.copyableState.content = password
-                state.flow = .generated(password)
-                return .none
-
-            case let .updateFlow(flow):
-                state.copyableState.content = ""
-                state.flow = flow
-                return .none
 
             default:
-                return .none
+                state.copyableState.content = ""
             }
+
+            state.flow = flow
+            return .none
         }
     )
 }

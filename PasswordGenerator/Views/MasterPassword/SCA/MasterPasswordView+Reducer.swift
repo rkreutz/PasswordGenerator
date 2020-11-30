@@ -6,35 +6,27 @@ extension MasterPasswordView {
 
     typealias Reducer = ComposableArchitecture.Reducer<State, Action, Environment>
 
-    static let sharedReducer = Reducer { state, action, environment -> Effect<Action, Never> in
+    static let sharedReducer = Reducer.combine(
+        Reducer(
+            bindingAction: /Action.updateError,
+            to: \.error
+        ),
+        Reducer(forAction: /Action.textFieldChanged) { state, text, _ -> Effect<Action, Never> in
 
-        switch action {
-
-        case let .textFieldChanged(text):
             state.masterPassword = text
             state.isValid = text.isNotEmpty
             return .none
+        },
+        Reducer(forAction: /Action.saveMasterPassword) { state, environment -> Effect<Action, Never> in
 
-        case .saveMasterPassword:
-            return Deferred { [masterPassword = state.masterPassword] () -> AnyPublisher<Action, Never> in
+            do {
 
-                do {
+                try environment.masterPasswordStorage.save(masterPassword: state.masterPassword)
+                return Effect(value: Action.masterPasswordSaved)
+            } catch {
 
-                    try environment.masterPasswordStorage.save(masterPassword: masterPassword)
-                    return Just(Action.masterPasswordSaved).eraseToAnyPublisher()
-                } catch {
-
-                    return Just(Action.updateError(error)).eraseToAnyPublisher()
-                }
+                return Effect(value: Action.updateError(error))
             }
-            .eraseToEffect()
-
-        case .masterPasswordSaved:
-            return .none
-
-        case let .updateError(error):
-            state.error = error
-            return .none
         }
-    }
+    )
 }

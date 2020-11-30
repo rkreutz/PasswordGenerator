@@ -2,10 +2,13 @@ import Foundation
 import ComposableArchitecture
 import Combine
 import PasswordGeneratorKit
+import CasePaths
 
 extension PasswordGeneratorView {
 
     typealias Reducer = ComposableArchitecture.Reducer<State, Action, Environment>
+
+    private struct GeneratePasswordHash: Hashable {}
 
     static let sharedReducer = Reducer.combine(
         ConfigurationView.sharedReducer
@@ -32,9 +35,36 @@ extension PasswordGeneratorView {
                 action: /Action.updatedPasswordState,
                 environment: PasswordView.Environment.init
             ),
-        Reducer { state, action, environment -> Effect<Action, Never> in
+        Reducer(
+            bindingAction: /Action.updateError,
+            to: \.error
+        ),
+        Reducer(forAction: /Action.logout) { _, environment -> Effect<Action, Never> in
 
-            struct GeneratePasswordHash: Hashable {}
+            do {
+
+                try environment.masterPasswordStorage.deleteMasterPassword()
+                return Effect(value: Action.didLogout)
+            } catch {
+
+                return Effect(value: Action.updateError(error))
+            }
+        },
+        Reducer(forAction: didUpdateCharactersState) { state, _ -> Effect<Action, Never> in
+
+            let charactersCount = state.charactersState.digitsState.counterState.count
+                + state.charactersState.lowercaseState.counterState.count
+                + state.charactersState.symbolsState.counterState.count
+                + state.charactersState.uppercaseState.counterState.count
+            let minimalLength = max(4, charactersCount)
+            state.lengthState.lengthState.bounds = minimalLength ... 32
+            if state.lengthState.lengthState.count < minimalLength {
+
+                state.lengthState.lengthState.count = minimalLength
+            }
+            return .none
+        },
+        Reducer(forAction: generatePassword) { state, environment in
 
             func characterRules(for charactersState: PasswordGeneratorView.CharactersView.State) -> Set<PasswordRule> {
 
@@ -58,95 +88,61 @@ extension PasswordGeneratorView {
                 return rules
             }
 
-            switch action {
+            let publisher: AnyPublisher<String, PasswordGenerator.Error>
+            switch state.configurationState.passwordType {
 
-            case .logout:
-                do {
+            case .domainBased:
+                publisher = environment.passwordGenerator.publishers.generatePassword(
+                    username: state.configurationState.domainState.username,
+                    domain: state.configurationState.domainState.domain,
+                    seed: state.configurationState.domainState.seed.count,
+                    rules: characterRules(for: state.charactersState)
+                        .union([PasswordRule.length(state.lengthState.lengthState.count)])
+                )
 
-                    try environment.masterPasswordStorage.deleteMasterPassword()
-                    return Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
-                        .append(Just(Action.didLogout))
-                        .eraseToEffect()
-                } catch {
+            case .serviceBased:
+                publisher = environment.passwordGenerator.publishers.generatePassword(
+                    service: state.configurationState.serviceState.service,
+                    rules: characterRules(for: state.charactersState)
+                        .union([PasswordRule.length(state.lengthState.lengthState.count)])
+                )
+            }
 
-                    return Just(Action.updateError(error)).eraseToEffect()
-                }
-
-            case let .updateError(error):
-                state.error = error
-                return .none
-
-            case .updatedPasswordState(.generatePassword):
-                let publisher: AnyPublisher<String, PasswordGenerator.Error>
-                switch state.configurationState.passwordType {
-
-                case .domainBased:
-                    publisher = environment.passwordGenerator.publishers.generatePassword(
-                        username: state.configurationState.domainState.username,
-                        domain: state.configurationState.domainState.domain,
-                        seed: state.configurationState.domainState.seed.count,
-                        rules: characterRules(for: state.charactersState)
-                            .union([PasswordRule.length(state.lengthState.lengthState.count)])
-                    )
-
-                case .serviceBased:
-                    publisher = environment.passwordGenerator.publishers.generatePassword(
-                        service: state.configurationState.serviceState.service,
-                        rules: characterRules(for: state.charactersState)
-                            .union([PasswordRule.length(state.lengthState.lengthState.count)])
-                    )
-                }
-
-                return Just(Action.updatedPasswordState(.updateFlow(.loading)))
-                    .append(
-                        publisher
-                            .receive(on: environment.scheduler)
-                            .map { Action.updatedPasswordState(.updateFlow(.generated($0))) }
-                            .catch { error in
-
-                                Just(Action.updateError(error))
-                                    .append(Action.updatedPasswordState(.updateFlow(.readyToGenerate)))
-                            }
-                    )
-                    .eraseToEffect()
-                    .cancellable(id: AnyHashable(GeneratePasswordHash()))
-
-            case .updatedCharactersState(.didUpdate):
-                let charactersCount = state.charactersState.digitsState.counterState.count
-                    + state.charactersState.lowercaseState.counterState.count
-                    + state.charactersState.symbolsState.counterState.count
-                    + state.charactersState.uppercaseState.counterState.count
-                let minimalLength = max(4, charactersCount)
-                state.lengthState.lengthState.bounds = minimalLength ... 32
-                if state.lengthState.lengthState.count < minimalLength {
-
-                    state.lengthState.lengthState.count = minimalLength
-                }
-                return Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
-                    .append(
-                        Just(
-                            state.charactersState.isValid && state.configurationState.isValid ?
-                                Action.updatedPasswordState(.updateFlow(.readyToGenerate)) :
-                                Action.updatedPasswordState(.updateFlow(.invalid))
-                        )
-                    )
-                    .eraseToEffect()
-
-            case .updatedConfigurationState(.didUpdate),
-                 .updatedLengthState(.didUpdate):
-                return Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
+            return Effect(value: Action.updatedPasswordState(.updateFlow(.loading)))
                 .append(
-                    Just(
-                        state.charactersState.isValid && state.configurationState.isValid ?
+                    publisher
+                        .receive(on: environment.scheduler)
+                        .map { Action.updatedPasswordState(.updateFlow(.generated($0))) }
+                        .catch { error in
+
+                            Effect(value: Action.updateError(error))
+                                .append(Action.updatedPasswordState(.updateFlow(.readyToGenerate)))
+                        }
+                )
+                .eraseToEffect()
+                .cancellable(id: AnyHashable(GeneratePasswordHash()))
+        },
+        Reducer(
+            forActions: didUpdateConfigurationState,
+            didUpdateLengthState,
+            didUpdateCharactersState,
+            /Action.didLogout
+        ) { state, _ -> Effect<Action, Never> in
+
+            Effect.cancel(id: AnyHashable(GeneratePasswordHash()))
+                .append(
+                    Effect(
+                        value: state.charactersState.isValid && state.configurationState.isValid ?
                             Action.updatedPasswordState(.updateFlow(.readyToGenerate)) :
                             Action.updatedPasswordState(.updateFlow(.invalid))
                     )
                 )
                 .eraseToEffect()
-
-            default:
-                return .none
-            }
         }
     )
+
+    private static let generatePassword = /Action.updatedPasswordState .. /PasswordView.Action.generatePassword
+    private static let didUpdateConfigurationState = /Action.updatedConfigurationState .. /ConfigurationView.Action.didUpdate
+    private static let didUpdateLengthState = /Action.updatedLengthState .. /LengthView.Action.didUpdate
+    private static let didUpdateCharactersState = /Action.updatedCharactersState .. /CharactersView.Action.didUpdate
 }

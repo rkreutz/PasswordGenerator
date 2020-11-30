@@ -1,6 +1,6 @@
 import Foundation
 import ComposableArchitecture
-import Combine
+import CasePaths
 
 extension PasswordGeneratorView.ConfigurationView {
 
@@ -19,31 +19,35 @@ extension PasswordGeneratorView.ConfigurationView {
                 action: /Action.updateService,
                 environment: { _ in .init() }
             ),
-        Reducer { state, action, _ -> Effect<Action, Never> in
+        Reducer(forAction: /Action.updatePasswordType) { state, passwordType, _ -> Effect<Action, Never> in
 
-            switch action {
+            state.passwordType = passwordType
+            switch passwordType {
 
-            case .updatePasswordType(.domainBased):
-                state.passwordType = .domainBased
+            case .domainBased:
                 state.isValid = state.domainState.isValid
-                return Just(Action.didUpdate).eraseToEffect()
 
-            case .updatePasswordType(.serviceBased):
-                state.passwordType = .serviceBased
+            case .serviceBased:
                 state.isValid = state.serviceState.isValid
-                return Just(Action.didUpdate).eraseToEffect()
-
-            case .updateDomain(.didUpdate) where state.passwordType == .domainBased:
-                state.isValid = state.domainState.isValid
-                return Just(Action.didUpdate).eraseToEffect()
-
-            case .updateService(.didUpdate) where state.passwordType == .serviceBased:
-                state.isValid = state.serviceState.isValid
-                return Just(Action.didUpdate).eraseToEffect()
-
-            default:
-                return .none
             }
+
+            return Effect(value: Action.didUpdate)
+        },
+        Reducer(forActions: didUpdateDomain, didUpdateService) { state, _ -> Effect<Action, Never> in
+
+            switch state.passwordType {
+
+            case .domainBased:
+                state.isValid = state.domainState.isValid
+
+            case .serviceBased:
+                state.isValid = state.serviceState.isValid
+            }
+
+            return Effect(value: Action.didUpdate)
         }
     )
+
+    private static let didUpdateDomain = /Action.updateDomain .. /PasswordGeneratorView.DomainView.Action.didUpdate
+    private static let didUpdateService = /Action.updateService .. /PasswordGeneratorView.ServiceView.Action.didUpdate
 }

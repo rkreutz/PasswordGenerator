@@ -1,6 +1,6 @@
 import Foundation
-import Combine
 import ComposableArchitecture
+import CasePaths
 
 extension PasswordGeneratorView.CharactersView {
 
@@ -31,23 +31,23 @@ extension PasswordGeneratorView.CharactersView {
                 action: /Action.updateSymbolsCounter,
                 environment: { _ in CounterToggleView.Environment() }
             ),
-        Reducer { state, action, _ -> Effect<Action, Never> in
+        Reducer(
+            forActions: didUpdateDigitsCounter,
+            didUpdateLowercaseCounter,
+            didUpdateSymbolsCounter,
+            didUpdateUppercaseCounter
+        ) { state, _ -> Effect<Action, Never> in
 
-            switch action {
-
-            case .updateDigitsCounter(.didUpdate),
-                 .updateLowercaseCounter(.didUpdate),
-                 .updateSymbolsCounter(.didUpdate),
-                 .updateUppercaseCounter(.didUpdate):
-                state.isValid = state.digitsState.isToggled
-                    || state.lowercaseState.isToggled
-                    || state.symbolsState.isToggled
-                    || state.uppercaseState.isToggled
-                return Just(Action.didUpdate).eraseToEffect()
-
-            default:
-                return .none
-            }
+            state.isValid = state.digitsState.isToggled
+                || state.lowercaseState.isToggled
+                || state.symbolsState.isToggled
+                || state.uppercaseState.isToggled
+            return Effect(value: Action.didUpdate)
         }
     )
+
+    private static let didUpdateDigitsCounter = /Action.updateDigitsCounter .. /CounterToggleView.Action.didUpdate
+    private static let didUpdateLowercaseCounter = /Action.updateLowercaseCounter .. /CounterToggleView.Action.didUpdate
+    private static let didUpdateSymbolsCounter = /Action.updateSymbolsCounter .. /CounterToggleView.Action.didUpdate
+    private static let didUpdateUppercaseCounter = /Action.updateUppercaseCounter .. /CounterToggleView.Action.didUpdate
 }
