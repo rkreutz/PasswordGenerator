@@ -50,7 +50,7 @@ extension PasswordGeneratorView {
                 return Effect(value: Action.updateError(error))
             }
         },
-        Reducer(forAction: didUpdateCharactersState) { state, _ -> Effect<Action, Never> in
+        Reducer(forAction: .didUpdateCharactersState) { state, _ -> Effect<Action, Never> in
 
             let charactersCount = state.charactersState.digitsState.counterState.count
                 + state.charactersState.lowercaseState.counterState.count
@@ -64,7 +64,7 @@ extension PasswordGeneratorView {
             }
             return .none
         },
-        Reducer(forAction: generatePassword) { state, environment in
+        Reducer(forAction: .generatePassword) { state, environment in
 
             Effect(value: Action.updatedPasswordState(.updateFlow(.loading)))
                 .append(
@@ -81,9 +81,9 @@ extension PasswordGeneratorView {
                 .cancellable(id: AnyHashable(GeneratePasswordHash()))
         },
         Reducer(
-            forActions: didUpdateConfigurationState,
-            didUpdateLengthState,
-            didUpdateCharactersState,
+            forActions: .didUpdateConfigurationState,
+            .didUpdateLengthState,
+            .didUpdateCharactersState,
             /Action.didLogout
         ) { state, _ -> Effect<Action, Never> in
 
@@ -98,13 +98,11 @@ extension PasswordGeneratorView {
                 .eraseToEffect()
         }
     )
+}
 
-    private static let generatePassword = /Action.updatedPasswordState .. /PasswordView.Action.generatePassword
-    private static let didUpdateConfigurationState = /Action.updatedConfigurationState .. /ConfigurationView.Action.didUpdate
-    private static let didUpdateLengthState = /Action.updatedLengthState .. /LengthView.Action.didUpdate
-    private static let didUpdateCharactersState = /Action.updatedCharactersState .. /CharactersView.Action.didUpdate
+private extension PasswordGeneratorView {
 
-    private static func passwordPublisher(for state: State, environment: Environment) -> AnyPublisher<String, PasswordGenerator.Error> {
+    static func passwordPublisher(for state: State, environment: Environment) -> AnyPublisher<String, PasswordGenerator.Error> {
 
         let publisher: AnyPublisher<String, PasswordGenerator.Error>
         switch state.configurationState.passwordType {
@@ -127,7 +125,7 @@ extension PasswordGeneratorView {
         return publisher
     }
 
-    private static func rules(for charactersState: PasswordGeneratorView.CharactersView.State, length: Int) -> Set<PasswordRule> {
+    static func rules(for charactersState: PasswordGeneratorView.CharactersView.State, length: Int) -> Set<PasswordRule> {
 
         var rules: Set<PasswordRule> = [.length(length)]
 
@@ -150,4 +148,23 @@ extension PasswordGeneratorView {
 
         return rules
     }
+}
+
+private extension CasePath where Root == PasswordGeneratorView.Action, Value == Void {
+
+    static let generatePassword =
+        /PasswordGeneratorView.Action.updatedPasswordState
+        .. /PasswordGeneratorView.PasswordView.Action.generatePassword
+
+    static let didUpdateConfigurationState =
+        /PasswordGeneratorView.Action.updatedConfigurationState
+        .. /PasswordGeneratorView.ConfigurationView.Action.didUpdate
+
+    static let didUpdateLengthState =
+        /PasswordGeneratorView.Action.updatedLengthState
+        .. /PasswordGeneratorView.LengthView.Action.didUpdate
+
+    static let didUpdateCharactersState =
+        /PasswordGeneratorView.Action.updatedCharactersState
+        .. /PasswordGeneratorView.CharactersView.Action.didUpdate
 }

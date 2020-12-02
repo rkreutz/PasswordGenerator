@@ -19,10 +19,13 @@ extension CounterToggleView {
             producing: { _ in Effect(value: Action.didUpdate) }
         ),
         Reducer(
-            forAction: didUpdateCounter,
+            forAction: .didUpdateCounter,
             handler: { _, _ in Effect(value: Action.didUpdate) }
         )
     )
+}
 
-    private static let didUpdateCounter = /Action.counterChanged .. /CounterView.Action.didUpdate
+private extension CasePath where Root == CounterToggleView.Action, Value == Void {
+
+    static let didUpdateCounter = /CounterToggleView.Action.counterChanged .. /CounterView.Action.didUpdate
 }

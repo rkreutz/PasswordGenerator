@@ -14,10 +14,13 @@ extension PasswordGeneratorView.LengthView {
                 environment: { _ in CounterView.Environment() }
             ),
         Reducer(
-            forAction: didUpdateLengthCounter,
+            forAction: .didUpdateLengthCounter,
             handler: { _, _ in Effect(value: Action.didUpdate) }
         )
     )
+}
 
-    private static let didUpdateLengthCounter = /Action.updatedLengthCounter .. /CounterView.Action.didUpdate
+private extension CasePath where Root == PasswordGeneratorView.LengthView.Action, Value == Void {
+
+    static let didUpdateLengthCounter = /PasswordGeneratorView.LengthView.Action.updatedLengthCounter .. /CounterView.Action.didUpdate
 }

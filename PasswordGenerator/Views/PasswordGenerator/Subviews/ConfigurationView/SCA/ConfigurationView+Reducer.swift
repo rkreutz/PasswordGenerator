@@ -33,7 +33,7 @@ extension PasswordGeneratorView.ConfigurationView {
 
             return Effect(value: Action.didUpdate)
         },
-        Reducer(forActions: didUpdateDomain, didUpdateService) { state, _ -> Effect<Action, Never> in
+        Reducer(forActions: .didUpdateDomain, .didUpdateService) { state, _ -> Effect<Action, Never> in
 
             switch state.passwordType {
 
@@ -47,7 +47,15 @@ extension PasswordGeneratorView.ConfigurationView {
             return Effect(value: Action.didUpdate)
         }
     )
+}
 
-    private static let didUpdateDomain = /Action.updateDomain .. /PasswordGeneratorView.DomainView.Action.didUpdate
-    private static let didUpdateService = /Action.updateService .. /PasswordGeneratorView.ServiceView.Action.didUpdate
+private extension CasePath where Root == PasswordGeneratorView.ConfigurationView.Action, Value == Void {
+
+    static let didUpdateDomain =
+        /PasswordGeneratorView.ConfigurationView.Action.updateDomain
+        .. /PasswordGeneratorView.DomainView.Action.didUpdate
+
+    static let didUpdateService =
+        /PasswordGeneratorView.ConfigurationView.Action.updateService
+        .. /PasswordGeneratorView.ServiceView.Action.didUpdate
 }

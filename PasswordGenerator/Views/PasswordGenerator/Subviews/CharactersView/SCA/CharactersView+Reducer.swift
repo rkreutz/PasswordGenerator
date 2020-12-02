@@ -32,10 +32,10 @@ extension PasswordGeneratorView.CharactersView {
                 environment: { _ in CounterToggleView.Environment() }
             ),
         Reducer(
-            forActions: didUpdateDigitsCounter,
-            didUpdateLowercaseCounter,
-            didUpdateSymbolsCounter,
-            didUpdateUppercaseCounter
+            forActions: .didUpdateDigitsCounter,
+            .didUpdateLowercaseCounter,
+            .didUpdateSymbolsCounter,
+            .didUpdateUppercaseCounter
         ) { state, _ -> Effect<Action, Never> in
 
             state.isValid = state.digitsState.isToggled
@@ -45,9 +45,23 @@ extension PasswordGeneratorView.CharactersView {
             return Effect(value: Action.didUpdate)
         }
     )
+}
 
-    private static let didUpdateDigitsCounter = /Action.updateDigitsCounter .. /CounterToggleView.Action.didUpdate
-    private static let didUpdateLowercaseCounter = /Action.updateLowercaseCounter .. /CounterToggleView.Action.didUpdate
-    private static let didUpdateSymbolsCounter = /Action.updateSymbolsCounter .. /CounterToggleView.Action.didUpdate
-    private static let didUpdateUppercaseCounter = /Action.updateUppercaseCounter .. /CounterToggleView.Action.didUpdate
+private extension CasePath where Root == PasswordGeneratorView.CharactersView.Action, Value == Void {
+
+    static let didUpdateDigitsCounter =
+        /PasswordGeneratorView.CharactersView.Action.updateDigitsCounter
+        .. /CounterToggleView.Action.didUpdate
+
+    static let didUpdateLowercaseCounter =
+        /PasswordGeneratorView.CharactersView.Action.updateLowercaseCounter
+        .. /CounterToggleView.Action.didUpdate
+
+    static let didUpdateSymbolsCounter =
+        /PasswordGeneratorView.CharactersView.Action.updateSymbolsCounter
+        .. /CounterToggleView.Action.didUpdate
+
+    static let didUpdateUppercaseCounter =
+        /PasswordGeneratorView.CharactersView.Action.updateUppercaseCounter
+        .. /CounterToggleView.Action.didUpdate
 }

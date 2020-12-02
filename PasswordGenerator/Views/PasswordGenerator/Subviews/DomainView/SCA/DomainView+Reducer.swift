@@ -26,17 +26,23 @@ extension PasswordGeneratorView.DomainView {
             return Effect(value: Action.didUpdate)
         },
         Reducer(
-            forAction: didUpdateSeedCounter,
+            forAction: .didUpdateSeedCounter,
             handler: { _, _ in Effect(value: Action.didUpdate) }
         )
     )
+}
 
-    private static let didUpdateSeedCounter = /Action.updateSeed .. /CounterView.Action.didUpdate
+private extension PasswordGeneratorView.DomainView {
 
-    private static func isStateValid(_ state: State) -> Bool {
+    static func isStateValid(_ state: State) -> Bool {
 
         let isValidDomain = state.domain.hasMatchingTypes(NSTextCheckingResult.CheckingType.link.rawValue)
         let isValidUsername = state.username.isNotEmpty
         return isValidDomain && isValidUsername
     }
+}
+
+private extension CasePath where Root == PasswordGeneratorView.DomainView.Action, Value == Void {
+
+    static let didUpdateSeedCounter = /PasswordGeneratorView.DomainView.Action.updateSeed .. /CounterView.Action.didUpdate
 }

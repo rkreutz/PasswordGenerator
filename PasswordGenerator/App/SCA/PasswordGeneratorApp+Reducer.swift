@@ -19,19 +19,22 @@ extension PasswordGeneratorApp {
                 action: /Action.updatedPasswordGenerator,
                 environment: PasswordGeneratorView.Environment.init
             ),
-        Reducer(forAction: didSaveMasterPassword) { state, _ in
+        Reducer(forAction: .didSaveMasterPassword) { state, _ in
 
             state.isMasterPasswordSet = true
             state.masterPasswordState.masterPassword = ""
             return .none
         },
-        Reducer(forAction: loggedOutAction) { state, _ in
+        Reducer(forAction: .loggedOutAction) { state, _ in
 
             state.isMasterPasswordSet = false
             return .none
         }
     )
+}
 
-    private static let didSaveMasterPassword = /Action.updatedMasterPassword .. /MasterPasswordView.Action.masterPasswordSaved
-    private static let loggedOutAction = /Action.updatedPasswordGenerator .. /PasswordGeneratorView.Action.didLogout
+private extension CasePath where Root == PasswordGeneratorApp.Action, Value == Void {
+
+    static let didSaveMasterPassword = /PasswordGeneratorApp.Action.updatedMasterPassword .. /MasterPasswordView.Action.masterPasswordSaved
+    static let loggedOutAction = /PasswordGeneratorApp.Action.updatedPasswordGenerator .. /PasswordGeneratorView.Action.didLogout
 }
