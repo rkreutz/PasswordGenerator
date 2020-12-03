@@ -133,9 +133,8 @@
 		FC3AAE6F256CC73B004FFF3E /* MasterPasswordView+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AAE68256CC2F5004FFF3E /* MasterPasswordView+Reducer.swift */; };
 		FC3AAE70256CC73B004FFF3E /* MasterPasswordView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AAE64256CC24A004FFF3E /* MasterPasswordView+Environment.swift */; };
 		FC3AAE71256CC73B004FFF3E /* MasterPasswordView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AAE5A256CC123004FFF3E /* MasterPasswordView+State.swift */; };
-		FC44B31125758E84007D601D /* Reducer+Initialisers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44B31025758E84007D601D /* Reducer+Initialisers.swift */; };
-		FC44B31625758EA9007D601D /* Reducer+Initialisers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44B31025758E84007D601D /* Reducer+Initialisers.swift */; };
-		FC61387E256C9C4400023A8C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FC61387D256C9C4400023A8C /* ComposableArchitecture */; };
+		FC45FD9925796E2300DE4F94 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FC45FD9825796E2300DE4F94 /* ComposableArchitecture */; };
+		FC45FD9D25796E2E00DE4F94 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FC45FD9C25796E2E00DE4F94 /* ComposableArchitecture */; };
 		FC61389B256CA3FC00023A8C /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC61389A256CA3FC00023A8C /* HapticManager.swift */; };
 		FC61389F256CA42700023A8C /* HapticEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC61389E256CA42700023A8C /* HapticEvent.swift */; };
 		FC6138A3256CA55200023A8C /* UIKitHapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6138A2256CA55200023A8C /* UIKitHapticManager.swift */; };
@@ -221,7 +220,6 @@
 		FC8547F4256DF9E300E2A295 /* CharactersView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547E3256DF88300E2A295 /* CharactersView+State.swift */; };
 		FC8547F5256DF9E300E2A295 /* CharactersView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547EB256DF95800E2A295 /* CharactersView+Environment.swift */; };
 		FC8547F6256DF9E300E2A295 /* CharactersView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8547E7256DF8F500E2A295 /* CharactersView+Action.swift */; };
-		FCBC9784256C2F5F00444A1B /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = FCBC9783256C2F5F00444A1B /* ComposableArchitecture */; };
 		FCE2AD79257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD78257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift */; };
 		FCE2AD7F2573522E00812A51 /* CredentialProviderViewController+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */; };
 		FCE2AD8D2573535200812A51 /* CredentialProviderViewController+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD8C2573535200812A51 /* CredentialProviderViewController+Reducer.swift */; };
@@ -318,7 +316,6 @@
 		FC3AAE60256CC1BB004FFF3E /* MasterPasswordView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+Action.swift"; sourceTree = "<group>"; };
 		FC3AAE64256CC24A004FFF3E /* MasterPasswordView+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+Environment.swift"; sourceTree = "<group>"; };
 		FC3AAE68256CC2F5004FFF3E /* MasterPasswordView+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+Reducer.swift"; sourceTree = "<group>"; };
-		FC44B31025758E84007D601D /* Reducer+Initialisers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reducer+Initialisers.swift"; sourceTree = "<group>"; };
 		FC613874256C952100023A8C /* CopyableContentView+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CopyableContentView+Reducer.swift"; sourceTree = "<group>"; };
 		FC613884256C9EDD00023A8C /* CopyableContentView+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CopyableContentView+State.swift"; sourceTree = "<group>"; };
 		FC61388B256C9F0600023A8C /* CopyableContentView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CopyableContentView+Action.swift"; sourceTree = "<group>"; };
@@ -379,7 +376,7 @@
 			files = (
 				37287F5B24CCB41900E9407F /* AuthenticationServices.framework in Frameworks */,
 				37A5651224A6E4B3008D48FD /* PasswordGeneratorKit in Frameworks */,
-				FCBC9784256C2F5F00444A1B /* ComposableArchitecture in Frameworks */,
+				FC45FD9925796E2300DE4F94 /* ComposableArchitecture in Frameworks */,
 				37A5651024A6E4B3008D48FD /* PasswordGeneratorKitPublishers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,7 +387,7 @@
 			files = (
 				37CB52C024CDF57D0081DA1E /* PasswordGeneratorKit in Frameworks */,
 				37287F7624CCB5AD00E9407F /* AuthenticationServices.framework in Frameworks */,
-				FC61387E256C9C4400023A8C /* ComposableArchitecture in Frameworks */,
+				FC45FD9D25796E2E00DE4F94 /* ComposableArchitecture in Frameworks */,
 				37CB52C224CDF57D0081DA1E /* PasswordGeneratorKitPublishers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,7 +505,6 @@
 				FC66E359252FD705002F8DDF /* Label+TextInitialiser.swift */,
 				375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */,
 				37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */,
-				FC44B31025758E84007D601D /* Reducer+Initialisers.swift */,
 				3737691A24996A07003C6CE4 /* String+HasMatchingTypes.swift */,
 				37C76EF324BB8568003BCAC1 /* View */,
 			);
@@ -880,7 +876,7 @@
 			packageProductDependencies = (
 				37A5650F24A6E4B3008D48FD /* PasswordGeneratorKitPublishers */,
 				37A5651124A6E4B3008D48FD /* PasswordGeneratorKit */,
-				FCBC9783256C2F5F00444A1B /* ComposableArchitecture */,
+				FC45FD9825796E2300DE4F94 /* ComposableArchitecture */,
 			);
 			productName = PasswordGenerator;
 			productReference = 37020F00248DABB900C105D1 /* Pwd Generator.app */;
@@ -902,7 +898,7 @@
 			packageProductDependencies = (
 				37CB52BF24CDF57D0081DA1E /* PasswordGeneratorKit */,
 				37CB52C124CDF57D0081DA1E /* PasswordGeneratorKitPublishers */,
-				FC61387D256C9C4400023A8C /* ComposableArchitecture */,
+				FC45FD9C25796E2E00DE4F94 /* ComposableArchitecture */,
 			);
 			productName = CredentialProvider;
 			productReference = 37287F7524CCB5AD00E9407F /* CredentialProvider.appex */;
@@ -937,7 +933,7 @@
 			mainGroup = 37020EF7248DABB900C105D1;
 			packageReferences = (
 				37A5650E24A6E4B3008D48FD /* XCRemoteSwiftPackageReference "PasswordGeneratorKit" */,
-				FCBC9782256C2F5F00444A1B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				FC45FD9725796E2300DE4F94 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 37020F01248DABB900C105D1 /* Products */;
 			projectDirPath = "";
@@ -1079,7 +1075,6 @@
 				FC74BC86257202FB00BC33D0 /* DomainView+Environment.swift in Sources */,
 				FC74BC3B2571F91900BC33D0 /* LengthView+State.swift in Sources */,
 				FC74BCDB2572861F00BC33D0 /* PasswordGeneratorView+State.swift in Sources */,
-				FC44B31125758E84007D601D /* Reducer+Initialisers.swift in Sources */,
 				FC0A2CF6254CB41000C5B579 /* ErrorHandler+DI.swift in Sources */,
 				37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */,
 				37020F262496F7E200C105D1 /* CounterView.swift in Sources */,
@@ -1202,7 +1197,6 @@
 				FC74BC7E257202E800BC33D0 /* PasswordGeneratorView+DomainView.swift in Sources */,
 				37CB52CE24CDF7520081DA1E /* ErrorEmittingViewModifier.swift in Sources */,
 				37CB52DD24CDF7650081DA1E /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
-				FC44B31625758EA9007D601D /* Reducer+Initialisers.swift in Sources */,
 				FC3AAE53256CB74B004FFF3E /* CounterToggleView+Action.swift in Sources */,
 				FC6138BB256CA8BA00023A8C /* Pasteboard.swift in Sources */,
 				FC74BCD42572113F00BC33D0 /* PasswordView+Action.swift in Sources */,
@@ -1493,12 +1487,12 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		FCBC9782256C2F5F00444A1B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		FC45FD9725796E2300DE4F94 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			repositoryURL = "https://github.com/rkreutz/swift-composable-architecture";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
+				minimumVersion = 0.9.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1524,14 +1518,14 @@
 			package = 37A5650E24A6E4B3008D48FD /* XCRemoteSwiftPackageReference "PasswordGeneratorKit" */;
 			productName = PasswordGeneratorKitPublishers;
 		};
-		FC61387D256C9C4400023A8C /* ComposableArchitecture */ = {
+		FC45FD9825796E2300DE4F94 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FCBC9782256C2F5F00444A1B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = FC45FD9725796E2300DE4F94 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		FCBC9783256C2F5F00444A1B /* ComposableArchitecture */ = {
+		FC45FD9C25796E2E00DE4F94 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FCBC9782256C2F5F00444A1B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = FC45FD9725796E2300DE4F94 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -8,6 +8,6 @@ extension CounterView {
     static let sharedReducer = Reducer(
         bindingAction: /Action.update,
         to: \.count,
-        producing: { _ in Effect(value: Action.didUpdate) }
+        handler: { _, _, _ in Effect(value: Action.didUpdate) }
     )
 }

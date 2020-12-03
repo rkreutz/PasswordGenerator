@@ -16,7 +16,7 @@ extension CounterToggleView {
         Reducer(
             bindingAction: /Action.updateToggle,
             to: \.isToggled,
-            producing: { _ in Effect(value: Action.didUpdate) }
+            handler: { _, _, _ in Effect(value: Action.didUpdate) }
         ),
         Reducer(
             forAction: .didUpdateCounter,
