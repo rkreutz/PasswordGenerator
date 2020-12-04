@@ -1,49 +1,42 @@
+//swiftlint:disable closure_body_length
 import SwiftUI
+import ComposableArchitecture
 
 struct MasterPasswordView: View {
-
-    @State var viewState = ViewState()
-
-    @Environment(\.appState) private var appState
-    @Environment(\.masterPasswordStorage) private var masterPasswordStorage
 
     @ScaledMetric private var spacing: CGFloat = 48
     @ScaledMetric private var margins: CGFloat = 16
     @ScaledMetric private var topMargin: CGFloat = 32
 
+    let store: Store<State, Action>
+
     var body: some View {
 
-        ScrollView {
+        WithViewStore(store) { viewStore in
 
-            VStack(spacing: spacing) {
+            ScrollView {
 
-                TextField(Strings.MasterPasswordView.placeholder, text: $viewState.masterPassword)
+                VStack(spacing: spacing) {
+
+                    TextField(
+                        Strings.MasterPasswordView.placeholder,
+                        text: viewStore.binding(get: \.masterPassword, send: Action.textFieldChanged)
+                    )
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
-                    .textFieldStyle(PrimaryTextFiledStyle())
+                    .textFieldStyle(PrimaryTextFieldStyle())
 
-                Button(Strings.MasterPasswordView.save, action: saveMasterPassword)
-                    .buttonStyle(MainButtonStyle())
-                    .disabled(!viewState.isValid)
+                    Button(Strings.MasterPasswordView.save, action: { viewStore.send(.saveMasterPassword) })
+                        .buttonStyle(MainButtonStyle())
+                        .disabled(!viewStore.isValid)
 
-                Label(Strings.MasterPasswordView.title)
-                    .labelStyle(ParagraphStyle())
+                    Label(Strings.MasterPasswordView.title)
+                        .labelStyle(ParagraphStyle())
+                }
+                .padding(margins)
+                .padding(.top, topMargin)
             }
-            .padding(margins)
-            .padding(.top, topMargin)
-        }
-        .emittingError($viewState.error)
-    }
-
-    private func saveMasterPassword() {
-
-        do {
-
-            try masterPasswordStorage.save(masterPassword: viewState.masterPassword)
-            appState.state = .masterPasswordSet
-        } catch {
-
-            viewState.error = error
+            .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
         }
     }
 }
@@ -56,23 +49,39 @@ struct MasterPasswordView_Previews: PreviewProvider {
 
         Group {
 
-            MasterPasswordView()
-                .environment(\.colorScheme, .light)
-                .previewDisplayName("Light")
+            MasterPasswordView(
+                store: .init(
+                    initialState: MasterPasswordView.State(),
+                    reducer: MasterPasswordView.sharedReducer,
+                    environment: MasterPasswordView.Environment(masterPasswordStorage: MockMasterPasswordStorage())
+                )
+            )
+            .environment(\.colorScheme, .light)
+            .previewDisplayName("Light")
 
-            MasterPasswordView()
-                .environment(\.colorScheme, .dark)
-                .previewDisplayName("Dark")
+            MasterPasswordView(
+                store: .init(
+                    initialState: MasterPasswordView.State(),
+                    reducer: MasterPasswordView.sharedReducer,
+                    environment: MasterPasswordView.Environment(masterPasswordStorage: MockMasterPasswordStorage())
+                )
+            )
+            .environment(\.colorScheme, .dark)
+            .previewDisplayName("Dark")
 
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
-                MasterPasswordView()
-                    .environment(\.sizeCategory, category)
-                    .previewDisplayName("\(category)")
+                MasterPasswordView(
+                    store: .init(
+                        initialState: MasterPasswordView.State(),
+                        reducer: MasterPasswordView.sharedReducer,
+                        environment: MasterPasswordView.Environment(masterPasswordStorage: MockMasterPasswordStorage())
+                    )
+                )
+                .environment(\.sizeCategory, category)
+                .previewDisplayName("\(category)")
             }
         }
-        .use(masterPasswordStorage: MockMasterPasswordStorage())
-        .environmentObject(AppState(state: .mustProvideMasterPassword))
     }
 }
 

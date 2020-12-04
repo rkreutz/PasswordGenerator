@@ -1,19 +1,29 @@
 import AuthenticationServices
 import SwiftUI
 import Combine
-import os.log
+import ComposableArchitecture
 
 class CredentialProviderViewController: ASCredentialProviderViewController {
 
     private var cancellableStore: Set<AnyCancellable> = []
-    private var viewState = StateReference(state: PasswordGeneratorView.ViewState())
+
+    lazy var store = Store<PasswordGeneratorView.State, PasswordGeneratorView.Action>(
+        initialState: CredentialProviderViewController.initialState,
+        reducer: reducer,
+        environment: PasswordGeneratorView.Environment.live()
+    )
+
+    var viewStore: ViewStore<PasswordGeneratorView.State, PasswordGeneratorView.Action> {
+
+        ViewStore(store)
+    }
 
     @IBSegueAction
     private func addSwiftUI(_ coder: NSCoder) -> UIViewController? {
 
         UIHostingController(
             coder: coder,
-            rootView: PasswordGeneratorView(viewStateReference: viewState)
+            rootView: PasswordGeneratorView(store: store)
                 .frame(maxWidth: 450)
                 .accentColor(.accentColor)
                 .background(
@@ -24,36 +34,13 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         )
     }
 
-    override func viewDidLoad() {
-
-        super.viewDidLoad()
-
-        viewState.$state
-            .compactMap { state -> String? in
-
-                guard case let .generated(password) = state.passwordState else { return nil }
-                return password
-            }
-            .sink { [extensionContext, viewState] password in
-
-                extensionContext.completeRequest(
-                    withSelectedCredential: ASPasswordCredential(
-                        user: viewState.state.configurationState.username,
-                        password: password
-                    ),
-                    completionHandler: nil
-                )
-            }
-            .store(in: &cancellableStore)
-    }
-
     override func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier]) {
 
         let host = serviceIdentifiers
             .first { $0.type == .URL }
             .flatMap { URL(string: $0.identifier)?.host }
 
-        viewState.state.configurationState.domain = host ?? ""
+        viewStore.send(.updatedConfigurationState(.updateDomain(.updateDomain(host ?? ""))))
     }
 
     @IBAction private func cancel(_ sender: AnyObject?) {

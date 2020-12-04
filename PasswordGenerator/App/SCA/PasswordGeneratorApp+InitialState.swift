@@ -1,56 +1,11 @@
-import SwiftUI
-import UIKit
-import Combine
-import PasswordGeneratorKit
-import PasswordGeneratorKitPublishers
-import ComposableArchitecture
+import Foundation
 
-struct PasswordGeneratorView: View {
+extension PasswordGeneratorApp {
 
-    @ScaledMetric private var spacing: CGFloat = 16
-
-    let store: Store<State, Action>
-
-    var body: some View {
-
-        WithViewStore(store) { viewStore in
-
-            ScrollView {
-
-                VStack(alignment: .center, spacing: spacing) {
-
-                    ConfigurationView(store: store.scope(state: \.configurationState, action: Action.updatedConfigurationState))
-
-                    LengthView(store: store.scope(state: \.lengthState, action: Action.updatedLengthState))
-
-                    CharactersView(store: store.scope(state: \.charactersState, action: Action.updatedCharactersState))
-
-                    PasswordView(store: store.scope(state: \.passwordState, action: Action.updatedPasswordState))
-                }
-                .padding(spacing)
-            }
-            .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
-            .navigationBarItems(
-                trailing: Button(
-                    action: { viewStore.send(.logout) },
-                    label: {
-
-                        Text(Strings.PasswordGeneratorView.resetMasterPassword)
-                            .font(.headline)
-                    }
-                )
-            )
-            .navigationBarTitle("", displayMode: .inline)
-        }
-    }
-}
-
-#if DEBUG
-
-struct PasswordGeneratorView_Previews: PreviewProvider {
-
-    static let store = Store<PasswordGeneratorView.State, PasswordGeneratorView.Action>(
-        initialState: .init(
+    static let initialState = State(
+        isMasterPasswordSet: MasterPasswordKeychain().hasMasterPassword,
+        masterPasswordState: .init(),
+        passwordGeneratorState: .init(
             configurationState: .init(
                 passwordType: .domainBased,
                 domainState: .init(
@@ -91,7 +46,7 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
                     isToggled: false,
                     counterState: .init(
                         title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
-                        count: 0,
+                        count: 1,
                         bounds: 1 ... 8
                     )
                 ),
@@ -119,31 +74,6 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
                 flow: .invalid,
                 copyableState: .init(content: "")
             )
-        ),
-        reducer: PasswordGeneratorView.sharedReducer,
-        environment: PasswordGeneratorView.Environment.live()
+        )
     )
-
-    static var previews: some View {
-
-        Group {
-
-            PasswordGeneratorView(store: store)
-                .environment(\.colorScheme, .light)
-                .previewDisplayName("Light")
-
-            PasswordGeneratorView(store: store)
-                .environment(\.colorScheme, .dark)
-                .previewDisplayName("Dark")
-
-            ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
-
-                PasswordGeneratorView(store: store)
-                    .environment(\.sizeCategory, category)
-                    .previewDisplayName("\(category)")
-            }
-        }
-    }
 }
-
-#endif
