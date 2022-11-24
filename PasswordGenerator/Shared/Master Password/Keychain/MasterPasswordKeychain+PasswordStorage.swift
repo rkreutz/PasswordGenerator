@@ -3,15 +3,7 @@ import LocalAuthentication
 
 extension MasterPasswordKeychain: MasterPasswordStorage {
 
-    private var context: LAContext {
-
-        let context = LAContext()
-        context.touchIDAuthenticationAllowableReuseDuration = 30
-        context.localizedReason = Strings.MasterPasswordKeychain.prompt
-        return context
-    }
-
-    private var protectedAccess: SecAccessControl? {
+    var protectedAccess: SecAccessControl? {
 
         SecAccessControlCreateWithFlags(
             nil,
@@ -21,7 +13,7 @@ extension MasterPasswordKeychain: MasterPasswordStorage {
         )
     }
 
-    private var freeAccess: SecAccessControl? {
+    var freeAccess: SecAccessControl? {
 
         SecAccessControlCreateWithFlags(
             nil,
@@ -29,6 +21,14 @@ extension MasterPasswordKeychain: MasterPasswordStorage {
             [],
             nil
         )
+    }
+    
+    private var context: LAContext {
+
+        let context = LAContext()
+        context.touchIDAuthenticationAllowableReuseDuration = 30
+        context.localizedReason = Strings.MasterPasswordKeychain.prompt
+        return context
     }
 
     //swiftlint:disable:next function_body_length
@@ -93,8 +93,7 @@ extension MasterPasswordKeychain: MasterPasswordStorage {
                 kSecClass: kSecClassGenericPassword,
                 kSecAttrService: Constants.service,
                 kSecAttrAccount: Constants.hasPasswordKey,
-                kSecAttrAccessControl: freeAccess,
-                kSecValueData: passwordData
+                kSecAttrAccessControl: freeAccess
             ]
 
             let unprotectedStatus = SecItemAdd(unprotectedQuery as CFDictionary, nil)

@@ -13,6 +13,8 @@
 		37020F1F2496961B00C105D1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F1D248DBB2300C105D1 /* Colors.swift */; };
 		37020F262496F7E200C105D1 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F252496F7E200C105D1 /* CounterView.swift */; };
 		37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37020F27249831E000C105D1 /* CounterToggleView.swift */; };
+		370F45B3292F07A800E4ADAE /* MasterPasswordKeychain+Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F45B2292F07A800E4ADAE /* MasterPasswordKeychain+Migration.swift */; };
+		370F45B4292F0BA500E4ADAE /* MasterPasswordKeychain+Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F45B2292F07A800E4ADAE /* MasterPasswordKeychain+Migration.swift */; };
 		370F7ED8251676EA00F87C9A /* ExpandInParentViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */; };
 		370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */; };
 		37197A9824FB372100873DC6 /* CardViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37197A9724FB372100873DC6 /* CardViewModifier.swift */; };
@@ -256,6 +258,7 @@
 		37020F1D248DBB2300C105D1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		37020F252496F7E200C105D1 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		37020F27249831E000C105D1 /* CounterToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterToggleView.swift; sourceTree = "<group>"; };
+		370F45B2292F07A800E4ADAE /* MasterPasswordKeychain+Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordKeychain+Migration.swift"; sourceTree = "<group>"; };
 		370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorApp.swift; sourceTree = "<group>"; };
 		370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandInParentViewModifier.swift; sourceTree = "<group>"; };
 		37197A9724FB372100873DC6 /* CardViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModifier.swift; sourceTree = "<group>"; };
@@ -584,6 +587,7 @@
 				37A5654624B962BC008D48FD /* MasterPasswordKeychain+Constants.swift */,
 				37936E1924BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift */,
 				37A5654424B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift */,
+				370F45B2292F07A800E4ADAE /* MasterPasswordKeychain+Migration.swift */,
 				37A5654024B960EC008D48FD /* MasterPasswordKeychain+PasswordStorage.swift */,
 				37A5654224B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift */,
 				37A5651D24B7FA7E008D48FD /* MasterPasswordKeychain+Strings.swift */,
@@ -1062,6 +1066,7 @@
 				37936E1D24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift in Sources */,
 				FC74BCE92572865C00BC33D0 /* PasswordGeneratorView+Reducer.swift in Sources */,
 				37A5652924B8D843008D48FD /* PasswordGeneratorView+LengthView.swift in Sources */,
+				370F45B3292F07A800E4ADAE /* MasterPasswordKeychain+Migration.swift in Sources */,
 				FC0A2CC2254CAA9A00C5B579 /* PasswordGeneratorView+PasswordView.swift in Sources */,
 				FC8547E8256DF8F500E2A295 /* CharactersView+Action.swift in Sources */,
 				375D5A9424BA8C150017AC2B /* View+AsAny.swift in Sources */,
@@ -1103,6 +1108,7 @@
 				FC3AAE46256CB0FE004FFF3E /* CounterView+Action.swift in Sources */,
 				FC74BC512571FDBD00BC33D0 /* LengthView+Action.swift in Sources */,
 				FC0A2CC5254CABA300C5B579 /* PasswordGeneratorView+PasswordView.swift in Sources */,
+				370F45B4292F0BA500E4ADAE /* MasterPasswordKeychain+Migration.swift in Sources */,
 				FC74BC8E2572030E00BC33D0 /* DomainView+Reducer.swift in Sources */,
 				FC74BCEF2572866100BC33D0 /* PasswordGeneratorView+Action.swift in Sources */,
 				FC6138A8256CA7C100023A8C /* HapticManager.swift in Sources */,
