@@ -13,6 +13,7 @@ extension PasswordGeneratorApp {
         let hapticManager: HapticManager
         let pasteboard: Pasteboard
         let masterPasswordStorage: MasterPasswordStorage
+        let masterPasswordValidator: MasterPasswordValidator
         let passwordGenerator: PasswordGenerator
 
         init<Scheduler: Combine.Scheduler>(
@@ -20,6 +21,7 @@ extension PasswordGeneratorApp {
             hapticManager: HapticManager,
             pasteboard: Pasteboard,
             masterPasswordStorage: MasterPasswordStorage,
+            masterPasswordValidator: MasterPasswordValidator,
             passwordGenerator: PasswordGenerator
         ) where
             Scheduler.SchedulerOptions == DispatchQueue.SchedulerOptions,
@@ -29,6 +31,7 @@ extension PasswordGeneratorApp {
             self.hapticManager = hapticManager
             self.pasteboard = pasteboard
             self.masterPasswordStorage = masterPasswordStorage
+            self.masterPasswordValidator = masterPasswordValidator
             self.passwordGenerator = passwordGenerator
         }
     }
@@ -40,13 +43,15 @@ extension PasswordGeneratorApp.Environment {
 
     static func live() -> Self {
 
-        PasswordGeneratorApp.Environment(
+        let keychain = MasterPasswordKeychain()
+        return PasswordGeneratorApp.Environment(
             scheduler: DispatchQueue.main,
             hapticManager: UIKitHapticManager(),
             pasteboard: UIPasteboard.general,
-            masterPasswordStorage: MasterPasswordKeychain(),
+            masterPasswordStorage: keychain,
+            masterPasswordValidator: keychain,
             passwordGenerator: PasswordGenerator(
-                masterPasswordProvider: MasterPasswordKeychain(),
+                masterPasswordProvider: keychain,
                 entropyGenerator: .pbkdf2(iterations: 1_000),
                 bytes: 40
             )

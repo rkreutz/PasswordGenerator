@@ -6,11 +6,13 @@ struct PasswordGeneratorApp: App {
 
     @ScaledMetric private var maxWidth: CGFloat = 450
 
-    let store: Store<State, Action> = .init(
-        initialState: PasswordGeneratorApp.initialState,
-        reducer: PasswordGeneratorApp.sharedReducer,
-        environment: .live()
-    )
+    let store: Store<State, Action> = { (environment: Environment) in
+        Store(
+            initialState: PasswordGeneratorApp.initialState(environment: environment),
+            reducer: PasswordGeneratorApp.sharedReducer,
+            environment: environment
+        )
+    }(Environment.live())
 
     var body: some Scene {
 

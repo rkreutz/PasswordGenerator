@@ -40,13 +40,14 @@ extension PasswordGeneratorView.Environment {
 
     static func live() -> Self {
 
-        PasswordGeneratorView.Environment(
+        let keychain = MasterPasswordKeychain()
+        return PasswordGeneratorView.Environment(
             scheduler: DispatchQueue.main,
             hapticManager: UIKitHapticManager(),
             pasteboard: UIPasteboard.general,
-            masterPasswordStorage: MasterPasswordKeychain(),
+            masterPasswordStorage: keychain,
             passwordGenerator: PasswordGenerator(
-                masterPasswordProvider: MasterPasswordKeychain(),
+                masterPasswordProvider: keychain,
                 entropyGenerator: .pbkdf2(iterations: 1_000),
                 bytes: 40
             )
