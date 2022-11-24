@@ -127,23 +127,23 @@ private extension PasswordGeneratorView {
 
     static func rules(for charactersState: PasswordGeneratorView.CharactersView.State, length: Int) -> Set<PasswordRule> {
 
-        var rules: Set<PasswordRule> = [.length(length)]
+        var rules: Set<PasswordRule> = [.length(UInt(length))]
 
         if charactersState.digitsState.isToggled {
 
-            rules.insert(.mustContainDecimalCharacters(atLeast: charactersState.digitsState.counterState.count))
+            rules.insert(.mustContainDecimalCharacters(atLeast: UInt(charactersState.digitsState.counterState.count)))
         }
         if charactersState.lowercaseState.isToggled {
 
-            rules.insert(.mustContainLowercaseCharacters(atLeast: charactersState.lowercaseState.counterState.count))
+            rules.insert(.mustContainLowercaseCharacters(atLeast: UInt(charactersState.lowercaseState.counterState.count)))
         }
         if charactersState.symbolsState.isToggled {
 
-            rules.insert(.mustContainSymbolCharacters(atLeast: charactersState.symbolsState.counterState.count))
+            rules.insert(.mustContainSymbolCharacters(atLeast: UInt(charactersState.symbolsState.counterState.count)))
         }
         if charactersState.uppercaseState.isToggled {
 
-            rules.insert(.mustContainUppercaseCharacters(atLeast: charactersState.uppercaseState.counterState.count))
+            rules.insert(.mustContainUppercaseCharacters(atLeast: UInt(charactersState.uppercaseState.counterState.count)))
         }
 
         return rules

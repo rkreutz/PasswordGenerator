@@ -55,7 +55,6 @@
 		37A5654524B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654424B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift */; };
 		37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654624B962BC008D48FD /* MasterPasswordKeychain+Constants.swift */; };
 		37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */; };
-		37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */; };
 		37C76EEB24BAA44F003BCAC1 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C76EEA24BAA44F003BCAC1 /* Errors.strings */; };
 		37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */; };
 		37CB52C024CDF57D0081DA1E /* PasswordGeneratorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37CB52BF24CDF57D0081DA1E /* PasswordGeneratorKit */; };
@@ -70,7 +69,6 @@
 		37CB52D024CDF7570081DA1E /* CGSize+MinLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5652C24B8EA34008D48FD /* CGSize+MinLength.swift */; };
 		37CB52D124CDF7570081DA1E /* Collection+IsNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37376918249969CA003C6CE4 /* Collection+IsNotEmpty.swift */; };
 		37CB52D324CDF7570081DA1E /* LocalizedError+ErrorDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */; };
-		37CB52D424CDF7570081DA1E /* PasswordGeneratorError+LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */; };
 		37CB52D524CDF7570081DA1E /* String+HasMatchingTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3737691A24996A07003C6CE4 /* String+HasMatchingTypes.swift */; };
 		37CB52D624CDF75B0081DA1E /* View+AsAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9324BA8C150017AC2B /* View+AsAny.swift */; };
 		37CB52D724CDF75B0081DA1E /* View+AsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */; };
@@ -300,7 +298,6 @@
 		37A5654424B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordKeychain+MasterPasswordProvider.swift"; sourceTree = "<group>"; };
 		37A5654624B962BC008D48FD /* MasterPasswordKeychain+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordKeychain+Constants.swift"; sourceTree = "<group>"; };
 		37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertErrorHandler.swift; sourceTree = "<group>"; };
-		37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorError+LocalizedError.swift"; sourceTree = "<group>"; };
 		37C76EEA24BAA44F003BCAC1 /* Errors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Errors.strings; sourceTree = "<group>"; };
 		37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AsHostingController.swift"; sourceTree = "<group>"; };
 		FC0A2CC1254CAA9A00C5B579 /* PasswordGeneratorView+PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+PasswordView.swift"; sourceTree = "<group>"; };
@@ -504,7 +501,6 @@
 				37376918249969CA003C6CE4 /* Collection+IsNotEmpty.swift */,
 				FC66E359252FD705002F8DDF /* Label+TextInitialiser.swift */,
 				375D5A9924BA8E690017AC2B /* LocalizedError+ErrorDescription.swift */,
-				37C76EE824BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift */,
 				3737691A24996A07003C6CE4 /* String+HasMatchingTypes.swift */,
 				37C76EF324BB8568003BCAC1 /* View */,
 			);
@@ -1085,7 +1081,6 @@
 				37A5652D24B8EA34008D48FD /* CGSize+MinLength.swift in Sources */,
 				37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */,
 				FC74BCD1257210FC00BC33D0 /* PasswordView+Reducer.swift in Sources */,
-				37C76EE924BAA2F2003BCAC1 /* PasswordGeneratorError+LocalizedError.swift in Sources */,
 				37A5654524B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
 				FCE2AD79257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift in Sources */,
 				FC3AAE3E256CB068004FFF3E /* CounterView+Environment.swift in Sources */,
@@ -1187,7 +1182,6 @@
 				37CB52E424CDF7730081DA1E /* PasswordGeneratorView.swift in Sources */,
 				37CB52C724CDF7490081DA1E /* DispatchWorkItemReference.swift in Sources */,
 				FC3AAE54256CB74B004FFF3E /* CounterToggleView+Reducer.swift in Sources */,
-				37CB52D424CDF7570081DA1E /* PasswordGeneratorError+LocalizedError.swift in Sources */,
 				37CB52E224CDF76D0081DA1E /* MasterPasswordView+Strings.swift in Sources */,
 				37CB52CF24CDF7570081DA1E /* Binding+StaticValue.swift in Sources */,
 				37CB52D124CDF7570081DA1E /* Collection+IsNotEmpty.swift in Sources */,

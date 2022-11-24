@@ -47,7 +47,7 @@ extension PasswordGeneratorApp.Environment {
             masterPasswordStorage: MasterPasswordKeychain(),
             passwordGenerator: PasswordGenerator(
                 masterPasswordProvider: MasterPasswordKeychain(),
-                iterations: 1_000,
+                entropyGenerator: .pbkdf2(iterations: 1_000),
                 bytes: 40
             )
         )
