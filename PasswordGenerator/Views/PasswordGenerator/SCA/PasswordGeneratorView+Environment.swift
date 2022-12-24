@@ -1,5 +1,5 @@
 import Foundation
-import class PasswordGeneratorKit.PasswordGenerator
+import protocol PasswordGeneratorKit.MasterPasswordProvider
 import protocol Combine.Scheduler
 import struct ComposableArchitecture.AnyScheduler
 import struct ComposableArchitecture.AnySchedulerOf
@@ -13,14 +13,14 @@ extension PasswordGeneratorView {
         let hapticManager: HapticManager
         let pasteboard: Pasteboard
         let masterPasswordStorage: MasterPasswordStorage
-        let passwordGenerator: PasswordGenerator
+        let masterPasswordProvider: MasterPasswordProvider
 
         init<Scheduler: Combine.Scheduler>(
             scheduler: Scheduler,
             hapticManager: HapticManager,
             pasteboard: Pasteboard,
             masterPasswordStorage: MasterPasswordStorage,
-            passwordGenerator: PasswordGenerator
+            masterPasswordProvider: MasterPasswordProvider
         ) where
             Scheduler.SchedulerOptions == DispatchQueue.SchedulerOptions,
             Scheduler.SchedulerTimeType == DispatchQueue.SchedulerTimeType {
@@ -29,7 +29,7 @@ extension PasswordGeneratorView {
             self.hapticManager = hapticManager
             self.pasteboard = pasteboard
             self.masterPasswordStorage = masterPasswordStorage
-            self.passwordGenerator = passwordGenerator
+            self.masterPasswordProvider = masterPasswordProvider
         }
     }
 }
@@ -38,7 +38,7 @@ extension PasswordGeneratorView {
 
 extension PasswordGeneratorView.Environment {
 
-    static func live() -> Self {
+    static func preview() -> Self {
 
         let keychain = MasterPasswordKeychain()
         return PasswordGeneratorView.Environment(
@@ -46,11 +46,7 @@ extension PasswordGeneratorView.Environment {
             hapticManager: UIKitHapticManager(),
             pasteboard: UIPasteboard.general,
             masterPasswordStorage: keychain,
-            passwordGenerator: PasswordGenerator(
-                masterPasswordProvider: keychain,
-                entropyGenerator: .pbkdf2(iterations: 1_000),
-                bytes: 40
-            )
+            masterPasswordProvider: keychain
         )
     }
 }

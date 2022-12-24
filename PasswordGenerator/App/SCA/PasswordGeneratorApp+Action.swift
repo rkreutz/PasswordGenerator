@@ -6,5 +6,6 @@ extension PasswordGeneratorApp {
 
         case updatedMasterPassword(MasterPasswordView.Action)
         case updatedPasswordGenerator(PasswordGeneratorView.Action)
+        case updatedConfiguration(AppConfigurationView.Action)
     }
 }

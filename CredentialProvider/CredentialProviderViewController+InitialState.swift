@@ -70,6 +70,8 @@ extension CredentialProviderViewController {
         passwordState: .init(
             flow: .invalid,
             copyableState: .init(content: "")
-        )
+        ),
+        entropyGenerator: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard).entropyGenerator(),
+        entropySize: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard).entropySize()
     )
 }

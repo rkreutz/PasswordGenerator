@@ -4,6 +4,12 @@ import ComposableArchitecture
 @main
 struct PasswordGeneratorApp: App {
 
+    enum Constants {
+
+        static let generatorIconName = "key.fill"
+        static let configurationIconName = "gearshape.fill"
+    }
+
     @ScaledMetric private var maxWidth: CGFloat = 450
 
     let store: Store<State, Action> = { (environment: Environment) in
@@ -26,11 +32,23 @@ struct PasswordGeneratorApp: App {
                     MasterPasswordView(store: store.scope(state: \.masterPasswordState, action: Action.updatedMasterPassword))
 
                 case true:
-                    NavigationView {
+                    TabView {
+                        PasswordGeneratorView(
+                            store: store.scope(
+                                state: \.passwordGeneratorState,
+                                action: Action.updatedPasswordGenerator
+                            )
+                        )
+                        .tabItem { Label(Strings.PasswordGeneratorApp.generatorTabTitle, systemImage: Constants.generatorIconName) }
 
-                        PasswordGeneratorView(store: store.scope(state: \.passwordGeneratorState, action: Action.updatedPasswordGenerator))
+                        AppConfigurationView(
+                            store: store.scope(
+                                state: \.configurationState,
+                                action: Action.updatedConfiguration
+                            )
+                        )
+                        .tabItem { Label(Strings.PasswordGeneratorApp.configurationTabTitle, systemImage: Constants.configurationIconName) }
                     }
-                    .navigationViewStyle(StackNavigationViewStyle())
                 }
             }
             .frame(maxWidth: maxWidth)

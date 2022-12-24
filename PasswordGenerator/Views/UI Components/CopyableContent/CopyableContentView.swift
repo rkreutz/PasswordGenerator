@@ -48,7 +48,7 @@ struct CopyableContentView_Previews: PreviewProvider {
                 store: Store(
                     initialState: CopyableContentView.State(content: "Content"),
                     reducer: CopyableContentView.sharedReducer,
-                    environment: CopyableContentView.Environment.live()
+                    environment: CopyableContentView.Environment.preview()
                 )
             )
             .padding()
@@ -61,7 +61,7 @@ struct CopyableContentView_Previews: PreviewProvider {
                 store: Store(
                     initialState: CopyableContentView.State(content: "Content"),
                     reducer: CopyableContentView.sharedReducer,
-                    environment: CopyableContentView.Environment.live()
+                    environment: CopyableContentView.Environment.preview()
                 )
             )
             .padding()
@@ -74,7 +74,7 @@ struct CopyableContentView_Previews: PreviewProvider {
                 store: Store(
                     initialState: CopyableContentView.State(content: "Content", hasCopied: true),
                     reducer: CopyableContentView.sharedReducer,
-                    environment: CopyableContentView.Environment.live()
+                    environment: CopyableContentView.Environment.preview()
                 )
             )
             .padding()
@@ -87,7 +87,7 @@ struct CopyableContentView_Previews: PreviewProvider {
                     store: Store(
                         initialState: CopyableContentView.State(content: "Content"),
                         reducer: CopyableContentView.sharedReducer,
-                        environment: CopyableContentView.Environment.live()
+                        environment: CopyableContentView.Environment.preview()
                     )
                 )
                 .padding()

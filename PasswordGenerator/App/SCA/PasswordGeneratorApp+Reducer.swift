@@ -1,5 +1,6 @@
 import Foundation
 import ComposableArchitecture
+import PasswordGeneratorKit
 import CasePaths
 
 extension PasswordGeneratorApp {
@@ -11,13 +12,19 @@ extension PasswordGeneratorApp {
             .pullback(
                 state: \.masterPasswordState,
                 action: /Action.updatedMasterPassword,
-                environment: MasterPasswordView.Environment.init
+                environment: MasterPasswordView.Environment.init(from:)
             ),
         PasswordGeneratorView.sharedReducer
             .pullback(
                 state: \.passwordGeneratorState,
                 action: /Action.updatedPasswordGenerator,
-                environment: PasswordGeneratorView.Environment.init
+                environment: PasswordGeneratorView.Environment.init(from:)
+            ),
+        AppConfigurationView.sharedReducer
+            .pullback(
+                state: \.configurationState,
+                action: /Action.updatedConfiguration,
+                environment: AppConfigurationView.Environment.init(from:)
             ),
         Reducer(forAction: .didSaveMasterPassword) { state, _ in
 
@@ -28,7 +35,14 @@ extension PasswordGeneratorApp {
         Reducer(forAction: .loggedOutAction) { state, _ in
 
             state.isMasterPasswordSet = false
-            return .none
+            return Effect(value: Action.updatedPasswordGenerator(.didLogout))
+        },
+        Reducer.init(forAction: .didUpdateEntropyConfiguration) { state, entropyConfiguration, _ in
+
+            let (entropyGenerator, entropySize) = entropyConfiguration
+            state.passwordGeneratorState.entropyGenerator = entropyGenerator
+            state.passwordGeneratorState.entropySize = entropySize
+            return Effect(value: Action.updatedPasswordGenerator(.updatedConfigurationState(.didUpdate)))
         }
     )
 }
@@ -36,5 +50,10 @@ extension PasswordGeneratorApp {
 private extension CasePath where Root == PasswordGeneratorApp.Action, Value == Void {
 
     static let didSaveMasterPassword = /PasswordGeneratorApp.Action.updatedMasterPassword .. /MasterPasswordView.Action.masterPasswordSaved
-    static let loggedOutAction = /PasswordGeneratorApp.Action.updatedPasswordGenerator .. /PasswordGeneratorView.Action.didLogout
+    static let loggedOutAction = /PasswordGeneratorApp.Action.updatedConfiguration .. /AppConfigurationView.Action.didResetMasterPassword
+}
+
+private extension CasePath where Root == PasswordGeneratorApp.Action, Value == (PasswordGenerator.EntropyGenerator, UInt) {
+
+    static let didUpdateEntropyConfiguration = /PasswordGeneratorApp.Action.updatedConfiguration .. /AppConfigurationView.Action.entropyConfigurationUpdated
 }

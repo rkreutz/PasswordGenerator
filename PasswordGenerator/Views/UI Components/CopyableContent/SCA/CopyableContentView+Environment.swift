@@ -31,7 +31,7 @@ extension CopyableContentView {
 
 extension CopyableContentView.Environment {
 
-    static func live() -> Self {
+    static func preview() -> Self {
 
         CopyableContentView.Environment(
             scheduler: DispatchQueue.main,

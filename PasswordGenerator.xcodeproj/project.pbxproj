@@ -35,6 +35,33 @@
 		375D5A9E24BA8EEA0017AC2B /* ToastErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9D24BA8EEA0017AC2B /* ToastErrorHandler.swift */; };
 		37936E1A24BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37936E1924BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift */; };
 		37936E1D24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37936E1C24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift */; };
+		379462DB2955EA6900F79F3C /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DA2955EA6900F79F3C /* AppConfigurationView.swift */; };
+		379462DD2955EA8900F79F3C /* AppConfigurationView+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DC2955EA8900F79F3C /* AppConfigurationView+Strings.swift */; };
+		379462DF2955EB2C00F79F3C /* AppConfigurationView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DE2955EB2C00F79F3C /* AppConfigurationView+State.swift */; };
+		379462E12955EB3A00F79F3C /* AppConfigurationView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E02955EB3A00F79F3C /* AppConfigurationView+Action.swift */; };
+		379462E32955EB4900F79F3C /* AppConfigurationView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E22955EB4900F79F3C /* AppConfigurationView+Environment.swift */; };
+		379462E52955EB6300F79F3C /* AppConfigurationView+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E42955EB6300F79F3C /* AppConfigurationView+Reducer.swift */; };
+		379462E62955F32B00F79F3C /* PasswordGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */; };
+		379462E72955F32E00F79F3C /* PasswordGeneratorApp+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BCFA2572EC1900BC33D0 /* PasswordGeneratorApp+State.swift */; };
+		379462E82955F32E00F79F3C /* PasswordGeneratorApp+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BD082572EC4200BC33D0 /* PasswordGeneratorApp+Reducer.swift */; };
+		379462E92955F32E00F79F3C /* PasswordGeneratorApp+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD78257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift */; };
+		379462EA2955F32E00F79F3C /* PasswordGeneratorApp+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BD042572EC3400BC33D0 /* PasswordGeneratorApp+Environment.swift */; };
+		379462EB2955F32E00F79F3C /* PasswordGeneratorApp+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BD002572EC2700BC33D0 /* PasswordGeneratorApp+Action.swift */; };
+		379462EC2955F36900F79F3C /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DA2955EA6900F79F3C /* AppConfigurationView.swift */; };
+		379462ED2955F36C00F79F3C /* AppConfigurationView+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DC2955EA8900F79F3C /* AppConfigurationView+Strings.swift */; };
+		379462EE2955F36E00F79F3C /* AppConfigurationView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DE2955EB2C00F79F3C /* AppConfigurationView+State.swift */; };
+		379462EF2955F37000F79F3C /* AppConfigurationView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E02955EB3A00F79F3C /* AppConfigurationView+Action.swift */; };
+		379462F02955F37200F79F3C /* AppConfigurationView+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E22955EB4900F79F3C /* AppConfigurationView+Environment.swift */; };
+		379462F12955F37400F79F3C /* AppConfigurationView+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E42955EB6300F79F3C /* AppConfigurationView+Reducer.swift */; };
+		379462F22955F39B00F79F3C /* AlertErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */; };
+		379462F52955F9D500F79F3C /* EntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462F42955F9D500F79F3C /* EntropyConfigurationStorage.swift */; };
+		379462F62955F9D500F79F3C /* EntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462F42955F9D500F79F3C /* EntropyConfigurationStorage.swift */; };
+		379462F82955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462F72955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift */; };
+		379462F92955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462F72955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift */; };
+		379462FB29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462FA29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift */; };
+		379462FC29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462FA29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift */; };
+		379462FE29562FA400F79F3C /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462FD29562FA400F79F3C /* Defaults.swift */; };
+		379462FF29562FA400F79F3C /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462FD29562FA400F79F3C /* Defaults.swift */; };
 		37A5651024A6E4B3008D48FD /* PasswordGeneratorKitPublishers in Frameworks */ = {isa = PBXBuildFile; productRef = 37A5650F24A6E4B3008D48FD /* PasswordGeneratorKitPublishers */; };
 		37A5651224A6E4B3008D48FD /* PasswordGeneratorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 37A5651124A6E4B3008D48FD /* PasswordGeneratorKit */; };
 		37A5651624A78D15008D48FD /* MasterPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5651524A78D15008D48FD /* MasterPasswordView.swift */; };
@@ -282,6 +309,16 @@
 		375D5AA224BA92EC0017AC2B /* ErrorHandler+DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorHandler+DI.swift"; sourceTree = "<group>"; };
 		37936E1924BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordKeychain+Errors.swift"; sourceTree = "<group>"; };
 		37936E1C24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEmittingViewModifier.swift; sourceTree = "<group>"; };
+		379462DA2955EA6900F79F3C /* AppConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationView.swift; sourceTree = "<group>"; };
+		379462DC2955EA8900F79F3C /* AppConfigurationView+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigurationView+Strings.swift"; sourceTree = "<group>"; };
+		379462DE2955EB2C00F79F3C /* AppConfigurationView+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigurationView+State.swift"; sourceTree = "<group>"; };
+		379462E02955EB3A00F79F3C /* AppConfigurationView+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigurationView+Action.swift"; sourceTree = "<group>"; };
+		379462E22955EB4900F79F3C /* AppConfigurationView+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigurationView+Environment.swift"; sourceTree = "<group>"; };
+		379462E42955EB6300F79F3C /* AppConfigurationView+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigurationView+Reducer.swift"; sourceTree = "<group>"; };
+		379462F42955F9D500F79F3C /* EntropyConfigurationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntropyConfigurationStorage.swift; sourceTree = "<group>"; };
+		379462F72955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsEntropyConfigurationStorage.swift; sourceTree = "<group>"; };
+		379462FA29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorApp+Strings.swift"; sourceTree = "<group>"; };
+		379462FD29562FA400F79F3C /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		37A5651524A78D15008D48FD /* MasterPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPasswordView.swift; sourceTree = "<group>"; };
 		37A5651724A7FC03008D48FD /* MasterPasswordView+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+Strings.swift"; sourceTree = "<group>"; };
 		37A5651924A8013E008D48FD /* MainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonStyle.swift; sourceTree = "<group>"; };
@@ -456,6 +493,7 @@
 			children = (
 				373ACBE72528C5F600B1A516 /* Styles */,
 				37197A9624FB371100873DC6 /* Modifiers */,
+				379462D82955EA3400F79F3C /* AppConfiguration */,
 				37A5651424A78C9C008D48FD /* MasterPassword */,
 				37020F2A24983CA200C105D1 /* PasswordGenerator */,
 				37020F202496A61E00C105D1 /* UI Components */,
@@ -525,7 +563,9 @@
 		3741796824A43331003C5592 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				379462FD29562FA400F79F3C /* Defaults.swift */,
 				37A5653224B94446008D48FD /* DispatchWorkItemReference.swift */,
+				379462F32955F9AA00F79F3C /* Entropy Configuration */,
 				37936E1B24BA69A30007E9BB /* Error Handling */,
 				3737691024994633003C6CE4 /* Extensions */,
 				FC613899256CA3EA00023A8C /* HapticManager */,
@@ -545,6 +585,36 @@
 				375D5A9D24BA8EEA0017AC2B /* ToastErrorHandler.swift */,
 			);
 			path = "Error Handling";
+			sourceTree = "<group>";
+		};
+		379462D82955EA3400F79F3C /* AppConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				379462DA2955EA6900F79F3C /* AppConfigurationView.swift */,
+				379462DC2955EA8900F79F3C /* AppConfigurationView+Strings.swift */,
+				379462D92955EA4C00F79F3C /* SCA */,
+			);
+			path = AppConfiguration;
+			sourceTree = "<group>";
+		};
+		379462D92955EA4C00F79F3C /* SCA */ = {
+			isa = PBXGroup;
+			children = (
+				379462DE2955EB2C00F79F3C /* AppConfigurationView+State.swift */,
+				379462E02955EB3A00F79F3C /* AppConfigurationView+Action.swift */,
+				379462E22955EB4900F79F3C /* AppConfigurationView+Environment.swift */,
+				379462E42955EB6300F79F3C /* AppConfigurationView+Reducer.swift */,
+			);
+			path = SCA;
+			sourceTree = "<group>";
+		};
+		379462F32955F9AA00F79F3C /* Entropy Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				379462F42955F9D500F79F3C /* EntropyConfigurationStorage.swift */,
+				379462F72955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift */,
+			);
+			path = "Entropy Configuration";
 			sourceTree = "<group>";
 		};
 		37A5651424A78C9C008D48FD /* MasterPassword */ = {
@@ -817,6 +887,7 @@
 			isa = PBXGroup;
 			children = (
 				370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */,
+				379462FA29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift */,
 				FC74BCF92572EBFA00BC33D0 /* SCA */,
 			);
 			path = App;
@@ -984,7 +1055,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $IS_CI == true ]; then\n    exit\nfi\n    \nswiftlint --config ${PROJECT_DIR}/.swiftlint.yml\\\n";
+			shellScript = "if [ $IS_CI == true ]; then\n    exit\nfi\n    \n#swiftlint --config ${PROJECT_DIR}/.swiftlint.yml\\\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1008,6 +1079,7 @@
 				FC3AAE3A256CB03F004FFF3E /* CounterView+Action.swift in Sources */,
 				37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */,
 				FC6138B0256CA82000023A8C /* Pasteboard.swift in Sources */,
+				379462E12955EB3A00F79F3C /* AppConfigurationView+Action.swift in Sources */,
 				FC3AAE5B256CC123004FFF3E /* MasterPasswordView+State.swift in Sources */,
 				FC74BC5B2572015A00BC33D0 /* ConfigurationView+State.swift in Sources */,
 				375D5A9A24BA8E690017AC2B /* LocalizedError+ErrorDescription.swift in Sources */,
@@ -1015,13 +1087,17 @@
 				375D5A9E24BA8EEA0017AC2B /* ToastErrorHandler.swift in Sources */,
 				FC74BD292572F2E100BC33D0 /* PasswordGeneratorApp.swift in Sources */,
 				FC66E36D252FE680002F8DDF /* LoaderStyle.swift in Sources */,
+				379462E52955EB6300F79F3C /* AppConfigurationView+Reducer.swift in Sources */,
+				379462DF2955EB2C00F79F3C /* AppConfigurationView+State.swift in Sources */,
 				37020F1C248DB84400C105D1 /* PasswordGeneratorView.swift in Sources */,
 				37A5651A24A8013E008D48FD /* MainButtonStyle.swift in Sources */,
 				37A5653324B94446008D48FD /* DispatchWorkItemReference.swift in Sources */,
 				FC74BCA7257208B100BC33D0 /* ServiceView+Environment.swift in Sources */,
 				3737690924984FC0003C6CE4 /* Strings.swift in Sources */,
+				379462F52955F9D500F79F3C /* EntropyConfigurationStorage.swift in Sources */,
 				FC74BCC22572108200BC33D0 /* PasswordView+State.swift in Sources */,
 				37936E1A24BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift in Sources */,
+				379462FB29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift in Sources */,
 				37197A9824FB372100873DC6 /* CardViewModifier.swift in Sources */,
 				37A5653124B90EF1008D48FD /* Toast.swift in Sources */,
 				FC74BD052572EC3400BC33D0 /* PasswordGeneratorApp+Environment.swift in Sources */,
@@ -1038,15 +1114,18 @@
 				FC61389B256CA3FC00023A8C /* HapticManager.swift in Sources */,
 				3737691B24996A07003C6CE4 /* String+HasMatchingTypes.swift in Sources */,
 				37A5653524B95166008D48FD /* Binding+StaticValue.swift in Sources */,
+				379462FE29562FA400F79F3C /* Defaults.swift in Sources */,
 				FC8547E4256DF88300E2A295 /* CharactersView+State.swift in Sources */,
 				FC74BC412571F92600BC33D0 /* LengthView+Action.swift in Sources */,
 				37020F1F2496961B00C105D1 /* Colors.swift in Sources */,
 				FC74BC9F2572089A00BC33D0 /* ServiceView+State.swift in Sources */,
 				370F7ED8251676EA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
+				379462DD2955EA8900F79F3C /* AppConfigurationView+Strings.swift in Sources */,
 				FC3AAE65256CC24A004FFF3E /* MasterPasswordView+Environment.swift in Sources */,
 				FC8547F0256DF9AB00E2A295 /* CharactersView+Reducer.swift in Sources */,
 				FC3AAE42256CB081004FFF3E /* CounterView+Reducer.swift in Sources */,
 				FC3AAE4F256CB74B004FFF3E /* CounterToggleView+State.swift in Sources */,
+				379462F82955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift in Sources */,
 				FC74BD012572EC2700BC33D0 /* PasswordGeneratorApp+Action.swift in Sources */,
 				37376919249969CB003C6CE4 /* Collection+IsNotEmpty.swift in Sources */,
 				FC74BCE12572863500BC33D0 /* PasswordGeneratorView+Action.swift in Sources */,
@@ -1072,12 +1151,14 @@
 				375D5A9424BA8C150017AC2B /* View+AsAny.swift in Sources */,
 				37A5652024B800A0008D48FD /* MasterPasswordKeychain.swift in Sources */,
 				FC74BC79257202E500BC33D0 /* DomainView+State.swift in Sources */,
+				379462E32955EB4900F79F3C /* AppConfigurationView+Environment.swift in Sources */,
 				FC74BC8A2572030800BC33D0 /* DomainView+Reducer.swift in Sources */,
 				FC74BC86257202FB00BC33D0 /* DomainView+Environment.swift in Sources */,
 				FC74BC3B2571F91900BC33D0 /* LengthView+State.swift in Sources */,
 				FC74BCDB2572861F00BC33D0 /* PasswordGeneratorView+State.swift in Sources */,
 				FC0A2CF6254CB41000C5B579 /* ErrorHandler+DI.swift in Sources */,
 				37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */,
+				379462DB2955EA6900F79F3C /* AppConfigurationView.swift in Sources */,
 				37020F262496F7E200C105D1 /* CounterView.swift in Sources */,
 				FC74BCAB257208BD00BC33D0 /* ServiceView+Reducer.swift in Sources */,
 				37A5652724B8D808008D48FD /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
@@ -1109,24 +1190,29 @@
 				FC74BC512571FDBD00BC33D0 /* LengthView+Action.swift in Sources */,
 				FC0A2CC5254CABA300C5B579 /* PasswordGeneratorView+PasswordView.swift in Sources */,
 				370F45B4292F0BA500E4ADAE /* MasterPasswordKeychain+Migration.swift in Sources */,
+				379462EB2955F32E00F79F3C /* PasswordGeneratorApp+Action.swift in Sources */,
 				FC74BC8E2572030E00BC33D0 /* DomainView+Reducer.swift in Sources */,
 				FC74BCEF2572866100BC33D0 /* PasswordGeneratorView+Action.swift in Sources */,
 				FC6138A8256CA7C100023A8C /* HapticManager.swift in Sources */,
 				37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */,
 				FC3AAE6F256CC73B004FFF3E /* MasterPasswordView+Reducer.swift in Sources */,
 				370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
+				379462ED2955F36C00F79F3C /* AppConfigurationView+Strings.swift in Sources */,
 				FC6138AA256CA7C100023A8C /* HapticEvent.swift in Sources */,
 				FC66E37B252FEB86002F8DDF /* SecondaryTextFieldStyle.swift in Sources */,
 				FC74BC6B2572018A00BC33D0 /* ConfigurationView+Reducer.swift in Sources */,
 				FC74BC8F2572030F00BC33D0 /* DomainView+Environment.swift in Sources */,
+				379462FC29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift in Sources */,
 				37CB52D724CDF75B0081DA1E /* View+AsHostingController.swift in Sources */,
 				FC66E363252FDEAF002F8DDF /* PrimaryTextFieldStyle.swift in Sources */,
 				FC3AAE2C256CAFB6004FFF3E /* CopyableContentView+Environment.swift in Sources */,
 				37CB52EF24CDF7810081DA1E /* CopyableContentView.swift in Sources */,
 				FC74BC8D2572030E00BC33D0 /* DomainView+Action.swift in Sources */,
+				379462F92955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift in Sources */,
 				FC74BC6A2572018A00BC33D0 /* ConfigurationView+Environment.swift in Sources */,
 				37CB52F324CDF7810081DA1E /* MainButtonStyle.swift in Sources */,
 				FC74BC9A2572088400BC33D0 /* PasswordGeneratorView+ServiceView.swift in Sources */,
+				379462EC2955F36900F79F3C /* AppConfigurationView.swift in Sources */,
 				FC74BCB1257208D000BC33D0 /* ServiceView+Environment.swift in Sources */,
 				FC74BCEC2572866100BC33D0 /* PasswordGeneratorView+Reducer.swift in Sources */,
 				37CB52EB24CDF7770081DA1E /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
@@ -1135,14 +1221,18 @@
 				FC8547F5256DF9E300E2A295 /* CharactersView+Environment.swift in Sources */,
 				37CB52E024CDF7650081DA1E /* MasterPasswordKeychain+Strings.swift in Sources */,
 				37CB52D324CDF7570081DA1E /* LocalizedError+ErrorDescription.swift in Sources */,
+				379462E62955F32B00F79F3C /* PasswordGeneratorApp.swift in Sources */,
 				37CB52F024CDF7810081DA1E /* CounterToggleView.swift in Sources */,
 				FC6138A9256CA7C100023A8C /* UIKitHapticManager.swift in Sources */,
 				FC3AAE71256CC73B004FFF3E /* MasterPasswordView+State.swift in Sources */,
+				379462EA2955F32E00F79F3C /* PasswordGeneratorApp+Environment.swift in Sources */,
 				FC3AAE47256CB0FE004FFF3E /* CounterView+State.swift in Sources */,
 				FC74BCC52572108400BC33D0 /* PasswordView+State.swift in Sources */,
 				FC74BCB0257208D000BC33D0 /* ServiceView+Action.swift in Sources */,
+				379462EE2955F36E00F79F3C /* AppConfigurationView+State.swift in Sources */,
 				FC6138BC256CA8BA00023A8C /* Pasteboard+UIKit.swift in Sources */,
 				37CB52CD24CDF7520081DA1E /* ToastErrorHandler.swift in Sources */,
+				379462EF2955F37000F79F3C /* AppConfigurationView+Action.swift in Sources */,
 				37CB52D024CDF7570081DA1E /* CGSize+MinLength.swift in Sources */,
 				37CB52F524CDF7810081DA1E /* Toast.swift in Sources */,
 				FC3AAE29256CAFB6004FFF3E /* CopyableContentView+Action.swift in Sources */,
@@ -1151,6 +1241,7 @@
 				37CB52D524CDF7570081DA1E /* String+HasMatchingTypes.swift in Sources */,
 				37CB52EA24CDF7770081DA1E /* PasswordGeneratorView+CharactersView.swift in Sources */,
 				FC74BCAF257208D000BC33D0 /* ServiceView+State.swift in Sources */,
+				379462F12955F37400F79F3C /* AppConfigurationView+Reducer.swift in Sources */,
 				FC74BCEE2572866100BC33D0 /* PasswordGeneratorView+Environment.swift in Sources */,
 				FC3AAE45256CB0FE004FFF3E /* CounterView+Environment.swift in Sources */,
 				37197A9924FB374200873DC6 /* CardViewModifier.swift in Sources */,
@@ -1167,9 +1258,11 @@
 				FC8547F6256DF9E300E2A295 /* CharactersView+Action.swift in Sources */,
 				FC74BC502571FDBD00BC33D0 /* LengthView+State.swift in Sources */,
 				FC3AAE2A256CAFB6004FFF3E /* CopyableContentView+Reducer.swift in Sources */,
+				379462E72955F32E00F79F3C /* PasswordGeneratorApp+State.swift in Sources */,
 				FC74BCD62572113F00BC33D0 /* PasswordView+Environment.swift in Sources */,
 				37CB52DA24CDF7650081DA1E /* MasterPasswordKeychain.swift in Sources */,
 				FC3AAE55256CB74B004FFF3E /* CounterToggleView+State.swift in Sources */,
+				379462F02955F37200F79F3C /* AppConfigurationView+Environment.swift in Sources */,
 				FC3AAE48256CB0FE004FFF3E /* CounterView+Reducer.swift in Sources */,
 				FC66E367252FDEB5002F8DDF /* Label+TextInitialiser.swift in Sources */,
 				FC3AAE56256CB74B004FFF3E /* CounterToggleView+Environment.swift in Sources */,
@@ -1187,13 +1280,18 @@
 				37CB52D924CDF75F0081DA1E /* MasterPasswordValidator.swift in Sources */,
 				37CB52E424CDF7730081DA1E /* PasswordGeneratorView.swift in Sources */,
 				37CB52C724CDF7490081DA1E /* DispatchWorkItemReference.swift in Sources */,
+				379462FF29562FA400F79F3C /* Defaults.swift in Sources */,
 				FC3AAE54256CB74B004FFF3E /* CounterToggleView+Reducer.swift in Sources */,
 				37CB52E224CDF76D0081DA1E /* MasterPasswordView+Strings.swift in Sources */,
 				37CB52CF24CDF7570081DA1E /* Binding+StaticValue.swift in Sources */,
+				379462E82955F32E00F79F3C /* PasswordGeneratorApp+Reducer.swift in Sources */,
+				379462F62955F9D500F79F3C /* EntropyConfigurationStorage.swift in Sources */,
+				379462F22955F39B00F79F3C /* AlertErrorHandler.swift in Sources */,
 				37CB52D124CDF7570081DA1E /* Collection+IsNotEmpty.swift in Sources */,
 				37CB52C324CDF72F0081DA1E /* Colors.swift in Sources */,
 				37CB52DC24CDF7650081DA1E /* MasterPasswordKeychain+Errors.swift in Sources */,
 				FC66E370252FE697002F8DDF /* LoaderStyle.swift in Sources */,
+				379462E92955F32E00F79F3C /* PasswordGeneratorApp+InitialState.swift in Sources */,
 				FC74BC7E257202E800BC33D0 /* PasswordGeneratorView+DomainView.swift in Sources */,
 				37CB52CE24CDF7520081DA1E /* ErrorEmittingViewModifier.swift in Sources */,
 				37CB52DD24CDF7650081DA1E /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,

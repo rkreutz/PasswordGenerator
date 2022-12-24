@@ -31,7 +31,7 @@ extension PasswordGeneratorView.PasswordView {
 
 extension PasswordGeneratorView.PasswordView.Environment {
 
-    static func live() -> Self {
+    static func preview() -> Self {
 
         PasswordGeneratorView.PasswordView.Environment(
             scheduler: DispatchQueue.main,

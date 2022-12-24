@@ -74,7 +74,13 @@ extension PasswordGeneratorApp {
                 passwordState: .init(
                     flow: .invalid,
                     copyableState: .init(content: "")
-                )
+                ),
+                entropyGenerator: environment.entropyConfigurationStorage.entropyGenerator(),
+                entropySize: environment.entropyConfigurationStorage.entropySize()
+            ),
+            configurationState: .init(
+                entropyGenerator: environment.entropyConfigurationStorage.entropyGenerator(),
+                entropySize: environment.entropyConfigurationStorage.entropySize()
             )
         )
     }

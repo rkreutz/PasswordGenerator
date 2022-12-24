@@ -39,17 +39,6 @@ extension PasswordGeneratorView {
             bindingAction: /Action.updateError,
             to: \.error
         ),
-        Reducer(forAction: /Action.logout) { _, environment -> Effect<Action, Never> in
-
-            do {
-
-                try environment.masterPasswordStorage.deleteMasterPassword()
-                return Effect(value: Action.didLogout)
-            } catch {
-
-                return Effect(value: Action.updateError(error))
-            }
-        },
         Reducer(forAction: .didUpdateCharactersState) { state, _ -> Effect<Action, Never> in
 
             let charactersCount = state.charactersState.digitsState.counterState.count
@@ -104,11 +93,16 @@ private extension PasswordGeneratorView {
 
     static func passwordPublisher(for state: State, environment: Environment) -> AnyPublisher<String, PasswordGenerator.Error> {
 
+        let passwordGenerator = PasswordGenerator(
+            masterPasswordProvider: environment.masterPasswordProvider,
+            entropyGenerator: state.entropyGenerator,
+            bytes: state.entropySize
+        )
         let publisher: AnyPublisher<String, PasswordGenerator.Error>
         switch state.configurationState.passwordType {
 
         case .domainBased:
-            publisher = environment.passwordGenerator.publishers.generatePassword(
+            publisher = passwordGenerator.publishers.generatePassword(
                 username: state.configurationState.domainState.username,
                 domain: state.configurationState.domainState.domain,
                 seed: state.configurationState.domainState.seed.count,
@@ -116,7 +110,7 @@ private extension PasswordGeneratorView {
             )
 
         case .serviceBased:
-            publisher = environment.passwordGenerator.publishers.generatePassword(
+            publisher = passwordGenerator.publishers.generatePassword(
                 service: state.configurationState.serviceState.service,
                 rules: rules(for: state.charactersState, length: state.lengthState.lengthState.count)
             )

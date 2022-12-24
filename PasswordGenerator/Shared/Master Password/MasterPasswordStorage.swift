@@ -1,4 +1,4 @@
-import SwiftUI
+import Foundation
 
 protocol MasterPasswordStorage {
 
@@ -11,11 +11,20 @@ protocol MasterPasswordStorage {
 
 #if DEBUG
 
-final class MockMasterPasswordStorage: MasterPasswordStorage {
+import PasswordGeneratorKit
 
-    func save(masterPassword: String) throws {}
-    func masterPassword() throws -> String { "masterPassword" }
-    func deleteMasterPassword() throws {}
+final class MockMasterPasswordStorage: MasterPasswordStorage, MasterPasswordProvider {
+
+    fileprivate var _masterPassword: String = "masterPassword"
+
+    func save(masterPassword: String) throws { _masterPassword = masterPassword }
+    func masterPassword() throws -> String { _masterPassword }
+    func deleteMasterPassword() throws { _masterPassword = "" }
+}
+
+extension MockMasterPasswordStorage: MasterPasswordValidator {
+
+    var hasMasterPassword: Bool { _masterPassword.isEmpty == false }
 }
 
 #endif

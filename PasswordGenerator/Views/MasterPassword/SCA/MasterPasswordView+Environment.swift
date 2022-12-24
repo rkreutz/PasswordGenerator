@@ -12,7 +12,7 @@ extension MasterPasswordView {
 
 extension MasterPasswordView.Environment {
 
-    static func live() -> Self {
+    static func preview() -> Self {
 
         MasterPasswordView.Environment(masterPasswordStorage: MasterPasswordKeychain())
     }

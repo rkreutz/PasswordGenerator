@@ -10,7 +10,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
     lazy var store = Store<PasswordGeneratorView.State, PasswordGeneratorView.Action>(
         initialState: CredentialProviderViewController.initialState,
         reducer: reducer,
-        environment: PasswordGeneratorView.Environment.live()
+        environment: PasswordGeneratorView.Environment(from: PasswordGeneratorApp.Environment.live())
     )
 
     var viewStore: ViewStore<PasswordGeneratorView.State, PasswordGeneratorView.Action> {

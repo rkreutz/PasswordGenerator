@@ -30,17 +30,6 @@ struct PasswordGeneratorView: View {
                 .padding(spacing)
             }
             .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
-            .navigationBarItems(
-                trailing: Button(
-                    action: { viewStore.send(.logout) },
-                    label: {
-
-                        Text(Strings.PasswordGeneratorView.resetMasterPassword)
-                            .font(.headline)
-                    }
-                )
-            )
-            .navigationBarTitle("", displayMode: .inline)
         }
     }
 }
@@ -118,10 +107,12 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
             passwordState: .init(
                 flow: .invalid,
                 copyableState: .init(content: "")
-            )
+            ),
+            entropyGenerator: .pbkdf2(iterations: 1_000),
+            entropySize: 40
         ),
         reducer: PasswordGeneratorView.sharedReducer,
-        environment: PasswordGeneratorView.Environment.live()
+        environment: PasswordGeneratorView.Environment.preview()
     )
 
     static var previews: some View {

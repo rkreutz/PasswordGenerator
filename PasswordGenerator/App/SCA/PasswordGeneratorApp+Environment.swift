@@ -1,5 +1,5 @@
 import Foundation
-import class PasswordGeneratorKit.PasswordGenerator
+import protocol PasswordGeneratorKit.MasterPasswordProvider
 import protocol Combine.Scheduler
 import struct ComposableArchitecture.AnyScheduler
 import struct ComposableArchitecture.AnySchedulerOf
@@ -14,7 +14,8 @@ extension PasswordGeneratorApp {
         let pasteboard: Pasteboard
         let masterPasswordStorage: MasterPasswordStorage
         let masterPasswordValidator: MasterPasswordValidator
-        let passwordGenerator: PasswordGenerator
+        let masterPasswordProvider: MasterPasswordProvider
+        let entropyConfigurationStorage: EntropyConfigurationStorage
 
         init<Scheduler: Combine.Scheduler>(
             scheduler: Scheduler,
@@ -22,7 +23,8 @@ extension PasswordGeneratorApp {
             pasteboard: Pasteboard,
             masterPasswordStorage: MasterPasswordStorage,
             masterPasswordValidator: MasterPasswordValidator,
-            passwordGenerator: PasswordGenerator
+            masterPasswordProvider: MasterPasswordProvider,
+            entropyConfigurationStorage: EntropyConfigurationStorage
         ) where
             Scheduler.SchedulerOptions == DispatchQueue.SchedulerOptions,
             Scheduler.SchedulerTimeType == DispatchQueue.SchedulerTimeType {
@@ -32,7 +34,8 @@ extension PasswordGeneratorApp {
             self.pasteboard = pasteboard
             self.masterPasswordStorage = masterPasswordStorage
             self.masterPasswordValidator = masterPasswordValidator
-            self.passwordGenerator = passwordGenerator
+            self.masterPasswordProvider = masterPasswordProvider
+            self.entropyConfigurationStorage = entropyConfigurationStorage
         }
     }
 }
@@ -50,13 +53,25 @@ extension PasswordGeneratorApp.Environment {
             pasteboard: UIPasteboard.general,
             masterPasswordStorage: keychain,
             masterPasswordValidator: keychain,
-            passwordGenerator: PasswordGenerator(
-                masterPasswordProvider: keychain,
-                entropyGenerator: .pbkdf2(iterations: 1_000),
-                bytes: 40
-            )
+            masterPasswordProvider: keychain,
+            entropyConfigurationStorage: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard)
         )
     }
+
+    #if DEBUG
+    static func mock() -> Self {
+        let passwordStorage = MockMasterPasswordStorage()
+        return PasswordGeneratorApp.Environment(
+            scheduler: DispatchQueue.main,
+            hapticManager: UIKitHapticManager(),
+            pasteboard: UIPasteboard.general,
+            masterPasswordStorage: passwordStorage,
+            masterPasswordValidator: passwordStorage,
+            masterPasswordProvider: passwordStorage,
+            entropyConfigurationStorage: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard)
+        )
+    }
+    #endif
 }
 
 extension MasterPasswordView.Environment {
@@ -76,7 +91,18 @@ extension PasswordGeneratorView.Environment {
             hapticManager: passwordGeneratorAppEnvironment.hapticManager,
             pasteboard: passwordGeneratorAppEnvironment.pasteboard,
             masterPasswordStorage: passwordGeneratorAppEnvironment.masterPasswordStorage,
-            passwordGenerator: passwordGeneratorAppEnvironment.passwordGenerator
+            masterPasswordProvider: passwordGeneratorAppEnvironment.masterPasswordProvider
+        )
+    }
+}
+
+extension AppConfigurationView.Environment {
+
+    init(from passwordGeneratorAppEnvironment: PasswordGeneratorApp.Environment) {
+
+        self.init(
+            entropyConfigurationStorage: passwordGeneratorAppEnvironment.entropyConfigurationStorage,
+            masterPasswordStorage: passwordGeneratorAppEnvironment.masterPasswordStorage
         )
     }
 }

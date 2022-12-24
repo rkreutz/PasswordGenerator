@@ -4,7 +4,6 @@ extension PasswordGeneratorView {
 
     enum Action {
 
-        case logout
         case didLogout
         case updatedConfigurationState(PasswordGeneratorView.ConfigurationView.Action)
         case updatedLengthState(PasswordGeneratorView.LengthView.Action)
