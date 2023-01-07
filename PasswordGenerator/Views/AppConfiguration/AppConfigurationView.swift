@@ -18,59 +18,89 @@ struct AppConfigurationView: View {
     
     var body: some View {
 
-        NavigationView {
+        WithViewStore(store) { viewStore in
 
-            WithViewStore(store) { viewStore in
+            Form {
 
-                Form {
+                Section {
 
-                    Section {
-
-                        Button(Strings.AppConfigurationView.clearMasterPasswordTitle) {
-                            viewStore.send(.resetMasterPasswordTapped)
-                        }
-                        .foregroundColor(.red)
+                    Button(Strings.AppConfigurationView.clearMasterPasswordTitle) {
+                        viewStore.send(.resetMasterPasswordTapped)
                     }
+                    .foregroundColor(.red)
+                }
 
-                    Section(
-                        content: {
+                Section(
+                    content: {
 
-                            Picker(
-                                Strings.AppConfigurationView.keyDerivationTitle,
-                                selection: viewStore.binding(
-                                    get: { (state: State) -> KeyDerivationAlgorithm in
+                        Picker(
+                            Strings.AppConfigurationView.keyDerivationTitle,
+                            selection: viewStore.binding(
+                                get: { (state: State) -> KeyDerivationAlgorithm in
+
+                                    switch state.entropyGenerator {
+
+                                    case .pbkdf2:
+                                        return .pbkdf
+
+                                    case .argon2:
+                                        return .argon
+                                    }
+                                },
+                                send: { (algorithm: KeyDerivationAlgorithm) -> Action in
+
+                                    switch algorithm {
+
+                                    case .pbkdf:
+                                        return Action.entropyGeneratorUpdated(.pbkdf2())
+
+                                    case .argon:
+                                        return Action.entropyGeneratorUpdated(.argon2())
+                                    }
+                                }
+                            )
+                        ) {
+
+                            Text(Strings.AppConfigurationView.pbkdfTitle).tag(KeyDerivationAlgorithm.pbkdf)
+
+                            Text(Strings.AppConfigurationView.argonTitle).tag(KeyDerivationAlgorithm.argon)
+                        }
+                        .pickerStyle(.segmented)
+
+                        HStack(spacing: spacing) {
+                            Text(Strings.AppConfigurationView.iterationsTitle)
+
+                            Spacer()
+
+                            TextField(
+                                "",
+                                text: viewStore.binding(
+                                    get: { (state: State) -> String in
 
                                         switch state.entropyGenerator {
 
-                                        case .pbkdf2:
-                                            return .pbkdf
+                                        case .pbkdf2(let iterations):
+                                            return "\(iterations)"
 
-                                        case .argon2:
-                                            return .argon
+                                        case .argon2(let iterations, _, _):
+                                            return "\(iterations)"
                                         }
                                     },
-                                    send: { (algorithm: KeyDerivationAlgorithm) -> Action in
+                                    send: { value -> Action in
 
-                                        switch algorithm {
-
-                                        case .pbkdf:
-                                            return Action.entropyGeneratorUpdated(.pbkdf2())
-
-                                        case .argon:
-                                            return Action.entropyGeneratorUpdated(.argon2())
-                                        }
+                                        guard let iterations = UInt(value) else { return Action.entropyGeneratorIterationsUpdated(0) }
+                                        return Action.entropyGeneratorIterationsUpdated(iterations)
                                     }
                                 )
-                            ) {
+                            )
+                            .fixedSize()
+                            .keyboardType(.numberPad)
+                        }
 
-                                Text(Strings.AppConfigurationView.pbkdfTitle).tag(KeyDerivationAlgorithm.pbkdf)
-
-                                Text(Strings.AppConfigurationView.argonTitle).tag(KeyDerivationAlgorithm.argon)
-                            }
-                            .pickerStyle(.segmented)
-
+                        switch viewStore.entropyGenerator {
+                        case .argon2:
                             HStack(spacing: spacing) {
-                                Text(Strings.AppConfigurationView.iterationsTitle)
+                                Text(Strings.AppConfigurationView.memoryTitle)
 
                                 Spacer()
 
@@ -81,17 +111,17 @@ struct AppConfigurationView: View {
 
                                             switch state.entropyGenerator {
 
-                                            case .pbkdf2(let iterations):
-                                                return "\(iterations)"
+                                            case .pbkdf2:
+                                                return "-"
 
-                                            case .argon2(let iterations, _, _):
-                                                return "\(iterations)"
+                                            case .argon2(_, let memory, _):
+                                                return "\(memory)"
                                             }
                                         },
                                         send: { value -> Action in
 
-                                            guard let iterations = UInt(value) else { return Action.entropyGeneratorIterationsUpdated(0) }
-                                            return Action.entropyGeneratorIterationsUpdated(iterations)
+                                            guard let memory = UInt(value) else { return Action.entropyGeneratorMemoryUpdated(0) }
+                                            return Action.entropyGeneratorMemoryUpdated(memory)
                                         }
                                     )
                                 )
@@ -99,71 +129,45 @@ struct AppConfigurationView: View {
                                 .keyboardType(.numberPad)
                             }
 
-                            switch viewStore.entropyGenerator {
-                            case .argon2:
-                                HStack(spacing: spacing) {
-                                    Text(Strings.AppConfigurationView.memoryTitle)
+                            HStack(spacing: spacing) {
+                                Text(Strings.AppConfigurationView.threadsTitle)
 
-                                    Spacer()
+                                Spacer()
 
-                                    TextField(
-                                        "",
-                                        text: viewStore.binding(
-                                            get: { (state: State) -> String in
+                                TextField(
+                                    "",
+                                    text: viewStore.binding(
+                                        get: { (state: State) -> String in
 
-                                                switch state.entropyGenerator {
+                                            switch state.entropyGenerator {
 
-                                                case .pbkdf2:
-                                                    return "-"
+                                            case .pbkdf2:
+                                                return "-"
 
-                                                case .argon2(_, let memory, _):
-                                                    return "\(memory)"
-                                                }
-                                            },
-                                            send: { value -> Action in
-
-                                                guard let memory = UInt(value) else { return Action.entropyGeneratorMemoryUpdated(0) }
-                                                return Action.entropyGeneratorMemoryUpdated(memory)
+                                            case .argon2(_, _, let threads):
+                                                return "\(threads)"
                                             }
-                                        )
+                                        },
+                                        send: { value -> Action in
+
+                                            guard let threads = UInt(value) else { return Action.entropyGeneratorThreadsUpdated(0) }
+                                            return Action.entropyGeneratorThreadsUpdated(threads)
+                                        }
                                     )
-                                    .fixedSize()
-                                    .keyboardType(.numberPad)
-                                }
-
-                                HStack(spacing: spacing) {
-                                    Text(Strings.AppConfigurationView.threadsTitle)
-
-                                    Spacer()
-
-                                    TextField(
-                                        "",
-                                        text: viewStore.binding(
-                                            get: { (state: State) -> String in
-
-                                                switch state.entropyGenerator {
-
-                                                case .pbkdf2:
-                                                    return "-"
-
-                                                case .argon2(_, _, let threads):
-                                                    return "\(threads)"
-                                                }
-                                            },
-                                            send: { value -> Action in
-
-                                                guard let threads = UInt(value) else { return Action.entropyGeneratorThreadsUpdated(0) }
-                                                return Action.entropyGeneratorThreadsUpdated(threads)
-                                            }
-                                        )
-                                    )
-                                    .fixedSize()
-                                    .keyboardType(.numberPad)
-                                }
-
-                            case .pbkdf2:
-                                EmptyView()
+                                )
+                                .fixedSize()
+                                .keyboardType(.numberPad)
                             }
+
+                        case .pbkdf2:
+                            EmptyView()
+                        }
+
+                        HStack(spacing: spacing) {
+
+                            Text(Strings.AppConfigurationView.entropySizeTitle)
+
+                            Spacer()
 
                             Picker(Strings.AppConfigurationView.entropySizeTitle, selection: viewStore.binding(get: \.entropySize, send: Action.entropySizeUpdated)) {
 
@@ -179,18 +183,21 @@ struct AppConfigurationView: View {
 
                                 Text("64").tag(64 as UInt)
                             }
-                        },
-                        header: {
-                            Text(Strings.AppConfigurationView.entropyConfigurationSectionTitle)
-                        },
-                        footer: {
-                            Text(Strings.AppConfigurationView.entropyConfigurationSectionDescription)
+                            .pickerStyle(.menu)
                         }
-                    )
-                }
-                .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
+                    },
+                    header: {
+                        Text(Strings.AppConfigurationView.entropyConfigurationSectionTitle)
+                    },
+                    footer: {
+                        Text(Strings.AppConfigurationView.entropyConfigurationSectionDescription)
+                    }
+                )
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .simultaneousGesture(DragGesture().onChanged { _ in
+                viewStore.send(.shouldDismissKeyboard)
+            })
+            .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
         }
     }
 }

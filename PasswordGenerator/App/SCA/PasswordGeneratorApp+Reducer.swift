@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import ComposableArchitecture
 import PasswordGeneratorKit
 import CasePaths
@@ -37,12 +38,18 @@ extension PasswordGeneratorApp {
             state.isMasterPasswordSet = false
             return Effect(value: Action.updatedPasswordGenerator(.didLogout))
         },
-        Reducer.init(forAction: .didUpdateEntropyConfiguration) { state, entropyConfiguration, _ in
+        Reducer(forAction: .didUpdateEntropyConfiguration) { state, entropyConfiguration, _ in
 
             let (entropyGenerator, entropySize) = entropyConfiguration
             state.passwordGeneratorState.entropyGenerator = entropyGenerator
             state.passwordGeneratorState.entropySize = entropySize
             return Effect(value: Action.updatedPasswordGenerator(.updatedConfigurationState(.didUpdate)))
+        },
+        Reducer(forAction: /PasswordGeneratorApp.Action.updatedConfiguration(.shouldDismissKeyboard)) { _, _ in
+            #if APP
+            UIApplication.shared.windows.forEach { $0.endEditing(true) }
+            #endif
+            return .none
         }
     )
 }

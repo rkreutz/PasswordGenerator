@@ -35,7 +35,6 @@
 		375D5A9E24BA8EEA0017AC2B /* ToastErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375D5A9D24BA8EEA0017AC2B /* ToastErrorHandler.swift */; };
 		37936E1A24BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37936E1924BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift */; };
 		37936E1D24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37936E1C24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift */; };
-		379462DB2955EA6900F79F3C /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DA2955EA6900F79F3C /* AppConfigurationView.swift */; };
 		379462DD2955EA8900F79F3C /* AppConfigurationView+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DC2955EA8900F79F3C /* AppConfigurationView+Strings.swift */; };
 		379462DF2955EB2C00F79F3C /* AppConfigurationView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DE2955EB2C00F79F3C /* AppConfigurationView+State.swift */; };
 		379462E12955EB3A00F79F3C /* AppConfigurationView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E02955EB3A00F79F3C /* AppConfigurationView+Action.swift */; };
@@ -47,7 +46,6 @@
 		379462E92955F32E00F79F3C /* PasswordGeneratorApp+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD78257351BF00812A51 /* PasswordGeneratorApp+InitialState.swift */; };
 		379462EA2955F32E00F79F3C /* PasswordGeneratorApp+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BD042572EC3400BC33D0 /* PasswordGeneratorApp+Environment.swift */; };
 		379462EB2955F32E00F79F3C /* PasswordGeneratorApp+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BD002572EC2700BC33D0 /* PasswordGeneratorApp+Action.swift */; };
-		379462EC2955F36900F79F3C /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DA2955EA6900F79F3C /* AppConfigurationView.swift */; };
 		379462ED2955F36C00F79F3C /* AppConfigurationView+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DC2955EA8900F79F3C /* AppConfigurationView+Strings.swift */; };
 		379462EE2955F36E00F79F3C /* AppConfigurationView+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DE2955EB2C00F79F3C /* AppConfigurationView+State.swift */; };
 		379462EF2955F37000F79F3C /* AppConfigurationView+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462E02955EB3A00F79F3C /* AppConfigurationView+Action.swift */; };
@@ -83,6 +81,8 @@
 		37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654224B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift */; };
 		37A5654524B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654424B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift */; };
 		37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A5654624B962BC008D48FD /* MasterPasswordKeychain+Constants.swift */; };
+		37A8739A2964A7E900A184E1 /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DA2955EA6900F79F3C /* AppConfigurationView.swift */; };
+		37A8739D2964A86F00A184E1 /* AppConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379462DA2955EA6900F79F3C /* AppConfigurationView.swift */; };
 		37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C20B8624E4912E00C654A3 /* AlertErrorHandler.swift */; };
 		37C76EEB24BAA44F003BCAC1 /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C76EEA24BAA44F003BCAC1 /* Errors.strings */; };
 		37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C76EF124BB8561003BCAC1 /* View+AsHostingController.swift */; };
@@ -1075,6 +1075,7 @@
 				FC61389F256CA42700023A8C /* HapticEvent.swift in Sources */,
 				FC3AAE24256CAFB6004FFF3E /* CopyableContentView+Reducer.swift in Sources */,
 				FC3AAE26256CAFB6004FFF3E /* CopyableContentView+Environment.swift in Sources */,
+				37A8739A2964A7E900A184E1 /* AppConfigurationView.swift in Sources */,
 				FC6138A3256CA55200023A8C /* UIKitHapticManager.swift in Sources */,
 				FC3AAE3A256CB03F004FFF3E /* CounterView+Action.swift in Sources */,
 				37C20B8724E4912E00C654A3 /* AlertErrorHandler.swift in Sources */,
@@ -1158,7 +1159,6 @@
 				FC74BCDB2572861F00BC33D0 /* PasswordGeneratorView+State.swift in Sources */,
 				FC0A2CF6254CB41000C5B579 /* ErrorHandler+DI.swift in Sources */,
 				37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */,
-				379462DB2955EA6900F79F3C /* AppConfigurationView.swift in Sources */,
 				37020F262496F7E200C105D1 /* CounterView.swift in Sources */,
 				FC74BCAB257208BD00BC33D0 /* ServiceView+Reducer.swift in Sources */,
 				37A5652724B8D808008D48FD /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
@@ -1212,7 +1212,6 @@
 				FC74BC6A2572018A00BC33D0 /* ConfigurationView+Environment.swift in Sources */,
 				37CB52F324CDF7810081DA1E /* MainButtonStyle.swift in Sources */,
 				FC74BC9A2572088400BC33D0 /* PasswordGeneratorView+ServiceView.swift in Sources */,
-				379462EC2955F36900F79F3C /* AppConfigurationView.swift in Sources */,
 				FC74BCB1257208D000BC33D0 /* ServiceView+Environment.swift in Sources */,
 				FC74BCEC2572866100BC33D0 /* PasswordGeneratorView+Reducer.swift in Sources */,
 				37CB52EB24CDF7770081DA1E /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
@@ -1278,6 +1277,7 @@
 				37CB52D624CDF75B0081DA1E /* View+AsAny.swift in Sources */,
 				FC74BCED2572866100BC33D0 /* PasswordGeneratorView+State.swift in Sources */,
 				37CB52D924CDF75F0081DA1E /* MasterPasswordValidator.swift in Sources */,
+				37A8739D2964A86F00A184E1 /* AppConfigurationView.swift in Sources */,
 				37CB52E424CDF7730081DA1E /* PasswordGeneratorView.swift in Sources */,
 				37CB52C724CDF7490081DA1E /* DispatchWorkItemReference.swift in Sources */,
 				379462FF29562FA400F79F3C /* Defaults.swift in Sources */,
@@ -1470,6 +1470,7 @@
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
 				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Development Profile";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APP";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1495,6 +1496,7 @@
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
 				PROVISIONING_PROFILE_SPECIFIER = "Password Generator Development Profile";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

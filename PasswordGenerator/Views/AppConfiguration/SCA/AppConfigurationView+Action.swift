@@ -14,5 +14,6 @@ extension AppConfigurationView {
         case entropyGeneratorThreadsUpdated(UInt)
         case entropySizeUpdated(UInt)
         case updateError(Error?)
+        case shouldDismissKeyboard
     }
 }

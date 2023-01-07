@@ -30,6 +30,7 @@ struct PasswordGeneratorApp: App {
 
                 case false:
                     MasterPasswordView(store: store.scope(state: \.masterPasswordState, action: Action.updatedMasterPassword))
+                        .frame(maxWidth: maxWidth)
 
                 case true:
                     TabView {
@@ -39,6 +40,7 @@ struct PasswordGeneratorApp: App {
                                 action: Action.updatedPasswordGenerator
                             )
                         )
+                        .frame(maxWidth: maxWidth)
                         .tabItem { Label(Strings.PasswordGeneratorApp.generatorTabTitle, systemImage: Constants.generatorIconName) }
 
                         AppConfigurationView(
@@ -47,11 +49,11 @@ struct PasswordGeneratorApp: App {
                                 action: Action.updatedConfiguration
                             )
                         )
+                        .frame(maxWidth: maxWidth)
                         .tabItem { Label(Strings.PasswordGeneratorApp.configurationTabTitle, systemImage: Constants.configurationIconName) }
                     }
                 }
             }
-            .frame(maxWidth: maxWidth)
             .accentColor(.accentColor)
             .background(
                 Rectangle()
