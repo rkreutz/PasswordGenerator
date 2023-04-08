@@ -13,7 +13,7 @@ extension Strings {
 
             It is recommended to use as large as possible values in most parameters, however increasing some parameters may increase processing times, therefore test your configuration before commiting to it and make sure you are happy with the time it takes to generate your passwords. In general the longer it takes to generate a password, the harder it is for hackers to brute-force it.
 
-            The default generator is PBKDF2 with 1,000 iterations.
+            The default generator is PBKDF2 with 1,000 iterations and 40 bytes of entropy.
             """
         )
         static let keyDerivationTitle = LocalizedStringKey("Key Derivation")

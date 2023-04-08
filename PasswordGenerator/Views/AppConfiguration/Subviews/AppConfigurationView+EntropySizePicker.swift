@@ -35,7 +35,7 @@ extension AppConfigurationView {
 
                 Spacer()
 
-                Picker(Strings.AppConfigurationView.entropySizeTitle, selection: viewStore.binding(\.self)) {
+                Picker("", selection: viewStore.binding(\.self)) {
                     Text("24").tag(24 as UInt)
                     Text("32").tag(32 as UInt)
                     Text("40").tag(40 as UInt)
