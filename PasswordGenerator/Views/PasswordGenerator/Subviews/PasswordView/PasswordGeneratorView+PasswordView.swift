@@ -5,20 +5,41 @@ extension PasswordGeneratorView {
 
     struct PasswordView: View {
 
+        typealias ViewState = PasswordGenerator.Password.Flow
+
+        enum ViewAction {
+            case didTapButton
+
+            var domainAction: PasswordGenerator.Password.Action {
+                switch self {
+                case .didTapButton:
+                    return .didTapButton
+                }
+            }
+        }
+
         @ScaledMetric private var loaderSize: CGFloat = 44
 
-        let store: Store<State, Action>
+        let store: StoreOf<PasswordGenerator.Password>
+        @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
+
+        init(store: StoreOf<PasswordGenerator.Password>) {
+            self.store = store
+            self.viewStore = ViewStore(
+                store,
+                observe: \.flow,
+                send: \.domainAction
+            )
+        }
 
         var body: some View {
-
-            WithViewStore(store) { viewStore in
-
-                switch viewStore.flow {
+            Group {
+                switch viewStore.state {
 
                 case .invalid, .readyToGenerate:
-                    Button(Strings.PasswordGeneratorView.generatePassword, action: { viewStore.send(.generatePassword) })
+                    Button(Strings.PasswordGeneratorView.generatePassword, action: { viewStore.send(.didTapButton) })
                         .buttonStyle(MainButtonStyle())
-                        .disabled(viewStore.flow == .invalid)
+                        .disabled(viewStore.state == .invalid)
 
                 case .loading:
                     ProgressView()
@@ -26,7 +47,7 @@ extension PasswordGeneratorView {
                         .progressViewStyle(LoaderStyle())
 
                 case .generated:
-                    CopyableContentView(store: store.scope(state: \.copyableState, action: Action.updateCopyableContentView))
+                    CopyableContentView(store: store.scope(state: \.copyableContent, action: PasswordGenerator.Password.Action.copyableContent))
                         .expandedInParent()
                         .asCard()
                 }

@@ -5,11 +5,13 @@ extension PasswordGeneratorView {
 
     struct LengthView: View {
 
-        let store: Store<State, Action>
+        typealias ViewState = PasswordGenerator.Length.State
+        typealias ViewAction = PasswordGenerator.Length.Action
+
+        let store: Store<ViewState, ViewAction>
 
         var body: some View {
-
-            CounterView(store: store.scope(state: \.lengthState, action: Action.updatedLengthCounter))
+            CounterView(title: Strings.PasswordGeneratorView.passwordLength, store: store)
                 .asCard()
         }
     }
@@ -21,16 +23,12 @@ import PasswordGeneratorKit
 
 struct LengthView_Previews: PreviewProvider {
 
-    static let store: Store<PasswordGeneratorView.LengthView.State, PasswordGeneratorView.LengthView.Action> = .init(
+    static let store: Store<PasswordGeneratorView.LengthView.ViewState, PasswordGeneratorView.LengthView.ViewAction> = .init(
         initialState: .init(
-            lengthState: .init(
-                title: "Length",
-                count: 1,
-                bounds: 4 ... 32
-            )
+            count: 1,
+            bounds: 4 ... 32
         ),
-        reducer: PasswordGeneratorView.LengthView.sharedReducer,
-        environment: .init()
+        reducer: PasswordGenerator.Length()
     )
 
     static var previews: some View {

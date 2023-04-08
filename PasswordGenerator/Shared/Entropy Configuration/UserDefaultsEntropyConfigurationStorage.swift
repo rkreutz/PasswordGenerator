@@ -21,7 +21,7 @@ final class UserDefaultsEntropyConfigurationStorage: EntropyConfigurationStorage
         self.userDefaults = userDefaults
     }
 
-    func save(entropyGenerator: PasswordGenerator.EntropyGenerator) {
+    func save(entropyGenerator: PasswordGeneratorKit.PasswordGenerator.EntropyGenerator) {
 
         switch entropyGenerator {
 
@@ -46,7 +46,7 @@ final class UserDefaultsEntropyConfigurationStorage: EntropyConfigurationStorage
         userDefaults.set(entropySize, forKey: Constants.bytesKey)
     }
 
-    func entropyGenerator() -> PasswordGenerator.EntropyGenerator {
+    func entropyGenerator() -> PasswordGeneratorKit.PasswordGenerator.EntropyGenerator {
 
         switch userDefaults.value(forKey: Constants.entropyGeneratorKey) as? String {
 

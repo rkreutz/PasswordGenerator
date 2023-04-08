@@ -7,30 +7,51 @@ import ComposableArchitecture
 
 struct PasswordGeneratorView: View {
 
+    struct ViewState: Equatable {
+        var error: Error?
+
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            lhs.error?.localizedDescription == rhs.error?.localizedDescription
+        }
+    }
+
+    typealias ViewAction = PasswordGenerator.Action
+
     @ScaledMetric private var spacing: CGFloat = 16
 
-    let store: Store<State, Action>
+    let store: StoreOf<PasswordGenerator>
+    @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
+
+    init(store: StoreOf<PasswordGenerator>) {
+        self.store = store
+        self.viewStore = ViewStore(
+            store,
+            observe: \.view,
+            send: { $0 }
+        )
+    }
 
     var body: some View {
+        ScrollView {
+            VStack(alignment: .center, spacing: spacing) {
+                ConfigurationView(store: store.scope(state: \.configuration, action: ViewAction.configuration))
 
-        WithViewStore(store) { viewStore in
+                LengthView(store: store.scope(state: \.length, action: ViewAction.length))
 
-            ScrollView {
+                CharactersView(store: store.scope(state: \.characters, action: ViewAction.characters))
 
-                VStack(alignment: .center, spacing: spacing) {
-
-                    ConfigurationView(store: store.scope(state: \.configurationState, action: Action.updatedConfigurationState))
-
-                    LengthView(store: store.scope(state: \.lengthState, action: Action.updatedLengthState))
-
-                    CharactersView(store: store.scope(state: \.charactersState, action: Action.updatedCharactersState))
-
-                    PasswordView(store: store.scope(state: \.passwordState, action: Action.updatedPasswordState))
-                }
-                .padding(spacing)
+                PasswordView(store: store.scope(state: \.password, action: ViewAction.password))
             }
-            .emittingError(viewStore.binding(get: \.error, send: Action.updateError))
+            .padding(spacing)
         }
+        .emittingError(viewStore.binding(get: \.error, send: ViewAction.didReceiveError))
+    }
+}
+
+private extension PasswordGenerator.State {
+    var view: PasswordGeneratorView.ViewState {
+        get { .init(error: error) }
+        set { error = newValue.error }
     }
 }
 
@@ -38,81 +59,64 @@ struct PasswordGeneratorView: View {
 
 struct PasswordGeneratorView_Previews: PreviewProvider {
 
-    static let store = Store<PasswordGeneratorView.State, PasswordGeneratorView.Action>(
+    static let store = StoreOf<PasswordGenerator>(
         initialState: .init(
-            configurationState: .init(
+            configuration: .init(
                 passwordType: .domainBased,
-                domainState: .init(
+                domain: .init(
                     username: "",
                     domain: "",
                     seed: .init(
-                        title: Strings.PasswordGeneratorView.seed.formatted(),
                         count: 1,
                         bounds: 1 ... 999
-                    ),
-                    isValid: false
+                    )
                 ),
-                serviceState: .init(
-                    service: "",
-                    isValid: false
-                ),
-                isValid: false
-            ),
-            lengthState: .init(
-                lengthState: .init(
-                    title: Strings.PasswordGeneratorView.passwordLength.formatted(),
-                    count: 8,
-                    bounds: 4 ... 32
+                service: .init(
+                    service: ""
                 )
             ),
-            charactersState: .init(
-                digitsState: .init(
-                    toggleTitle: Strings.PasswordGeneratorView.decimalCharacters.formatted(),
+            length: .init(
+                count: 8,
+                bounds: 4 ... 32
+            ),
+            characters: .init(
+                digits: .init(
                     isToggled: true,
-                    counterState: .init(
-                        title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                    counter: .init(
                         count: 1,
                         bounds: 1 ... 8
                     )
                 ),
-                symbolsState: .init(
-                    toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters.formatted(),
+                symbols: .init(
                     isToggled: false,
-                    counterState: .init(
-                        title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                    counter: .init(
                         count: 0,
                         bounds: 1 ... 8
                     )
                 ),
-                lowercaseState: .init(
-                    toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters.formatted(),
+                lowercase: .init(
                     isToggled: true,
-                    counterState: .init(
-                        title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                    counter: .init(
                         count: 1,
                         bounds: 1 ... 8
                     )
                 ),
-                uppercaseState: .init(
-                    toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters.formatted(),
+                uppercase: .init(
                     isToggled: true,
-                    counterState: .init(
-                        title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                    counter: .init(
                         count: 1,
                         bounds: 1 ... 8
                     )
-                ),
-                isValid: true
+                )
             ),
-            passwordState: .init(
+            password: .init(
                 flow: .invalid,
-                copyableState: .init(content: "")
+                copyableContent: .init(content: "")
             ),
             entropyGenerator: .pbkdf2(iterations: 1_000),
             entropySize: 40
         ),
-        reducer: PasswordGeneratorView.sharedReducer,
-        environment: PasswordGeneratorView.Environment.preview()
+        reducer: PasswordGenerator()
     )
 
     static var previews: some View {

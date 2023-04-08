@@ -2,8 +2,9 @@ import Foundation
 
 final class MasterPasswordKeychain {
 
-    init() {
+    static let shared = MasterPasswordKeychain()
 
+    private init() {
         migrateKeychain()
     }
 }

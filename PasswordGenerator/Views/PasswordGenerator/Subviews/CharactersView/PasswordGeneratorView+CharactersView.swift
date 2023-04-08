@@ -5,27 +5,44 @@ extension PasswordGeneratorView {
 
     struct CharactersView: View {
 
+        typealias ViewState = PasswordGenerator.Characters.State
+        typealias ViewAction = PasswordGenerator.Characters.Action
+
         @ScaledMetric private var spacing: CGFloat = 16
 
-        let store: Store<State, Action>
+        let store: Store<ViewState, ViewAction>
 
         var body: some View {
-
             VStack(spacing: spacing) {
-
-                CounterToggleView(store: store.scope(state: \.lowercaseState, action: Action.updateLowercaseCounter))
-
-                SeparatorView()
-
-                CounterToggleView(store: store.scope(state: \.uppercaseState, action: Action.updateUppercaseCounter))
-
-                SeparatorView()
-
-                CounterToggleView(store: store.scope(state: \.digitsState, action: Action.updateDigitsCounter))
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.lowercasedCharacters,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    store: store.scope(state: \.lowercase, action: ViewAction.lowercase)
+                )
 
                 SeparatorView()
 
-                CounterToggleView(store: store.scope(state: \.symbolsState, action: Action.updateSymbolsCounter))
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.uppercasedCharacters,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    store: store.scope(state: \.uppercase, action: ViewAction.uppercase)
+                )
+
+                SeparatorView()
+
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.decimalCharacters,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    store: store.scope(state: \.digits, action: ViewAction.digits)
+                )
+
+                SeparatorView()
+
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.symbolsCharacters,
+                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                    store: store.scope(state: \.symbols, action: ViewAction.symbols)
+                )
             }
             .asCard()
         }
@@ -38,48 +55,38 @@ import PasswordGeneratorKit
 
 struct CharactersView_Previews: PreviewProvider {
 
-    static let store: Store<PasswordGeneratorView.CharactersView.State, PasswordGeneratorView.CharactersView.Action> = .init(
+    static let store: Store<PasswordGeneratorView.CharactersView.ViewState, PasswordGeneratorView.CharactersView.ViewAction> = .init(
         initialState: .init(
-            digitsState: .init(
-                toggleTitle: "Digits",
+            digits: .init(
                 isToggled: true,
-                counterState: .init(
-                    title: "Number",
+                counter: .init(
                     count: 1,
                     bounds: 1 ... 8
                 )
             ),
-            symbolsState: .init(
-                toggleTitle: "Symbols",
+            symbols: .init(
                 isToggled: false,
-                counterState: .init(
-                    title: "Number",
+                counter: .init(
                     count: 0,
                     bounds: 1 ... 8
                 )
             ),
-            lowercaseState: .init(
-                toggleTitle: "Lowercase",
+            lowercase: .init(
                 isToggled: true,
-                counterState: .init(
-                    title: "Number",
+                counter: .init(
                     count: 1,
                     bounds: 1 ... 8
                 )
             ),
-            uppercaseState: .init(
-                toggleTitle: "Uppercase",
+            uppercase: .init(
                 isToggled: true,
-                counterState: .init(
-                    title: "Number",
+                counter: .init(
                     count: 1,
                     bounds: 1 ... 8
                 )
-            ),
-            isValid: true
+            )
         ),
-        reducer: PasswordGeneratorView.CharactersView.sharedReducer,
-        environment: PasswordGeneratorView.CharactersView.Environment()
+        reducer: PasswordGenerator.Characters()
     )
 
     static var previews: some View {

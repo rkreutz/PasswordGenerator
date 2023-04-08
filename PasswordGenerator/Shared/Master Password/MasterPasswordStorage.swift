@@ -1,3 +1,4 @@
+import Dependencies
 import Foundation
 
 protocol MasterPasswordStorage {
@@ -7,6 +8,21 @@ protocol MasterPasswordStorage {
     func masterPassword() throws -> String
 
     func deleteMasterPassword() throws
+}
+
+private enum MasterPasswordStorageKey: DependencyKey {
+    static let liveValue: MasterPasswordStorage = MasterPasswordKeychain.shared
+    #if DEBUG
+    static let previewValue: MasterPasswordStorage = MockMasterPasswordStorage()
+    static let testValue: MasterPasswordStorage = MockMasterPasswordStorage()
+    #endif
+}
+
+extension DependencyValues {
+    var masterPasswordStorage: MasterPasswordStorage {
+        get { self[MasterPasswordStorageKey.self] }
+        set { self[MasterPasswordStorageKey.self] = newValue }
+    }
 }
 
 #if DEBUG

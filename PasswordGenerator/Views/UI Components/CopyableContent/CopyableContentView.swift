@@ -4,34 +4,50 @@ import ComposableArchitecture
 
 struct CopyableContentView: View {
 
+    typealias ViewState = CopyableContent.State
+
+    enum ViewAction: Equatable {
+        case didTapCopyButton
+
+        var domainAction: CopyableContent.Action {
+            switch self {
+            case .didTapCopyButton:
+                return .didTapCopyButton
+            }
+        }
+    }
+
     @ScaledMetric private var spacing: CGFloat = 8
     @ScaledMetric private var buttonWidth: CGFloat = 44
+    @ScaledMetric private var buttonHeight: CGFloat = 24
 
-    let store: Store<State, Action>
+    @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
+
+    init(store: StoreOf<CopyableContent>) {
+        self.viewStore = ViewStore(
+            store,
+            observe: { $0 },
+            send: \.domainAction
+        )
+    }
 
     var body: some View {
+        HStack(spacing: spacing) {
+            Text(viewStore.content)
+                .foregroundColor(.primary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.1)
+                .font(.system(.headline, design: .monospaced))
 
-        WithViewStore(store) { viewStore in
-
-            HStack(spacing: spacing) {
-
-                Text(viewStore.content)
-                    .foregroundColor(.primary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.1)
-                    .font(.system(.headline, design: .monospaced))
-
-                Button(
-                    action: { viewStore.send(.copyContent) },
-                    label: {
-
-                        Image(systemName: viewStore.hasCopied ? "checkmark" : "doc.on.clipboard")
-                            .foregroundColor(.accentColor)
-                            .font(.system(.headline, design: .monospaced))
-                    }
-                )
-                .frame(width: buttonWidth)
-            }
+            Button(
+                action: { viewStore.send(.didTapCopyButton) },
+                label: {
+                    Image(systemName: viewStore.hasCopied ? "checkmark" : "doc.on.clipboard")
+                        .foregroundColor(.accentColor)
+                        .font(.system(.headline, design: .monospaced))
+                }
+            )
+            .frame(width: buttonWidth, height: buttonHeight)
         }
     }
 }
@@ -45,10 +61,9 @@ struct CopyableContentView_Previews: PreviewProvider {
         Group {
 
             CopyableContentView(
-                store: Store(
-                    initialState: CopyableContentView.State(content: "Content"),
-                    reducer: CopyableContentView.sharedReducer,
-                    environment: CopyableContentView.Environment.preview()
+                store: .init(
+                    initialState: .init(content: "Content"),
+                    reducer: CopyableContent()
                 )
             )
             .padding()
@@ -58,10 +73,9 @@ struct CopyableContentView_Previews: PreviewProvider {
             .previewDisplayName("Light")
 
             CopyableContentView(
-                store: Store(
-                    initialState: CopyableContentView.State(content: "Content"),
-                    reducer: CopyableContentView.sharedReducer,
-                    environment: CopyableContentView.Environment.preview()
+                store: .init(
+                    initialState: .init(content: "Content"),
+                    reducer: CopyableContent()
                 )
             )
             .padding()
@@ -71,10 +85,9 @@ struct CopyableContentView_Previews: PreviewProvider {
             .previewDisplayName("Dark")
 
             CopyableContentView(
-                store: Store(
-                    initialState: CopyableContentView.State(content: "Content", hasCopied: true),
-                    reducer: CopyableContentView.sharedReducer,
-                    environment: CopyableContentView.Environment.preview()
+                store: .init(
+                    initialState: .init(content: "Content", hasCopied: true),
+                    reducer: CopyableContent()
                 )
             )
             .padding()
@@ -84,10 +97,9 @@ struct CopyableContentView_Previews: PreviewProvider {
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
                 CopyableContentView(
-                    store: Store(
-                        initialState: CopyableContentView.State(content: "Content"),
-                        reducer: CopyableContentView.sharedReducer,
-                        environment: CopyableContentView.Environment.preview()
+                    store: .init(
+                        initialState: .init(content: "Content"),
+                        reducer: CopyableContent()
                     )
                 )
                 .padding()

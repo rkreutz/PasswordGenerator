@@ -3,29 +3,59 @@ import SwiftUI
 import ComposableArchitecture
 
 public struct CounterToggleView: View {
-
+    
+    struct ViewState: Equatable {
+        @BindingState var isToggled: Bool
+    }
+    
+    enum ViewAction: BindableAction, Equatable {
+        case binding(BindingAction<ViewState>)
+        
+        var domainAction: CounterToggle.Action {
+            switch self {
+            case .binding(let action):
+                return .binding(action.pullback(\.view))
+            }
+        }
+    }
+    
     @ScaledMetric private var spacing: CGFloat = 16
 
-    let store: Store<State, Action>
-
+    let title: LocalizedStringKey
+    let counterTitle: LocalizedStringKey
+    let store: StoreOf<CounterToggle>
+    @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
+    
+    init(title: LocalizedStringKey, counterTitle: LocalizedStringKey, store: StoreOf<CounterToggle>) {
+        self.title = title
+        self.counterTitle = counterTitle
+        self.store = store
+        self.viewStore = ViewStore(
+            store,
+            observe: \.view,
+            send: \.domainAction
+        )
+    }
+    
     public var body: some View {
-
-        WithViewStore(store) { viewStore in
-
-            VStack(spacing: spacing) {
-
-                Toggle(viewStore.toggleTitle, isOn: viewStore.binding(get: \.isToggled, send: Action.updateToggle))
-                    .font(.subheadline)
-                    .foregroundColor(.label)
-                    .allowsTightening(true)
-
-                if viewStore.isToggled {
-
-                    CounterView(store: store.scope(state: \.counterState, action: Action.counterChanged))
-                }
+        VStack(spacing: spacing) {
+            Toggle(title, isOn: viewStore.binding(\.$isToggled))
+                .font(.subheadline)
+                .foregroundColor(.label)
+                .allowsTightening(true)
+            
+            if viewStore.isToggled {
+                CounterView(title: counterTitle, store: store.scope(state: \.counter, action: CounterToggle.Action.counter))
             }
-            .animation(.easeInOut(duration: 0.15))
         }
+        .animation(.easeInOut(duration: 0.15), value: viewStore.isToggled)
+    }
+}
+
+private extension CounterToggle.State {
+    var view: CounterToggleView.ViewState {
+        get { .init(isToggled: isToggled) }
+        set { isToggled = newValue.isToggled }
     }
 }
 
@@ -40,18 +70,18 @@ struct CounterToggleView_Previews: PreviewProvider {
         Group {
 
             CounterToggleView(
+                title: "Toggle title",
+                counterTitle: "Counter title",
                 store: .init(
-                    initialState: CounterToggleView.State(
-                        toggleTitle: "Toggle title",
+                    initialState: .init(
                         isToggled: true,
-                        counterState: CounterView.State(
-                            title: "Counter title",
+                        counter: .init(
                             count: 1,
                             bounds: 1 ... Int.max
                         )
                     ),
-                    reducer: CounterToggleView.sharedReducer,
-                    environment: CounterToggleView.Environment())
+                    reducer: CounterToggle()
+                )
             )
             .padding()
             .background(Rectangle().foregroundColor(.secondarySystemBackground))
@@ -60,18 +90,18 @@ struct CounterToggleView_Previews: PreviewProvider {
             .previewDisplayName("Light")
 
             CounterToggleView(
+                title: "Toggle title",
+                counterTitle: "Counter title",
                 store: .init(
-                    initialState: CounterToggleView.State(
-                        toggleTitle: "Toggle title",
+                    initialState: .init(
                         isToggled: true,
-                        counterState: CounterView.State(
-                            title: "Counter title",
+                        counter: .init(
                             count: 1,
                             bounds: 1 ... Int.max
                         )
                     ),
-                    reducer: CounterToggleView.sharedReducer,
-                    environment: CounterToggleView.Environment())
+                    reducer: CounterToggle()
+                )
             )
             .padding()
             .background(Rectangle().foregroundColor(.secondarySystemBackground))
@@ -82,18 +112,18 @@ struct CounterToggleView_Previews: PreviewProvider {
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
                 CounterToggleView(
+                    title: "Toggle title",
+                    counterTitle: "Counter title",
                     store: .init(
-                        initialState: CounterToggleView.State(
-                            toggleTitle: "Toggle title",
+                        initialState: .init(
                             isToggled: true,
-                            counterState: CounterView.State(
-                                title: "Counter title",
+                            counter: .init(
                                 count: 1,
                                 bounds: 1 ... Int.max
                             )
                         ),
-                        reducer: CounterToggleView.sharedReducer,
-                        environment: CounterToggleView.Environment())
+                        reducer: CounterToggle()
+                    )
                 )
                 .padding()
                 .background(Rectangle().foregroundColor(.secondarySystemBackground))

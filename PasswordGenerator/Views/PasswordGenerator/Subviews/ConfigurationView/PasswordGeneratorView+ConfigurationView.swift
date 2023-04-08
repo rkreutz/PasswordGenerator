@@ -5,40 +5,53 @@ extension PasswordGeneratorView {
 
     struct ConfigurationView: View {
 
+        typealias ViewState = BindingState<PasswordGenerator.Configuration.PasswordType>
+
+        enum ViewAction: BindableAction {
+            case binding(BindingAction<ViewState>)
+
+            var domainAction: PasswordGenerator.Configuration.Action {
+                switch self {
+                case .binding(let action):
+                    return .binding(action.pullback(\.$passwordType))
+                }
+            }
+        }
+
         @ScaledMetric private var spacing: CGFloat = 16
 
-        let store: Store<State, Action>
+        let store: StoreOf<PasswordGenerator.Configuration>
+        @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
+
+        init(store: StoreOf<PasswordGenerator.Configuration>) {
+            self.store = store
+            self.viewStore = ViewStore(
+                store,
+                observe: \.$passwordType,
+                send: \.domainAction
+            )
+        }
 
         var body: some View {
-
-            WithViewStore(store) { viewStore in
-
-                VStack(alignment: .center, spacing: spacing) {
-
-                    Picker(selection: viewStore.binding(get: \.passwordType, send: Action.updatePasswordType), label: Text("")) {
-
-                        ForEach(PasswordType.allCases, id: \.hashValue) { passwordType in
-
-                            Text(passwordType.title)
-                                .tag(passwordType)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .fixedSize()
-
-                    switch viewStore.passwordType {
-
-                    case .domainBased:
-                        PasswordGeneratorView.DomainView(store: store.scope(state: \.domainState, action: Action.updateDomain))
-
-                    case .serviceBased:
-                        PasswordGeneratorView.ServiceView(store: store.scope(state: \.serviceState, action: Action.updateService))
-                    }
+            VStack(alignment: .center, spacing: spacing) {
+                Picker(selection: viewStore.binding(\.self), label: Text("")) {
+                    Text(Strings.PasswordGeneratorView.domainBased).tag(PasswordGenerator.Configuration.PasswordType.domainBased)
+                    Text(Strings.PasswordGeneratorView.serviceBased).tag(PasswordGenerator.Configuration.PasswordType.serviceBased)
                 }
-                .asCard()
-                .textFieldStyle(SecondaryTextFiledStyle())
-                .disableAutocorrection(true)
+                .pickerStyle(SegmentedPickerStyle())
+                .fixedSize()
+
+                switch viewStore.wrappedValue {
+                case .domainBased:
+                    PasswordGeneratorView.DomainView(store: store.scope(state: \.domain, action: PasswordGenerator.Configuration.Action.domain))
+
+                case .serviceBased:
+                    PasswordGeneratorView.ServiceView(store: store.scope(state: \.service, action: PasswordGenerator.Configuration.Action.service))
+                }
             }
+            .asCard()
+            .textFieldStyle(SecondaryTextFiledStyle())
+            .disableAutocorrection(true)
         }
     }
 }
@@ -49,27 +62,22 @@ import PasswordGeneratorKit
 
 struct ConfigurationView_Previews: PreviewProvider {
 
-    static let store: Store<PasswordGeneratorView.ConfigurationView.State, PasswordGeneratorView.ConfigurationView.Action> = .init(
+    static let store: StoreOf<PasswordGenerator.Configuration> = .init(
         initialState: .init(
             passwordType: .domainBased,
-            domainState: .init(
+            domain: .init(
                 username: "username",
                 domain: "google.com",
                 seed: .init(
-                    title: "Seed",
                     count: 1,
                     bounds: 1 ... 999
-                ),
-                isValid: true
+                )
             ),
-            serviceState: .init(
-                service: "Service",
-                isValid: true
-            ),
-            isValid: true
+            service: .init(
+                service: "Service"
+            )
         ),
-        reducer: PasswordGeneratorView.ConfigurationView.sharedReducer,
-        environment: .init()
+        reducer: PasswordGenerator.Configuration()
     )
 
     static var previews: some View {

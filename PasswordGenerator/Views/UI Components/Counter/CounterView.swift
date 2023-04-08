@@ -4,32 +4,35 @@ import ComposableArchitecture
 
 public struct CounterView: View {
 
+    typealias ViewState = Counter.State
+    typealias ViewAction = Counter.Action
+
     @ScaledMetric private var spacing: CGFloat = 8
 
-    let store: Store<State, Action>
+    let title: LocalizedStringKey
+    @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
+
+    init(title: LocalizedStringKey, store: StoreOf<Counter>) {
+        self.title = title
+        self.viewStore = ViewStore(store, observe: { $0 })
+    }
 
     public var body: some View {
+        Stepper(value: viewStore.binding(\.$count), in: viewStore.bounds) {
+            HStack(alignment: .center) {
+                Text(title)
+                    .font(.subheadline)
+                    .foregroundColor(.label)
+                    .allowsTightening(true)
 
-        WithViewStore(store) { viewStore in
+                Spacer(minLength: spacing)
 
-            Stepper(value: viewStore.binding(get: \.count, send: Action.update), in: viewStore.bounds) {
-
-                HStack(alignment: .center) {
-
-                    Text(viewStore.title)
-                        .font(.subheadline)
-                        .foregroundColor(.label)
-                        .allowsTightening(true)
-
-                    Spacer(minLength: spacing)
-
-                    Text("\(viewStore.count)")
-                        .font(.system(.subheadline, design: .monospaced))
-                        .foregroundColor(.label)
-                        .layoutPriority(1)
-                }
-                .padding(.trailing, spacing)
+                Text("\(viewStore.count)")
+                    .font(.system(.subheadline, design: .monospaced))
+                    .foregroundColor(.label)
+                    .layoutPriority(1)
             }
+            .padding(.trailing, spacing)
         }
     }
 }
@@ -39,14 +42,12 @@ public struct CounterView: View {
 struct CounterView_Previews: PreviewProvider {
 
     static var previews: some View {
-
         Group {
-
             CounterView(
-                store: Store(
-                    initialState: CounterView.State(title: "Title", count: 99, bounds: 1 ... Int.max),
-                    reducer: CounterView.sharedReducer,
-                    environment: CounterView.Environment()
+                title: "Title",
+                store: StoreOf<Counter>(
+                    initialState: Counter.State(count: 99, bounds: 1 ... Int.max),
+                    reducer: Counter()
                 )
             )
             .padding()
@@ -56,10 +57,10 @@ struct CounterView_Previews: PreviewProvider {
             .previewDisplayName("Light")
 
             CounterView(
-                store: Store(
-                    initialState: CounterView.State(title: "Title", count: 99, bounds: 1 ... Int.max),
-                    reducer: CounterView.sharedReducer,
-                    environment: CounterView.Environment()
+                title: "Title",
+                store: StoreOf<Counter>(
+                    initialState: Counter.State(count: 99, bounds: 1 ... Int.max),
+                    reducer: Counter()
                 )
             )
             .padding()
@@ -71,10 +72,10 @@ struct CounterView_Previews: PreviewProvider {
             ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
 
                 CounterView(
-                    store: Store(
-                        initialState: CounterView.State(title: "Title", count: 99, bounds: 1 ... Int.max),
-                        reducer: CounterView.sharedReducer,
-                        environment: CounterView.Environment()
+                    title: "Title",
+                    store: StoreOf<Counter>(
+                        initialState: Counter.State(count: 99, bounds: 1 ... Int.max),
+                        reducer: Counter()
                     )
                 )
                 .padding()

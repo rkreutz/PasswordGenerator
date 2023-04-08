@@ -1,43 +1,34 @@
 import Foundation
 import ComposableArchitecture
 import AuthenticationServices
-import CasePaths
 
 extension CredentialProviderViewController {
 
-    var reducer: PasswordGeneratorView.Reducer {
+    @ReducerBuilder<PasswordGenerator.State, PasswordGenerator.Action>
+    var reducer: some ReducerOf<PasswordGenerator> {
+        PasswordGenerator()
+        Reduce { [extensionContext] state, action in
+            guard case let .password(.updateFlow(.generated(password))) = action else { return .none }
+            switch state.configuration.passwordType {
+            case .domainBased:
+                extensionContext.completeRequest(
+                    withSelectedCredential: ASPasswordCredential(
+                        user: state.configuration.domain.username,
+                        password: password
+                    ),
+                    completionHandler: nil
+                )
 
-        PasswordGeneratorView.Reducer.combine(
-            PasswordGeneratorView.sharedReducer,
-            PasswordGeneratorView.Reducer(
-                forAction: /PasswordGeneratorView.Action.updatedPasswordState
-                    .. /PasswordGeneratorView.PasswordView.Action.updateFlow
-                    .. /PasswordGeneratorView.PasswordView.Flow.generated
-            ) { [extensionContext] state, password, _ -> Effect<PasswordGeneratorView.Action, Never> in
-
-                switch state.configurationState.passwordType {
-
-                case .domainBased:
-                    extensionContext.completeRequest(
-                        withSelectedCredential: ASPasswordCredential(
-                            user: state.configurationState.domainState.username,
-                            password: password
-                        ),
-                        completionHandler: nil
-                    )
-
-                case .serviceBased:
-                    extensionContext.completeRequest(
-                        withSelectedCredential: ASPasswordCredential(
-                            user: state.configurationState.serviceState.service,
-                            password: password
-                        ),
-                        completionHandler: nil
-                    )
-                }
-
-                return .none
+            case .serviceBased:
+                extensionContext.completeRequest(
+                    withSelectedCredential: ASPasswordCredential(
+                        user: state.configuration.service.service,
+                        password: password
+                    ),
+                    completionHandler: nil
+                )
             }
-        )
+            return .none
+        }
     }
 }

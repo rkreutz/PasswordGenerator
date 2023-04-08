@@ -3,7 +3,7 @@ import PasswordGeneratorKit
 
 enum Defaults {
     
-    static let entropyGenerator = PasswordGenerator.EntropyGenerator.pbkdf2(iterations: PBKDF2.iterations)
+    static let entropyGenerator = PasswordGeneratorKit.PasswordGenerator.EntropyGenerator.pbkdf2(iterations: PBKDF2.iterations)
     static let entropySize: UInt = 40
 
     enum PBKDF2 {

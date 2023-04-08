@@ -5,32 +5,67 @@ extension PasswordGeneratorView {
 
     struct DomainView: View {
 
-        let store: Store<State, Action>
+        struct ViewState: Equatable {
+            @BindingState var username: String
+            @BindingState var domain: String
+        }
+
+        enum ViewAction: BindableAction {
+            case binding(BindingAction<ViewState>)
+
+            var domainAction: PasswordGenerator.Domain.Action {
+                switch self {
+                case .binding(let action):
+                    return .binding(action.pullback(\.view))
+                }
+            }
+        }
+
+        let store: StoreOf<PasswordGenerator.Domain>
+        @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
+
+        init(store: StoreOf<PasswordGenerator.Domain>) {
+            self.store = store
+            self.viewStore = ViewStore(
+                store,
+                observe: \.view,
+                send: \.domainAction
+            )
+        }
 
         var body: some View {
+            TextField(
+                Strings.PasswordGeneratorView.username,
+                text: viewStore.binding(\.$username)
+            )
+            .autocapitalization(.none)
+            .keyboardType(.emailAddress)
 
-            WithViewStore(store) { viewStore in
+            SeparatorView()
 
-                TextField(
-                    Strings.PasswordGeneratorView.username,
-                    text: viewStore.binding(get: \.username, send: Action.updateUsername)
-                )
-                .autocapitalization(.none)
-                .keyboardType(.emailAddress)
+            TextField(
+                Strings.PasswordGeneratorView.domain,
+                text: viewStore.binding(\.$domain)
+            )
+            .autocapitalization(.none)
+            .keyboardType(.URL)
 
-                SeparatorView()
+            SeparatorView()
 
-                TextField(
-                    Strings.PasswordGeneratorView.domain,
-                    text: viewStore.binding(get: \.domain, send: Action.updateDomain)
-                )
-                .autocapitalization(.none)
-                .keyboardType(.URL)
+            CounterView(
+                title: Strings.PasswordGeneratorView.seed,
+                store: store.scope(state: \.seed, action: PasswordGenerator.Domain.Action.seed)
+            )
+        }
+    }
+}
 
-                SeparatorView()
-
-                CounterView(store: store.scope(state: \.seed, action: Action.updateSeed))
-            }
+private extension PasswordGenerator.Domain.State {
+    var view: PasswordGeneratorView.DomainView.ViewState {
+        get { .init(username: username, domain: domain) }
+        set {
+            username = newValue.username
+            domain = newValue.domain
         }
     }
 }

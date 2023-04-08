@@ -2,74 +2,58 @@ import Foundation
 
 extension CredentialProviderViewController {
 
-    static let initialState = PasswordGeneratorView.State(
-        configurationState: .init(
+    static let initialState = PasswordGenerator.State(
+        configuration: .init(
             passwordType: .domainBased,
-            domainState: .init(
+            domain: .init(
                 username: "",
                 domain: "",
                 seed: .init(
-                    title: Strings.PasswordGeneratorView.seed.formatted(),
                     count: 1,
                     bounds: 1 ... 999
-                ),
-                isValid: false
+                )
             ),
-            serviceState: .init(
-                service: "",
-                isValid: false
-            ),
-            isValid: false
-        ),
-        lengthState: .init(
-            lengthState: .init(
-                title: Strings.PasswordGeneratorView.passwordLength.formatted(),
-                count: 8,
-                bounds: 4 ... 32
+            service: .init(
+                service: ""
             )
         ),
-        charactersState: .init(
-            digitsState: .init(
-                toggleTitle: Strings.PasswordGeneratorView.decimalCharacters.formatted(),
+        length: .init(
+            count: 8,
+            bounds: 4 ... 32
+        ),
+        characters: .init(
+            digits: .init(
                 isToggled: true,
-                counterState: .init(
-                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                counter: .init(
                     count: 1,
                     bounds: 1 ... 8
                 )
             ),
-            symbolsState: .init(
-                toggleTitle: Strings.PasswordGeneratorView.symbolsCharacters.formatted(),
+            symbols: .init(
                 isToggled: false,
-                counterState: .init(
-                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                counter: .init(
                     count: 0,
                     bounds: 1 ... 8
                 )
             ),
-            lowercaseState: .init(
-                toggleTitle: Strings.PasswordGeneratorView.lowercasedCharacters.formatted(),
+            lowercase: .init(
                 isToggled: true,
-                counterState: .init(
-                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                counter: .init(
                     count: 1,
                     bounds: 1 ... 8
                 )
             ),
-            uppercaseState: .init(
-                toggleTitle: Strings.PasswordGeneratorView.uppercasedCharacters.formatted(),
+            uppercase: .init(
                 isToggled: true,
-                counterState: .init(
-                    title: Strings.PasswordGeneratorView.numberOfCharacters.formatted(),
+                counter: .init(
                     count: 1,
                     bounds: 1 ... 8
                 )
-            ),
-            isValid: true
+            )
         ),
-        passwordState: .init(
+        password: .init(
             flow: .invalid,
-            copyableState: .init(content: "")
+            copyableContent: .init(content: "")
         ),
         entropyGenerator: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard).entropyGenerator(),
         entropySize: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard).entropySize()

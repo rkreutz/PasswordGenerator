@@ -12,32 +12,29 @@ struct PasswordGeneratorApp: App {
 
     @ScaledMetric private var maxWidth: CGFloat = 450
 
-    let store: Store<State, Action> = { (environment: Environment) in
-        Store(
-            initialState: PasswordGeneratorApp.initialState(environment: environment),
-            reducer: PasswordGeneratorApp.sharedReducer,
-            environment: environment
-        )
-    }(Environment.live())
+    let store: StoreOf<Application> = withDependencies(
+        { $0.context = .live},
+        operation: { Store(initialState: Application.initialState(), reducer: Application()) }
+    )
 
     var body: some Scene {
 
         WindowGroup(Strings.App.windowTitle) {
 
-            WithViewStore(store) { viewStore in
+            WithViewStore(store, observe: \.isMasterPasswordSet) { viewStore in
 
-                switch viewStore.isMasterPasswordSet {
+                switch viewStore.state {
 
                 case false:
-                    MasterPasswordView(store: store.scope(state: \.masterPasswordState, action: Action.updatedMasterPassword))
+                    MasterPasswordView(store: store.scope(state: \.masterPassword, action: Application.Action.masterPassword))
                         .frame(maxWidth: maxWidth)
 
                 case true:
                     TabView {
                         PasswordGeneratorView(
                             store: store.scope(
-                                state: \.passwordGeneratorState,
-                                action: Action.updatedPasswordGenerator
+                                state: \.passwordGenerator,
+                                action: Application.Action.passwordGenerator
                             )
                         )
                         .frame(maxWidth: maxWidth)
@@ -45,8 +42,8 @@ struct PasswordGeneratorApp: App {
 
                         AppConfigurationView(
                             store: store.scope(
-                                state: \.configurationState,
-                                action: Action.updatedConfiguration
+                                state: \.configuration,
+                                action: Application.Action.configuration
                             )
                         )
                         .frame(maxWidth: maxWidth)
