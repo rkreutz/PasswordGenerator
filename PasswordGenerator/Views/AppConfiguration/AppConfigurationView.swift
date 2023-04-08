@@ -169,7 +169,7 @@ struct AppConfigurationView: View {
 
                             Spacer()
 
-                            Picker(Strings.AppConfigurationView.entropySizeTitle, selection: viewStore.binding(get: \.entropySize, send: Action.entropySizeUpdated)) {
+                            Picker("", selection: viewStore.binding(get: \.entropySize, send: Action.entropySizeUpdated)) {
 
                                 Text("24").tag(24 as UInt)
 
