@@ -34,7 +34,7 @@ struct AppConfigurationView: View {
         }
     }
 
-    @ScaledMetric private var maxWidth: CGFloat = 430
+    @ScaledMetric private var maxWidth: CGFloat = 490
     @ScaledMetric private var spacing: CGFloat = 16
     @ScaledMetric private var headerSpacing: CGFloat = 4
 

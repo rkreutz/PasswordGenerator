@@ -24,6 +24,7 @@ extension Application {
 
         return State(
             isMasterPasswordSet: masterPasswordValidator.hasMasterPassword,
+            tab: .generator,
             masterPassword: .init(),
             passwordGenerator: .init(
                 configuration: .init(

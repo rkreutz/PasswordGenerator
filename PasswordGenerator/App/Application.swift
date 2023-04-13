@@ -3,19 +3,28 @@ import UIKit
 
 struct Application: Reducer {
     struct State: Equatable {
+        enum Tab: Hashable {
+            case generator
+            case config
+        }
+
         var isMasterPasswordSet: Bool
+        @BindingState var tab: Tab
         var masterPassword: MasterPassword.State
         var passwordGenerator: PasswordGenerator.State
         var configuration: AppConfiguration.State
     }
 
-    enum Action {
+    enum Action: BindableAction {
+        case none
+        case binding(BindingAction<State>)
         case masterPassword(MasterPassword.Action)
         case passwordGenerator(PasswordGenerator.Action)
         case configuration(AppConfiguration.Action)
     }
 
     var body: some ReducerOf<Self> {
+        BindingReducer()
         Scope(state: \.masterPassword, action: /Action.masterPassword) { MasterPassword() }
         Scope(state: \.passwordGenerator, action: /Action.passwordGenerator) { PasswordGenerator() }
         Scope(state: \.configuration, action: /Action.configuration) { AppConfiguration() }

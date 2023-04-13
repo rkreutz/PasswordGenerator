@@ -15,5 +15,6 @@ enum Strings {
     enum Error {
 
         static let title = LocalizedStringKey("Something went wrong")
+        static let notSupported = LocalizedStringKey("Not supported")
     }
 }

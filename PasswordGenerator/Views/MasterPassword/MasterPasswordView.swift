@@ -7,7 +7,7 @@ struct MasterPasswordView: View {
     typealias ViewState = MasterPassword.State
     typealias ViewAction = MasterPassword.Action
 
-    @ScaledMetric private var maxWidth: CGFloat = 430
+    @ScaledMetric private var maxWidth: CGFloat = 490
 
     @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
 

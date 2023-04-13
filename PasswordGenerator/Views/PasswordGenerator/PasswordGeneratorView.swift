@@ -17,7 +17,7 @@ struct PasswordGeneratorView: View {
 
     typealias ViewAction = PasswordGenerator.Action
 
-    @ScaledMetric private var maxWidth: CGFloat = 430
+    @ScaledMetric private var maxWidth: CGFloat = 490
 
     let store: StoreOf<PasswordGenerator>
     @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
