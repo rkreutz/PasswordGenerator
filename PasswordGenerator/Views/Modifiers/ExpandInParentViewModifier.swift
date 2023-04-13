@@ -10,8 +10,6 @@ struct ExpandInParentViewModifier: ViewModifier {
 
     var axis: Axis
 
-    @ScaledMetric private var margin: CGFloat = 16
-
     func body(content: Content) -> some View {
 
         switch axis {

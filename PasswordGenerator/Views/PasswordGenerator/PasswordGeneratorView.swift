@@ -17,7 +17,7 @@ struct PasswordGeneratorView: View {
 
     typealias ViewAction = PasswordGenerator.Action
 
-    @ScaledMetric private var spacing: CGFloat = 16
+    @ScaledMetric private var maxWidth: CGFloat = 430
 
     let store: StoreOf<PasswordGenerator>
     @ObservedObject var viewStore: ViewStore<ViewState, ViewAction>
@@ -32,17 +32,12 @@ struct PasswordGeneratorView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center, spacing: spacing) {
-                ConfigurationView(store: store.scope(state: \.configuration, action: ViewAction.configuration))
-
-                LengthView(store: store.scope(state: \.length, action: ViewAction.length))
-
-                CharactersView(store: store.scope(state: \.characters, action: ViewAction.characters))
-
-                PasswordView(store: store.scope(state: \.password, action: ViewAction.password))
+        GeometryReader { proxy in
+            if proxy.size.width > maxWidth {
+                LargeView(store: store)
+            } else {
+                CompactView(store: store)
             }
-            .padding(spacing)
         }
         .emittingError(viewStore.binding(get: \.error, send: ViewAction.didReceiveError))
     }

@@ -43,6 +43,7 @@ extension AppConfigurationView {
                     Text("56").tag(56 as UInt)
                     Text("64").tag(64 as UInt)
                 }
+                .buttonStyle(.bordered)
                 .pickerStyle(.menu)
             }
         }

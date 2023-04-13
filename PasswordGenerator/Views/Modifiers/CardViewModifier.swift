@@ -8,6 +8,12 @@ struct CardViewModifier: ViewModifier {
 
         content
             .padding(margin)
+            .clipShape(
+                RoundedRectangle(
+                    cornerRadius: margin,
+                    style: .continuous
+                )
+            )
             .background(
                 RoundedRectangle(
                     cornerRadius: margin,

@@ -16,7 +16,7 @@ extension PasswordGenerator {
         }
 
         enum Action {
-            case didTapButton
+            case didTapGenerate
             case updateFlow(Flow)
             case copyableContent(CopyableContent.Action)
         }

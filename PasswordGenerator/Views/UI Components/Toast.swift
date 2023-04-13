@@ -75,10 +75,9 @@ extension View {
 
         let isShowing = Binding(
             get: { text.wrappedValue != nil },
-            set: {
-
-                guard !$0 else { return }
-                text.wrappedValue = nil
+            set: { isShowing, transaction in
+                guard !isShowing else { return }
+                text.transaction(transaction).wrappedValue = nil
             }
         )
 
@@ -100,10 +99,9 @@ extension View {
 
         let isShowing = Binding(
             get: { text.wrappedValue != nil },
-            set: {
-
-                guard !$0 else { return }
-                text.wrappedValue = nil
+            set: { isShowing, transaction in
+                guard !isShowing else { return }
+                text.transaction(transaction).wrappedValue = nil
             }
         )
 
@@ -111,7 +109,6 @@ extension View {
             isShowing: isShowing,
             presenting: { self },
             content: {
-
                 Text(text.wrappedValue ?? "")
                     .font(.footnote)
                     .multilineTextAlignment(.center)

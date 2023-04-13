@@ -6,10 +6,9 @@ struct ToastErrorHandler: ErrorHandler {
 
         let binding = Binding(
             get: { error.wrappedValue?.localizedDescription },
-            set: {
-
-                guard $0 == nil else { return }
-                error.wrappedValue = nil
+            set: { text, transaction in
+                guard text == nil else { return }
+                error.transaction(transaction).wrappedValue = nil
             }
         )
 

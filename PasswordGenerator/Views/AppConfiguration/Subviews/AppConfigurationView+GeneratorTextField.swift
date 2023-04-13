@@ -18,6 +18,7 @@ extension AppConfigurationView {
         }
 
         @ScaledMetric private var spacing: CGFloat = 16
+        @FocusState private var isFocused: Bool
 
         private let title: LocalizedStringKey
         @ObservedObject private var viewStore: ViewStore<ViewState, ViewAction>
@@ -37,14 +38,24 @@ extension AppConfigurationView {
 
         var body: some View {
             HStack(spacing: spacing) {
-                Text(title)
+                ZStack {
+                    HStack {
+                        Text(title)
 
-                Spacer()
+                        Spacer()
+                    }
+
+                    Button(
+                        action: { isFocused = true },
+                        label: { Text("").expandedInParent() }
+                    )
+                }
 
                 TextField(
                     "",
                     text: viewStore.binding(\.self).map(to: String.init, from: UInt.init(_:))
                 )
+                .focused($isFocused)
                 .fixedSize()
                 .keyboardType(.numberPad)
             }

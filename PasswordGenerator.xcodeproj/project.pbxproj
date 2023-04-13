@@ -159,6 +159,18 @@
 		FC54954329E0DB81008F2DEB /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954129E0DB81008F2DEB /* Application.swift */; };
 		FC54954529E0E3A2008F2DEB /* Application+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954429E0E3A2008F2DEB /* Application+InitialState.swift */; };
 		FC54954629E0E3A2008F2DEB /* Application+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954429E0E3A2008F2DEB /* Application+InitialState.swift */; };
+		FC54954929E6A649008F2DEB /* MasterPasswordView+LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954829E6A649008F2DEB /* MasterPasswordView+LargeView.swift */; };
+		FC54954A29E6A649008F2DEB /* MasterPasswordView+LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954829E6A649008F2DEB /* MasterPasswordView+LargeView.swift */; };
+		FC54954C29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954B29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift */; };
+		FC54954D29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954B29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift */; };
+		FC54954F29E711F5008F2DEB /* FormButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954E29E711F5008F2DEB /* FormButtonStyle.swift */; };
+		FC54955029E711F5008F2DEB /* FormButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54954E29E711F5008F2DEB /* FormButtonStyle.swift */; };
+		FC54955529E76BE0008F2DEB /* FormSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54955429E76BE0008F2DEB /* FormSection.swift */; };
+		FC54955629E76BE0008F2DEB /* FormSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54955429E76BE0008F2DEB /* FormSection.swift */; };
+		FC54955929E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54955829E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift */; };
+		FC54955A29E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54955829E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift */; };
+		FC54955C29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54955B29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift */; };
+		FC54955D29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54955B29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift */; };
 		FC61389B256CA3FC00023A8C /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC61389A256CA3FC00023A8C /* HapticManager.swift */; };
 		FC61389F256CA42700023A8C /* HapticEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC61389E256CA42700023A8C /* HapticEvent.swift */; };
 		FC6138A3256CA55200023A8C /* UIKitHapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6138A2256CA55200023A8C /* UIKitHapticManager.swift */; };
@@ -294,6 +306,12 @@
 		FC54953E29E0C9BD008F2DEB /* MasterPasswordProvider+DependencyKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordProvider+DependencyKey.swift"; sourceTree = "<group>"; };
 		FC54954129E0DB81008F2DEB /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		FC54954429E0E3A2008F2DEB /* Application+InitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+InitialState.swift"; sourceTree = "<group>"; };
+		FC54954829E6A649008F2DEB /* MasterPasswordView+LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+LargeView.swift"; sourceTree = "<group>"; };
+		FC54954B29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MasterPasswordView+CompactView.swift"; sourceTree = "<group>"; };
+		FC54954E29E711F5008F2DEB /* FormButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonStyle.swift; sourceTree = "<group>"; };
+		FC54955429E76BE0008F2DEB /* FormSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSection.swift; sourceTree = "<group>"; };
+		FC54955829E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PassowrdGeneratorView+CompactView.swift"; sourceTree = "<group>"; };
+		FC54955B29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+LargeView.swift"; sourceTree = "<group>"; };
 		FC61389A256CA3FC00023A8C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		FC61389E256CA42700023A8C /* HapticEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticEvent.swift; sourceTree = "<group>"; };
 		FC6138A2256CA55200023A8C /* UIKitHapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitHapticManager.swift; sourceTree = "<group>"; };
@@ -386,6 +404,7 @@
 				FC613871256C94F600023A8C /* CopyableContent */,
 				FC3AAE05256CAB45004FFF3E /* CounterToggle */,
 				FC3AAE33256CAFD1004FFF3E /* Counter */,
+				FC54955429E76BE0008F2DEB /* FormSection.swift */,
 				3737690E249930B3003C6CE4 /* SeparatorView.swift */,
 				37A5653024B90EF1008D48FD /* Toast.swift */,
 			);
@@ -458,6 +477,7 @@
 		373ACBE72528C5F600B1A516 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				FC54954E29E711F5008F2DEB /* FormButtonStyle.swift */,
 				FC66E36C252FE680002F8DDF /* LoaderStyle.swift */,
 				37A5651924A8013E008D48FD /* MainButtonStyle.swift */,
 				FC66E355252FD378002F8DDF /* ParagraphStyle.swift */,
@@ -521,6 +541,7 @@
 				FC54952629DF78C0008F2DEB /* MasterPassword.swift */,
 				37A5651524A78D15008D48FD /* MasterPasswordView.swift */,
 				37A5651724A7FC03008D48FD /* MasterPasswordView+Strings.swift */,
+				FC54954729E6A60B008F2DEB /* Subviews */,
 			);
 			path = MasterPassword;
 			sourceTree = "<group>";
@@ -538,6 +559,8 @@
 		37A5652624B8D70E008D48FD /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				FC54955829E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift */,
+				FC54955B29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift */,
 				FC8547DD256DF85600E2A295 /* CharactersView */,
 				FC74BC542572013F00BC33D0 /* ConfigurationView */,
 				FC74BC702572028700BC33D0 /* DomainView */,
@@ -604,6 +627,15 @@
 				FC54951D29DF2204008F2DEB /* AppConfigurationView+EntropySizePicker.swift */,
 				FC54951729DF0C68008F2DEB /* AppConfigurationView+GeneratorPicker.swift */,
 				FC54952029DF2470008F2DEB /* AppConfigurationView+GeneratorTextField.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		FC54954729E6A60B008F2DEB /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				FC54954B29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift */,
+				FC54954829E6A649008F2DEB /* MasterPasswordView+LargeView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -846,6 +878,7 @@
 				FC54953C29DFB8AE008F2DEB /* PasswordGenerator+Configuration.swift in Sources */,
 				37A5652B24B8D8A5008D48FD /* PasswordGeneratorView+CharactersView.swift in Sources */,
 				37A5652F24B8FF28008D48FD /* CopyableContentView.swift in Sources */,
+				FC54954C29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift in Sources */,
 				37A5653E24B9601B008D48FD /* MasterPasswordValidator.swift in Sources */,
 				37A5654124B960EC008D48FD /* MasterPasswordKeychain+PasswordStorage.swift in Sources */,
 				FC61389F256CA42700023A8C /* HapticEvent.swift in Sources */,
@@ -861,6 +894,7 @@
 				37A5651A24A8013E008D48FD /* MainButtonStyle.swift in Sources */,
 				37A5653324B94446008D48FD /* DispatchWorkItemReference.swift in Sources */,
 				3737690924984FC0003C6CE4 /* Strings.swift in Sources */,
+				FC54955929E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift in Sources */,
 				379462F52955F9D500F79F3C /* EntropyConfigurationStorage.swift in Sources */,
 				FC54952729DF78C0008F2DEB /* MasterPassword.swift in Sources */,
 				FC54951829DF0C68008F2DEB /* AppConfigurationView+GeneratorPicker.swift in Sources */,
@@ -870,8 +904,10 @@
 				37197A9824FB372100873DC6 /* CardViewModifier.swift in Sources */,
 				37A5653124B90EF1008D48FD /* Toast.swift in Sources */,
 				37A5651624A78D15008D48FD /* MasterPasswordView.swift in Sources */,
+				FC54954F29E711F5008F2DEB /* FormButtonStyle.swift in Sources */,
 				373769152499517E003C6CE4 /* PasswordGeneratorView+Strings.swift in Sources */,
 				FC54952129DF2470008F2DEB /* AppConfigurationView+GeneratorTextField.swift in Sources */,
+				FC54954929E6A649008F2DEB /* MasterPasswordView+LargeView.swift in Sources */,
 				FC6138B6256CA85A00023A8C /* Pasteboard+UIKit.swift in Sources */,
 				FC54951B29DF1103008F2DEB /* EntropyGenerator+Equatable.swift in Sources */,
 				FC61389B256CA3FC00023A8C /* HapticManager.swift in Sources */,
@@ -888,6 +924,7 @@
 				37376919249969CB003C6CE4 /* Collection+IsNotEmpty.swift in Sources */,
 				FC54951E29DF2204008F2DEB /* AppConfigurationView+EntropySizePicker.swift in Sources */,
 				FC74BC72257202A200BC33D0 /* PasswordGeneratorView+DomainView.swift in Sources */,
+				FC54955529E76BE0008F2DEB /* FormSection.swift in Sources */,
 				FC5494EB29DE362C008F2DEB /* CounterToggle.swift in Sources */,
 				FC66E35A252FD705002F8DDF /* Label+TextInitialiser.swift in Sources */,
 				37A5654324B960FD008D48FD /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
@@ -920,6 +957,7 @@
 				FC54953929DFB385008F2DEB /* PasswordGenerator+Domain.swift in Sources */,
 				375D5A9C24BA8ECB0017AC2B /* ErrorHandler.swift in Sources */,
 				FC66E360252FD981002F8DDF /* PrimaryTextFieldStyle.swift in Sources */,
+				FC54955C29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift in Sources */,
 				37A5651824A7FC03008D48FD /* MasterPasswordView+Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,6 +972,7 @@
 				FC54952829DF78C0008F2DEB /* MasterPassword.swift in Sources */,
 				FC54953A29DFB385008F2DEB /* PasswordGenerator+Domain.swift in Sources */,
 				FC6138A8256CA7C100023A8C /* HapticManager.swift in Sources */,
+				FC54954D29E6AE7D008F2DEB /* MasterPasswordView+CompactView.swift in Sources */,
 				37287F7924CCB5AD00E9407F /* CredentialProviderViewController.swift in Sources */,
 				370F7EDB251678AA00F87C9A /* ExpandInParentViewModifier.swift in Sources */,
 				379462ED2955F36C00F79F3C /* AppConfigurationView+Strings.swift in Sources */,
@@ -971,6 +1010,7 @@
 				FC54952529DF26FE008F2DEB /* Binding+Map.swift in Sources */,
 				37197A9924FB374200873DC6 /* CardViewModifier.swift in Sources */,
 				FC54951C29DF1103008F2DEB /* EntropyGenerator+Equatable.swift in Sources */,
+				FC54954A29E6A649008F2DEB /* MasterPasswordView+LargeView.swift in Sources */,
 				FC0A2CF1254CB40F00C5B579 /* ErrorHandler+DI.swift in Sources */,
 				37CB52C424CDF7380081DA1E /* Strings.swift in Sources */,
 				37CB52DF24CDF7650081DA1E /* MasterPasswordKeychain+PasswordValidator.swift in Sources */,
@@ -978,6 +1018,7 @@
 				FC54953D29DFB8AE008F2DEB /* PasswordGenerator+Configuration.swift in Sources */,
 				37CB52F424CDF7810081DA1E /* SeparatorView.swift in Sources */,
 				37CB52DA24CDF7650081DA1E /* MasterPasswordKeychain.swift in Sources */,
+				FC54955D29E78E15008F2DEB /* PasswordGeneratorView+LargeView.swift in Sources */,
 				FC66E367252FDEB5002F8DDF /* Label+TextInitialiser.swift in Sources */,
 				37CB52E124CDF76D0081DA1E /* MasterPasswordView.swift in Sources */,
 				FCE2AD7F2573522E00812A51 /* CredentialProviderViewController+InitialState.swift in Sources */,
@@ -990,6 +1031,7 @@
 				37A8739D2964A86F00A184E1 /* AppConfigurationView.swift in Sources */,
 				37CB52E424CDF7730081DA1E /* PasswordGeneratorView.swift in Sources */,
 				37CB52C724CDF7490081DA1E /* DispatchWorkItemReference.swift in Sources */,
+				FC54955029E711F5008F2DEB /* FormButtonStyle.swift in Sources */,
 				379462FF29562FA400F79F3C /* Defaults.swift in Sources */,
 				37CB52E224CDF76D0081DA1E /* MasterPasswordView+Strings.swift in Sources */,
 				FC54954029E0C9BD008F2DEB /* MasterPasswordProvider+DependencyKey.swift in Sources */,
@@ -1010,6 +1052,8 @@
 				FC6138BB256CA8BA00023A8C /* Pasteboard.swift in Sources */,
 				FC54952B29DF89BF008F2DEB /* PasswordGenerator.swift in Sources */,
 				37CB52EC24CDF7770081DA1E /* PasswordGeneratorView+LengthView.swift in Sources */,
+				FC54955A29E78E04008F2DEB /* PassowrdGeneratorView+CompactView.swift in Sources */,
+				FC54955629E76BE0008F2DEB /* FormSection.swift in Sources */,
 				FC5494EC29DE362C008F2DEB /* CounterToggle.swift in Sources */,
 				37CB52DE24CDF7650081DA1E /* MasterPasswordKeychain+PasswordStorage.swift in Sources */,
 			);
@@ -1096,7 +1140,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1151,7 +1195,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1174,7 +1218,7 @@
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PasswordGenerator/Assets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1202,7 +1246,7 @@
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PasswordGenerator/Assets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1226,6 +1270,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				INFOPLIST_FILE = CredentialProvider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1248,6 +1293,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				INFOPLIST_FILE = CredentialProvider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

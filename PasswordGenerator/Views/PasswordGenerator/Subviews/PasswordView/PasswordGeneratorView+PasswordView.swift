@@ -8,12 +8,15 @@ extension PasswordGeneratorView {
         typealias ViewState = PasswordGenerator.Password.Flow
 
         enum ViewAction {
-            case didTapButton
+            case didTapGenerate
+            case didTapCopy
 
             var domainAction: PasswordGenerator.Password.Action {
                 switch self {
-                case .didTapButton:
-                    return .didTapButton
+                case .didTapGenerate:
+                    return .didTapGenerate
+                case .didTapCopy:
+                    return .copyableContent(.didTapCopyButton)
                 }
             }
         }
@@ -37,7 +40,7 @@ extension PasswordGeneratorView {
                 switch viewStore.state {
 
                 case .invalid, .readyToGenerate:
-                    Button(Strings.PasswordGeneratorView.generatePassword, action: { viewStore.send(.didTapButton) })
+                    Button(Strings.PasswordGeneratorView.generatePassword, action: { viewStore.send(.didTapGenerate) })
                         .buttonStyle(MainButtonStyle())
                         .disabled(viewStore.state == .invalid)
 
@@ -50,6 +53,7 @@ extension PasswordGeneratorView {
                     CopyableContentView(store: store.scope(state: \.copyableContent, action: PasswordGenerator.Password.Action.copyableContent))
                         .expandedInParent()
                         .asCard()
+                        .onTapGesture { viewStore.send(.didTapCopy) }
                 }
             }
         }

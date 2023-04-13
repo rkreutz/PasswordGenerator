@@ -10,8 +10,6 @@ struct PasswordGeneratorApp: App {
         static let configurationIconName = "gearshape.fill"
     }
 
-    @ScaledMetric private var maxWidth: CGFloat = 450
-
     let store: StoreOf<Application> = withDependencies(
         { $0.context = .live},
         operation: { Store(initialState: Application.initialState(), reducer: Application()) }
@@ -27,7 +25,6 @@ struct PasswordGeneratorApp: App {
 
                 case false:
                     MasterPasswordView(store: store.scope(state: \.masterPassword, action: Application.Action.masterPassword))
-                        .frame(maxWidth: maxWidth)
 
                 case true:
                     TabView {
@@ -37,7 +34,6 @@ struct PasswordGeneratorApp: App {
                                 action: Application.Action.passwordGenerator
                             )
                         )
-                        .frame(maxWidth: maxWidth)
                         .tabItem { Label(Strings.PasswordGeneratorApp.generatorTabTitle, systemImage: Constants.generatorIconName) }
 
                         AppConfigurationView(
@@ -46,7 +42,6 @@ struct PasswordGeneratorApp: App {
                                 action: Application.Action.configuration
                             )
                         )
-                        .frame(maxWidth: maxWidth)
                         .tabItem { Label(Strings.PasswordGeneratorApp.configurationTabTitle, systemImage: Constants.configurationIconName) }
                     }
                 }

@@ -75,7 +75,7 @@ struct PasswordGenerator: Reducer {
                  .didResetMasterPassword:
                 return cancelPasswordGeneration(state: &state)
 
-            case .password(.didTapButton):
+            case .password(.didTapGenerate):
                 state.password.flow = .loading
                 return Effect.publisher { [state] in
                     passwordPublisher(for: state)

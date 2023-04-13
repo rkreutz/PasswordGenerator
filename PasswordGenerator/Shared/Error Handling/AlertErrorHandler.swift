@@ -6,16 +6,14 @@ struct AlertErrorHandler: ErrorHandler {
 
         let binding = Binding(
             get: { error.wrappedValue != nil },
-            set: {
-
-                guard !$0 else { return }
-                error.wrappedValue = nil
+            set: { isPresented, transaction in
+                guard !isPresented else { return }
+                error.transaction(transaction).wrappedValue = nil
             }
         )
 
         return view
             .alert(isPresented: binding) { () -> Alert in
-
                 Alert(
                     title: Text(Strings.Error.title),
                     message: Text(error.wrappedValue?.localizedDescription ?? ""),
