@@ -34,12 +34,14 @@ extension PasswordGeneratorView {
 
         var body: some View {
             VStack(alignment: .center, spacing: spacing) {
-                Picker(selection: viewStore.binding(\.self), label: Text("")) {
+                Picker(Strings.PasswordGeneratorView.passwordType, selection: viewStore.binding(\.self)) {
                     Text(Strings.PasswordGeneratorView.domainBased).tag(PasswordGenerator.Configuration.PasswordType.domainBased)
                     Text(Strings.PasswordGeneratorView.serviceBased).tag(PasswordGenerator.Configuration.PasswordType.serviceBased)
                 }
+                #if os(iOS)
                 .pickerStyle(SegmentedPickerStyle())
                 .fixedSize()
+                #endif
 
                 switch viewStore.wrappedValue {
                 case .domainBased:
@@ -49,8 +51,10 @@ extension PasswordGeneratorView {
                     PasswordGeneratorView.ServiceView(store: store.scope(state: \.service, action: PasswordGenerator.Configuration.Action.service))
                 }
             }
+            #if os(iOS)
             .asCard()
             .textFieldStyle(SecondaryTextFiledStyle())
+            #endif
             .disableAutocorrection(true)
         }
     }

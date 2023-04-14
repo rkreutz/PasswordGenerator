@@ -13,6 +13,7 @@ extension PasswordGeneratorView {
         let store: Store<ViewState, ViewAction>
 
         var body: some View {
+            #if os(iOS)
             VStack(spacing: spacing) {
                 CounterToggleView(
                     title: Strings.PasswordGeneratorView.lowercasedCharacters,
@@ -45,6 +46,47 @@ extension PasswordGeneratorView {
                 )
             }
             .asCard()
+            #elseif os(macOS)
+            HStack {
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.lowercasedCharacters,
+                    counterTitle: "",
+                    store: store.scope(state: \.lowercase, action: ViewAction.lowercase)
+                )
+                .expandedInParent()
+                .help(Strings.PasswordGeneratorView.lowercasedCharactersTooltip)
+
+                SeparatorView(axis: .vertical)
+
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.uppercasedCharacters,
+                    counterTitle: "",
+                    store: store.scope(state: \.uppercase, action: ViewAction.uppercase)
+                )
+                .expandedInParent()
+                .help(Strings.PasswordGeneratorView.uppercasedCharactersTooltip)
+
+                SeparatorView(axis: .vertical)
+
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.decimalCharacters,
+                    counterTitle: "",
+                    store: store.scope(state: \.digits, action: ViewAction.digits)
+                )
+                .expandedInParent()
+                .help(Strings.PasswordGeneratorView.decimalCharactersTooltip)
+
+                SeparatorView(axis: .vertical)
+
+                CounterToggleView(
+                    title: Strings.PasswordGeneratorView.symbolsCharacters,
+                    counterTitle: "",
+                    store: store.scope(state: \.symbols, action: ViewAction.symbols)
+                )
+                .expandedInParent()
+                .help(Strings.PasswordGeneratorView.symbolsCharactersTooltip)
+            }
+            #endif
         }
     }
 }

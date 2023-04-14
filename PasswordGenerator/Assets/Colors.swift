@@ -1,5 +1,7 @@
 import SwiftUI
 
+#if os(iOS)
+
 extension Color {
 
     /// The color for text labels that contain primary content.
@@ -132,3 +134,76 @@ extension Color {
     /// The color for content layered on top of secondary backgrounds of your grouped interface.
     static let tertiarySystemGroupedBackground = Color(UIColor.tertiarySystemGroupedBackground)
 }
+
+#elseif os(macOS)
+
+extension Color {
+
+    /// The color for text labels that contain primary content.
+    static let label = Color(NSColor.labelColor)
+
+    /// The color for links.
+    static let link = Color(NSColor.linkColor)
+
+    /// The color for placeholder text in controls or text views.
+    static let placeholderText = Color(NSColor.placeholderTextColor)
+
+    /// The color for text labels that contain quaternary content.
+    static let quaternaryLabel = Color(NSColor.quaternaryLabelColor)
+
+    /// The color for text labels that contain secondary content.
+    static let secondaryLabel = Color(NSColor.secondaryLabelColor)
+
+    static let windowBackground = Color(NSColor.windowBackgroundColor)
+
+    /// The color for thin borders or divider lines that allows some underlying content to be visible.
+    ///
+    /// This color may be partially transparent to allow the underlying content to show through. It adapts to the underlying trait environment.
+    static let separator = Color(NSColor.separatorColor)
+
+    /// A blue color that automatically adapts to the current trait environment.
+    static let systemBlue = Color(NSColor.systemBlue)
+
+    /// The color to use for the flat surfaces of a control.
+    static let control = Color(NSColor.controlColor)
+
+    /// The color to use for the background of large controls, such as scroll views or table views.
+    static let controlBackground = Color(NSColor.controlBackgroundColor)
+
+    /// The color to use for text on disabled controls.
+    static let disabledControlText = Color(NSColor.disabledControlTextColor)
+
+    /// The base gray color.
+    ///
+    /// This color represents the standard system grey. It adapts to the current environment.
+    static let systemGray = Color(NSColor.systemGray)
+
+    /// A green color that automatically adapts to the current trait environment.
+    static let systemGreen = Color(NSColor.systemGreen)
+
+    /// An indigo color that automatically adapts to the current trait environment.
+    static let systemIndigo = Color(NSColor.systemIndigo)
+
+    /// An orange color that automatically adapts to the current trait environment.
+    static let systemOrange = Color(NSColor.systemOrange)
+
+    /// A pink color that automatically adapts to the current trait environment.
+    static let systemPink = Color(NSColor.systemPink)
+
+    /// A purple color that automatically adapts to the current trait environment.
+    static let systemPurple = Color(NSColor.systemPurple)
+
+    /// A red color that automatically adapts to the current trait environment.
+    static let systemRed = Color(NSColor.systemRed)
+
+    /// A teal color that automatically adapts to the current trait environment.
+    static let systemTeal = Color(NSColor.systemTeal)
+
+    /// A yellow color that automatically adapts to the current trait environment.
+    static let systemYellow = Color(NSColor.systemYellow)
+
+    /// The color for text labels that contain tertiary content.
+    static let tertiaryLabel = Color(NSColor.tertiaryLabelColor)
+}
+
+#endif

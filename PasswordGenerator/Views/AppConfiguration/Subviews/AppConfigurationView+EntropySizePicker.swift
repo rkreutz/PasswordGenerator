@@ -29,9 +29,42 @@ extension AppConfigurationView {
             )
         }
 
+        #if os(iOS)
         var body: some View {
             HStack(spacing: spacing) {
                 Text(Strings.AppConfigurationView.entropySizeTitle)
+
+                Spacer()
+
+                if #available(iOS 15.0, *) {
+                    Picker("", selection: viewStore.binding(\.self)) {
+                        Text("24").tag(24 as UInt)
+                        Text("32").tag(32 as UInt)
+                        Text("40").tag(40 as UInt)
+                        Text("48").tag(48 as UInt)
+                        Text("56").tag(56 as UInt)
+                        Text("64").tag(64 as UInt)
+                    }
+                    .buttonStyle(.bordered)
+                    .pickerStyle(.menu)
+                } else {
+                    Picker("", selection: viewStore.binding(\.self)) {
+                        Text("24").tag(24 as UInt)
+                        Text("32").tag(32 as UInt)
+                        Text("40").tag(40 as UInt)
+                        Text("48").tag(48 as UInt)
+                        Text("56").tag(56 as UInt)
+                        Text("64").tag(64 as UInt)
+                    }
+                    .pickerStyle(.menu)
+                }
+            }
+        }
+        #elseif os(macOS)
+        var body: some View {
+            HStack {
+                Text(Strings.AppConfigurationView.entropySizeTitle)
+                    .fixedSize()
 
                 Spacer()
 
@@ -43,9 +76,8 @@ extension AppConfigurationView {
                     Text("56").tag(56 as UInt)
                     Text("64").tag(64 as UInt)
                 }
-                .buttonStyle(.bordered)
-                .pickerStyle(.menu)
             }
         }
+        #endif
     }
 }

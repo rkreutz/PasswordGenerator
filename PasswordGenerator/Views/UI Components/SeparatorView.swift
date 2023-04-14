@@ -2,13 +2,36 @@ import SwiftUI
 
 struct SeparatorView: View {
 
-    @ScaledMetric private var height: CGFloat = 1
+    enum Axis {
+        case horizontal
+        case vertical
+    }
+
+    var axis: Axis = .horizontal
+
+    @ScaledMetric private var strokeWidth: CGFloat = 1
 
     var body: some View {
 
-        Rectangle()
-            .foregroundColor(.systemFill)
-            .frame(height: height)
+        switch axis {
+        case .horizontal:
+            Rectangle()
+                #if os(iOS)
+                .foregroundColor(.systemFill)
+                #elseif os(macOS)
+                .foregroundColor(.separator)
+                #endif
+                .frame(height: strokeWidth)
+
+        case .vertical:
+            Rectangle()
+                #if os(iOS)
+                .foregroundColor(.systemFill)
+                #elseif os(macOS)
+                .foregroundColor(.separator)
+                #endif
+                .frame(width: strokeWidth)
+        }
     }
 }
 
@@ -18,22 +41,9 @@ struct SeparatorView_Previews: PreviewProvider {
 
     static var previews: some View {
 
-        Group {
-
-            SeparatorView()
-                .padding()
-                .background(Rectangle().foregroundColor(.secondarySystemBackground))
-                .previewLayout(.sizeThatFits)
-                .environment(\.colorScheme, .light)
-                .previewDisplayName("Light")
-
-            SeparatorView()
-                .padding()
-                .background(Rectangle().foregroundColor(.secondarySystemBackground))
-                .previewLayout(.sizeThatFits)
-                .environment(\.colorScheme, .dark)
-                .previewDisplayName("Dark")
-        }
+        SeparatorView()
+            .padding()
+            .previewLayout(.sizeThatFits)
     }
 }
 

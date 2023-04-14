@@ -33,21 +33,44 @@ struct CopyableContentView: View {
 
     var body: some View {
         HStack(spacing: spacing) {
+            #if os(iOS)
             Text(viewStore.content)
-                .foregroundColor(.primary)
+                .foregroundColor(.label)
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
                 .font(.system(.headline, design: .monospaced))
+            #elseif os(macOS)
+            if #available(macOS 12, *) {
+                Text(viewStore.content)
+                    .textSelection(.enabled)
+                    .foregroundColor(.label)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.1)
+                    .font(.system(.headline, design: .monospaced))
+            } else {
+                Text(viewStore.content)
+                    .foregroundColor(.label)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.1)
+                    .font(.system(.headline, design: .monospaced))
+            }
+            #endif
 
             Button(
                 action: { viewStore.send(.didTapCopyButton) },
                 label: {
                     Image(systemName: viewStore.hasCopied ? "checkmark" : "doc.on.clipboard")
+                        #if os(iOS)
                         .foregroundColor(.accentColor)
                         .font(.system(.headline, design: .monospaced))
+                        #endif
                 }
             )
+            #if os(iOS)
             .frame(width: buttonWidth, height: buttonHeight)
+            #elseif os(macOS)
+            .frame(width: buttonWidth)
+            #endif
         }
     }
 }
@@ -58,57 +81,14 @@ struct CopyableContentView_Previews: PreviewProvider {
 
     static var previews: some View {
 
-        Group {
-
-            CopyableContentView(
-                store: .init(
-                    initialState: .init(content: "Content"),
-                    reducer: CopyableContent()
-                )
+        CopyableContentView(
+            store: .init(
+                initialState: .init(content: "Content"),
+                reducer: CopyableContent()
             )
-            .padding()
-            .background(Rectangle().foregroundColor(.systemBackground))
-            .previewLayout(.sizeThatFits)
-            .environment(\.colorScheme, .light)
-            .previewDisplayName("Light")
-
-            CopyableContentView(
-                store: .init(
-                    initialState: .init(content: "Content"),
-                    reducer: CopyableContent()
-                )
-            )
-            .padding()
-            .background(Rectangle().foregroundColor(.systemBackground))
-            .previewLayout(.sizeThatFits)
-            .environment(\.colorScheme, .dark)
-            .previewDisplayName("Dark")
-
-            CopyableContentView(
-                store: .init(
-                    initialState: .init(content: "Content", hasCopied: true),
-                    reducer: CopyableContent()
-                )
-            )
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("Copied")
-
-            ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
-
-                CopyableContentView(
-                    store: .init(
-                        initialState: .init(content: "Content"),
-                        reducer: CopyableContent()
-                    )
-                )
-                .padding()
-                .background(Rectangle().foregroundColor(.systemBackground))
-                .previewLayout(.sizeThatFits)
-                .environment(\.sizeCategory, category)
-                .previewDisplayName("\(category)")
-            }
-        }
+        )
+        .padding()
+        .previewLayout(.sizeThatFits)
     }
 }
 

@@ -4,12 +4,12 @@ import Foundation
 struct MasterPassword: Reducer {
     struct State: Equatable {
         @BindingState var masterPassword: String = ""
-        var isValid: Bool = false
         var error: Error?
+
+        var isValid: Bool { masterPassword.isNotEmpty }
 
         static func == (lhs: Self, rhs: Self) -> Bool {
             lhs.masterPassword == rhs.masterPassword
-            && lhs.isValid == rhs.isValid
             && lhs.error?.localizedDescription == rhs.error?.localizedDescription
         }
     }
@@ -27,10 +27,6 @@ struct MasterPassword: Reducer {
         BindingReducer()
         Reduce { state, action in
             switch action {
-            case .binding(\.$masterPassword):
-                state.isValid = state.masterPassword.isNotEmpty
-                return .none
-
             case .didTapSave:
                 return .task { [masterPassword = state.masterPassword] in
                     do {

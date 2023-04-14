@@ -43,7 +43,7 @@ extension MasterPasswordView {
 
 #if DEBUG
 
-@available(iOS 15.0, *)
+@available(iOS 15.0, macOS 12, *)
 struct MasterPasswordView_LargeView_Previews: PreviewProvider {
 
     static var previews: some View {

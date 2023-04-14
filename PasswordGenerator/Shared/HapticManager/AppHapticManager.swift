@@ -1,6 +1,7 @@
+#if os(iOS)
 import UIKit
 
-final class UIKitHapticManager: HapticManager {
+final class AppHapticManager: HapticManager {
 
     func generateHapticFeedback(_ event: HapticEvent) {
 
@@ -41,3 +42,32 @@ private extension HapticEvent.ImpactStyle {
         }
     }
 }
+
+#elseif os(macOS)
+import AppKit
+
+final class AppHapticManager: HapticManager {
+
+    func generateHapticFeedback(_ event: HapticEvent) {
+
+        switch event {
+
+        case .selection:
+            NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .default)
+
+        case .impact:
+            NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .default)
+
+        case .success:
+            NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .default)
+
+        case .warning:
+            NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .default)
+
+        case .error:
+            NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .default)
+        }
+    }
+}
+
+#endif

@@ -38,24 +38,43 @@ extension PasswordGeneratorView {
                 Strings.PasswordGeneratorView.username,
                 text: viewStore.binding(\.$username)
             )
+            #if os(iOS)
             .autocapitalization(.none)
             .keyboardType(.emailAddress)
+            #endif
 
+            #if os(iOS)
             SeparatorView()
+            #endif
 
             TextField(
                 Strings.PasswordGeneratorView.domain,
                 text: viewStore.binding(\.$domain)
             )
+            #if os(iOS)
             .autocapitalization(.none)
             .keyboardType(.URL)
+            #endif
 
+            #if os(iOS)
             SeparatorView()
+            #endif
 
+            #if os(iOS)
             CounterView(
                 title: Strings.PasswordGeneratorView.seed,
                 store: store.scope(state: \.seed, action: PasswordGenerator.Domain.Action.seed)
             )
+            #elseif os(macOS)
+            HStack {
+                CounterView(
+                    title: Strings.PasswordGeneratorView.seed,
+                    store: store.scope(state: \.seed, action: PasswordGenerator.Domain.Action.seed)
+                )
+
+                Spacer()
+            }
+            #endif
         }
     }
 }

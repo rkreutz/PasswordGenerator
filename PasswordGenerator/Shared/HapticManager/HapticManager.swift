@@ -6,7 +6,7 @@ protocol HapticManager {
 }
 
 private enum HapticManagerKey: DependencyKey {
-    static let liveValue: HapticManager = UIKitHapticManager()
+    static let liveValue: HapticManager = AppHapticManager()
 }
 
 extension DependencyValues {

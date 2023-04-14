@@ -13,13 +13,21 @@ struct MainButtonStyle: ButtonStyle {
         var body: some View {
 
             configuration.label
+                #if os(iOS)
                 .font(.headline)
                 .foregroundColor(isEnabled ? Color.white.opacity(configuration.isPressed ? 0.5 : 1) : Color.systemGray4)
+                #elseif os(macOS)
+                .foregroundColor(isEnabled ? Color.white.opacity(configuration.isPressed ? 0.5 : 1) : Color.disabledControlText)
+                #endif
                 .expandedInParent()
                 .padding(padding)
                 .background(
                     RoundedRectangle(cornerRadius: padding, style: .continuous)
+                        #if os(iOS)
                         .foregroundColor(isEnabled ? .accentColor : .systemGray)
+                        #elseif os(macOS)
+                        .foregroundColor(isEnabled ? .accentColor : .controlBackground)
+                        #endif
                 )
         }
     }
@@ -36,40 +44,10 @@ struct MainButton_Previews: PreviewProvider {
 
     static var previews: some View {
 
-        Group {
-
-            Button("Button", action: {})
-                .buttonStyle(MainButtonStyle())
-                .environment(\.colorScheme, .light)
-                .previewLayout(.sizeThatFits)
-                .padding()
-                .previewDisplayName("Light (enabled)")
-
-            Button("Button", action: {})
-                .buttonStyle(MainButtonStyle())
-                .disabled(true)
-                .environment(\.colorScheme, .light)
-                .previewLayout(.sizeThatFits)
-                .padding()
-                .previewDisplayName("Light (disabled)")
-
-            Button("Button", action: {})
-                .buttonStyle(MainButtonStyle())
-                .previewLayout(.sizeThatFits)
-                .padding()
-                .previewDisplayName("Dark (enabled)")
-                .background(Rectangle().foregroundColor(.systemBackground))
-                .environment(\.colorScheme, .dark)
-
-            Button("Button", action: {})
-                .buttonStyle(MainButtonStyle())
-                .disabled(true)
-                .previewLayout(.sizeThatFits)
-                .padding()
-                .previewDisplayName("Dark (disabled)")
-                .background(Rectangle().foregroundColor(.systemBackground))
-                .environment(\.colorScheme, .dark)
-        }
+        Button("Button", action: {})
+            .buttonStyle(MainButtonStyle())
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
 

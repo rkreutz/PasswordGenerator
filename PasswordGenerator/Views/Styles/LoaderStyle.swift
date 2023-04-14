@@ -60,22 +60,9 @@ struct Loader_Previews: PreviewProvider {
     
     static var previews: some View {
 
-        Group {
-
-            Loader()
-                .frame(width: 375, height: 80)
-                .background(Rectangle().foregroundColor(.secondarySystemBackground))
-                .previewLayout(.sizeThatFits)
-                .environment(\.colorScheme, .light)
-                .previewDisplayName("Light")
-
-            Loader()
-                .frame(width: 375, height: 80)
-                .background(Rectangle().foregroundColor(.secondarySystemBackground))
-                .previewLayout(.sizeThatFits)
-                .environment(\.colorScheme, .dark)
-                .previewDisplayName("Dark")
-        }
+        Loader()
+            .frame(width: 375, height: 80)
+            .previewLayout(.sizeThatFits)
     }
 }
 

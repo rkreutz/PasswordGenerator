@@ -18,6 +18,7 @@ public struct CounterView: View {
     }
 
     public var body: some View {
+        #if os(iOS)
         Stepper(value: viewStore.binding(\.$count), in: viewStore.bounds) {
             HStack(alignment: .center) {
                 Text(title)
@@ -34,6 +35,20 @@ public struct CounterView: View {
             }
             .padding(.trailing, spacing)
         }
+        #elseif os(macOS)
+        HStack {
+            Stepper(value: viewStore.binding(\.$count), in: viewStore.bounds) {
+                Text(title)
+                    .foregroundColor(.label)
+                    .allowsTightening(true)
+            }
+
+            Text("\(viewStore.count)")
+                .font(.system(.body, design: .monospaced))
+                .foregroundColor(.label)
+                .layoutPriority(1)
+        }
+        #endif
     }
 }
 
@@ -42,49 +57,15 @@ public struct CounterView: View {
 struct CounterView_Previews: PreviewProvider {
 
     static var previews: some View {
-        Group {
-            CounterView(
-                title: "Title",
-                store: StoreOf<Counter>(
-                    initialState: Counter.State(count: 99, bounds: 1 ... Int.max),
-                    reducer: Counter()
-                )
+        CounterView(
+            title: "Title",
+            store: StoreOf<Counter>(
+                initialState: Counter.State(count: 99, bounds: 1 ... Int.max),
+                reducer: Counter()
             )
-            .padding()
-            .background(Rectangle().foregroundColor(.secondarySystemBackground))
-            .previewLayout(.sizeThatFits)
-            .environment(\.colorScheme, .light)
-            .previewDisplayName("Light")
-
-            CounterView(
-                title: "Title",
-                store: StoreOf<Counter>(
-                    initialState: Counter.State(count: 99, bounds: 1 ... Int.max),
-                    reducer: Counter()
-                )
-            )
-            .padding()
-            .background(Rectangle().foregroundColor(.secondarySystemBackground))
-            .previewLayout(.sizeThatFits)
-            .environment(\.colorScheme, .dark)
-            .previewDisplayName("Dark")
-
-            ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
-
-                CounterView(
-                    title: "Title",
-                    store: StoreOf<Counter>(
-                        initialState: Counter.State(count: 99, bounds: 1 ... Int.max),
-                        reducer: Counter()
-                    )
-                )
-                .padding()
-                .background(Rectangle().foregroundColor(.secondarySystemBackground))
-                .previewLayout(.sizeThatFits)
-                .environment(\.sizeCategory, category)
-                .previewDisplayName("\(category)")
-            }
-        }
+        )
+        .padding()
+        .previewLayout(.sizeThatFits)
     }
 }
 

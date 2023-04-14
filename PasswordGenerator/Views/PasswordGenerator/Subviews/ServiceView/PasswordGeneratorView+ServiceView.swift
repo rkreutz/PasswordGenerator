@@ -33,8 +33,10 @@ extension PasswordGeneratorView {
                 Strings.PasswordGeneratorView.service,
                 text: viewStore.binding(\.self)
             )
+            #if os(iOS)
             .autocapitalization(.sentences)
             .keyboardType(.default)
+            #endif
         }
     }
 }

@@ -43,17 +43,24 @@ extension PasswordGeneratorView {
                     Button(Strings.PasswordGeneratorView.generatePassword, action: { viewStore.send(.didTapGenerate) })
                         .buttonStyle(MainButtonStyle())
                         .disabled(viewStore.state == .invalid)
+                        #if os(macOS)
+                        .keyboardShortcut(.defaultAction)
+                        #endif
 
                 case .loading:
                     ProgressView()
                         .frame(height: loaderSize)
+                        #if os(iOS)
                         .progressViewStyle(LoaderStyle())
+                        #endif
 
                 case .generated:
                     CopyableContentView(store: store.scope(state: \.copyableContent, action: PasswordGenerator.Password.Action.copyableContent))
                         .expandedInParent()
                         .asCard()
+                        #if os(iOS)
                         .onTapGesture { viewStore.send(.didTapCopy) }
+                        #endif
                 }
             }
         }

@@ -1,5 +1,7 @@
 import ComposableArchitecture
+#if os(iOS)
 import UIKit
+#endif
 
 struct Application: Reducer {
     struct State: Equatable {
@@ -47,11 +49,13 @@ struct Application: Reducer {
                 state.passwordGenerator.entropyGenerator = state.configuration.entropyGenerator
                 return .none
 
+            #if APP
             case .configuration(.didScrollView):
-                #if APP
+                #if os(iOS)
                 UIApplication.shared.windows.forEach { $0.endEditing(true) }
                 #endif
                 return .none
+            #endif
 
             default:
                 return .none

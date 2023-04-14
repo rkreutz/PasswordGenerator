@@ -12,7 +12,9 @@ extension PasswordGeneratorView {
 
         var body: some View {
             CounterView(title: Strings.PasswordGeneratorView.passwordLength, store: store)
+            #if os(iOS)
                 .asCard()
+            #endif
         }
     }
 }

@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if os(iOS)
 struct CardViewModifier: ViewModifier {
 
     @ScaledMetric private var margin: CGFloat = 16
@@ -24,11 +25,15 @@ struct CardViewModifier: ViewModifier {
             .fixedSize(horizontal: false, vertical: true)
     }
 }
+#endif
 
 extension View {
 
     func asCard() -> some View {
-
+        #if os(iOS)
         modifier(CardViewModifier())
+        #elseif os(macOS)
+        GroupedBox { self.padding() }
+        #endif
     }
 }

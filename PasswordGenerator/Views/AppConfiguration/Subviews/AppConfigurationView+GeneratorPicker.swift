@@ -33,7 +33,9 @@ extension AppConfigurationView {
                 Text(Strings.AppConfigurationView.pbkdfTitle).tag(AppConfiguration.KeyDerivationAlgorithm.pbkdf)
                 Text(Strings.AppConfigurationView.argonTitle).tag(AppConfiguration.KeyDerivationAlgorithm.argon)
             }
+            #if os(iOS)
             .pickerStyle(.segmented)
+            #endif
         }
     }
 }

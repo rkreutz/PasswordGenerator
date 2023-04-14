@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 import Combine
 import PasswordGeneratorKit
 import PasswordGeneratorKitPublishers
@@ -32,6 +31,7 @@ struct PasswordGeneratorView: View {
     }
 
     var body: some View {
+        #if os(iOS)
         GeometryReader { proxy in
             if proxy.size.width > maxWidth {
                 LargeView(store: store)
@@ -40,6 +40,10 @@ struct PasswordGeneratorView: View {
             }
         }
         .emittingError(viewStore.binding(get: \.error, send: ViewAction.didReceiveError))
+        #elseif os(macOS)
+        DesktopView(store: store)
+            .emittingError(viewStore.binding(get: \.error, send: ViewAction.didReceiveError))
+        #endif
     }
 }
 
@@ -115,24 +119,7 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
     )
 
     static var previews: some View {
-
-        Group {
-
-            PasswordGeneratorView(store: store)
-                .environment(\.colorScheme, .light)
-                .previewDisplayName("Light")
-
-            PasswordGeneratorView(store: store)
-                .environment(\.colorScheme, .dark)
-                .previewDisplayName("Dark")
-
-            ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
-
-                PasswordGeneratorView(store: store)
-                    .environment(\.sizeCategory, category)
-                    .previewDisplayName("\(category)")
-            }
-        }
+        PasswordGeneratorView(store: store)
     }
 }
 

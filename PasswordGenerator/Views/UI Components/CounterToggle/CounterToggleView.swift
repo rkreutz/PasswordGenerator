@@ -67,71 +67,22 @@ struct CounterToggleView_Previews: PreviewProvider {
 
     static var previews: some View {
 
-        Group {
-
-            CounterToggleView(
-                title: "Toggle title",
-                counterTitle: "Counter title",
-                store: .init(
-                    initialState: .init(
-                        isToggled: true,
-                        counter: .init(
-                            count: 1,
-                            bounds: 1 ... Int.max
-                        )
-                    ),
-                    reducer: CounterToggle()
-                )
-            )
-            .padding()
-            .background(Rectangle().foregroundColor(.secondarySystemBackground))
-            .previewLayout(.sizeThatFits)
-            .environment(\.colorScheme, .light)
-            .previewDisplayName("Light")
-
-            CounterToggleView(
-                title: "Toggle title",
-                counterTitle: "Counter title",
-                store: .init(
-                    initialState: .init(
-                        isToggled: true,
-                        counter: .init(
-                            count: 1,
-                            bounds: 1 ... Int.max
-                        )
-                    ),
-                    reducer: CounterToggle()
-                )
-            )
-            .padding()
-            .background(Rectangle().foregroundColor(.secondarySystemBackground))
-            .previewLayout(.sizeThatFits)
-            .environment(\.colorScheme, .dark)
-            .previewDisplayName("Dark")
-
-            ForEach(ContentSizeCategory.allCases, id: \.hashValue) { category in
-
-                CounterToggleView(
-                    title: "Toggle title",
-                    counterTitle: "Counter title",
-                    store: .init(
-                        initialState: .init(
-                            isToggled: true,
-                            counter: .init(
-                                count: 1,
-                                bounds: 1 ... Int.max
-                            )
-                        ),
-                        reducer: CounterToggle()
+        CounterToggleView(
+            title: "Toggle title",
+            counterTitle: "Counter title",
+            store: .init(
+                initialState: .init(
+                    isToggled: true,
+                    counter: .init(
+                        count: 1,
+                        bounds: 1 ... Int.max
                     )
-                )
-                .padding()
-                .background(Rectangle().foregroundColor(.secondarySystemBackground))
-                .previewLayout(.sizeThatFits)
-                .environment(\.sizeCategory, category)
-                .previewDisplayName("\(category)")
-            }
-        }
+                ),
+                reducer: CounterToggle()
+            )
+        )
+        .padding()
+        .previewLayout(.sizeThatFits)
     }
 }
 
