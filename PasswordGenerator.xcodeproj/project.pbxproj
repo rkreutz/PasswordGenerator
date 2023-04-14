@@ -1226,7 +1226,7 @@
 				CODE_SIGN_ENTITLEMENTS = "PasswordGenerator/Assets/Pwd Generator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
@@ -1237,7 +1237,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
@@ -1258,7 +1258,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "PasswordGenerator/Assets/Pwd Generator.entitlements";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
@@ -1269,7 +1269,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
