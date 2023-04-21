@@ -187,6 +187,8 @@
 		FC74BC952572087700BC33D0 /* PasswordGeneratorView+ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BC942572087700BC33D0 /* PasswordGeneratorView+ServiceView.swift */; };
 		FC74BC9A2572088400BC33D0 /* PasswordGeneratorView+ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74BC942572087700BC33D0 /* PasswordGeneratorView+ServiceView.swift */; };
 		FC74BD292572F2E100BC33D0 /* PasswordGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F7EBB2515AEDD00F87C9A /* PasswordGeneratorApp.swift */; };
+		FCA6ED3429EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */; };
+		FCA6ED3529EF5685001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */; };
 		FCE2AD7F2573522E00812A51 /* CredentialProviderViewController+InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */; };
 		FCE2AD8D2573535200812A51 /* CredentialProviderViewController+Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2AD8C2573535200812A51 /* CredentialProviderViewController+Reducer.swift */; };
 /* End PBXBuildFile section */
@@ -325,6 +327,7 @@
 		FC66E377252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryTextFieldStyle.swift; sourceTree = "<group>"; };
 		FC74BC71257202A200BC33D0 /* PasswordGeneratorView+DomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+DomainView.swift"; sourceTree = "<group>"; };
 		FC74BC942572087700BC33D0 /* PasswordGeneratorView+ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+ServiceView.swift"; sourceTree = "<group>"; };
+		FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousEntropyConfigurationStorage.swift; sourceTree = "<group>"; };
 		FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CredentialProviderViewController+InitialState.swift"; sourceTree = "<group>"; };
 		FCE2AD8C2573535200812A51 /* CredentialProviderViewController+Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CredentialProviderViewController+Reducer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -535,6 +538,7 @@
 			children = (
 				379462F42955F9D500F79F3C /* EntropyConfigurationStorage.swift */,
 				379462F72955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift */,
+				FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */,
 			);
 			path = "Entropy Configuration";
 			sourceTree = "<group>";
@@ -923,6 +927,7 @@
 				37936E1A24BA5E1D0007E9BB /* MasterPasswordKeychain+Errors.swift in Sources */,
 				FC54956129E800FF008F2DEB /* Pasteboard+AppKit.swift in Sources */,
 				379462FB29560E9500F79F3C /* PasswordGeneratorApp+Strings.swift in Sources */,
+				FCA6ED3429EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */,
 				FC54953F29E0C9BD008F2DEB /* MasterPasswordProvider+DependencyKey.swift in Sources */,
 				37197A9824FB372100873DC6 /* CardViewModifier.swift in Sources */,
 				37A5653124B90EF1008D48FD /* Toast.swift in Sources */,
@@ -1009,6 +1014,7 @@
 				379462F92955FADD00F79F3C /* UserDefaultsEntropyConfigurationStorage.swift in Sources */,
 				37CB52F324CDF7810081DA1E /* MainButtonStyle.swift in Sources */,
 				FC74BC9A2572088400BC33D0 /* PasswordGeneratorView+ServiceView.swift in Sources */,
+				FCA6ED3529EF5685001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */,
 				37CB52EB24CDF7770081DA1E /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
 				FC54953129DF9DEC008F2DEB /* PasswordGenerator+Password.swift in Sources */,
 				FC54953729DFAFF1008F2DEB /* PasswordGenerator+Characters.swift in Sources */,
@@ -1226,9 +1232,9 @@
 				CODE_SIGN_ENTITLEMENTS = "PasswordGenerator/Assets/Pwd Generator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 57;
-                "CURRENT_PROJECT_VERSION[sdk=iphoneos*]" = 55;
-                "CURRENT_PROJECT_VERSION[sdk=macosx*]" = 57;
+				CURRENT_PROJECT_VERSION = 58;
+				"CURRENT_PROJECT_VERSION[sdk=iphoneos*]" = 56;
+				"CURRENT_PROJECT_VERSION[sdk=macosx*]" = 58;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
@@ -1240,9 +1246,9 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.3.5;
-				"MARKETING_VERSION[sdk=iphoneos*]" = 1.3.3;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.3.5;
+				MARKETING_VERSION = 1.4.0;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.4.0;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";
@@ -1263,9 +1269,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "PasswordGenerator/Assets/Pwd Generator.entitlements";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 57;
-                "CURRENT_PROJECT_VERSION[sdk=iphoneos*]" = 55;
-                "CURRENT_PROJECT_VERSION[sdk=macosx*]" = 57;
+				CURRENT_PROJECT_VERSION = 58;
+				"CURRENT_PROJECT_VERSION[sdk=iphoneos*]" = 56;
+				"CURRENT_PROJECT_VERSION[sdk=macosx*]" = 58;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 49K39S52K6;
 				ENABLE_PREVIEWS = YES;
@@ -1277,9 +1283,9 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.3.5;
-				"MARKETING_VERSION[sdk=iphoneos*]" = 1.3.3;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.3.5;
+				MARKETING_VERSION = 1.4.0;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.4.0;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rkreutz.PasswordGenerator;
 				PRODUCT_MODULE_NAME = PasswordGenerator;
 				PRODUCT_NAME = "Pwd Generator";

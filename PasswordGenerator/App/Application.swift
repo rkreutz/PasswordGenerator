@@ -1,6 +1,9 @@
+import Combine
 import ComposableArchitecture
 #if os(iOS)
 import UIKit
+#else
+import Foundation
 #endif
 
 struct Application: Reducer {
@@ -18,11 +21,24 @@ struct Application: Reducer {
     }
 
     enum Action: BindableAction {
+        #if os(iOS)
         case none
+        #endif
+        case didInitialiseApp
         case binding(BindingAction<State>)
         case masterPassword(MasterPassword.Action)
         case passwordGenerator(PasswordGenerator.Action)
         case configuration(AppConfiguration.Action)
+    }
+
+    @Dependency(\.entropyConfigurationStorage) var entropyConfigurationStorage
+
+    let scheduler: AnySchedulerOf<DispatchQueue>
+
+    init<S: Scheduler>(
+        scheduler: S = DispatchQueue.main
+    ) where S.SchedulerTimeType == DispatchQueue.SchedulerTimeType, S.SchedulerOptions == DispatchQueue.SchedulerOptions {
+        self.scheduler = AnyScheduler(scheduler)
     }
 
     var body: some ReducerOf<Self> {
@@ -32,6 +48,36 @@ struct Application: Reducer {
         Scope(state: \.configuration, action: /Action.configuration) { AppConfiguration() }
         Reduce { state, action in
             switch action {
+            case .didInitialiseApp:
+                return Effect.publisher {
+                    entropyConfigurationStorage.configurationChanges()
+                        .receive(on: scheduler)
+                        .flatMap { change in
+                            switch change {
+                            case .entropySize(let entropySize):
+                                return Just(Action.configuration(.set(\.$entropySize, entropySize))).eraseToAnyPublisher()
+                            case let .entropyGenerator(.pbkdf2(iterations)):
+                                return [
+                                    Action.configuration(.set(\.$derivationAlgorithm, .pbkdf)),
+                                    Action.configuration(.set(\.$iterations, iterations))
+                                ].publisher.eraseToAnyPublisher()
+                            case let .entropyGenerator(.argon2(iterations, memory, threads)):
+                                return [
+                                    Action.configuration(.set(\.$derivationAlgorithm, .argon)),
+                                    Action.configuration(.set(\.$iterations, iterations)),
+                                    Action.configuration(.set(\.$memory, memory)),
+                                    Action.configuration(.set(\.$threads, threads))
+                                ].publisher.eraseToAnyPublisher()
+                            case let .entropyGeneratorIterations(iterations):
+                                return Just(Action.configuration(.set(\.$iterations, iterations))).eraseToAnyPublisher()
+                            case let .entropyGeneratorMemory(memory):
+                                return Just(Action.configuration(.set(\.$memory, memory))).eraseToAnyPublisher()
+                            case let .entropyGeneratorThreads(threads):
+                                return Just(Action.configuration(.set(\.$threads, threads))).eraseToAnyPublisher()
+                            }
+                        }
+                }
+
             case .masterPassword(.didSaveMasterPassword):
                 state.isMasterPasswordSet = true
                 state.masterPassword.masterPassword = ""

@@ -1,3 +1,4 @@
+import Combine
 import Dependencies
 import Foundation
 import PasswordGeneratorKit
@@ -9,10 +10,24 @@ protocol EntropyConfigurationStorage {
 
     func entropyGenerator() -> PasswordGeneratorKit.PasswordGenerator.EntropyGenerator
     func entropySize() -> UInt
+
+    func configurationChanges() -> AnyPublisher<EntropyConfigurationStorageChange, Never>
+}
+
+enum EntropyConfigurationStorageChange {
+    case entropySize(UInt)
+    case entropyGenerator(PasswordGeneratorKit.PasswordGenerator.EntropyGenerator)
+    case entropyGeneratorIterations(UInt)
+    case entropyGeneratorMemory(UInt)
+    case entropyGeneratorThreads(UInt)
 }
 
 private enum EntropyConfigurationStorageKey: DependencyKey {
-    static let liveValue: EntropyConfigurationStorage = UserDefaultsEntropyConfigurationStorage(userDefaults: .standard)
+    static let liveValue: EntropyConfigurationStorage = UbiquitousEntropyConfigurationStorage(
+        keyStore: .default,
+        localStorage: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard),
+        notificationCenter: .default
+    )
 #if DEBUG
     static let previewValue: EntropyConfigurationStorage = MockEntropyConfigurationStorage()
     static let testValue: EntropyConfigurationStorage = MockEntropyConfigurationStorage()
@@ -45,6 +60,8 @@ final class MockEntropyConfigurationStorage: EntropyConfigurationStorage {
 
     func entropyGenerator() -> PasswordGeneratorKit.PasswordGenerator.EntropyGenerator { self._entropyGenerator }
     func entropySize() -> UInt { self._entropySize }
+
+    func configurationChanges() -> AnyPublisher<EntropyConfigurationStorageChange, Never> { Empty().eraseToAnyPublisher() }
 }
 
 #endif

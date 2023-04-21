@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import PasswordGeneratorKit
 
@@ -74,4 +75,6 @@ final class UserDefaultsEntropyConfigurationStorage: EntropyConfigurationStorage
         let storedSize = UInt(userDefaults.integer(forKey: Constants.bytesKey))
         return storedSize > 0 ? storedSize : Defaults.entropySize
     }
+
+    func configurationChanges() -> AnyPublisher<EntropyConfigurationStorageChange, Never> { Empty().eraseToAnyPublisher() }
 }
