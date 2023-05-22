@@ -16,6 +16,14 @@ extension PasswordGeneratorView {
                             ConfigurationView(store: store.scope(state: \.configuration, action: ViewAction.configuration))
 
                             LengthView(store: store.scope(state: \.length, action: ViewAction.length))
+
+                            #if APP
+                            WithViewStore(store, observe: { $0.shouldShowPasswordStrength }) { viewStore in
+                                if viewStore.state {
+                                    PasswordEntropyView(store: store.actionless.scope(state: \.passwordEntropy))
+                                }
+                            }
+                            #endif
                         }
 
                         CharactersView(store: store.scope(state: \.characters, action: ViewAction.characters))

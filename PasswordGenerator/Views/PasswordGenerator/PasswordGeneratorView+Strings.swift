@@ -30,6 +30,29 @@ extension Strings {
         static let decimalCharactersTooltip = LocalizedStringKey("Whether password should include numbers, and how many.")
         static let symbolsCharactersTooltip = LocalizedStringKey("Whether password should include special characters, and how many.")
 
+        static let passwordStrengthTitle = LocalizedStringKey("Password Strength")
+        static let passwordStrengthTooltip = LocalizedStringKey(
+            """
+            The strength of the password given the amount of bits of entropy it has. \
+            This can be calculated by log2(character_set_length) * number_of_characters. \
+            The higher it is, the more compute power is needed to brute force the password.
+            """
+        )
+
+        static func veryWeakPassword(_ arg: Int) -> LocalizedStringKey { "Very Weak (\(arg) bits)" }
+        static func weakPassword(_ arg: Int) -> LocalizedStringKey { "Weak (\(arg) bits)" }
+        static func recommendedPassword(_ arg: Int) -> LocalizedStringKey { "Strong (\(arg) bits)" }
+        static func veryStrongPassword(_ arg: Int) -> LocalizedStringKey { "Very Strong (\(arg) bits)" }
+
+        static let entropyGeneratorOverflowTitle = LocalizedStringKey("Entropy Limit Reached")
+        static let entropyGeneratorOverflowTooltip = LocalizedStringKey(
+            """
+            Your password is too long for the entropy source, therefore the real entropy \
+            of your password is limited by the entropy source's size. You may fix this \
+            by increasing the entropy size in Settings.
+            """
+        )
+
         static let generatePassword = LocalizedStringKey("Generate password")
     }
 }

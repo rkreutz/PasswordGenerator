@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import Foundation
+import PasswordGeneratorKit
 
 extension PasswordGenerator {
     struct Characters: Reducer {
@@ -15,6 +16,23 @@ extension PasswordGenerator {
 
             var totalCharacters: Int {
                 digits.counter.count + symbols.counter.count + lowercase.counter.count + uppercase.counter.count
+            }
+
+            var charactersPoolSize: Int {
+                var poolSize = 0
+                if digits.isToggled {
+                    poolSize += PasswordRule.CharacterSet.decimal.count
+                }
+                if symbols.isToggled {
+                    poolSize += PasswordRule.CharacterSet.symbol.count
+                }
+                if lowercase.isToggled {
+                    poolSize += PasswordRule.CharacterSet.lowercase.count
+                }
+                if uppercase.isToggled {
+                    poolSize += PasswordRule.CharacterSet.uppercase.count
+                }
+                return poolSize
             }
         }
 

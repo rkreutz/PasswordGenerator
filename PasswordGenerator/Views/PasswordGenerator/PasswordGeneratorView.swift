@@ -54,6 +54,7 @@ private extension PasswordGenerator.State {
     }
 }
 
+#if APP
 #if DEBUG
 
 struct PasswordGeneratorView_Previews: PreviewProvider {
@@ -113,7 +114,8 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
                 copyableContent: .init(content: "")
             ),
             entropyGenerator: .pbkdf2(iterations: 1_000),
-            entropySize: 40
+            entropySize: 40,
+            shouldShowPasswordStrength: true
         ),
         reducer: PasswordGenerator()
     )
@@ -123,4 +125,5 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
     }
 }
 
+#endif
 #endif

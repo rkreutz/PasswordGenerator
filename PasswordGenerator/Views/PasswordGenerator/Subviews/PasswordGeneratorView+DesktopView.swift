@@ -35,6 +35,8 @@ extension PasswordGeneratorView {
                             .frame(height: charactersBoxHeight)
                         }
 
+                        PasswordEntropyView(store: store.actionless.scope(state: \.passwordEntropy))
+
                         PasswordView(store: store.scope(state: \.password, action: ViewAction.password))
 
                         Spacer()
@@ -57,6 +59,8 @@ extension PasswordGeneratorView {
                             .padding()
                         }
                         .frame(height: charactersBoxHeight)
+
+                        PasswordEntropyView(store: store.actionless.scope(state: \.passwordEntropy))
 
                         PasswordView(store: store.scope(state: \.password, action: ViewAction.password))
 

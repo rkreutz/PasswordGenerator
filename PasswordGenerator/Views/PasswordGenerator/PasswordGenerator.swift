@@ -16,6 +16,18 @@ struct PasswordGenerator: Reducer {
         var entropySize: UInt
         var error: Error?
 
+        #if APP
+        var shouldShowPasswordStrength: Bool
+        var passwordEntropy: PasswordEntropy.State {
+            let characterSetBits = log2(Double(characters.charactersPoolSize))
+            let passwordEntropyBits = Double(length.count) * characterSetBits
+            return .init(
+                passwordEntropy: passwordEntropyBits,
+                entropyGeneratorSize: entropySize
+            )
+        }
+        #endif
+
         var canGeneratePassword: Bool {
             configuration.isValid && characters.isValid
         }

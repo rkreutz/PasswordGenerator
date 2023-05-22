@@ -91,6 +91,10 @@ struct Application: Reducer {
                 state.passwordGenerator.entropySize = state.configuration.entropySize
                 return .none
 
+            case .configuration(.binding(\.$shouldShowPasswordStrength)):
+                state.passwordGenerator.shouldShowPasswordStrength = state.configuration.shouldShowPasswordStrength
+                return .none
+
             case .configuration(.binding):
                 state.passwordGenerator.entropyGenerator = state.configuration.entropyGenerator
                 return .none

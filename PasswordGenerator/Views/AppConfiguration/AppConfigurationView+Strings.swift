@@ -23,5 +23,18 @@ extension Strings {
         static let memoryTitle = LocalizedStringKey("Memory (kB)")
         static let threadsTitle = LocalizedStringKey("Threads")
         static let entropySizeTitle = LocalizedStringKey("Entropy size (bytes)")
+        static let showPasswordStrengthTitle = LocalizedStringKey("Show password strength")
+        static let passwordStrengthFooter = LocalizedStringKey(
+            """
+            If enabled, a password strength indicator will be displayed along with \
+            the generated password.
+
+            The password strength is measured in bits of entropy, where a higher value \
+            means it takes more compute power to brute force the generated password.
+
+            Password entropy can be calculated with the following expression:
+            log2(character_set_length) * number_of_characters
+            """
+        )
     }
 }

@@ -5,6 +5,7 @@ extension Application {
     static func initialState() -> State {
         @Dependency(\.masterPasswordValidator) var masterPasswordValidator
         @Dependency(\.entropyConfigurationStorage) var entropyConfigurationStorage
+        @Dependency(\.appConfigurationStorage) var appConfigurationStorage
         let derivationAlgorithm: AppConfiguration.KeyDerivationAlgorithm
         let iterations: UInt
         let memory: UInt
@@ -82,14 +83,16 @@ extension Application {
                     )
                 ),
                 entropyGenerator: entropyConfigurationStorage.entropyGenerator(),
-                entropySize: entropyConfigurationStorage.entropySize()
+                entropySize: entropyConfigurationStorage.entropySize(),
+                shouldShowPasswordStrength: appConfigurationStorage.shouldShowPasswordStrength
             ),
             configuration: AppConfiguration.State(
                 derivationAlgorithm: derivationAlgorithm,
                 iterations: iterations,
                 memory: memory,
                 threads: threads,
-                entropySize: entropyConfigurationStorage.entropySize()
+                entropySize: entropyConfigurationStorage.entropySize(),
+                shouldShowPasswordStrength: appConfigurationStorage.shouldShowPasswordStrength
             )
         )
     }

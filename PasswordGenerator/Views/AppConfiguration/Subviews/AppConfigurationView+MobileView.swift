@@ -9,6 +9,7 @@ extension AppConfigurationView {
         @ScaledMetric private var maxWidth: CGFloat = 490
         @ScaledMetric private var spacing: CGFloat = 16
         @ScaledMetric private var headerSpacing: CGFloat = 4
+        @ScaledMetric private var minRowHeight: CGFloat = 44
 
         var body: some View {
             GeometryReader { proxy in
@@ -19,6 +20,26 @@ extension AppConfigurationView {
                         }
                         .buttonStyle(FormButtonStyle(role: .destructive))
                     }
+
+                    FormSection(
+                        content: {
+                            WithViewStore(store, observe: { $0.shouldShowPasswordStrength }) { viewStore in
+                                Toggle(
+                                    Strings.AppConfigurationView.showPasswordStrengthTitle,
+                                    isOn: viewStore.binding(
+                                        get: { $0 },
+                                        send: { AppConfiguration.Action.set(\.$shouldShowPasswordStrength, $0) }
+                                    )
+                                )
+                                .padding(.horizontal)
+                                .frame(height: minRowHeight)
+                            }
+                        },
+                        footer: {
+                            Text(Strings.AppConfigurationView.passwordStrengthFooter)
+                                .padding(.horizontal)
+                        }
+                    )
 
                     FormSection(
                         content: {

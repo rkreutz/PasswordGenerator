@@ -15,6 +15,7 @@ struct AppConfiguration: Reducer {
         @BindingState var memory: UInt
         @BindingState var threads: UInt
         @BindingState var entropySize: UInt
+        @BindingState var shouldShowPasswordStrength: Bool
         var error: Error?
 
         var entropyGenerator: PasswordGeneratorKit.PasswordGenerator.EntropyGenerator {
@@ -32,6 +33,7 @@ struct AppConfiguration: Reducer {
             && lhs.memory == rhs.memory
             && lhs.threads == rhs.threads
             && lhs.entropySize == rhs.entropySize
+            && lhs.shouldShowPasswordStrength == rhs.shouldShowPasswordStrength
             && lhs.error?.localizedDescription == rhs.error?.localizedDescription
         }
     }
@@ -46,6 +48,7 @@ struct AppConfiguration: Reducer {
 
     @Dependency(\.masterPasswordStorage) var masterPasswordStorage
     @Dependency(\.entropyConfigurationStorage) var entropyConfigurationStorage
+    @Dependency(\.appConfigurationStorage) var appConfigurationStorage
 
     var body: some ReducerOf<Self> {
         BindingReducer()
@@ -84,6 +87,10 @@ struct AppConfiguration: Reducer {
                  .binding(\.$memory),
                  .binding(\.$threads):
                 return saveEntropyGeneratorChanges(state: state)
+
+            case .binding(\.$shouldShowPasswordStrength):
+                appConfigurationStorage.shouldShowPasswordStrength = state.shouldShowPasswordStrength
+                return .none
                 
             default:
                 return .none
