@@ -32,6 +32,7 @@ struct Application: Reducer {
     }
 
     @Dependency(\.entropyConfigurationStorage) var entropyConfigurationStorage
+    @Dependency(\.appConfigurationStorage) var appConfigurationStorage
 
     let scheduler: AnySchedulerOf<DispatchQueue>
 
@@ -50,32 +51,10 @@ struct Application: Reducer {
             switch action {
             case .didInitialiseApp:
                 return Effect.publisher {
-                    entropyConfigurationStorage.configurationChanges()
-                        .receive(on: scheduler)
-                        .flatMap { change in
-                            switch change {
-                            case .entropySize(let entropySize):
-                                return Just(Action.configuration(.set(\.$entropySize, entropySize))).eraseToAnyPublisher()
-                            case let .entropyGenerator(.pbkdf2(iterations)):
-                                return [
-                                    Action.configuration(.set(\.$derivationAlgorithm, .pbkdf)),
-                                    Action.configuration(.set(\.$iterations, iterations))
-                                ].publisher.eraseToAnyPublisher()
-                            case let .entropyGenerator(.argon2(iterations, memory, threads)):
-                                return [
-                                    Action.configuration(.set(\.$derivationAlgorithm, .argon)),
-                                    Action.configuration(.set(\.$iterations, iterations)),
-                                    Action.configuration(.set(\.$memory, memory)),
-                                    Action.configuration(.set(\.$threads, threads))
-                                ].publisher.eraseToAnyPublisher()
-                            case let .entropyGeneratorIterations(iterations):
-                                return Just(Action.configuration(.set(\.$iterations, iterations))).eraseToAnyPublisher()
-                            case let .entropyGeneratorMemory(memory):
-                                return Just(Action.configuration(.set(\.$memory, memory))).eraseToAnyPublisher()
-                            case let .entropyGeneratorThreads(threads):
-                                return Just(Action.configuration(.set(\.$threads, threads))).eraseToAnyPublisher()
-                            }
-                        }
+                    Publishers.Merge(
+                        self.entropyConfigurationPublisher(),
+                        self.appConfigurationPublisher()
+                    )
                 }
 
             case .masterPassword(.didSaveMasterPassword):
@@ -111,5 +90,47 @@ struct Application: Reducer {
                 return .none
             }
         }
+    }
+
+    private func entropyConfigurationPublisher() -> AnyPublisher<Application.Action, Never> {
+        entropyConfigurationStorage.configurationChanges()
+            .receive(on: scheduler)
+            .flatMap { change in
+                switch change {
+                case .entropySize(let entropySize):
+                    return Just(Action.configuration(.set(\.$entropySize, entropySize))).eraseToAnyPublisher()
+                case let .entropyGenerator(.pbkdf2(iterations)):
+                    return [
+                        Action.configuration(.set(\.$derivationAlgorithm, .pbkdf)),
+                        Action.configuration(.set(\.$iterations, iterations))
+                    ].publisher.eraseToAnyPublisher()
+                case let .entropyGenerator(.argon2(iterations, memory, threads)):
+                    return [
+                        Action.configuration(.set(\.$derivationAlgorithm, .argon)),
+                        Action.configuration(.set(\.$iterations, iterations)),
+                        Action.configuration(.set(\.$memory, memory)),
+                        Action.configuration(.set(\.$threads, threads))
+                    ].publisher.eraseToAnyPublisher()
+                case let .entropyGeneratorIterations(iterations):
+                    return Just(Action.configuration(.set(\.$iterations, iterations))).eraseToAnyPublisher()
+                case let .entropyGeneratorMemory(memory):
+                    return Just(Action.configuration(.set(\.$memory, memory))).eraseToAnyPublisher()
+                case let .entropyGeneratorThreads(threads):
+                    return Just(Action.configuration(.set(\.$threads, threads))).eraseToAnyPublisher()
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func appConfigurationPublisher() -> AnyPublisher<Application.Action, Never> {
+        appConfigurationStorage.configurationChanges()
+            .receive(on: scheduler)
+            .flatMap { change in
+                switch change {
+                case .shouldShowPasswordStrength(let shouldShowPasswordStrength):
+                    return Just(Action.configuration(.set(\.$shouldShowPasswordStrength, shouldShowPasswordStrength)))
+                }
+            }
+            .eraseToAnyPublisher()
     }
 }
