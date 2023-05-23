@@ -107,7 +107,8 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
                         count: 1,
                         bounds: 1 ... 8
                     )
-                )
+                ),
+                shouldUseOptimisedUI: true
             ),
             password: .init(
                 flow: .invalid,
@@ -115,6 +116,7 @@ struct PasswordGeneratorView_Previews: PreviewProvider {
             ),
             entropyGenerator: .pbkdf2(iterations: 1_000),
             entropySize: 40,
+            shouldUseOptimisedUI: true,
             shouldShowPasswordStrength: true
         ),
         reducer: PasswordGenerator()

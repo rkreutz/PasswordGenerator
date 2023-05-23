@@ -12,21 +12,41 @@ extension PasswordGeneratorView {
             ScrollView {
                 VStack(alignment: .center, spacing: spacing) {
                     HStack(alignment: .top, spacing: spacing) {
-                        VStack(alignment: .center, spacing: spacing) {
-                            ConfigurationView(store: store.scope(state: \.configuration, action: ViewAction.configuration))
+                        WithViewStore(store, observe: \.shouldUseOptimisedUI) { viewStore in
+                            if viewStore.state {
+                                ConfigurationView(store: store.scope(state: \.configuration, action: ViewAction.configuration))
 
-                            LengthView(store: store.scope(state: \.length, action: ViewAction.length))
+                                VStack(alignment: .center, spacing: spacing) {
+                                    LengthView(store: store.scope(state: \.length, action: ViewAction.length))
 
-                            #if APP
-                            WithViewStore(store, observe: { $0.shouldShowPasswordStrength }) { viewStore in
-                                if viewStore.state {
-                                    PasswordEntropyView(store: store.actionless.scope(state: \.passwordEntropy))
+                                    CharactersView(store: store.scope(state: \.characters, action: ViewAction.characters))
+
+                                    #if APP
+                                    WithViewStore(store, observe: { $0.shouldShowPasswordStrength }) { viewStore in
+                                        if viewStore.state {
+                                            PasswordEntropyView(store: store.actionless.scope(state: \.passwordEntropy))
+                                        }
+                                    }
+                                    #endif
                                 }
-                            }
-                            #endif
-                        }
+                            } else {
+                                VStack(alignment: .center, spacing: spacing) {
+                                    ConfigurationView(store: store.scope(state: \.configuration, action: ViewAction.configuration))
 
-                        CharactersView(store: store.scope(state: \.characters, action: ViewAction.characters))
+                                    LengthView(store: store.scope(state: \.length, action: ViewAction.length))
+
+                                    #if APP
+                                    WithViewStore(store, observe: { $0.shouldShowPasswordStrength }) { viewStore in
+                                        if viewStore.state {
+                                            PasswordEntropyView(store: store.actionless.scope(state: \.passwordEntropy))
+                                        }
+                                    }
+                                    #endif
+                                }
+
+                                CharactersView(store: store.scope(state: \.characters, action: ViewAction.characters))
+                            }
+                        }
                     }
 
                     PasswordView(store: store.scope(state: \.password, action: ViewAction.password))

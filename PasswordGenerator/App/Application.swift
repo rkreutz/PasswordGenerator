@@ -74,6 +74,11 @@ struct Application: Reducer {
                 state.passwordGenerator.shouldShowPasswordStrength = state.configuration.shouldShowPasswordStrength
                 return .none
 
+            case .configuration(.binding(\.$shouldUseOptimisedUI)):
+                state.passwordGenerator.shouldUseOptimisedUI = state.configuration.shouldUseOptimisedUI
+                state.passwordGenerator.characters.shouldUseOptimisedUI = state.configuration.shouldUseOptimisedUI
+                return .none
+
             case .configuration(.binding):
                 state.passwordGenerator.entropyGenerator = state.configuration.entropyGenerator
                 return .none
@@ -129,6 +134,8 @@ struct Application: Reducer {
                 switch change {
                 case .shouldShowPasswordStrength(let shouldShowPasswordStrength):
                     return Just(Action.configuration(.set(\.$shouldShowPasswordStrength, shouldShowPasswordStrength)))
+                case .shouldUseOptimisedUI(let shouldUseOptimisedUI):
+                    return Just(Action.configuration(.set(\.$shouldUseOptimisedUI, shouldUseOptimisedUI)))
                 }
             }
             .eraseToAnyPublisher()

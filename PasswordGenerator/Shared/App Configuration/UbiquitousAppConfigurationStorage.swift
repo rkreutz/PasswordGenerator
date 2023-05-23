@@ -7,15 +7,17 @@ final class UbiquitousAppConfigurationStorage: AppConfigurationStorage {
 
     enum Constants {
         static let shouldShowPasswordStrengthKey = "should_show_password_strength"
+        static let shouldUseOptimisedUIKey = "should_use_optimised_ui"
     }
 
     var shouldShowPasswordStrength: Bool {
-        get {
-            keyStore.bool(forKey: Constants.shouldShowPasswordStrengthKey)
-        }
-        set {
-            keyStore.set(newValue, forKey: Constants.shouldShowPasswordStrengthKey)
-        }
+        get { keyStore.bool(forKey: Constants.shouldShowPasswordStrengthKey) }
+        set { keyStore.set(newValue, forKey: Constants.shouldShowPasswordStrengthKey) }
+    }
+
+    var shouldUseOptimisedUI: Bool {
+        get { keyStore.bool(forKey: Constants.shouldUseOptimisedUIKey) }
+        set { keyStore.set(newValue, forKey: Constants.shouldUseOptimisedUIKey) }
     }
 
     private let keyStore: NSUbiquitousKeyValueStore
@@ -45,7 +47,19 @@ final class UbiquitousAppConfigurationStorage: AppConfigurationStorage {
                     shouldShowPasswordStrengthPublisher = Empty().eraseToAnyPublisher()
                 }
 
-                return shouldShowPasswordStrengthPublisher
+                let shouldUseOptimisedUIPublisher: AnyPublisher<AppConfigurationStorageChange, Never>
+                if keys.contains(Constants.shouldUseOptimisedUIKey) {
+                    shouldUseOptimisedUIPublisher = Just(.shouldUseOptimisedUI(shouldUseOptimisedUI)).eraseToAnyPublisher()
+                } else {
+                    shouldUseOptimisedUIPublisher = Empty().eraseToAnyPublisher()
+                }
+
+                return Publishers
+                    .Merge(
+                        shouldShowPasswordStrengthPublisher,
+                        shouldUseOptimisedUIPublisher
+                    )
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }

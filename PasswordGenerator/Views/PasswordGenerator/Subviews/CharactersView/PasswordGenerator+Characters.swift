@@ -9,6 +9,7 @@ extension PasswordGenerator {
             var symbols: CounterToggle.State
             var lowercase: CounterToggle.State
             var uppercase: CounterToggle.State
+            var shouldUseOptimisedUI: Bool
 
             var isValid: Bool {
                 digits.isToggled || symbols.isToggled || lowercase.isToggled || uppercase.isToggled

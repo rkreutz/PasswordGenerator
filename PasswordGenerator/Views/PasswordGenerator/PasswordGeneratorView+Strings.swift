@@ -25,6 +25,15 @@ extension Strings {
         static let symbolsCharacters = LocalizedStringKey("!@#...")
         static let numberOfCharacters = LocalizedStringKey("Number of characters")
 
+        static func characters(_ arg: Int) -> LocalizedStringKey {
+            switch arg {
+            case 1:
+                return LocalizedStringKey("At least 1 character")
+            default:
+                return LocalizedStringKey("At least \(arg) characters")
+            }
+        }
+
         static let lowercasedCharactersTooltip = LocalizedStringKey("Whether password should include lowercase characters, and how many.")
         static let uppercasedCharactersTooltip = LocalizedStringKey("Whether password should include uppercase characters, and how many.")
         static let decimalCharactersTooltip = LocalizedStringKey("Whether password should include numbers, and how many.")

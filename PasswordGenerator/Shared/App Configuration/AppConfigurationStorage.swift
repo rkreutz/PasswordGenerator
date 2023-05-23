@@ -6,12 +6,14 @@ import PasswordGeneratorKit
 protocol AppConfigurationStorage: AnyObject {
 
     var shouldShowPasswordStrength: Bool { get set }
+    var shouldUseOptimisedUI: Bool { get set }
 
     func configurationChanges() -> AnyPublisher<AppConfigurationStorageChange, Never>
 }
 
 enum AppConfigurationStorageChange {
     case shouldShowPasswordStrength(Bool)
+    case shouldUseOptimisedUI(Bool)
 }
 
 private enum AppConfigurationStorageKey: DependencyKey {
@@ -37,6 +39,7 @@ extension DependencyValues {
 final class MockAppConfigurationStorage: AppConfigurationStorage {
 
     var shouldShowPasswordStrength: Bool = false
+    var shouldUseOptimisedUI: Bool = false
 
     func configurationChanges() -> AnyPublisher<AppConfigurationStorageChange, Never> { Empty().eraseToAnyPublisher() }
 }

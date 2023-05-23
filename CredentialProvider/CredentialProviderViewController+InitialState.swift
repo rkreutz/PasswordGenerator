@@ -49,13 +49,15 @@ extension CredentialProviderViewController {
                     count: 1,
                     bounds: 1 ... 8
                 )
-            )
+            ),
+            shouldUseOptimisedUI: true
         ),
         password: .init(
             flow: .invalid,
             copyableContent: .init(content: "")
         ),
         entropyGenerator: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard).entropyGenerator(),
-        entropySize: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard).entropySize()
+        entropySize: UserDefaultsEntropyConfigurationStorage(userDefaults: .standard).entropySize(),
+        shouldUseOptimisedUI: true
     )
 }

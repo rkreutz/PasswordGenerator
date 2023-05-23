@@ -74,7 +74,8 @@ extension Application {
                             count: 1,
                             bounds: 1 ... 8
                         )
-                    )
+                    ),
+                    shouldUseOptimisedUI: appConfigurationStorage.shouldUseOptimisedUI
                 ),
                 password: .init(
                     flow: .invalid,
@@ -84,6 +85,7 @@ extension Application {
                 ),
                 entropyGenerator: entropyConfigurationStorage.entropyGenerator(),
                 entropySize: entropyConfigurationStorage.entropySize(),
+                shouldUseOptimisedUI: appConfigurationStorage.shouldUseOptimisedUI,
                 shouldShowPasswordStrength: appConfigurationStorage.shouldShowPasswordStrength
             ),
             configuration: AppConfiguration.State(
@@ -92,7 +94,8 @@ extension Application {
                 memory: memory,
                 threads: threads,
                 entropySize: entropyConfigurationStorage.entropySize(),
-                shouldShowPasswordStrength: appConfigurationStorage.shouldShowPasswordStrength
+                shouldShowPasswordStrength: appConfigurationStorage.shouldShowPasswordStrength,
+                shouldUseOptimisedUI: appConfigurationStorage.shouldUseOptimisedUI
             )
         )
     }

@@ -15,6 +15,7 @@ struct PasswordGenerator: Reducer {
         var entropyGenerator: PasswordGeneratorKit.PasswordGenerator.EntropyGenerator
         var entropySize: UInt
         var error: Error?
+        var shouldUseOptimisedUI: Bool
 
         #if APP
         var shouldShowPasswordStrength: Bool
@@ -33,7 +34,7 @@ struct PasswordGenerator: Reducer {
         }
 
         static func == (lhs: Self, rhs: Self) -> Bool {
-
+            #if APP
             lhs.configuration == rhs.configuration
             && lhs.length == rhs.length
             && lhs.characters == rhs.characters
@@ -41,6 +42,18 @@ struct PasswordGenerator: Reducer {
             && lhs.entropyGenerator == rhs.entropyGenerator
             && lhs.entropySize == rhs.entropySize
             && lhs.error?.localizedDescription == rhs.error?.localizedDescription
+            && lhs.shouldShowPasswordStrength == rhs.shouldShowPasswordStrength
+            && lhs.shouldUseOptimisedUI == rhs.shouldUseOptimisedUI
+            #else
+            lhs.configuration == rhs.configuration
+            && lhs.length == rhs.length
+            && lhs.characters == rhs.characters
+            && lhs.password == rhs.password
+            && lhs.entropyGenerator == rhs.entropyGenerator
+            && lhs.entropySize == rhs.entropySize
+            && lhs.error?.localizedDescription == rhs.error?.localizedDescription
+            && lhs.shouldUseOptimisedUI == rhs.shouldUseOptimisedUI
+            #endif
         }
     }
 

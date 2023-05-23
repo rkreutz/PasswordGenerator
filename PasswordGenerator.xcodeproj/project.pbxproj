@@ -191,6 +191,13 @@
 		FC7E2C0E2A17DEBD00540492 /* PasswordGeneratorView+PasswordEntropyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C0D2A17DEBD00540492 /* PasswordGeneratorView+PasswordEntropyView.swift */; };
 		FC7E2C132A1BA7C700540492 /* AppConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C122A1BA7C700540492 /* AppConfigurationStorage.swift */; };
 		FC7E2C152A1BA8B300540492 /* UbiquitousAppConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C142A1BA8B300540492 /* UbiquitousAppConfigurationStorage.swift */; };
+		FC7E2C172A1C3A8900540492 /* OptimisedCounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C162A1C3A8900540492 /* OptimisedCounterToggleView.swift */; platformFilter = ios; };
+		FC7E2C192A1CD18E00540492 /* BadgeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C182A1CD18E00540492 /* BadgeViewModifier.swift */; };
+		FC7E2C1A2A1CD18E00540492 /* BadgeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C182A1CD18E00540492 /* BadgeViewModifier.swift */; };
+		FC7E2C1B2A1CDCB300540492 /* OptimisedCounterToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C162A1C3A8900540492 /* OptimisedCounterToggleView.swift */; };
+		FC7E2C1E2A1D76C200540492 /* OptimisedUITutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C1D2A1D76C200540492 /* OptimisedUITutorial.swift */; platformFilter = ios; };
+		FC7E2C202A1D773A00540492 /* OptimisedUITutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C1F2A1D773A00540492 /* OptimisedUITutorialView.swift */; platformFilter = ios; };
+		FC7E2C222A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C212A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift */; platformFilter = ios; };
 		FCA6ED3429EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */; };
 		FCA6ED3529EF5685001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */; };
 		FCA6ED6C29FDFAA8001C8714 /* EntropyBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED6B29FDFAA8001C8714 /* EntropyBarView.swift */; };
@@ -337,6 +344,11 @@
 		FC7E2C0D2A17DEBD00540492 /* PasswordGeneratorView+PasswordEntropyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasswordGeneratorView+PasswordEntropyView.swift"; sourceTree = "<group>"; };
 		FC7E2C122A1BA7C700540492 /* AppConfigurationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationStorage.swift; sourceTree = "<group>"; };
 		FC7E2C142A1BA8B300540492 /* UbiquitousAppConfigurationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousAppConfigurationStorage.swift; sourceTree = "<group>"; };
+		FC7E2C162A1C3A8900540492 /* OptimisedCounterToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimisedCounterToggleView.swift; sourceTree = "<group>"; };
+		FC7E2C182A1CD18E00540492 /* BadgeViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModifier.swift; sourceTree = "<group>"; };
+		FC7E2C1D2A1D76C200540492 /* OptimisedUITutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimisedUITutorial.swift; sourceTree = "<group>"; };
+		FC7E2C1F2A1D773A00540492 /* OptimisedUITutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimisedUITutorialView.swift; sourceTree = "<group>"; };
+		FC7E2C212A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptimisedUITutorialView+Strings.swift"; sourceTree = "<group>"; };
 		FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousEntropyConfigurationStorage.swift; sourceTree = "<group>"; };
 		FCA6ED6B29FDFAA8001C8714 /* EntropyBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntropyBarView.swift; sourceTree = "<group>"; };
 		FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CredentialProviderViewController+InitialState.swift"; sourceTree = "<group>"; };
@@ -431,6 +443,7 @@
 		37020F2924983C9700C105D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC7E2C1C2A1D769C00540492 /* OptimisedUITutorial */,
 				373ACBE72528C5F600B1A516 /* Styles */,
 				37197A9624FB371100873DC6 /* Modifiers */,
 				379462D82955EA3400F79F3C /* AppConfiguration */,
@@ -455,6 +468,7 @@
 		37197A9624FB371100873DC6 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				FC7E2C182A1CD18E00540492 /* BadgeViewModifier.swift */,
 				37197A9724FB372100873DC6 /* CardViewModifier.swift */,
 				370F7ED7251676EA00F87C9A /* ExpandInParentViewModifier.swift */,
 			);
@@ -622,6 +636,7 @@
 			children = (
 				FC5494EA29DE362C008F2DEB /* CounterToggle.swift */,
 				37020F27249831E000C105D1 /* CounterToggleView.swift */,
+				FC7E2C162A1C3A8900540492 /* OptimisedCounterToggleView.swift */,
 			);
 			path = CounterToggle;
 			sourceTree = "<group>";
@@ -777,6 +792,16 @@
 				FC7E2C142A1BA8B300540492 /* UbiquitousAppConfigurationStorage.swift */,
 			);
 			path = "App Configuration";
+			sourceTree = "<group>";
+		};
+		FC7E2C1C2A1D769C00540492 /* OptimisedUITutorial */ = {
+			isa = PBXGroup;
+			children = (
+				FC7E2C1D2A1D76C200540492 /* OptimisedUITutorial.swift */,
+				FC7E2C1F2A1D773A00540492 /* OptimisedUITutorialView.swift */,
+				FC7E2C212A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift */,
+			);
+			path = OptimisedUITutorial;
 			sourceTree = "<group>";
 		};
 		FC8547DD256DF85600E2A295 /* CharactersView */ = {
@@ -949,6 +974,8 @@
 				FC54957129E83965008F2DEB /* AppConfigurationView+DesktopView.swift in Sources */,
 				FC74BD292572F2E100BC33D0 /* PasswordGeneratorApp.swift in Sources */,
 				FC66E36D252FE680002F8DDF /* LoaderStyle.swift in Sources */,
+				FC7E2C1E2A1D76C200540492 /* OptimisedUITutorial.swift in Sources */,
+				FC7E2C222A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift in Sources */,
 				37020F1C248DB84400C105D1 /* PasswordGeneratorView.swift in Sources */,
 				37A5651A24A8013E008D48FD /* MainButtonStyle.swift in Sources */,
 				37A5653324B94446008D48FD /* DispatchWorkItemReference.swift in Sources */,
@@ -998,6 +1025,7 @@
 				FC66E378252FEAB5002F8DDF /* SecondaryTextFieldStyle.swift in Sources */,
 				FC7E2C132A1BA7C700540492 /* AppConfigurationStorage.swift in Sources */,
 				37A5652124B800A4008D48FD /* MasterPasswordKeychain+Strings.swift in Sources */,
+				FC7E2C172A1C3A8900540492 /* OptimisedCounterToggleView.swift in Sources */,
 				FC66E356252FD378002F8DDF /* ParagraphStyle.swift in Sources */,
 				FC54954229E0DB81008F2DEB /* Application.swift in Sources */,
 				37936E1D24BA77CB0007E9BB /* ErrorEmittingViewModifier.swift in Sources */,
@@ -1017,12 +1045,14 @@
 				FC0A2CF6254CB41000C5B579 /* ErrorHandler+DI.swift in Sources */,
 				37A5654724B962BC008D48FD /* MasterPasswordKeychain+Constants.swift in Sources */,
 				FC54954529E0E3A2008F2DEB /* Application+InitialState.swift in Sources */,
+				FC7E2C192A1CD18E00540492 /* BadgeViewModifier.swift in Sources */,
 				37020F262496F7E200C105D1 /* CounterView.swift in Sources */,
 				37A5652724B8D808008D48FD /* PasswordGeneratorView+ConfigurationView.swift in Sources */,
 				37A5653C24B95E5D008D48FD /* MasterPasswordStorage.swift in Sources */,
 				37A5652D24B8EA34008D48FD /* CGSize+MinLength.swift in Sources */,
 				37C76EF224BB8561003BCAC1 /* View+AsHostingController.swift in Sources */,
 				37A5654524B9628D008D48FD /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
+				FC7E2C202A1D773A00540492 /* OptimisedUITutorialView.swift in Sources */,
 				37020F28249831E000C105D1 /* CounterToggleView.swift in Sources */,
 				FC54953929DFB385008F2DEB /* PasswordGenerator+Domain.swift in Sources */,
 				375D5A9C24BA8ECB0017AC2B /* ErrorHandler.swift in Sources */,
@@ -1062,6 +1092,7 @@
 				FC6138A9256CA7C100023A8C /* AppHapticManager.swift in Sources */,
 				FC5494E929DE2E4A008F2DEB /* Counter.swift in Sources */,
 				FC6138BC256CA8BA00023A8C /* Pasteboard+UIKit.swift in Sources */,
+				FC7E2C1A2A1CD18E00540492 /* BadgeViewModifier.swift in Sources */,
 				37CB52CD24CDF7520081DA1E /* ToastErrorHandler.swift in Sources */,
 				FC54951229DEDF74008F2DEB /* Sleep.swift in Sources */,
 				37CB52D024CDF7570081DA1E /* CGSize+MinLength.swift in Sources */,
@@ -1106,6 +1137,7 @@
 				37CB52DD24CDF7650081DA1E /* MasterPasswordKeychain+MasterPasswordProvider.swift in Sources */,
 				FC6138BB256CA8BA00023A8C /* Pasteboard.swift in Sources */,
 				FC54952B29DF89BF008F2DEB /* PasswordGenerator.swift in Sources */,
+				FC7E2C1B2A1CDCB300540492 /* OptimisedCounterToggleView.swift in Sources */,
 				37CB52EC24CDF7770081DA1E /* PasswordGeneratorView+LengthView.swift in Sources */,
 				FC54955A29E78E04008F2DEB /* PasswordGeneratorView+CompactView.swift in Sources */,
 				FC5494EC29DE362C008F2DEB /* CounterToggle.swift in Sources */,

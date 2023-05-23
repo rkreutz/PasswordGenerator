@@ -14,38 +14,68 @@ extension PasswordGeneratorView {
 
         var body: some View {
             #if os(iOS)
-            VStack(spacing: spacing) {
-                CounterToggleView(
-                    title: Strings.PasswordGeneratorView.lowercasedCharacters,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    store: store.scope(state: \.lowercase, action: ViewAction.lowercase)
-                )
+            WithViewStore(store.actionless, observe: { $0.shouldUseOptimisedUI }) { viewStore in
+                if viewStore.state {
+                    HStack {
+                        OptimisedCounterToggleView(
+                            title: Strings.PasswordGeneratorView.lowercasedCharacters,
+                            store: store.scope(state: \.lowercase, action: ViewAction.lowercase)
+                        )
 
-                SeparatorView()
+                        OptimisedCounterToggleView(
+                            title: Strings.PasswordGeneratorView.uppercasedCharacters,
+                            store: store.scope(state: \.uppercase, action: ViewAction.uppercase)
+                        )
 
-                CounterToggleView(
-                    title: Strings.PasswordGeneratorView.uppercasedCharacters,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    store: store.scope(state: \.uppercase, action: ViewAction.uppercase)
-                )
+                        OptimisedCounterToggleView(
+                            title: Strings.PasswordGeneratorView.decimalCharacters,
+                            store: store.scope(state: \.digits, action: ViewAction.digits)
+                        )
 
-                SeparatorView()
+                        OptimisedCounterToggleView(
+                            title: Strings.PasswordGeneratorView.symbolsCharacters,
+                            store: store.scope(state: \.symbols, action: ViewAction.symbols)
+                        )
+                    }
+                    .allowsTightening(true)
+                    .lineLimit(1)
+                    .expandedInParent()
+                    .asCard()
+                } else {
+                    VStack(spacing: spacing) {
+                        CounterToggleView(
+                            title: Strings.PasswordGeneratorView.lowercasedCharacters,
+                            counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                            store: store.scope(state: \.lowercase, action: ViewAction.lowercase)
+                        )
 
-                CounterToggleView(
-                    title: Strings.PasswordGeneratorView.decimalCharacters,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    store: store.scope(state: \.digits, action: ViewAction.digits)
-                )
+                        SeparatorView()
 
-                SeparatorView()
+                        CounterToggleView(
+                            title: Strings.PasswordGeneratorView.uppercasedCharacters,
+                            counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                            store: store.scope(state: \.uppercase, action: ViewAction.uppercase)
+                        )
 
-                CounterToggleView(
-                    title: Strings.PasswordGeneratorView.symbolsCharacters,
-                    counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
-                    store: store.scope(state: \.symbols, action: ViewAction.symbols)
-                )
+                        SeparatorView()
+
+                        CounterToggleView(
+                            title: Strings.PasswordGeneratorView.decimalCharacters,
+                            counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                            store: store.scope(state: \.digits, action: ViewAction.digits)
+                        )
+
+                        SeparatorView()
+
+                        CounterToggleView(
+                            title: Strings.PasswordGeneratorView.symbolsCharacters,
+                            counterTitle: Strings.PasswordGeneratorView.numberOfCharacters,
+                            store: store.scope(state: \.symbols, action: ViewAction.symbols)
+                        )
+                    }
+                    .asCard()
+                }
             }
-            .asCard()
             #elseif os(macOS)
             HStack {
                 CounterToggleView(
@@ -126,7 +156,8 @@ struct CharactersView_Previews: PreviewProvider {
                     count: 1,
                     bounds: 1 ... 8
                 )
-            )
+            ),
+            shouldUseOptimisedUI: true
         ),
         reducer: PasswordGenerator.Characters()
     )

@@ -23,6 +23,9 @@ extension Strings {
         static let memoryTitle = LocalizedStringKey("Memory (kB)")
         static let threadsTitle = LocalizedStringKey("Threads")
         static let entropySizeTitle = LocalizedStringKey("Entropy size (bytes)")
+        static let appConfigTitle = LocalizedStringKey("General")
+        static let useOptimisedUITitle = LocalizedStringKey("Use optimised UI")
+        static let optimisedUITutorialTitle = LocalizedStringKey("Optimised UI Tutorial")
         static let showPasswordStrengthTitle = LocalizedStringKey("Show password strength")
         static let passwordStrengthFooter = LocalizedStringKey(
             """
