@@ -198,6 +198,8 @@
 		FC7E2C1E2A1D76C200540492 /* OptimisedUITutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C1D2A1D76C200540492 /* OptimisedUITutorial.swift */; platformFilter = ios; };
 		FC7E2C202A1D773A00540492 /* OptimisedUITutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C1F2A1D773A00540492 /* OptimisedUITutorialView.swift */; platformFilter = ios; };
 		FC7E2C222A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C212A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift */; platformFilter = ios; };
+		FC7E2C242A1E615100540492 /* PasswordText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C232A1E615100540492 /* PasswordText.swift */; };
+		FC7E2C252A1E615100540492 /* PasswordText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7E2C232A1E615100540492 /* PasswordText.swift */; };
 		FCA6ED3429EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */; };
 		FCA6ED3529EF5685001C8714 /* UbiquitousEntropyConfigurationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */; };
 		FCA6ED6C29FDFAA8001C8714 /* EntropyBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6ED6B29FDFAA8001C8714 /* EntropyBarView.swift */; };
@@ -349,6 +351,7 @@
 		FC7E2C1D2A1D76C200540492 /* OptimisedUITutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimisedUITutorial.swift; sourceTree = "<group>"; };
 		FC7E2C1F2A1D773A00540492 /* OptimisedUITutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimisedUITutorialView.swift; sourceTree = "<group>"; };
 		FC7E2C212A1D7A6C00540492 /* OptimisedUITutorialView+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptimisedUITutorialView+Strings.swift"; sourceTree = "<group>"; };
+		FC7E2C232A1E615100540492 /* PasswordText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordText.swift; sourceTree = "<group>"; };
 		FCA6ED3329EF50B2001C8714 /* UbiquitousEntropyConfigurationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbiquitousEntropyConfigurationStorage.swift; sourceTree = "<group>"; };
 		FCA6ED6B29FDFAA8001C8714 /* EntropyBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntropyBarView.swift; sourceTree = "<group>"; };
 		FCE2AD7E2573522E00812A51 /* CredentialProviderViewController+InitialState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CredentialProviderViewController+InitialState.swift"; sourceTree = "<group>"; };
@@ -431,6 +434,7 @@
 				FCA6ED6B29FDFAA8001C8714 /* EntropyBarView.swift */,
 				FC54955429E76BE0008F2DEB /* FormSection.swift */,
 				FC54957429E8408C008F2DEB /* GroupedBox.swift */,
+				FC7E2C232A1E615100540492 /* PasswordText.swift */,
 				3737690E249930B3003C6CE4 /* SeparatorView.swift */,
 				37A5653024B90EF1008D48FD /* Toast.swift */,
 				FC613871256C94F600023A8C /* CopyableContent */,
@@ -1017,6 +1021,7 @@
 				37376919249969CB003C6CE4 /* Collection+IsNotEmpty.swift in Sources */,
 				FC54951E29DF2204008F2DEB /* AppConfigurationView+EntropySizePicker.swift in Sources */,
 				FC74BC72257202A200BC33D0 /* PasswordGeneratorView+DomainView.swift in Sources */,
+				FC7E2C242A1E615100540492 /* PasswordText.swift in Sources */,
 				FC54955529E76BE0008F2DEB /* FormSection.swift in Sources */,
 				FC5494EB29DE362C008F2DEB /* CounterToggle.swift in Sources */,
 				FC66E35A252FD705002F8DDF /* Label+TextInitialiser.swift in Sources */,
@@ -1100,6 +1105,7 @@
 				37CB52E824CDF7730081DA1E /* PasswordGeneratorView+Strings.swift in Sources */,
 				37CB52D524CDF7570081DA1E /* String+HasMatchingTypes.swift in Sources */,
 				37CB52EA24CDF7770081DA1E /* PasswordGeneratorView+CharactersView.swift in Sources */,
+				FC7E2C252A1E615100540492 /* PasswordText.swift in Sources */,
 				FC54952529DF26FE008F2DEB /* Binding+Map.swift in Sources */,
 				37197A9924FB374200873DC6 /* CardViewModifier.swift in Sources */,
 				FC54951C29DF1103008F2DEB /* EntropyGenerator+Equatable.swift in Sources */,

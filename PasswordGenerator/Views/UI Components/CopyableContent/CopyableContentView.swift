@@ -34,21 +34,21 @@ struct CopyableContentView: View {
     var body: some View {
         HStack(spacing: spacing) {
             #if os(iOS)
-            Text(viewStore.content)
+            PasswordText(viewStore.content)
                 .foregroundColor(.label)
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
                 .font(.system(.headline, design: .monospaced))
             #elseif os(macOS)
             if #available(macOS 12, *) {
-                Text(viewStore.content)
+                PasswordText(viewStore.content)
                     .textSelection(.enabled)
                     .foregroundColor(.label)
                     .lineLimit(1)
                     .minimumScaleFactor(0.1)
                     .font(.system(.headline, design: .monospaced))
             } else {
-                Text(viewStore.content)
+                PasswordText(viewStore.content)
                     .foregroundColor(.label)
                     .lineLimit(1)
                     .minimumScaleFactor(0.1)
