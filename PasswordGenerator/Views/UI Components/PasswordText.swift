@@ -37,15 +37,15 @@ private extension AttributedString {
                 #endif
             case "0" ... "9":
                 #if os(iOS)
-                attributedString.append(NSAttributedString(string: String(character), attributes: [.foregroundColor: UIColor.systemOrange]))
-                #else
-                attributedString.append(NSAttributedString(string: String(character), attributes: [.foregroundColor: NSColor.systemOrange]))
-                #endif
-            case "!", "@", "#", "$", "%", "&", "_", "-", "|", "?", ".":
-                #if os(iOS)
                 attributedString.append(NSAttributedString(string: String(character), attributes: [.foregroundColor: UIColor.systemTeal]))
                 #else
                 attributedString.append(NSAttributedString(string: String(character), attributes: [.foregroundColor: NSColor.systemTeal]))
+                #endif
+            case "!", "@", "#", "$", "%", "&", "_", "-", "|", "?", ".":
+                #if os(iOS)
+                attributedString.append(NSAttributedString(string: String(character), attributes: [.foregroundColor: UIColor.systemOrange]))
+                #else
+                attributedString.append(NSAttributedString(string: String(character), attributes: [.foregroundColor: NSColor.systemOrange]))
                 #endif
             default:
                 #if os(iOS)
