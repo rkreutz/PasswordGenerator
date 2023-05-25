@@ -27,7 +27,7 @@ extension Strings {
                 """
                 Average Times
                 Entropy Generation: \(entropyGeneration)s
-                Generate Password (total): \(total)
+                Generate Password (total): \(total)s
                 """
             )
         }
