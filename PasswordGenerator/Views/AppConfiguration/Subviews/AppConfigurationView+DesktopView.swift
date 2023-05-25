@@ -48,6 +48,33 @@ extension AppConfigurationView {
                             SeparatorView()
 
                             EntropySizePicker(store: store)
+
+                            SeparatorView()
+
+                            Spacer().frame(height: 0)
+
+                            Group {
+                                switch viewStore.profilingState {
+                                case .waiting:
+                                    Button(
+                                        action: { viewStore.send(.didTapProfilePasswordGeneration) },
+                                        label: { Text(Strings.AppConfigurationView.profileGeneratorTitle).expandedInParent() }
+                                    )
+
+                                case .profiling:
+                                    ProgressView()
+                                        .expandedInParent()
+
+                                case .profiled(let result):
+                                    Text(
+                                        Strings.AppConfigurationView.passwordGeneratorProfilingResult(
+                                            entropyGeneration: result.entropyGeneration.average,
+                                            total: result.total.average()
+                                        )
+                                    )
+                                }
+                            }
+                            .padding(.top)
                         }
                         .padding()
                     }

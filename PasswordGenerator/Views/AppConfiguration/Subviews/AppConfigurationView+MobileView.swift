@@ -119,7 +119,35 @@ extension AppConfigurationView {
                                     GeneratorPicker(store: store)
                                 }
                             },
-                            footer: { Text(Strings.AppConfigurationView.entropyConfigurationSectionDescription).padding(.horizontal) }
+                            footer: {
+                                VStack(alignment: .leading, spacing: spacing) {
+                                    Text(Strings.AppConfigurationView.entropyConfigurationSectionDescription)
+
+                                    switch viewStore.profilingState {
+                                    case .waiting:
+                                        Button(
+                                            action: { viewStore.send(.didTapProfilePasswordGeneration) },
+                                            label: {
+                                                Text(Strings.AppConfigurationView.profileGeneratorTitle)
+                                                    .foregroundColor(.accentColor)
+                                            }
+                                        )
+
+                                    case .profiling:
+                                        ProgressView().expandedInParent()
+
+                                    case .profiled(let result):
+                                        Text(
+                                            Strings.AppConfigurationView.passwordGeneratorProfilingResult(
+                                                entropyGeneration: result.entropyGeneration.average,
+                                                total: result.total.average()
+                                            )
+                                        )
+                                    }
+                                }
+                                .padding(.horizontal)
+                                .padding(.bottom, spacing)
+                            }
                         )
                     }
                     .padding([.horizontal], max((proxy.size.width - maxWidth) / 2, 0))

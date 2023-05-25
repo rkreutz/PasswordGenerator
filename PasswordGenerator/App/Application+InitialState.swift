@@ -95,7 +95,8 @@ extension Application {
                 threads: threads,
                 entropySize: entropyConfigurationStorage.entropySize(),
                 shouldShowPasswordStrength: appConfigurationStorage.shouldShowPasswordStrength,
-                shouldUseOptimisedUI: appConfigurationStorage.shouldUseOptimisedUI
+                shouldUseOptimisedUI: appConfigurationStorage.shouldUseOptimisedUI,
+                profilingState: .waiting
             )
         )
     }

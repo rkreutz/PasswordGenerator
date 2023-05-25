@@ -14,8 +14,23 @@ extension Strings {
             It is recommended to use as large as possible values in most parameters, however increasing some parameters may increase processing times, therefore test your configuration before commiting to it and make sure you are happy with the time it takes to generate your passwords. In general the longer it takes to generate a password, the harder it is for hackers to brute-force it.
 
             The default generator is PBKDF2 with 1,000 iterations and 40 bytes of entropy.
+
+            You may test your current configuration by profiling the entropy generator. It is \
+            recommended that entropy generation times are at least 80ms and that generating \
+            the password (which is the sum of entropy generation with the computation of the password) \
+            takes almost the same time.
             """
         )
+        static let profileGeneratorTitle = LocalizedStringKey("Profile Generator")
+        static func passwordGeneratorProfilingResult(entropyGeneration: TimeInterval, total: TimeInterval) -> LocalizedStringKey {
+            LocalizedStringKey(
+                """
+                Average Times
+                Entropy Generation: \(entropyGeneration)s
+                Generate Password (total): \(total)
+                """
+            )
+        }
         static let keyDerivationTitle = LocalizedStringKey("Key Derivation")
         static let pbkdfTitle = LocalizedStringKey("PBKDF2")
         static let argonTitle = LocalizedStringKey("Argon2")

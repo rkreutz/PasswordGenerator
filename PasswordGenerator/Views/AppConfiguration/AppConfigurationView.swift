@@ -7,16 +7,19 @@ struct AppConfigurationView: View {
 
     struct ViewState: Equatable {
         var derivationAlgorithm: AppConfiguration.KeyDerivationAlgorithm
+        var profilingState: AppConfiguration.ProfilingState
         var error: Error?
 
         static func == (lhs: Self, rhs: Self) -> Bool {
             lhs.derivationAlgorithm == rhs.derivationAlgorithm
+            && lhs.profilingState == rhs.profilingState
             && lhs.error?.localizedDescription == rhs.error?.localizedDescription
         }
     }
 
     enum ViewAction {
         case didTapResetMasterPassword
+        case didTapProfilePasswordGeneration
         case didScrollView
         case didReceiveError(Error?)
 
@@ -24,6 +27,9 @@ struct AppConfigurationView: View {
             switch self {
             case .didTapResetMasterPassword:
                 return .didTapResetMasterPassword
+
+            case .didTapProfilePasswordGeneration:
+                return .didTapProfilePasswordGeneration
 
             case .didScrollView:
                 return .didScrollView
@@ -59,7 +65,7 @@ struct AppConfigurationView: View {
 
 private extension AppConfiguration.State {
     var view: AppConfigurationView.ViewState {
-        get { .init(derivationAlgorithm: derivationAlgorithm, error: error) }
+        get { .init(derivationAlgorithm: derivationAlgorithm, profilingState: profilingState, error: error) }
         set { error = newValue.error }
     }
 }
